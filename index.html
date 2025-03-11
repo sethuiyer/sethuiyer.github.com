@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prime Spiral 4D - Windows 98 Edition</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+  <style>
+    /* Windows 98 Styling */
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #008080; /* Classic Win98 teal */
+      font-family: 'MS Sans Serif', 'Tahoma', sans-serif;
+      color: #000;
+      user-select: none;
+    }
+    
+    .win98-window {
+      position: absolute;
+      background-color: #c0c0c0;
+      border-top: 2px solid #dfdfdf;
+      border-left: 2px solid #dfdfdf;
+      border-right: 2px solid #404040;
+      border-bottom: 2px solid #404040;
+      box-shadow: 1px 1px 0 0 #000;
+      width: 280px;
+      z-index: 100;
+    }
+    
+    .titlebar {
+      background: linear-gradient(90deg, #000080, #1084d0);
+      color: white;
+      padding: 3px 5px;
+      font-weight: bold;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .win-buttons {
+      display: flex;
+    }
+    
+    .win-button {
+      width: 16px;
+      height: 14px;
+      background-color: #c0c0c0;
+      border-top: 1px solid #fff;
+      border-left: 1px solid #fff;
+      border-right: 1px solid #404040;
+      border-bottom: 1px solid #404040;
+      margin-left: 2px;
+      font-size: 9px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    
+    .win-content {
+      padding: 10px;
+    }
+    
+    .controls {
+      top: 10px;
+      left: 10px;
+    }
+    
+    .about {
+      top: 10px;
+      right: 10px;
+      width: 320px;
+      max-height: 80%;
+      overflow-y: auto;
+    }
+    
+    .win98-input {
+      border-top: 1px solid #404040;
+      border-left: 1px solid #404040;
+      border-right: 1px solid #fff;
+      border-bottom: 1px solid #fff;
+      background-color: #fff;
+      padding: 3px;
+      margin: 5px 0;
+      font-family: 'MS Sans Serif', 'Tahoma', sans-serif;
+      font-size: 12px;
+    }
+    
+    .win98-button {
+      background-color: #c0c0c0;
+      border-top: 2px solid #dfdfdf;
+      border-left: 2px solid #dfdfdf;
+      border-right: 2px solid #404040;
+      border-bottom: 2px solid #404040;
+      padding: 4px 10px;
+      margin: 5px 0;
+      font-family: 'MS Sans Serif', 'Tahoma', sans-serif;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    
+    .win98-button:active {
+      border-top: 2px solid #404040;
+      border-left: 2px solid #404040;
+      border-right: 2px solid #dfdfdf;
+      border-bottom: 2px solid #dfdfdf;
+    }
+    
+    .win98-checkbox, .win98-radio {
+      margin: 5px 0;
+    }
+    
+    .win98-checkbox input, .win98-radio input {
+      margin-right: 5px;
+    }
+    
+    .win98-slider {
+      margin: 8px 0;
+    }
+    
+    .win98-slider label {
+      display: block;
+      margin-bottom: 3px;
+    }
+    
+    .win98-group {
+      border-top: 1px solid #404040;
+      border-left: 1px solid #404040;
+      border-right: 1px solid #fff;
+      border-bottom: 1px solid #fff;
+      padding: 8px;
+      margin: 5px 0 10px 0;
+    }
+    
+    .win98-group-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .prime-display {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 5px;
+    }
+    
+    .prime-tag {
+      background-color: #000080;
+      color: white;
+      padding: 2px 5px;
+      margin: 2px;
+      font-size: 11px;
+      border-top: 1px solid #1084d0;
+      border-left: 1px solid #1084d0;
+      border-right: 1px solid #000040;
+      border-bottom: 1px solid #000040;
+      cursor: pointer;
+    }
+    
+    .prime-tag.active {
+      background-color: #ff0000;
+    }
+    
+    #startMenu {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 28px;
+      background-color: #c0c0c0;
+      border-top: 2px solid #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 5px;
+      z-index: 1000;
+    }
+    
+    #startButton {
+      display: flex;
+      align-items: center;
+      background-color: #c0c0c0;
+      border-top: 2px solid #dfdfdf;
+      border-left: 2px solid #dfdfdf;
+      border-right: 2px solid #404040;
+      border-bottom: 2px solid #404040;
+      padding: 0 8px;
+      height: 22px;
+      font-weight: bold;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    
+    #startButton img {
+      width: 16px;
+      height: 16px;
+      margin-right: 4px;
+    }
+    
+    #statusText {
+      margin-left: 10px;
+      font-size: 11px;
+    }
+    
+    #errorDialog {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      background-color: #c0c0c0;
+      border-top: 2px solid #dfdfdf;
+      border-left: 2px solid #dfdfdf;
+      border-right: 2px solid #404040;
+      border-bottom: 2px solid #404040;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+      padding: 1px;
+      z-index: 1000;
+      display: none;
+    }
+    
+    #errorContent {
+      display: flex;
+      padding: 15px;
+      align-items: center;
+    }
+    
+    #errorIcon {
+      margin-right: 15px;
+      font-size: 32px;
+      color: red;
+    }
+    
+    #errorText {
+      flex-grow: 1;
+    }
+    
+    #errorButtons {
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Windows 98-style Control Panel -->
+  <div id="controlPanel" class="win98-window controls">
+    <div class="titlebar">
+      <div>Prime Spiral 4D - Control Panel</div>
+      <div class="win-buttons">
+        <div class="win-button" onclick="minimizeWindow('controlPanel')">_</div>
+        <div class="win-button" onclick="maximizeWindow('controlPanel')">□</div>
+        <div class="win-button" onclick="closeWindow('controlPanel')">×</div>
+      </div>
+    </div>
+    <div class="win-content">
+      <div class="win98-group">
+        <div class="win98-group-title">Prime Numbers</div>
+        <div>
+          <label for="primeInput">Enter Prime Number:</label>
+          <div style="display: flex; margin-top: 4px;">
+            <input type="text" id="primeInput" class="win98-input" style="flex-grow: 1;">
+            <button id="addPrimeBtn" class="win98-button" style="margin-left: 5px;">Add</button>
+          </div>
+        </div>
+        <div class="prime-display" id="primeList">
+          <!-- Prime tags will be added here -->
+        </div>
+      </div>
+      
+      <div class="win98-slider">
+        <label for="rotationSlider">Rotation Speed: <span id="rotationValue">30</span>%</label>
+        <input type="range" id="rotationSlider" min="0" max="100" value="30" class="win98-input">
+      </div>
+      
+      <div class="win98-slider">
+        <label for="amplitudeSlider">W Amplitude: <span id="amplitudeValue">20</span></label>
+        <input type="range" id="amplitudeSlider" min="1" max="50" value="20" class="win98-input">
+      </div>
+      
+      <div class="win98-slider">
+        <label for="wScaleSlider">W Visual Impact: <span id="wScaleValue">50</span>%</label>
+        <input type="range" id="wScaleSlider" min="1" max="100" value="50" class="win98-input">
+      </div>
+      
+      <div class="win98-checkbox">
+        <input type="checkbox" id="showLabels" checked>
+        <label for="showLabels">Show Digit Labels</label>
+      </div>
+
+      <div class="win98-checkbox">
+        <input type="checkbox" id="compareMode">
+        <label for="compareMode">Compare Mode</label>
+      </div>
+      
+      <button id="resetViewBtn" class="win98-button">Reset View</button>
+    </div>
+  </div>
+
+  <!-- About Window -->
+  <div id="aboutPanel" class="win98-window about">
+    <div class="titlebar">
+      <div>About Prime Spiral 4D</div>
+      <div class="win-buttons">
+        <div class="win-button" onclick="minimizeWindow('aboutPanel')">_</div>
+        <div class="win-button" onclick="maximizeWindow('aboutPanel')">□</div>
+        <div class="win-button" onclick="closeWindow('aboutPanel')">×</div>
+      </div>
+    </div>
+    <div class="win-content">
+      <h3 style="margin-top: 0;">4D Prime Spiral Data Structure</h3>
+      
+      <p><strong>Purpose:</strong> This visualization maps prime numbers into a 4-dimensional geometric space, revealing patterns and relationships that are not visible in traditional representations.</p>
+      
+      <h4>Key Concepts:</h4>
+      <ul>
+        <li><strong>Spatial Encoding:</strong> Each digit of a prime number is encoded as a point in 4D space</li>
+        <li><strong>Pattern Recognition:</strong> Similar primes create similar geometric structures</li>
+        <li><strong>Dimensional Analysis:</strong> The 4th dimension (W) encodes additional mathematical properties</li>
+      </ul>
+      
+      <h4>Potential Applications:</h4>
+      <ul>
+        <li><strong>Cryptography:</strong> Novel approaches to prime-based cryptographic systems</li>
+        <li><strong>Number Theory:</strong> Visual exploration of prime patterns and relationships</li>
+        <li><strong>Quantum Computing:</strong> Basis for multi-dimensional quantum states encoding</li>
+        <li><strong>Data Compression:</strong> Geometric encoding for efficient prime representation</li>
+        <li><strong>AI Pattern Recognition:</strong> Training neural networks on geometric prime patterns</li>
+      </ul>
+      
+      <h4>Mathematical Formulation:</h4>
+      <p>For each digit position (i) in the prime number:</p>
+      <pre>
+x = R * cos(2πi/P)
+y = R * sin(2πi/P)
+z = (h/P) * i
+w = A * sin(digit * π/10)
+      </pre>
+      
+      <p>Where:</p>
+      <ul>
+        <li>R = radius of the spiral</li>
+        <li>P = period for X and Y rotation</li>
+        <li>h = height increment</li>
+        <li>A = amplitude of the 4th dimension</li>
+        <li>digit = the actual digit value at position i</li>
+      </ul>
+      
+      <p><strong>Future Extensions:</strong> This approach can be extended to even higher dimensions, creating a complete geometric algebra of prime numbers.</p>
+    </div>
+  </div>
+  
+  <!-- Error Dialog -->
+  <div id="errorDialog">
+    <div class="titlebar">
+      <div>Prime Spiral 4D</div>
+      <div class="win-buttons">
+        <div class="win-button" onclick="closeError()">×</div>
+      </div>
+    </div>
+    <div id="errorContent">
+      <div id="errorIcon">⚠️</div>
+      <div id="errorText">Error message goes here.</div>
+    </div>
+    <div id="errorButtons">
+      <button class="win98-button" onclick="closeError()">OK</button>
+    </div>
+  </div>
+  
+  <!-- Status Bar -->
+  <div id="startMenu">
+    <div id="startButton">
+      <span style="font-family: 'Arial', sans-serif; font-weight: bold; margin-right: 2px;">W</span> Prime Spiral
+    </div>
+    <div id="statusText">Ready.</div>
+  </div>
+
+  <script>
+    // Global variables
+    let primes = [13, 31]; // Default primes
+    let activePrimes = [13]; // Initially active prime
+    let angle = 0;
+    let rotationSpeed = 0.3;
+    let amplitude = 20;
+    let wScale = 5;
+    let showLabels = true;
+    let compareMode = false;
+    let canvas;
+    let isPrimary = true;
+    
+    function setup() {
+      canvas = createCanvas(windowWidth, windowHeight, WEBGL);
+      canvas.position(0, 0);
+      canvas.style('z-index', '-1');
+      colorMode(HSB, 360, 100, 100);
+      
+      // Setup the prime list with initial values
+      updatePrimeList();
+      
+      // Add event listeners for controls
+      document.getElementById('rotationSlider').addEventListener('input', function() {
+        rotationSpeed = this.value / 100;
+        document.getElementById('rotationValue').textContent = this.value;
+      });
+      
+      document.getElementById('amplitudeSlider').addEventListener('input', function() {
+        amplitude = this.value;
+        document.getElementById('amplitudeValue').textContent = this.value;
+      });
+      
+      document.getElementById('wScaleSlider').addEventListener('input', function() {
+        wScale = this.value / 10;
+        document.getElementById('wScaleValue').textContent = this.value;
+      });
+      
+      document.getElementById('showLabels').addEventListener('change', function() {
+        showLabels = this.checked;
+      });
+      
+      document.getElementById('compareMode').addEventListener('change', function() {
+        compareMode = this.checked;
+        updateStatusBar();
+      });
+      
+      document.getElementById('addPrimeBtn').addEventListener('click', addPrime);
+      document.getElementById('resetViewBtn').addEventListener('click', resetView);
+      document.getElementById('primeInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          addPrime();
+        }
+      });
+      
+      // Make windows draggable
+      makeDraggable(document.getElementById('controlPanel'));
+      makeDraggable(document.getElementById('aboutPanel'));
+      
+      updateStatusBar();
+    }
+
+    function windowResized() {
+      resizeCanvas(windowWidth, windowHeight);
+    }
+
+    function draw() {
+      background(0, 0, 15); // Dark background
+      
+      // Update rotation
+      angle += 0.01 * rotationSpeed;
+      
+      // Set up camera
+      let camX = sin(angle) * 300;
+      let camZ = cos(angle) * 300;
+      camera(camX, -100, camZ, 0, 0, 0, 0, 1, 0);
+      
+      // Draw coordinate axes for reference
+      strokeWeight(1);
+      stroke(0, 0, 100); // X axis - white
+      line(0, 0, 0, 100, 0, 0);
+      stroke(120, 100, 100); // Y axis - green
+      line(0, 0, 0, 0, 100, 0);
+      stroke(240, 100, 100); // Z axis - blue
+      line(0, 0, 0, 0, 0, 100);
+      
+      // Parameters for spiral
+      const R = 100; // Radius of spiral
+      const h = 10;  // Height increment
+      const P = 6;   // Period for X and Y
+      
+      // Draw the active primes
+      if (compareMode && activePrimes.length > 1) {
+        // Calculate spacing for multiple primes
+        const spacing = 120;
+        const offset = (activePrimes.length - 1) * spacing / 2;
+        
+        // Draw each active prime with offset
+        for (let i = 0; i < activePrimes.length; i++) {
+          const offsetX = i * spacing - offset;
+          drawPrime(activePrimes[i], R, h, P, offsetX);
+        }
+      } else {
+        // Just draw the active primes without offset
+        for (let prime of activePrimes) {
+          drawPrime(prime, R, h, P, 0);
+        }
+      }
+    }
+    
+    function drawPrime(prime, R, h, P, offsetX) {
+      // Convert prime to digits
+      let digits = prime.toString().split('').map(Number);
+      
+      // Draw connections between points (spiral)
+      noFill();
+      strokeWeight(2);
+      stroke(200, 70, 70);
+      beginShape();
+      for (let i = 0; i < digits.length; i++) {
+        let digit = digits[i];
+        
+        // Calculate 4D coordinates based on the formulas
+        let x = R * cos(TWO_PI * i / P) + offsetX;
+        let y = R * sin(TWO_PI * i / P);
+        let z = (h / P) * i;
+        let w = amplitude * sin(digit * PI / 10); // 4th dimension
+        
+        // Modify the 3D position based on the 4th dimension
+        let modifiedX = x + w * 0.2;
+        let modifiedY = y + w * 0.1;
+        let modifiedZ = z + w * 0.3;
+        
+        // Map W value to color (HSB color space)
+        let wColor = map(w, -amplitude, amplitude, 0, 360);
+        stroke(wColor, 100, 100);
+        
+        vertex(modifiedX, modifiedY, modifiedZ);
+      }
+      endShape();
+      
+      // Draw points at each digit position
+      for (let i = 0; i < digits.length; i++) {
+        let digit = digits[i];
+        
+        // Calculate 4D coordinates
+        let x = R * cos(TWO_PI * i / P) + offsetX;
+        let y = R * sin(TWO_PI * i / P);
+        let z = (h / P) * i;
+        let w = amplitude * sin(digit * PI / 10); // 4th dimension
+        
+        // Modify the 3D position based on the 4th dimension
+        let modifiedX = x + w * 0.2;
+        let modifiedY = y + w * 0.1;
+        let modifiedZ = z + w * 0.3;
+        
+        // Map W value to color and size
+        let wColor = map(w, -amplitude, amplitude, 0, 360);
+        let pointSize = map(abs(w), 0, amplitude, 5, 15) * wScale / 10;
+        
+        push();
+        translate(modifiedX, modifiedY, modifiedZ);
+        fill(wColor, 100, 100);
+        noStroke();
+        sphere(pointSize);
+        
+        // Show digit value as text if enabled
+        if (showLabels) {
+          push();
+          fill(0, 0, 100);
+          textSize(10);
+          text(digit.toString(), pointSize + 5, 0);
+          pop();
+        }
+        
+        pop();
+      }
+      
+      // Display the prime number at the start of the spiral
+      push();
+      translate(offsetX, 0, -20);
+      fill(0, 0, 100);
+      textSize(20);
+      text(prime.toString(), 0, 0);
+      pop();
+    }
+    
+    // Function to add a new prime
+    function addPrime() {
+      const input = document.getElementById('primeInput');
+      const value = input.value.trim();
+      
+      // Basic validation
+      if (!value || isNaN(value) || parseInt(value) <= 1) {
+        showError("Please enter a valid prime number greater than 1.");
+        return;
+      }
+      
+      const num = parseInt(value);
+      
+      // Check if it's a prime number
+      if (!isPrime(num)) {
+        showError(num + " is not a prime number.");
+        return;
+      }
+      
+      // Check if already in the list
+      if (primes.includes(num)) {
+        showError("This prime is already in the list.");
+        return;
+      }
+      
+      // Limit to 4 primes
+      if (primes.length >= 4) {
+        showError("Maximum 4 prime numbers allowed. Remove one first.");
+        return;
+      }
+      
+      // Add to the list
+      primes.push(num);
+      activePrimes.push(num);
+      updatePrimeList();
+      input.value = "";
+      
+      updateStatusBar();
+    }
+    
+    // Check if a number is prime
+    function isPrime(num) {
+      if (num <= 1) return false;
+      if (num <= 3) return true;
+      if (num % 2 === 0 || num % 3 === 0) return false;
+      
+      let i = 5;
+      while (i * i <= num) {
+        if (num % i === 0 || num % (i + 2) === 0) return false;
+        i += 6;
+      }
+      
+      return true;
+    }
+    
+    // Update the prime list display
+    function updatePrimeList() {
+      const list = document.getElementById('primeList');
+      list.innerHTML = '';
+      
+      primes.forEach(prime => {
+        const tag = document.createElement('div');
+        tag.className = 'prime-tag' + (activePrimes.includes(prime) ? ' active' : '');
+        tag.textContent = prime;
+        tag.dataset.prime = prime;
+        
+        // Toggle active state
+        tag.addEventListener('click', function() {
+          if (activePrimes.includes(prime)) {
+            // Don't allow deactivating the last prime
+            if (activePrimes.length > 1) {
+              activePrimes = activePrimes.filter(p => p !== prime);
+              tag.classList.remove('active');
+            }
+          } else {
+            activePrimes.push(prime);
+            tag.classList.add('active');
+          }
+          updateStatusBar();
+        });
+        
+        // Right click to remove
+        tag.addEventListener('contextmenu', function(e) {
+          e.preventDefault();
+          primes = primes.filter(p => p !== prime);
+          activePrimes = activePrimes.filter(p => p !== prime);
+          updatePrimeList();
+          updateStatusBar();
+        });
+        
+        list.appendChild(tag);
+      });
+    }
+    
+    // Reset the view
+    function resetView() {
+      angle = 0;
+      rotationSpeed = 0.3;
+      document.getElementById('rotationSlider').value = 30;
+      document.getElementById('rotationValue').textContent = 30;
+      
+      amplitude = 20;
+      document.getElementById('amplitudeSlider').value = 20;
+      document.getElementById('amplitudeValue').textContent = 20;
+      
+      wScale = 5;
+      document.getElementById('wScaleSlider').value = 50;
+      document.getElementById('wScaleValue').textContent = 50;
+      
+      document.getElementById('showLabels').checked = true;
+      showLabels = true;
+    }
+    
+    // Update status bar
+    function updateStatusBar() {
+      let status = "Visualizing ";
+      if (activePrimes.length === 1) {
+        status += "prime " + activePrimes[0];
+      } else {
+        status += activePrimes.length + " primes: " + activePrimes.join(", ");
+      }
+      
+      if (compareMode && activePrimes.length > 1) {
+        status += " (Compare Mode)";
+      }
+      
+      document.getElementById('statusText').textContent = status;
+    }
+    
+    // Show error dialog
+    function showError(message) {
+      document.getElementById('errorText').textContent = message;
+      document.getElementById('errorDialog').style.display = 'block';
+    }
+    
+    // Close error dialog
+    function closeError() {
+      document.getElementById('errorDialog').style.display = 'none';
+    }
+    
+    // Make an element draggable
+    function makeDraggable(element) {
+      let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      
+      element.querySelector('.titlebar').onmousedown = dragMouseDown;
+      
+      function dragMouseDown(e) {
+        e.preventDefault();
+        // Get mouse position at startup
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        // Call function when cursor moves
+        document.onmousemove = elementDrag;
+      }
+      
+      function elementDrag(e) {
+        e.preventDefault();
+        // Calculate new position
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        // Set element's new position
+        element.style.top = (element.offsetTop - pos2) + "px";
+        element.style.left = (element.offsetLeft - pos1) + "px";
+      }
+      
+      function closeDragElement() {
+        // Stop moving when mouse button is released
+        document.onmouseup = null;
+        document.onmousemove = null;
+      }
+    }
+    
+    // Window management functions
+    function minimizeWindow(id) {
+      document.getElementById(id).style.height = "20px";
+      document.getElementById(id).querySelector('.win-content').style.display = "none";
+    }
+    
+    function maximizeWindow(id) {
+      document.getElementById(id).style.height = "";
+      document.getElementById(id).querySelector('.win-content').style.display = "block";
+    }
+    
+    function closeWindow(id) {
+      document.getElementById(id).style.display = "none";
+      // Reopen after 2 seconds (can't really close in this demo)
+      setTimeout(() => {
+        document.getElementById(id).style.display = "block";
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
