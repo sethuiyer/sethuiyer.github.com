@@ -1,0 +1,321 @@
+import React, { useState, useEffect, useRef } from 'react';
+
+const DyadicMapDiceSimulator = () => {
+  const [inputNumber, setInputNumber] = useState(2);
+  const [iterations, setIterations] = useState(100);
+  const [currentValue, setCurrentValue] = useState(0.42);
+  const [sequence, setSequence] = useState([]);
+  const [animating, setAnimating] = useState(false);
+  const [diceRoll, setDiceRoll] = useState(null);
+  const [diceHistory, setDiceHistory] = useState([]);
+  const [showChart, setShowChart] = useState(true);
+  const canvasRef = useRef(null);
+  const animationRef = useRef(null);
+
+  // Function to perform one step of the dyadic map
+  const dyadicMapStep = (x, factor) => {
+    return (factor * x) % 1;
+  };
+
+  // Function to convert dyadic map value to dice roll (1-6)
+  const mapToDice = (value) => {
+    return Math.floor(value * 6) + 1;
+  };
+
+  // Initialize the sequence
+  useEffect(() => {
+    generateSequence();
+  }, []);
+
+  // Draw the chart
+  useEffect(() => {
+    if (showChart && sequence.length > 0) {
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext('2d');
+      const width = canvas.width;
+      const height = canvas.height;
+      
+      // Clear canvas
+      ctx.fillStyle = '#f0f0f0';
+      ctx.fillRect(0, 0, width, height);
+      
+      // Draw grid lines
+      ctx.strokeStyle = '#ddd';
+      ctx.lineWidth = 1;
+      
+      // Horizontal lines
+      for (let i = 0; i <= 6; i++) {
+        const y = height - (i * height / 6);
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+        
+        // Add labels
+        ctx.fillStyle = '#555';
+        ctx.font = '12px Arial';
+        ctx.fillText(i, 5, y - 5);
+      }
+      
+      // Draw the sequence
+      ctx.strokeStyle = '#0078d7';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      
+      const step = width / Math.min(sequence.length - 1, 100);
+      
+      // Show only the last 100 points if there are more
+      const startIdx = Math.max(0, sequence.length - 100);
+      
+      for (let i = 0; i < Math.min(sequence.length - startIdx, 100); i++) {
+        const x = i * step;
+        const y = height - (mapToDice(sequence[startIdx + i]) * height / 6);
+        
+        if (i === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      }
+      
+      ctx.stroke();
+      
+      // Draw points
+      for (let i = 0; i < Math.min(sequence.length - startIdx, 100); i++) {
+        const x = i * step;
+        const y = height - (mapToDice(sequence[startIdx + i]) * height / 6);
+        
+        ctx.fillStyle = i === Math.min(sequence.length - startIdx, 100) - 1 ? '#ff4500' : '#0078d7';
+        ctx.beginPath();
+        ctx.arc(x, y, 4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+  }, [sequence, showChart]);
+
+  // Generate the sequence
+  const generateSequence = () => {
+    const newSequence = [currentValue];
+    let value = currentValue;
+    
+    for (let i = 0; i < iterations; i++) {
+      value = dyadicMapStep(value, parseFloat(inputNumber));
+      newSequence.push(value);
+    }
+    
+    setSequence(newSequence);
+    setDiceRoll(mapToDice(newSequence[newSequence.length - 1]));
+  };
+
+  // Animate the dice roll
+  const animateDiceRoll = () => {
+    if (animating) return;
+    
+    setAnimating(true);
+    let steps = 0;
+    let value = currentValue;
+    const maxSteps = 20; // Number of animation steps
+    
+    const animate = () => {
+      value = dyadicMapStep(value, parseFloat(inputNumber));
+      setCurrentValue(value);
+      setDiceRoll(mapToDice(value));
+      
+      steps++;
+      
+      if (steps < maxSteps) {
+        animationRef.current = requestAnimationFrame(animate);
+      } else {
+        setAnimating(false);
+        setSequence([...sequence, value]);
+        setDiceHistory([...diceHistory, mapToDice(value)]);
+      }
+    };
+    
+    animationRef.current = requestAnimationFrame(animate);
+  };
+
+  // Clean up animation on unmount
+  useEffect(() => {
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, []);
+
+  // Calculate frequency of each dice value
+  const calculateFrequencies = () => {
+    const frequencies = [0, 0, 0, 0, 0, 0];
+    
+    diceHistory.forEach(value => {
+      frequencies[value - 1]++;
+    });
+    
+    return frequencies;
+  };
+
+  const frequencies = calculateFrequencies();
+  const maxFreq = Math.max(...frequencies, 1);
+
+  return (
+    <div className="flex flex-col min-h-screen bg-gray-100 p-6">
+      <div className="max-w-4xl mx-auto w-full bg-white rounded-lg shadow-lg overflow-hidden">
+        <div className="bg-blue-600 text-white p-4">
+          <h1 className="text-2xl font-bold">Dyadic Map Dice Simulator</h1>
+          <p className="opacity-90">Explore quantum-like randomness with prime numbers</p>
+        </div>
+        
+        <div className="p-6">
+          <div className="flex flex-col md:flex-row gap-6">
+            <div className="w-full md:w-2/3">
+              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 mb-6">
+                <h2 className="text-lg font-semibold mb-2">Dyadic Map Controls</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Multiplier Number
+                    </label>
+                    <input
+                      type="number"
+                      step="any"
+                      value={inputNumber}
+                      onChange={(e) => setInputNumber(e.target.value)}
+                      className="w-full border border-gray-300 rounded p-2"
+                      min="0"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">
+                      Try prime numbers like 17, 29, 101, 9973
+                    </p>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Starting Value
+                    </label>
+                    <input
+                      type="number"
+                      step="0.0001"
+                      value={currentValue}
+                      onChange={(e) => setCurrentValue(parseFloat(e.target.value))}
+                      className="w-full border border-gray-300 rounded p-2"
+                      min="0"
+                      max="0.9999"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">
+                      Value between 0 and 1 (starting seed)
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="mt-4 flex gap-2">
+                  <button
+                    onClick={animateDiceRoll}
+                    disabled={animating}
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded disabled:opacity-50"
+                  >
+                    Roll Dice
+                  </button>
+                  <button
+                    onClick={() => {
+                      setDiceHistory([]);
+                      setSequence([currentValue]);
+                    }}
+                    className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded"
+                  >
+                    Reset History
+                  </button>
+                </div>
+              </div>
+              
+              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <div className="flex justify-between items-center mb-2">
+                  <h2 className="text-lg font-semibold">Sequence Visualization</h2>
+                  <button
+                    onClick={() => setShowChart(!showChart)}
+                    className="text-blue-600 hover:text-blue-800 text-sm"
+                  >
+                    {showChart ? 'Hide Chart' : 'Show Chart'}
+                  </button>
+                </div>
+                
+                {showChart && (
+                  <div className="h-64 w-full">
+                    <canvas
+                      ref={canvasRef}
+                      width={800}
+                      height={256}
+                      className="w-full h-full"
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+            
+            <div className="w-full md:w-1/3">
+              <div className="bg-blue-50 p-4 rounded-lg border border-blue-200 mb-6">
+                <h2 className="text-lg font-semibold text-center mb-3">Current Dice Roll</h2>
+                <div className="flex justify-center mb-4">
+                  <div className={`w-24 h-24 bg-white rounded-lg shadow-lg flex items-center justify-center text-4xl font-bold ${animating ? 'animate-pulse' : ''}`}>
+                    {diceRoll}
+                  </div>
+                </div>
+                <div className="text-center text-sm text-gray-600">
+                  <p>Using multiplier: <span className="font-semibold">{inputNumber}</span></p>
+                  <p>Current value: <span className="font-semibold">{currentValue.toFixed(6)}</span></p>
+                </div>
+              </div>
+              
+              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <h2 className="text-lg font-semibold mb-2">Roll Distribution</h2>
+                {diceHistory.length > 0 ? (
+                  <div className="space-y-2">
+                    {[1, 2, 3, 4, 5, 6].map(dice => (
+                      <div key={dice} className="flex items-center gap-2">
+                        <div className="w-8 h-8 bg-white rounded border border-gray-300 flex items-center justify-center font-semibold">
+                          {dice}
+                        </div>
+                        <div className="flex-1 h-6 bg-gray-100 rounded overflow-hidden">
+                          <div
+                            className="h-full bg-blue-500"
+                            style={{ width: `${(frequencies[dice - 1] / maxFreq) * 100}%` }}
+                          />
+                        </div>
+                        <div className="w-12 text-right text-sm">
+                          {frequencies[dice - 1]}
+                        </div>
+                      </div>
+                    ))}
+                    <p className="text-sm text-gray-500 mt-2">
+                      Total rolls: {diceHistory.length}
+                    </p>
+                  </div>
+                ) : (
+                  <p className="text-gray-500 text-center py-4">
+                    No rolls yet. Click "Roll Dice" to start
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+          
+          <div className="mt-6 bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <h2 className="text-lg font-semibold mb-2">About Dyadic Maps</h2>
+            <div className="text-sm text-gray-700">
+              <p className="mb-2">
+                A dyadic map takes a number between 0 and 1, multiplies it by another number, and keeps only the fractional part (mod 1).
+              </p>
+              <p className="mb-2">
+                When using prime numbers as multipliers, these maps exhibit quantum-like randomness properties.
+              </p>
+              <p>
+                Try different values, especially large prime numbers, and observe how they affect the distribution of dice rolls!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default DyadicMapDiceSimulator;
