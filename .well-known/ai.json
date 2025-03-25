@@ -1,0 +1,78 @@
+{
+  "version": "1.0",
+  "name": "Sethu Iyer",
+  "title": "Data Scientist & AI Researcher",
+  "description": "Interdisciplinary AI expert with proven experience building production-grade LLM architectures, search and retrieval systems, and RAG pipelines. Strong background in Mathematics, Search Relevance, Conversational AI, and Model Interpretability.",
+  "expertise": [
+    "Large Language Models (LLMs)",
+    "Retrieval-Augmented Generation (RAG)",
+    "Model Interpretability",
+    "Search and Retrieval Systems",
+    "Conversational AI",
+    "Machine Learning",
+    "Deep Learning",
+    "Natural Language Processing"
+  ],
+  "research_focus": [
+    "Novel interpretability metrics for LLMs",
+    "Long-text coherence in language models",
+    "Episodic memory mechanisms in LLMs",
+    "Graph RAG techniques",
+    "Zero-shot learning",
+    "Model optimization and efficiency"
+  ],
+  "publications": [
+    {
+      "title": "Image captioning-based image search engine: An alternative to retrieval by metadata",
+      "authors": ["S. Iyer", "S. Chaturvedi", "T. Dash"],
+      "venue": "Soft Computing for Problem Solving: SocProS 2017",
+      "year": 2017,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=ivR07L8AAAAJ&citation_for_view=ivR07L8AAAAJ:u5HHmVD_uO8C"
+    }
+  ],
+  "projects": [
+    {
+      "name": "DeydooGPT",
+      "description": "AI Assistant built on fine-tuned Mistral 7B with 8000-token context handling",
+      "technologies": ["LLM", "Fine-tuning", "Python"],
+      "url": "https://github.com/sethuiyer"
+    },
+    {
+      "name": "Clinical Diagnosis Engine",
+      "description": "Medical diagnosis system using Graph RAG techniques",
+      "technologies": ["Graph RAG", "Healthcare AI", "Python"],
+      "achievement": "85.83% production accuracy"
+    }
+  ],
+  "skills": {
+    "frameworks": [
+      "Hugging Face Transformers",
+      "TensorFlow",
+      "PyTorch",
+      "Scikit-learn",
+      "SpaCy"
+    ],
+    "technologies": [
+      "PEFT (LoRA, QLoRA)",
+      "CUDA",
+      "Docker",
+      "Elasticsearch",
+      "Apache Spark"
+    ],
+    "languages": [
+      "Python",
+      "C/C++",
+      "Go",
+      "Scala",
+      "MATLAB"
+    ]
+  },
+  "contact": {
+    "email": "sethuiyer95@gmail.com",
+    "github": "https://github.com/sethuiyer",
+    "huggingface": "https://huggingface.co/sethuiyer",
+    "linkedin": "https://linkedin.com/in/stuehieyr",
+    "scholar": "https://scholar.google.com/citations?user=ivR07L8AAAAJ&hl=en"
+  },
+  "last_updated": "2024-03-20"
+} 
