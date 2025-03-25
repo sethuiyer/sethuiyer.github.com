@@ -9,6 +9,7 @@
   <meta name="description" content="Sethu Iyer's Portfolio - Data Scientist, AI Researcher, LLM Specialist, ML Engineer">
   <!-- Add LeetCode API script -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="./img/title.ico">
 </head>
 <body>
   <!-- Header -->
@@ -107,7 +108,7 @@
         <li>Developed novel interpretability metrics for LLMs to enhance transparency in decision-making</li>
         <li>Enhanced long-text coherence in LLMs by integrating episodic memory mechanisms</li>
         <li>Created a Clinical Diagnosis Engine using Graph RAG, achieving 85.83% production accuracy</li>
-        <li>Built a multi-lingual, contextualized medical entity search system</li>
+        <li>Core contributor of a multi-lingual, contextualized medical entity search system</li>
         <li>Improved LLM inference by 60% through PEFT methods like LoRA and QLoRA</li>
         <li>Fine-tuned and deployed 15+ LLMs (e.g., Dr.Samantha-8B, SynthIQ-7B) into production</li>
         <li>Led Learning Tuesdays, organizing AI research knowledge-sharing sessions</li>
@@ -118,9 +119,9 @@
       <h3>Research and Development Engineer <span class="date-range"><time datetime="2018-09">Sep 2018</time> - <time datetime="2022-02">Feb 2022</time></span></h3>
       <p class="company-name"><i class="fas fa-building"></i> Amelia / IPSoft (Bengaluru, India)</p>
       <ul style="margin-top: 15px; padding-left: 20px;">
-        <li>Developed EazyML — an explainable AutoML platform for tabular data</li>
+        <li>Core contributor to EazyML — an explainable AutoML platform for tabular data</li>
         <li>Designed a skin disease classification system using Google AutoML Vision (F1 Score: 0.64 over 65 diseases)</li>
-        <li>Built a zero-shot concept matcher with BERT and mathematical distance metrics, boosting accuracy by 35%</li>
+        <li>Built a zero-shot concept matcher with BERT and mathematical distance metrics, ideas to revenue within 40 days</li>
         <li>Refactored legacy codebases with modern Python OOP principles, type annotations, and best practices</li>
       </ul>
     </div>
@@ -521,32 +522,11 @@
         </a>
       </div>
       
-      <p class="footer-text">© 2023 Sethu Iyer. All rights reserved. <span class="vintage-label">Est. 2014</span></p>
+      <p class="footer-text">© 2025 Sethu Iyer. All rights reserved. <span class="vintage-label">Est. 2014</span></p>
     </div>
   </footer>
 
   <script src="js/script.js"></script>
   
-  <!-- LeetCode Stats Fallback -->
-  <script>
-    // Fallback method for LeetCode stats if the dynamic loading fails
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        const leetcodeProblems = document.getElementById('leetcode-problems');
-        // If still showing the default value after 5 seconds, attempt to update via API
-        if (leetcodeProblems && leetcodeProblems.textContent === '198') {
-          fetch('https://leetcode-stats-api.herokuapp.com/brobear')
-            .then(response => response.json())
-            .then(data => {
-              if (data && data.totalSolved) {
-                leetcodeProblems.textContent = data.totalSolved;
-              }
-            })
-            .catch(error => console.error('Fallback LeetCode API error:', error));
-        }
-      }, 5000);
-    });
-  </script>
-
 </body>
 </html> 
