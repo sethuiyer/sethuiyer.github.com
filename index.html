@@ -9,6 +9,35 @@
   <meta name="description" content="Sethu Iyer's Portfolio - Data Scientist, AI Researcher, LLM Specialist, ML Engineer">
   <!-- Add LeetCode API script -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <!-- Inline script for calculating experience years -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function updateExperience() {
+        const startDate = new Date('2018-09-01');
+        const currentDate = new Date();
+        
+        // Calculate total months
+        const totalMonths = (currentDate.getFullYear() - startDate.getFullYear()) * 12 + 
+                           (currentDate.getMonth() - startDate.getMonth());
+        
+        // Calculate years and remaining months
+        const years = Math.floor(totalMonths / 12);
+        const remainingMonths = totalMonths % 12;
+        
+        // Format the experience string
+        const experience = `${years}.${remainingMonths}`;
+        
+        // Update the DOM
+        const experienceElement = document.getElementById('experience-years');
+        if (experienceElement) {
+            experienceElement.textContent = experience;
+        }
+      }
+      
+      // Calculate experience immediately
+      updateExperience();
+    });
+  </script>
   <link rel="shortcut icon" type="image/x-icon" href="./img/title.ico">
 </head>
 <body>
@@ -68,7 +97,7 @@
     </div>
 
        <div class="vintage-card">
-      <p id="bio-text">I'm an interdisciplinary AI expert with proven experience building production-grade LLM architectures, search and retrieval systems, and RAG pipelines. I have a strong background in Mathematics, Search Relevance, Conversational AI, and Model Interpretability.</p>
+      <p id="bio-text">I'm an interdisciplinary AI professional with <span id="experience-years"></span> years of experience building production-grade LLM architectures, search and retrieval systems, and RAG pipelines. I have a strong background in Mathematics, Search Relevance, Conversational AI, and Model Interpretability.</p>
     </div>
   </section>
 
@@ -78,7 +107,7 @@
     
     <div class="testimonial-box">
       <h3>Research Focus</h3>
-      <p>My research focuses on developing novel interpretability metrics for LLMs to enhance transparency in decision-making and improve long-text coherence in language models through episodic memory mechanisms. I work at the intersection of AI, mathematics, and complex systems with applications in industry and scientific computing.</p>
+      <p>My research focuses on developing <b>novel interpretability metrics</b> for LLMs to enhance transparency in decision-making and improve long-text coherence in language models through episodic memory mechanisms. I work at the intersection of AI, mathematics, and complex systems with applications in industry and scientific computing.</p>
     </div>
     
     <div class="testimonial-box">
@@ -97,6 +126,21 @@
     </div>
   </section>
 
+  <!-- Current Focus Section -->
+  <section class="about-section container animated-section">
+    <h2 class="section-title">Current Focus</h2>
+    
+    <div class="testimonial-box">
+      <h3>Active Research Areas</h3>
+      <ul style="margin-top: 15px; padding-left: 20px;">
+        <li><i class="fas fa-brain"></i> Attention Entropy based interpretability metrics for LLMs</li>
+        <li><i class="fas fa-square-root-alt"></i> Prime number based global optimization adaptations</li>
+        <li><i class="fas fa-microchip"></i> TPU mixed precision fine-tuning for LLM tool selection and planning modules</li>
+      </ul>
+      <p style="margin-top: 15px;"><strong>All research areas align towards building scalable, interpretable, and production-grade LLM systems.</strong></p>
+    </div>
+  </section>
+
   <!-- Work Experience Section -->
   <section id="experience" class="about-section container animated-section">
     <h2 class="section-title">Work Experience</h2>
@@ -111,7 +155,7 @@
         <li>Core contributor of a multi-lingual, contextualized medical entity search system</li>
         <li>Improved LLM inference by 60% through PEFT methods like LoRA and QLoRA</li>
         <li>Fine-tuned and deployed 15+ LLMs (e.g., Dr.Samantha-8B, SynthIQ-7B) into production</li>
-        <li>Led Learning Tuesdays, organizing AI research knowledge-sharing sessions</li>
+        <li>Conducted over 6 sessions during Learning Tuesdays, AI research knowledge-sharing sessions</li>
       </ul>
     </div>
     
@@ -138,11 +182,34 @@
     <div class="testimonial-box">
       <h3>Student Researcher <span class="date-range"><time datetime="2017-07">Jul 2017</time> - <time datetime="2018-07">Jul 2018</time></span></h3>
       <p class="company-name"><i class="fas fa-university"></i> BITS Pilani Goa Campus</p>
-      <ul style="margin-top: 15px; padding-left: 20px;">
-        <li>Explored Game Theory applications in Machine Learning explainability</li>
-        <li>Built a visual image search system using image captioning, ElasticSearch, and TensorFlow</li>
-        <li>Published research paper in SocPros 2017 on image captioning-based search engine</li>
-      </ul>
+      
+      <div class="project-block">
+        <h4>Game Theory in Machine Learning (Jul 2017 - Dec 2017)</h4>
+        <p>Research under Dr. Jajati Keshari Sahoo exploring novel applications of game theory in ensemble learning:</p>
+        <ul style="margin-top: 15px; padding-left: 20px;">
+          <li>Developed Banzhaf Power Index-based feature selection for ensemble methods</li>
+          <li>Implemented Borda count voting mechanism for classifier aggregation</li>
+          <li>Created Banzhaf Random Forests with strategic classifier selection</li>
+          <li>Published research on game theoretic approaches in ensemble learning</li>
+        </ul>
+        <a href="https://github.com/sethuiyer/banzhaf-ensemble-thesis" target="_blank" class="mt-10 inline-block">
+          <i class="fab fa-github"></i> View Game Theory Research on GitHub
+        </a>
+      </div>
+
+      <div class="project-block" style="margin-top: 30px;">
+        <h4>Image-to-Image Search Engine (Jan 2018 - Jul 2018)</h4>
+        <p>Research under Dr. Tirtharaj Dash developing a novel reverse image search system:</p>
+        <ul style="margin-top: 15px; padding-left: 20px;">
+          <li>Built a visual image search system using image captioning, ElasticSearch, and TensorFlow</li>
+          <li>Implemented LSTM-based caption generation for semantic image understanding</li>
+          <li>Published research paper in SocPros 2017 on captioning-based search engine</li>
+          <li>Created RESTful APIs for image caption generation and search functionality</li>
+        </ul>
+        <a href="https://github.com/sethuiyer/Image-to-Image-Search" target="_blank" class="mt-10 inline-block">
+          <i class="fab fa-github"></i> View Image Search Project on GitHub
+        </a>
+      </div>
     </div>
   </section>
 
@@ -188,6 +255,9 @@
       <button class="vintage-button filter-btn" data-filter="search">Search</button>
       <button class="vintage-button filter-btn" data-filter="optimization">Optimization</button>
       <button class="vintage-button filter-btn" data-filter="web">Web Dev</button>
+      <button class="vintage-button filter-btn" data-filter="memory">Memory Systems</button>
+      <button class="vintage-button filter-btn" data-filter="quantum">Quantum Computing</button>
+      <button class="vintage-button filter-btn" data-filter="education">Education</button>
     </div>
     
     <div class="project-grid">
@@ -335,6 +405,57 @@
         </div>
       </div>
 
+      <!-- YouTube Video Assistant Project -->
+      <div class="project-card ai llm">
+        <div class="project-info">
+          <h3 class="project-title">YouTube Video Assistant</h3>
+          <p class="project-desc">A production-ready Python tool that enables natural conversations with YouTube videos using ASR, NLP, and LLMs. Features include automatic transcription, context-aware responses, and efficient caching.</p>
+          <div class="project-tags">
+            <span class="project-tag">ASR</span>
+            <span class="project-tag">NLP</span>
+            <span class="project-tag">LLM</span>
+            <span class="project-tag">Python</span>
+          </div>
+          <a href="https://codeberg.org/aninokuma/yt_chat" target="_blank" class="mt-15 inline-block">
+            <i class="fab fa-codeberg"></i> View on Codeberg
+          </a>
+        </div>
+      </div>
+
+      <!-- YACR Project -->
+      <div class="project-card web education">
+        <div class="project-info">
+          <h3 class="project-title">YACR - Ultimate IT Roadmap</h3>
+          <p class="project-desc">A comprehensive 9-10 month roadmap transforming beginners into job-ready IT professionals. Features structured learning paths, hands-on projects, and industry-aligned curriculum covering CS fundamentals to advanced AI.</p>
+          <div class="project-tags">
+            <span class="project-tag">Education</span>
+            <span class="project-tag">Roadmap</span>
+            <span class="project-tag">Career Development</span>
+            <span class="project-tag">Open Source</span>
+          </div>
+          <a href="https://codeberg.org/aninokuma/YACR" target="_blank" class="mt-15 inline-block">
+            <i class="fab fa-codeberg"></i> View on Codeberg
+          </a>
+        </div>
+      </div>
+
+      <!-- DeydooRAG Project -->
+      <div class="project-card ai llm">
+        <div class="project-info">
+          <h3 class="project-title">DeydooRAG</h3>
+          <p class="project-desc">A production-grade RAG pipeline using txtai for semantic search and LLM orchestration. Features include dynamic index management, query classification, and lightning-fast retrievals (3s search, <2s retrieval). Includes real-world examples with multilingual support.</p>
+          <div class="project-tags">
+            <span class="project-tag">RAG</span>
+            <span class="project-tag">Semantic Search</span>
+            <span class="project-tag">LLM</span>
+            <span class="project-tag">Python</span>
+          </div>
+          <a href="https://codeberg.org/aninokuma/DeydooRAG" target="_blank" class="mt-15 inline-block">
+            <i class="fab fa-codeberg"></i> View on Codeberg
+          </a>
+        </div>
+      </div>
+
       <!-- Simple Chatbot Project -->
       <div class="project-card ai">
         <div class="project-info">
@@ -380,6 +501,57 @@
             <span class="project-tag">Grid Search</span>
           </div>
           <a href="https://github.com/sethuiyer/daps" target="_blank" style="display: inline-block; margin-top: 15px;">
+            <i class="fab fa-github"></i> View on GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- QuHabiton Project -->
+      <div class="project-card ai optimization quantum">
+        <div class="project-info">
+          <h3 class="project-title">QuHabiton</h3>
+          <p class="project-desc">A creative experimental habit tracker leveraging quantum physics, topology, and data analysis principles. Features include probabilistic habit representation, quantum machine learning for pattern analysis, behavioral topography visualization, and adaptive learning based on habit topology.</p>
+          <div class="project-tags">
+            <span class="project-tag">Quantum Computing</span>
+            <span class="project-tag">Habit Tracking</span>
+            <span class="project-tag">Topology</span>
+            <span class="project-tag">Python</span>
+          </div>
+          <a href="https://github.com/sethuiyer/QuHabiton" target="_blank" class="mt-15 inline-block">
+            <i class="fab fa-github"></i> View on GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- List Coloring Project -->
+      <div class="project-card optimization quantum">
+        <div class="project-info">
+          <h3 class="project-title">List Coloring via Grover's Algorithm</h3>
+          <p class="project-desc">Implementation of list coloring problem using Grover's algorithm through SAT formulation, developed during IIT Delhi's Quantum Machine Learning course. Demonstrates quantum computing applications in graph theory and constraint satisfaction problems.</p>
+          <div class="project-tags">
+            <span class="project-tag">Quantum Computing</span>
+            <span class="project-tag">Graph Theory</span>
+            <span class="project-tag">SAT</span>
+            <span class="project-tag">Python</span>
+          </div>
+          <a href="https://github.com/sethuiyer" target="_blank" class="mt-15 inline-block">
+            <i class="fab fa-github"></i> View on GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- LLM Episodic Memory Project -->
+      <div class="project-card ai llm memory">
+        <div class="project-info">
+          <h3 class="project-title">LLM Episodic Memory System</h3>
+          <p class="project-desc">A cognitive architecture for LLMs featuring surprise-driven memory formation, Legendre polynomial-based orthogonal paragraph embeddings, and dynamic memory refinement. Implements temporal decay, access boosts, and contradiction detection for biologically-inspired memory management.</p>
+          <div class="project-tags">
+            <span class="project-tag">LLM</span>
+            <span class="project-tag">Memory Systems</span>
+            <span class="project-tag">Cognitive Architecture</span>
+            <span class="project-tag">Python</span>
+          </div>
+          <a href="https://github.com/sethuiyer/llm-experiments/blob/main/episodic_memory.py" target="_blank" class="mt-15 inline-block">
             <i class="fab fa-github"></i> View on GitHub
           </a>
         </div>
@@ -440,22 +612,9 @@
           <li class="skill-item">Redis</li>
           <li class="skill-item">MongoDB</li>
           <li class="skill-item">PostgreSQL</li>
-          <li class="skill-item">Data Pipelines</li>
         </ul>
       </div>
       
-      <!-- Mathematics & Theory -->
-      <div class="skill-category">
-        <h3>Mathematics & Theory</h3>
-        <ul class="skill-list">
-          <li class="skill-item">Advanced Statistics</li>
-          <li class="skill-item">Linear Algebra</li>
-          <li class="skill-item">Operations Research</li>
-          <li class="skill-item">Topology</li>
-          <li class="skill-item">Graph Theory</li>
-          <li class="skill-item">Quantum Computing</li>
-        </ul>
-      </div>
     </div>
   </section>
 
@@ -522,7 +681,7 @@
         </a>
       </div>
       
-      <p class="footer-text">© 2025 Sethu Iyer. All rights reserved. <span class="vintage-label">Est. 2014</span></p>
+      <p class="footer-text">© 2025 Sethu Iyer. All rights reserved. <span class="vintage-label">$ echo "Built by Sethu Iyer | 2014 - 2025" > /dev/null</span></p>
     </div>
   </footer>
 
