@@ -1,0 +1,10 @@
+This directory will contain the following generated images:
+
+1. profile_pic.jpg - Profile picture of Sethu Iyer
+2. prime_pattern.jpg - Visualization of prime number patterns
+3. orkut_elements.jpg - Orkut-style UI elements
+4. coding_visualization.jpg - Visualization of code with data visualizations
+5. optimization.jpg - Abstract representation of optimization algorithms
+6. header_banner.jpg - Stylized banner with AI, mathematics, and physics concepts
+
+These images should be generated based on the prompts in img_request/wish.txt 
