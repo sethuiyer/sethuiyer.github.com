@@ -19,134 +19,259 @@
     <!-- KaTeX for LaTeX rendering -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0KOVEMVIROPtOQ9ns9XjPQzGaO7vG_e8ALkTNSEdTdN/1VCo8JwG" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
-    onload="renderMathInElement(document.body);"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide-react@0.292.0/dist/lucide-react.js"></script>
 
-    <!-- Custom Styles -->
+    <!-- Premium Custom Styles -->
     <style>
+        /* Override Tailwind for premium design */
+        .callout-box {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            border-left: 4px solid var(--accent-cyan);
+            padding: 2rem;
+            margin: 3rem 0;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-glow);
+            border: 1px solid var(--border-color);
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- New external stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- KaTeX for LaTeX rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide-react@0.292.0/dist/lucide-react.js"></script>
+    <!-- Premium Custom Styles -->
+    <style>
+        :root {
+            --accent-blue: #3b82f6;
+            --accent-purple: #a78bfa;
+            --accent-cyan: #06b6d4;
+            --accent-gradient: linear-gradient(90deg, #3b82f6, #a78bfa, #06b6d4);
+            --bg-secondary: #232946;
+            --bg-tertiary: #1a1a2e;
+            --border-color: #374151;
+            --shadow-glow: 0 4px 32px 0 rgba(59,130,246,0.15);
+            --text-primary: #f9fafb;
+            --text-muted: #a1a1aa;
+        }
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #111827; /* bg-gray-900 */
-            color: #D1D5DB; /* text-gray-300 */
+            transition: background 0.3s, color 0.3s;
         }
-        h1, h2, h3 {
-            color: #F9FAFB; /* text-gray-50 */
+        .dark-mode {
+            background: #111827;
+            color: #f9fafb;
+        }
+        .header-container {
+            background: var(--accent-gradient);
+            color: white;
+            padding: 3rem 0 2rem 0;
+            text-align: center;
+            border-radius: 0 0 2rem 2rem;
+            box-shadow: var(--shadow-glow);
+            position: relative;
+            overflow: hidden;
+        }
+        .header-container h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            animation: float 3s ease-in-out infinite alternate;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-12px); }
+        }
+        .subtitle {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            color: #e0e7ff;
+        }
+        .description {
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            color: #dbeafe;
+        }
+        .callout-box {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            border-left: 4px solid var(--accent-cyan);
+            padding: 2rem;
+            margin: 3rem 0;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-glow);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+        .callout-box:hover {
+            box-shadow: 0 8px 32px 0 rgba(59,130,246,0.25);
+        }
+        .callout-box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 1rem;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-cyan));
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        .axiom-box {
+            background: var(--accent-gradient);
+            padding: 2.5rem;
+            margin: 3rem 0;
+            border-radius: 1rem;
+            text-align: center;
+            color: white;
             font-weight: 700;
+            font-size: 1.25rem;
+            box-shadow: var(--shadow-glow);
+            position: relative;
+            overflow: hidden;
         }
-        h2 {
-            border-bottom: 1px solid #374151; /* border-gray-700 */
-            padding-bottom: 0.5rem;
-            margin-top: 2.5rem;
-            margin-bottom: 1.5rem;
+        .axiom-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: rotate 4s linear infinite;
         }
-        .katex-display {
-            padding: 1rem;
-            background-color: #1F2937; /* bg-gray-800 */
-            border-radius: 0.5rem;
-            overflow-x: auto;
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
         }
-        .mermaid {
-            background-color: #F9FAFB; /* bg-gray-50 */
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            margin: 2rem 0;
+        .premium-table {
+            margin: 3rem 0;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-glow);
+        }
+        .toc-sidebar {
+            position: fixed;
+            top: 6rem;
+            left: 2rem;
+            width: 16rem;
+            background: rgba(30,41,59,0.95);
+            color: #f9fafb;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-glow);
+            padding: 1.5rem 1rem;
+            z-index: 100;
+            max-height: 80vh;
+            overflow-y: auto;
+            display: none;
+        }
+        @media (min-width: 1200px) {
+            .toc-sidebar { display: block; }
+        }
+        .toc-sidebar h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .toc-sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .toc-sidebar li {
+            margin-bottom: 0.75rem;
+        }
+        .toc-sidebar a {
+            color: #a5b4fc;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .toc-sidebar a:hover {
+            color: #38bdf8;
+            text-decoration: underline;
+        }
+        .dark-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--accent-gradient);
+            color: white;
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
             display: flex;
-            justify-content: center;
             align-items: center;
-        }
-        blockquote {
-            border-left: 4px solid #3B82F6; /* border-blue-500 */
-            padding-left: 1.5rem;
-            margin: 1.5rem 0;
-            font-style: italic;
-            color: #9CA3AF; /* text-gray-400 */
-        }
-        code.inline-code {
-            background-color: #374151; /* bg-gray-700 */
-            color: #F3F4F6; /* text-gray-200 */
-            padding: 0.2rem 0.4rem;
-            border-radius: 0.25rem;
-            font-size: 0.9em;
+            justify-content: center;
+            box-shadow: var(--shadow-glow);
+            cursor: pointer;
+            z-index: 200;
+            font-size: 1.5rem;
+            transition: background 0.3s;
         }
         .author-section {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
         .author-section img {
-            width: 50px;
-            height: 50px;
+            width: 4rem;
+            height: 4rem;
             border-radius: 50%;
-            border: 2px solid #3B82F6;
+            box-shadow: var(--shadow-glow);
         }
-        table {
-            width: 100%;
-            margin: 2rem 0;
-            border-collapse: collapse;
+        .lead {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #a5b4fc;
         }
-        th, td {
-            border: 1px solid #374151; /* border-gray-700 */
-            padding: 0.75rem;
-            text-align: left;
-        }
-        th {
-            background-color: #1F2937; /* bg-gray-800 */
-            color: #F9FAFB;
-        }
-        .callout-box {
-            background: linear-gradient(135deg, #1F2937 0%, #374151 100%);
-            border-left: 4px solid #10B981;
-            padding: 1.5rem;
-            margin: 2rem 0;
+        .comment-preview {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
             border-radius: 0.5rem;
-        }
-        .axiom-box {
-            background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 0.5rem;
-            text-align: center;
-            color: white;
-            font-weight: 600;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-style: italic;
+            min-height: 2rem;
         }
     </style>
-</head>
-<body class="antialiased">
-
-    <div class="min-h-screen">
-        
-        <!-- Header -->
-        <header class="header-container">
-            <h1 class="floating">
-                You Thought Reinforcement Learning Was About Rewards?
-            </h1>
-            <p class="subtitle">It's Secretly About Topology</p>
-            <p class="description">
-                How the Bellman Equation and Topological Obstructions Reveal a Hidden Truth About Planning
-            </p>
-        </header>
-
-        <div class="article-container">
-            <article class="content-section">
-                <!-- Author info -->
-                <div class="author-info mb-8">
-                    <div class="flex items-center gap-4">
-                        <img src="https://github.com/sethuiyer.png" alt="Author" class="w-16 h-16 rounded-full border-2 border-blue-500">
-                        <div>
-                            <h3 class="text-xl font-semibold mb-1">Sethu Iyer</h3>
-                            <p class="text-gray-400">Posted on March 19, 2024 · 15 min read</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Introduction -->
-                <div class="prose prose-invert max-w-none">
-                    <p class="lead text-xl mb-8">
-                        Imagine you're training an AI to play a game. It observes states, picks actions, collects rewards, and learns through trial and error. The heart of this process is a deceptively simple equation—the Bellman equation—that promises to find the best way to navigate any situation. But here's the twist: this equation isn't just about maximizing rewards. It's a bet on the structure of the world itself—a bet that the universe is simple.
+    <script>
+    // Dark mode toggle
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggle = document.createElement('div');
+        toggle.className = 'dark-toggle';
+        toggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width:2rem;height:2rem;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8.66-8.66l-.71.71M4.05 4.05l-.71.71M21 12h-1M4 12H3m16.24 4.24l-.71-.71M7.05 19.95l-.71-.71" /></svg>';
+        document.body.appendChild(toggle);
+        toggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+        });
+    });
+    // Floating Table of Contents
+    document.addEventListener('DOMContentLoaded', function() {
+        const toc = document.createElement('nav');
+        toc.className = 'toc-sidebar';
+        toc.innerHTML = `<h3>Contents</h3><ul>
+            <li><a href="#part1">Bellman Equation</a></li>
+            <li><a href="#part2">When the World Remembers</a></li>
+            <li><a href="#part3">Topology's Challenge</a></li>
+            <li><a href="#part4">Cohomological Obstructions</a></li>
+            <li><a href="#part5">RL Meets Topology</a></li>
+            <li><a href="#part6">Kodaira–Thurston Bombshell</a></li>
+            <li><a href="#part7">Breaking the Mold</a></li>
+            <li><a href="#part8">Axiom of Obstructed Intelligence</a></li>
+            <li><a href="#part9">Vision for the Future</a></li>
+            <li><a href="#discussion">Discussion</a></li>
+        </ul>`;
+        document.body.appendChild(toc);
+    });
+    </script>
                     </p>
 
                     <p>
@@ -320,7 +445,7 @@
                     
                     <p>Let's map the concepts directly:</p>
                     
-                    <table>
+                    <table class="premium-table">
                         <thead>
                             <tr><th>RL Concept</th><th>Topological Analog</th></tr>
                         </thead>
@@ -603,14 +728,14 @@
                 </p>
 
                 <!-- Call to action -->
-                <div class="bg-gray-800 p-6 rounded-lg mt-12">
-                    <h3 class="text-xl font-semibold mb-4">Join the Discussion</h3>
-                    <p class="mb-4">
+                <div class="callout-box">
+                    <h3>Join the Discussion</h3>
+                    <p>
                         What do you think about this connection between RL and topology? Have you encountered similar "hidden twists" in your own work with AI systems?
                     </p>
-                    <div class="flex gap-4">
-                        <a href="#comments" class="text-blue-400 hover:text-blue-300">Share your thoughts →</a>
-                        <a href="https://github.com/sethuiyer/rl-topology" class="text-blue-400 hover:text-blue-300">View code on GitHub →</a>
+                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                        <a href="#comments">Share your thoughts →</a>
+                        <a href="https://github.com/sethuiyer/rl-topology">View code on GitHub →</a>
                     </div>
                 </div>
 
@@ -624,18 +749,18 @@
             </article>
 
             <!-- Comments section -->
-            <section id="comments" class="mt-16">
-                <h2 class="text-2xl font-bold mb-8">Comments</h2>
-                <div class="flex flex-col gap-8">
+            <section id="comments" style="margin-top: 4rem;">
+                <h2>Comments</h2>
+                <div style="display: flex; flex-direction: column; gap: 2rem;">
                     <!-- Comment form -->
-                    <div class="bg-gray-800 p-6 rounded-lg">
-                        <h3 class="text-lg font-semibold mb-4">Leave a comment</h3>
-                        <form class="space-y-4">
-                            <div>
-                                <label for="comment" class="block text-sm font-medium mb-2">Your thoughts</label>
-                                <textarea id="comment" rows="4" class="w-full bg-gray-700 rounded-lg p-3 text-gray-100"></textarea>
+                    <div class="callout-box">
+                        <h3>Leave a comment</h3>
+                        <form style="margin-top: 1rem;">
+                            <div style="margin-bottom: 1rem;">
+                                <label for="comment" style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Your thoughts</label>
+                                <textarea id="comment" rows="4" style="width: 100%; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 0.5rem; padding: 0.75rem; color: var(--text-primary);"></textarea>
                             </div>
-                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+                            <button type="submit" style="background: var(--accent-gradient); color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; border: none; font-weight: 600; cursor: pointer;">
                                 Post Comment
                             </button>
                         </form>
@@ -644,13 +769,13 @@
             </section>
 
             <!-- Newsletter signup -->
-            <section class="mt-16 bg-gradient-to-r from-blue-500 to-purple-600 p-8 rounded-lg">
-                <div class="max-w-2xl mx-auto text-center">
-                    <h2 class="text-2xl font-bold mb-4">Stay Updated</h2>
-                    <p class="mb-6">Get notified about new posts on AI, mathematics, and their beautiful intersections.</p>
-                    <form class="flex gap-4 max-w-md mx-auto">
-                        <input type="email" placeholder="Your email" class="flex-1 px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60">
-                        <button type="submit" class="px-6 py-2 bg-white text-blue-600 rounded-lg font-semibold hover:bg-white/90">
+            <section class="axiom-box" style="margin-top: 4rem;">
+                <div style="max-width: 32rem; margin: 0 auto;">
+                    <h2 style="margin-bottom: 1rem; color: white;">Stay Updated</h2>
+                    <p style="margin-bottom: 2rem; color: rgba(255,255,255,0.9);">Get notified about new posts on AI, mathematics, and their beautiful intersections.</p>
+                    <form style="display: flex; gap: 1rem; max-width: 28rem; margin: 0 auto;">
+                        <input type="email" placeholder="Your email" style="flex: 1; padding: 0.75rem 1rem; border-radius: 0.5rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;">
+                        <button type="submit" style="padding: 0.75rem 1.5rem; background: white; color: var(--accent-blue); border-radius: 0.5rem; font-weight: 700; border: none; cursor: pointer;">
                             Subscribe
                         </button>
                     </form>
@@ -658,19 +783,19 @@
             </section>
 
             <!-- Footer with social links -->
-            <footer class="mt-16 pt-8 border-t border-gray-700">
-                <div class="flex justify-between items-center">
-                    <div class="text-sm text-gray-400">
-                        © 2024 Sethu Iyer · <a href="#" class="hover:text-white">About</a> · <a href="#" class="hover:text-white">Contact</a>
+            <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-size: 0.875rem; color: var(--text-muted);">
+                        © 2024 Sethu Iyer · <a href="#">About</a> · <a href="#">Contact</a>
                     </div>
-                    <div class="flex gap-4">
-                        <a href="https://twitter.com/sethuiyer" class="text-gray-400 hover:text-white">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="https://twitter.com/sethuiyer" style="color: var(--text-muted);">
+                            <svg style="width: 1.5rem; height: 1.5rem;" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
                             </svg>
                         </a>
-                        <a href="https://github.com/sethuiyer" class="text-gray-400 hover:text-white">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <a href="https://github.com/sethuiyer" style="color: var(--text-muted);">
+                            <svg style="width: 1.5rem; height: 1.5rem;" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
                             </svg>
                         </a>
@@ -684,6 +809,7 @@
     <!-- Mermaid.js -->
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <script>
+        // Initialize Mermaid
         mermaid.initialize({ 
             startOnLoad: true,
             theme: 'base',
@@ -702,6 +828,28 @@
                 arrowheadColor: '#D1D5DB',
                 fontFamily: 'Inter, sans-serif'
             }
+        });
+
+        // Initialize KaTeX - PROPER FIX
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(function() {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '$', right: '$', display: false},
+                        {left: '\\(', right: '\\)', display: false},
+                        {left: '\\[', right: '\\]', display: true}
+                    ],
+                    throwOnError: false,
+                    macros: {
+                        "\\RR": "\\mathbb{R}",
+                        "\\NN": "\\mathbb{N}",
+                        "\\ZZ": "\\mathbb{Z}",
+                        "\\smile": "\\smallfrown"
+                    }
+                });
+                console.log("KaTeX rendering completed!");
+            }, 500);
         });
     </script>
 
