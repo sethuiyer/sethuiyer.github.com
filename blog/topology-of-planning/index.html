@@ -1,870 +1,635 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>You Thought Reinforcement Learning Was About Rewards? It's Secretly About Topology</title>
+    <title>TopoGRPO: Topological Group Relative Policy Optimization</title>
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/white.css">
     
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- KaTeX CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     
-    <!-- New external stylesheet -->
-    <link rel="stylesheet" href="styles.css">
-    
-    <!-- KaTeX for LaTeX rendering -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0KOVEMVIROPtOQ9ns9XjPQzGaO7vG_e8ALkTNSEdTdN/1VCo8JwG" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
-
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide-react@0.292.0/dist/lucide-react.js"></script>
-
-    <!-- Premium Custom Styles -->
+    <!-- Custom styles -->
     <style>
-        /* Override Tailwind for premium design */
-        .callout-box {
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
-            border-left: 4px solid var(--accent-cyan);
-            padding: 2rem;
-            margin: 3rem 0;
-            border-radius: 1rem;
-            box-shadow: var(--shadow-glow);
-            border: 1px solid var(--border-color);
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- New external stylesheet -->
-    <link rel="stylesheet" href="styles.css">
-    <!-- KaTeX for LaTeX rendering -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide-react@0.292.0/dist/lucide-react.js"></script>
-    <!-- Premium Custom Styles -->
-    <style>
-        :root {
-            --accent-blue: #3b82f6;
-            --accent-purple: #a78bfa;
-            --accent-cyan: #06b6d4;
-            --accent-gradient: linear-gradient(90deg, #3b82f6, #a78bfa, #06b6d4);
-            --bg-secondary: #232946;
-            --bg-tertiary: #1a1a2e;
-            --border-color: #374151;
-            --shadow-glow: 0 4px 32px 0 rgba(59,130,246,0.15);
-            --text-primary: #f9fafb;
-            --text-muted: #a1a1aa;
+        .reveal {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-size: 28px;
         }
-        body {
-            transition: background 0.3s, color 0.3s;
+        
+        .reveal .slides section {
+            text-align: left;
+            padding: 2em;
+            max-width: 90%;
+            margin: 0 auto;
+            height: auto !important;
+            overflow-y: auto;
+            max-height: 80vh;
         }
-        .dark-mode {
-            background: #111827;
-            color: #f9fafb;
+        
+        .reveal .slides {
+            overflow: visible !important;
         }
-        .header-container {
-            background: var(--accent-gradient);
-            color: white;
-            padding: 3rem 0 2rem 0;
-            text-align: center;
-            border-radius: 0 0 2rem 2rem;
-            box-shadow: var(--shadow-glow);
-            position: relative;
-            overflow: hidden;
+        
+        /* Custom scrollbar styling */
+        .reveal .slides section::-webkit-scrollbar {
+            width: 8px;
         }
-        .header-container h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            animation: float 3s ease-in-out infinite alternate;
+        
+        .reveal .slides section::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
         }
-        @keyframes float {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-12px); }
+        
+        .reveal .slides section::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
         }
-        .subtitle {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-top: 0.5rem;
-            color: #e0e7ff;
+        
+        .reveal .slides section::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
         }
-        .description {
-            font-size: 1.1rem;
-            margin-top: 1rem;
-            color: #dbeafe;
-        }
-        .callout-box {
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
-            border-left: 4px solid var(--accent-cyan);
-            padding: 2rem;
-            margin: 3rem 0;
-            border-radius: 1rem;
-            box-shadow: var(--shadow-glow);
-            border: 1px solid var(--border-color);
-            position: relative;
-            overflow: hidden;
-            transition: box-shadow 0.3s;
-        }
-        .callout-box:hover {
-            box-shadow: 0 8px 32px 0 rgba(59,130,246,0.25);
-        }
-        .callout-box::before {
+        
+        /* Scroll indicator for scrollable content */
+        .reveal .slides section::after {
             content: '';
             position: absolute;
-            inset: 0;
-            border-radius: 1rem;
-            padding: 2px;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-cyan));
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask-composite: exclude;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 20px;
+            background: linear-gradient(to bottom, transparent, rgba(100,100,100,0.6));
+            border-radius: 10px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .reveal .slides section.scrollable::after {
+            opacity: 1;
+        }
+        
+        /* Scroll hint text */
+        .reveal .slides section.scrollable::before {
+            content: 'Scroll for more content ↓';
+            position: absolute;
+            bottom: 5px;
+            right: 20px;
+            font-size: 0.7em;
+            color: #7f8c8d;
+            opacity: 0.7;
             pointer-events: none;
         }
-        .axiom-box {
-            background: var(--accent-gradient);
-            padding: 2.5rem;
-            margin: 3rem 0;
-            border-radius: 1rem;
+        
+        .reveal h1 {
+            font-size: 2.0em;
+            color: #2c3e50;
+            margin-bottom: 1em;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        .reveal h2 {
+            font-size: 1.6em;
+            color: #34495e;
+            margin-bottom: 1.2em;
+            font-weight: 500;
+        }
+        
+        .reveal h3 {
+            font-size: 1.3em;
+            color: #7f8c8d;
+            margin-bottom: 1em;
+            font-weight: 500;
+        }
+        
+        .reveal p, .reveal li {
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 1em;
+            color: #2c3e50;
+        }
+        
+        .reveal .title-slide {
             text-align: center;
-            color: white;
-            font-weight: 700;
-            font-size: 1.25rem;
-            box-shadow: var(--shadow-glow);
-            position: relative;
-            overflow: hidden;
         }
-        .axiom-box::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent, rgba(255,255,255,0.1), transparent);
-            animation: rotate 4s linear infinite;
+        
+        .reveal .center {
+            text-align: center;
         }
-        @keyframes rotate {
-            to { transform: rotate(360deg); }
+        
+        .algorithm-box {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 1.5em;
+            margin: 1.5em 0;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
         }
-        .premium-table {
-            margin: 3rem 0;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: var(--shadow-glow);
+        
+        .equation-box {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 1.2em;
+            margin: 1.5em 0;
+            font-size: 1em;
+            line-height: 1.4;
         }
-        .toc-sidebar {
-            position: fixed;
-            top: 6rem;
-            left: 2rem;
-            width: 16rem;
-            background: rgba(30,41,59,0.95);
-            color: #f9fafb;
-            border-radius: 1rem;
-            box-shadow: var(--shadow-glow);
-            padding: 1.5rem 1rem;
-            z-index: 100;
-            max-height: 80vh;
-            overflow-y: auto;
-            display: none;
+        
+        .key-insight {
+            background: #e8f4f8;
+            border: 1px solid #3498db;
+            border-radius: 6px;
+            padding: 1.2em;
+            margin: 1.5em 0;
+            font-style: italic;
+            line-height: 1.5;
         }
-        @media (min-width: 1200px) {
-            .toc-sidebar { display: block; }
+        
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2em 0;
+            font-size: 0.95em;
         }
-        .toc-sidebar h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
+        
+        .results-table th, .results-table td {
+            border: 1px solid #dee2e6;
+            padding: 1em;
+            text-align: left;
         }
-        .toc-sidebar ul {
-            list-style: none;
-            padding: 0;
+        
+        .results-table th {
+            background: #f8f9fa;
+            font-weight: 600;
         }
-        .toc-sidebar li {
-            margin-bottom: 0.75rem;
+        
+        .topology-diagram {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 3em 0;
         }
-        .toc-sidebar a {
-            color: #a5b4fc;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        .toc-sidebar a:hover {
-            color: #38bdf8;
-            text-decoration: underline;
-        }
-        .dark-toggle {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            background: var(--accent-gradient);
-            color: white;
+        
+        .chart {
+            width: 120px;
+            height: 120px;
+            border: 2px solid #3498db;
             border-radius: 50%;
-            width: 3rem;
-            height: 3rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: var(--shadow-glow);
-            cursor: pointer;
-            z-index: 200;
-            font-size: 1.5rem;
-            transition: background 0.3s;
-        }
-        .author-section {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        .author-section img {
-            width: 4rem;
-            height: 4rem;
-            border-radius: 50%;
-            box-shadow: var(--shadow-glow);
-        }
-        .lead {
-            font-size: 1.2rem;
+            font-size: 0.85em;
             font-weight: 500;
-            color: #a5b4fc;
         }
-        .comment-preview {
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            border-radius: 0.5rem;
-            padding: 1rem;
-            margin-top: 1rem;
-            font-style: italic;
-            min-height: 2rem;
+        
+        .connection {
+            width: 60px;
+            height: 2px;
+            background: #7f8c8d;
+        }
+        
+        .component-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .component-list li {
+            margin: 1.5em 0;
+            padding: 1.2em;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #3498db;
+            line-height: 1.5;
+        }
+        
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 1em;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.8em;
+            margin: 1em 0;
+            overflow-x: auto;
         }
     </style>
-    <script>
-    // Dark mode toggle
-    document.addEventListener('DOMContentLoaded', function() {
-        const toggle = document.createElement('div');
-        toggle.className = 'dark-toggle';
-        toggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width:2rem;height:2rem;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8.66-8.66l-.71.71M4.05 4.05l-.71.71M21 12h-1M4 12H3m16.24 4.24l-.71-.71M7.05 19.95l-.71-.71" /></svg>';
-        document.body.appendChild(toggle);
-        toggle.addEventListener('click', function() {
-            document.body.classList.toggle('dark-mode');
-        });
-    });
-    // Floating Table of Contents
-    document.addEventListener('DOMContentLoaded', function() {
-        const toc = document.createElement('nav');
-        toc.className = 'toc-sidebar';
-        toc.innerHTML = `<h3>Contents</h3><ul>
-            <li><a href="#part1">Bellman Equation</a></li>
-            <li><a href="#part2">When the World Remembers</a></li>
-            <li><a href="#part3">Topology's Challenge</a></li>
-            <li><a href="#part4">Cohomological Obstructions</a></li>
-            <li><a href="#part5">RL Meets Topology</a></li>
-            <li><a href="#part6">Kodaira–Thurston Bombshell</a></li>
-            <li><a href="#part7">Breaking the Mold</a></li>
-            <li><a href="#part8">Axiom of Obstructed Intelligence</a></li>
-            <li><a href="#part9">Vision for the Future</a></li>
-            <li><a href="#discussion">Discussion</a></li>
-        </ul>`;
-        document.body.appendChild(toc);
-    });
-    </script>
-                    </p>
+</head>
 
-                    <p>
-                        Now, imagine a robot navigating a maze. Not a flat grid, but a space with twists, loops, and hidden dependencies—like a four-dimensional manifold with a memory of its own. In this world, a single rule for finding paths between points doesn't exist. Instead, you need multiple local rules, each covering a piece of the puzzle, because the space itself resists a one-size-fits-all solution.
-                    </p>
-
-                    <p>
-                        These two worlds—RL and topological complexity (TC)—seem unrelated. One's about algorithms and rewards; the other's about abstract geometry and motion planning. But what if I told you they're two sides of the same coin? That the Bellman equation and topological obstructions are both grappling with the same deep question:
-                    </p>
-
-                    <blockquote>
-                        Can you find a single global rule to solve a planning problem, or must you stitch together local solutions because the world has hidden twists?
-                    </blockquote>
-
-                    <p>This article is a journey into that question. We'll unravel how the Bellman equation assumes a "flat" world, how topology reveals when that assumption fails, and how both fields point to a unified truth about planning in structured spaces. Buckle up—this is going to be a ride.</p>
-
-                    <h2>Part 1: The Bellman Equation—A Promise of Simplicity</h2>
-                    
-                    <p>Let's start with reinforcement learning. Picture an agent—a robot, a game-playing AI, or even a self-driving car. It lives in a world of states (positions, situations) and actions (move left, accelerate, jump). Each action yields a reward (points, progress, safety), and the agent's goal is to maximize its total reward over time.</p>
-                    
-                    <p>The genius of RL lies in the Bellman equation, which defines the value of a state \( s \)—the expected long-term reward starting from \( s \) and acting optimally thereafter:</p>
-                    
-                    $$V^*(s) = \max_{a} \left[ R(s,a) + \gamma \sum_{s'} P(s'|s,a) V^*(s') \right]$$
-                    
-                    <p>Here, \( R(s,a) \) is the immediate reward for taking action \( a \) in state \( s \), \( P(s'|s,a) \) is the probability of transitioning to state \( s' \), and \( \gamma \in (0,1) \) is a discount factor that prioritizes near-term rewards. This equation is recursive: the value of a state depends on the values of future states.</p>
-                    
-                    <p>To solve it, we define the Bellman operator \( T \):</p>
-                    
-                    $$(TV)(s) = \max_{a} \left[ R(s,a) + \gamma \sum_{s'} P(s'|s,a) V(s') \right]$$
-                    
-                    <p>This operator is a contraction in the space of value functions (under the sup-norm \( |V|_\infty = \sup_s |V(s)| \)):</p>
-                    
-                    $$|TV_1 - TV_2|_\infty \leq \gamma |V_1 - V_2|_\infty$$
-                    
-                    <p>Because \( \gamma < 1 \), the Banach fixed-point theorem guarantees a unique solution \( V^* = TV^* \). Start with any guess for \( V \), apply \( T \) repeatedly, and you converge to \( V^* \) at a geometric rate. This is the magic of value iteration and the foundation of algorithms like Q-learning:</p>
-                    
-                    $$Q_{n+1}(s,a) = Q_n(s,a) + \alpha \left[ r + \gamma \max_{a'} Q_n(s',a') - Q_n(s,a) \right]$$
-
-                    <div class="mermaid">
-                        graph TD
-                            A["Initialize V(s) randomly"] --> B["For each state s"]
-                            B --> C["Calculate TV(s) = max_a [R(s,a) + γ Σ P(s'|s,a)V(s')]"]
-                            C --> D["Update V(s) ← TV(s)"]
-                            D --> E{"Converged?<br/>|V_new - V_old| < ε"}
-                            E -->|No| B
-                            E -->|Yes| F["Optimal Value Function V*"]
-                            
-                            subgraph "Grid World Example"
-                                G1["S1<br/>V=10"] --> G2["S2<br/>V=8"]
-                                G2 --> G3["S3<br/>V=6"]
-                                G3 --> G4["Goal<br/>R=+10"]
-                                G1 -.-> G5["S4<br/>V=2"]
-                                G5 --> G6["Trap<br/>R=-10"]
-                            end
-                            
-                            F --> G1
-                    </div>
-
-                    <p>This works beautifully in a Markovian world, where the future depends only on the current state, not the past. The Bellman equation assumes the world is flat—no hidden dependencies, no irreversible choices, no memory that twists the fabric of decision-making. But what happens when the world isn't so kind?</p>
-
-                    <h2>Part 2: When the World Remembers</h2>
-                    
-                    <p>Now, let's step into a different universe—one where choices leave scars. Imagine an agent that flips a switch. That switch doesn't just affect the next step; it changes the rules of the game forever. Or picture a partially observable world, where the agent can't see the full state, and past actions linger like ghosts, shaping what's possible.</p>
-                    
-                    <p>This is a non-Markovian world. The Bellman equation starts to falter. The contraction property weakens because the state space no longer captures everything the agent needs to know. To cope, you might augment the state with memory (e.g., a history of past actions) or introduce hierarchical policies—meta-rules that govern sub-rules. Suddenly, you're not solving one global equation anymore. You're stitching together local solutions, each tailored to a specific context.</p>
-                    
-                    <p>This is where topology enters the stage.</p>
-
-                    <h2>Part 3: Topology's Challenge—Planning in a Twisted Space</h2>
-                    
-                    <p>Shift gears to a robot navigating a physical or abstract space \( X \)—say, a factory floor, a protein's configuration space, or a 4D manifold. The robot needs a rule to find a path between any two points \( (x, y) \in X \times X \). In topological terms, this is a motion-planning algorithm: a continuous map</p>
-                    
-                    $$\sigma: X \times X \to PX, \quad \text{where } PX = C([0,1], X)$$
-                    
-                    <p>such that the path \( \sigma(x,y) \) starts at \( x \) and ends at \( y \). The evaluation map</p>
-                    
-                    $$\mathrm{ev}: PX \to X \times X, \quad \mathrm{ev}(\gamma) = (\gamma(0), \gamma(1))$$
-                    
-                    <p>checks if the path connects the right points. A global motion planner is a section—a map \( \sigma \) such that \( \mathrm{ev} \circ \sigma = \mathrm{id}_{X \times X} \).</p>
-                    
-                    <p>If such a \( \sigma \) exists, the topological complexity \( \text{TC}(X) = 1 \). But here's the catch: most spaces aren't that simple. Their topology—the way they loop, twist, or fold—can prevent a single rule from working everywhere.</p>
-
-                    <div class="mermaid">
-                        graph LR
-                            subgraph "Torus T²"
-                                A["Point A"] 
-                                B["Point B"]
-                                C["Point C"]
-                                D["Point D"]
-                                A -.-> B
-                                B -.-> C
-                                C -.-> D
-                                D -.-> A
-                                A -.-> C
-                                B -.-> D
-                            end
-                            
-                            subgraph "Global Section Attempt"
-                                E["σ(x,y): X×X → PX"] 
-                                E --> F["Path exists for some pairs"]
-                                F --> G["FAILS at hole/obstruction"]
-                                G --> H["No single global rule"]
-                            end
-                            
-                            subgraph "Solution: Multiple Charts"
-                                I["Chart 1: σ₁"] 
-                                J["Chart 2: σ₂"]
-                                K["Chart 3: σ₃"]
-                                I --> L["Local paths"]
-                                J --> L
-                                K --> L
-                                L --> M["TC(T²) = 3"]
-                            end
-                    </div>
-
-                    <p>The tool to detect this failure is cohomology, a branch of algebraic topology that measures a space's "holes" or twists. Specifically, the cohomology ring \( H^*(X \times X) \) determines whether a global section exists. If certain cohomology classes (like cup products \( \alpha \smile \beta \in H^2(X \times X) \)) are nonzero, no single \( \sigma \) can cover all pairs \( (x,y) \). Instead, you need to partition \( X \times X \) into open sets \( U_1, U_2, \dots, U_k \), each with its own local section \( \sigma_i \). The topological complexity \( \text{TC}(X) \) is the smallest \( k \) that makes this possible.</p>
-
-                    <h2>Part 4: The Hidden Explosion—Cohomological Obstructions</h2>
-                    
-                    <p>Let's dive deeper. In topology, the failure of a global section is quantified by obstructions. The primary obstruction lies in the second cohomology group \( H^2(X \times X) \). For example, if a cup product \( \alpha \smile \beta \neq 0 \), Farber's theorem tells us \( \text{TC}(X) \geq 3 \). This means you need at least three local rules to cover all possible start-end pairs.</p>
-                    
-                    <p>But it gets wilder. Even if primary obstructions vanish, secondary obstructions can emerge in \( H^3(X \times X) \), measured by Massey products like \( \langle \alpha, \beta, \gamma \rangle \). These detect higher-order "twists" in the space—dependencies that don't show up in pairwise interactions but appear when you consider triples or beyond.</p>
-                    
-                    <p>Take the Kodaira–Thurston manifold, a 4D space that looks innocent but harbors a dark secret. Its cohomology includes 1-forms \( a, b, c \) where pairwise cup products (e.g., \( a \smile b \)) vanish, suggesting a simpler structure. But the triple Massey product \( \langle a, b, c \rangle \neq 0 \) in \( H^3 \) reveals a deeper twist—a gerbe, a kind of memory embedded in the space. This forces \( \text{TC}(KT) \geq 5 \), meaning you need at least five local motion planners to navigate this manifold.</p>
-
-                    <div class="mermaid">
-                        graph TB
-                            subgraph "Kodaira-Thurston Manifold (4D)"
-                                A["1-form: a"] 
-                                B["1-form: b"]
-                                C["1-form: c"]
-                                
-                                A -.-> D["a ∪ b = 0"]
-                                B -.-> E["b ∪ c = 0"] 
-                                C -.-> F["a ∪ c = 0"]
-                                
-                                subgraph "Pairwise: Looks Simple"
-                                    D
-                                    E
-                                    F
-                                end
-                                
-                                subgraph "Triple Massey Product"
-                                    G["⟨a,b,c⟩ ≠ 0"]
-                                    G --> H["Hidden 3D Twist!"]
-                                    H --> I["Gerbe Structure"]
-                                end
-                                
-                                D --> G
-                                E --> G
-                                F --> G
-                            end
-                            
-                            subgraph "Consequence"
-                                I --> J["TC(KT) ≥ 5"]
-                                J --> K["Need 5 Local Charts"]
-                                K --> L["No Global Motion Planner"]
-                            end
-                    </div>
-
-                    <p>Now, let's bring this back to RL.</p>
-
-                    <h2>Part 5: The Mirror Image—RL Meets Topology</h2>
-                    
-                    <p>The Bellman equation assumes a world where \( \text{TC} = 1 \)—a single global value function or policy suffices. But in a non-Markovian world, the state space has "holes" or "twists" analogous to those in topology. These manifest as dependencies that a single Bellman update can't capture. For example:</p>
-                    
-                    <ul>
-                        <li>In a partially observable MDP (POMDP), the agent needs a memory of past actions to disambiguate states, much like a topological space with nontrivial cohomology requires multiple charts.</li>
-                        <li>In hierarchical RL, meta-policies govern sub-policies, mirroring the way topology uses overlapping local sections to cover a space.</li>
-                    </ul>
-                    
-                    <p>Let's map the concepts directly:</p>
-                    
-                    <table class="premium-table">
-                        <thead>
-                            <tr><th>RL Concept</th><th>Topological Analog</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Bellman Fixed Point</td><td>Global Section of Path Fibration</td></tr>
-                            <tr><td>Non-Markovian Dynamics</td><td>Non-Formal Space</td></tr>
-                            <tr><td>Hierarchical/Meta-Policies</td><td>Multiple Local Charts (High TC)</td></tr>
-                            <tr><td>Temporal-Difference Update</td><td>Local Path Rule</td></tr>
-                            <tr><td>Discount Factor (\(\gamma\))-Contraction</td><td>Formality (Trivial Cohomology)</td></tr>
-                            <tr><td>Memory Requirement</td><td>Higher Massey Product</td></tr>
-                        </tbody>
-                    </table>
-                    
-                    <p>The temporal-difference (TD) update in Q-learning:</p>
-                    
-                    $$Q_{n+1}(s,a) = Q_n(s,a) + \alpha \left[ r + \gamma \max_{a'} Q_n(s',a') - Q_n(s,a) \right]$$
-                    
-                    <p>is like a local section \( \sigma_i \). It stitches together immediate rewards with future estimates, much like a topological chart defines paths in a local region. When the state space has "memory" (non-Markovianity), you need multiple such updates, each tailored to a specific context, just as topology requires multiple charts when cohomology obstructs a global section.</p>
-
-                    <div class="mermaid">
-                        graph LR
-                            subgraph "Q-Learning: Grid World"
-                                A1["State s"] --> A2["Q(s,a) + α[r + γ max Q(s',a') - Q(s,a)]"]
-                                A2 --> A3["Converges to Q*"]
-                                A3 --> A4["Single Global Policy"]
-                                A4 --> A5["Success: TC = 1"]
-                            end
-                            
-                            subgraph "Torus Navigation"
-                                B1["Point (x,y)"] --> B2["Local Path Rule σᵢ"]
-                                B2 --> B3["Fails at Obstruction"]
-                                B3 --> B4["Need Multiple Rules"]
-                                B4 --> B5["α ∪ β ≠ 0"]
-                                B5 --> B6["TC ≥ 3"]
-                            end
-                            
-                            subgraph "Parallel Structures"
-                                C1["Bellman Operator T"]
-                                C2["Evaluation Map ev"]
-                                C1 -.->|"Contraction γ < 1"| D1["Fixed Point V*"]
-                                C2 -.->|"Cup Product ≠ 0"| D2["No Global Section"]
-                                
-                                D1 --> E1["Single Rule Works"]
-                                D2 --> E2["Multiple Rules Needed"]
-                            end
-                    </div>
-
-                    <h2>Part 6: The Kodaira–Thurston Bombshell</h2>
-                    
-                    <p>Let's revisit the Kodaira–Thurston manifold to see the parallel in action. Its \( \text{TC} \geq 5 \) arises because of a nonzero Massey product \( \langle a, b, c \rangle \), a higher-order twist that pairwise interactions miss. In RL terms, this is like a decision process where:</p>
-                    
-                    <ul>
-                        <li>Pairwise state transitions seem Markovian (no immediate memory needed).</li>
-                        <li>But triple-wise dependencies (e.g., action A in state S1 changes the effect of action B in state S2) require a deeper memory structure.</li>
-                    </ul>
-                    
-                    <p>Imagine an RL agent in a game where flipping switch A, then B, then C creates a unique outcome that can't be predicted from A and B alone. A single Bellman equation fails here. You need a hierarchical model—sub-policies for local contexts, meta-policies to coordinate them, and perhaps even meta-meta-policies to handle triple dependencies. This mirrors the five charts needed for the Kodaira–Thurston manifold.</p>
-
-                    <div class="mermaid">
-                        graph TB
-                            subgraph "Hierarchical RL Architecture"
-                                A["Meta-Policy π₀"] --> B["Sub-Policy π₁"]
-                                A --> C["Sub-Policy π₂"] 
-                                A --> D["Sub-Policy π₃"]
-                                
-                                B --> E["Local Q₁(s,a)"]
-                                C --> F["Local Q₂(s,a)"]
-                                D --> G["Local Q₃(s,a)"]
-                                
-                                E --> H["Context 1<br/>Memory State m₁"]
-                                F --> I["Context 2<br/>Memory State m₂"]
-                                G --> J["Context 3<br/>Memory State m₃"]
-                            end
-                            
-                            subgraph "Topological Charts Analog"
-                                K["Manifold X"] --> L["Chart U₁"]
-                                K --> M["Chart U₂"]
-                                K --> N["Chart U₃"]
-                                
-                                L --> O["Local Section σ₁"]
-                                M --> P["Local Section σ₂"] 
-                                N --> Q["Local Section σ₃"]
-                                
-                                O --> R["Overlap Rules"]
-                                P --> R
-                                Q --> R
-                            end
-                            
-                            subgraph "Coordination"
-                                H --> S["Transition Functions"]
-                                I --> S
-                                J --> S
-                                S --> T["Glue Policies Together"]
-                                
-                                R --> U["Sheaf Conditions"]
-                                U --> V["Consistent Global Behavior"]
-                                
-                                T -.->|"Analog"| V
-                            end
-                    </div>
-
-                    <h2>Part 7: Breaking the Mold—What Do We Do?</h2>
-                    
-                    <div class="callout-box">
-                        <h3 class="text-lg font-semibold mb-3">The Bellman equation is a shortcut for a "flat" world. But real-world problems—whether navigating a robot through a factory or training an AI to reason about long-term consequences—often live in twisted spaces. So, how do we adapt?</h3>
-                    </div>
-                    
-                    <h3>1. Detect the Twists</h3>
-                    <p>Use tools from algebraic topology to identify non-Markovianity:</p>
-                    <ul>
-                        <li>Persistent homology to detect "holes" in the state-action space.</li>
-                        <li>Spectral sequences to uncover higher-order dependencies.</li>
-                        <li>Behavior graphs to map out irreducible memory requirements.</li>
-                    </ul>
-                    
-                    <h3>2. Partition into Charts</h3>
-                    <p>Instead of one global policy, train local policies:</p>
-                    <ul>
-                        <li>Option-Critic: Learn sub-policies (options) for specific contexts.</li>
-                        <li>Skill Chaining: Build sequences of reusable skills.</li>
-                        <li>Memory-Augmented Models: Use transformers or RNNs to embed history, acting as topological charts.</li>
-                    </ul>
-                    
-                    <h3>3. Stitch with Higher-Order Glue</h3>
-                    <p>Just as topology uses triple-overlap rules to combine charts, RL needs mechanisms to coordinate policies:</p>
-                    <ul>
-                        <li>Meta-Learning: Train a model to select or combine sub-policies.</li>
-                        <li>Attention Mechanisms: Focus on relevant memories or contexts.</li>
-                        <li>Category-Theoretic Synthesis: Use functors to abstract state transitions and policy compositions.</li>
-                    </ul>
-
-                    <div class="mermaid">
-                        flowchart TD
-                            A["Start: Non-Markovian MDP"] --> B["Detect Topological Structure"]
-                            B --> C["Compute Persistent Homology"]
-                            C --> D{"Global Bellman<br/>Operator Exists?"}
-                            
-                            D -->|Yes| E["Standard Q-Learning"]
-                            E --> F["Single Policy π*"]
-                            
-                            D -->|No| G["Partition State Space"]
-                            G --> H["Identify Charts {U₁, U₂, ..., Uₖ}"]
-                            H --> I["Train Local Q-Functions"]
-                            
-                            I --> J["Q₁(s,a) for s ∈ U₁"]
-                            I --> K["Q₂(s,a) for s ∈ U₂"]
-                            I --> L["Qₖ(s,a) for s ∈ Uₖ"]
-                            
-                            J --> M["Local Policy π₁"]
-                            K --> N["Local Policy π₂"]
-                            L --> O["Local Policy πₖ"]
-                            
-                            M --> P["Meta-Policy Learning"]
-                            N --> P
-                            O --> P
-                            
-                            P --> Q["Train Meta-Policy π₀"]
-                            Q --> R["π₀: State → {π₁, π₂, ..., πₖ}"]
-                            
-                            R --> S{"Overlap Regions?"}
-                            S -->|Yes| T["Learn Transition Rules"]
-                            S -->|No| U["Deploy Hierarchical Policy"]
-                            
-                            T --> V["Sheaf Consistency Conditions"]
-                            V --> U
-                            
-                            U --> W["Test Performance"]
-                            W --> X{"Satisfactory?"}
-                            X -->|No| Y["Refine Charts"]
-                            Y --> H
-                            X -->|Yes| Z["Final TC-RL Policy"]
-                    </div>
-
-                    <h2>Part 8: The Axiom of Obstructed Intelligence</h2>
-                    
-                    <div class="axiom-box">
-                        If a single Bellman rule fails, the world has remembered more than you've planned for.
-                    </div>
-                    
-                    <p>In RL, this means non-Markovian dependencies demand memory or hierarchy. In topology, it means cohomological obstructions demand multiple charts. Both are saying the same thing: when the world has structure—be it temporal memory or topological twists—you can't solve it with one rule. You need to break it down, cover it piece by piece, and glue the solutions together.</p>
-
-                    <h2>Part 9: A Vision for the Future</h2>
-                    
-                    <div class="callout-box">
-                        <h3 class="text-lg font-semibold mb-3">This connection between RL and TC isn't just a cute analogy—it's a roadmap for new algorithms and theories.</h3>
-                        <p>Here are three directions to explore:</p>
-                        <ul class="mt-3">
-                            <li><strong>Topological RL:</strong> Define a "topological complexity" for MDPs or POMDPs, using persistent cohomology to quantify the minimal memory needed for planning.</li>
-                            <li><strong>Chart-Based Algorithms:</strong> Develop RL methods that explicitly partition the state-action space into "charts" where local Bellman operators are contractive.</li>
-                            <li><strong>Categorical Unification:</strong> Frame both RL and TC in a category-theoretic setting, where fixed points (Bellman) and sections (TC) are limits of functors.</li>
-                        </ul>
-                    </div>
-
-                    <div class="mermaid">
-                        graph TB
-                            subgraph "Category-Theoretic Framework"
-                                A["Structured Spaces"] --> B["Planning Problems"]
-                                B --> C["Fixed Point Theory"]
-                                B --> D["Fibration Theory"]
-                            end
-                            
-                            subgraph "Reinforcement Learning Side"
-                                C --> E["Bellman Operator T"]
-                                E --> F["Contraction Property"]
-                                F --> G["Fixed Point V*"]
-                                G --> H["Global Policy"]
-                                
-                                subgraph "When It Fails"
-                                    I["Non-Markovian"]
-                                    J["Memory Required"]
-                                    K["Hierarchical Policies"]
-                                end
-                                
-                                H -.->|"Obstruction"| I
-                                I --> J
-                                J --> K
-                            end
-                            
-                            subgraph "Topological Complexity Side"
-                                D --> L["Evaluation Fibration"]
-                                L --> M["Section Existence"]
-                                M --> N["Global Motion Planner"]
-                                N --> O["TC = 1"]
-                                
-                                subgraph "When It Fails"
-                                    P["Cohomological Obstructions"]
-                                    Q["Cup Products ≠ 0"]
-                                    R["Multiple Charts"]
-                                end
-                                
-                                O -.->|"Obstruction"| P
-                                P --> Q
-                                Q --> R
-                            end
-                            
-                            subgraph "Duality"
-                                S["Fixed Points ↔ Sections"]
-                                T["Contractions ↔ Formal Spaces"]
-                                U["Memory ↔ Cohomology"]
-                                V["Hierarchy ↔ Charts"]
-                                
-                                G -.-> S
-                                N -.-> S
-                                F -.-> T
-                                M -.-> T
-                                J -.-> U
-                                Q -.-> U
-                                K -.-> V
-                                R -.-> V
-                            end
-                            
-                            subgraph "Unified Theory"
-                                W["Planning in Structured Spaces"]
-                                W --> X["Global Rule Possible?"]
-                                X -->|Yes| Y["Single Algorithm"]
-                                X -->|No| Z["Decompose + Coordinate"]
-                                
-                                S --> W
-                                T --> W
-                                U --> W
-                                V --> W
-                            end
-                    </div>
-
-                    <h2>Conclusion: The Hidden Spine of Planning</h2>
-                    
-                    <p>The Bellman equation and topological complexity are not just tools—they're windows into a deeper truth. Whether you're optimizing rewards or navigating a manifold, the challenge is the same: Can you find a single global rule, or must you decompose the problem because the world is too twisted? RL assumes the world is flat and contractive; topology reveals when it's not and quantifies the cost of that complexity.</p>
-                    
-                    <p>This isn't just about math—it's about understanding the limits of planning in a universe that remembers. The next time you train an RL agent or design a motion planner, ask yourself: What's the topology of my world? Because the answer might just change everything.</p>
-                </div>
-
-                <!-- Discussion section -->
-                <h2>Discussion</h2>
-                <p>
-                    The implications of this connection between RL and topology go beyond mathematical curiosity. When we design AI systems, we often assume the world is "flat" in the Bellman sense. But real-world problems—from robotics to strategic planning—live in spaces with memory, with twists that no single policy can capture.
+<body>
+    <div class="reveal">
+        <div class="slides">
+            
+            <!-- Title Slide -->
+            <section class="title-slide">
+                <h1>TopoGRPO: Topological Group Relative Policy Optimization</h1>
+                <p style="font-size: 1.2em; margin: 2em 0; color: #7f8c8d;">
+                    Extending Policy Optimization through Topological Decomposition
                 </p>
-
-                <p>
-                    I believe this perspective could change how we approach AI system design. Instead of fighting non-Markovian behavior, we could embrace it, using tools from topology to guide our architecture choices.
+                <p style="font-size: 1em; color: #95a5a6;">
+                    A Novel Approach to Reinforcement Learning in Complex Environments
                 </p>
+            </section>
 
-                <!-- Call to action -->
-                <div class="callout-box">
-                    <h3>Join the Discussion</h3>
-                    <p>
-                        What do you think about this connection between RL and topology? Have you encountered similar "hidden twists" in your own work with AI systems?
-                    </p>
-                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-                        <a href="#comments">Share your thoughts →</a>
-                        <a href="https://github.com/sethuiyer/rl-topology">View code on GitHub →</a>
-                    </div>
+            <!-- Motivation -->
+            <section>
+                <h2>Motivation</h2>
+                <p>Traditional reinforcement learning algorithms assume uniform treatment of the state-action space, which can be inefficient in complex environments.</p>
+                
+                <div class="equation-box">
+                    <p><strong>Bellman Optimality Equation:</strong></p>
+                    <p>$$V^*(s) = \max_{a \in \mathcal{A}} \left( R(s,a) + \gamma \sum_{s' \in \mathcal{S}} P(s'|s,a) V^*(s') \right)$$</p>
                 </div>
+                
+                <p>This formulation implicitly assumes the decision process is topologically trivial—that any path between states is equivalent to any other.</p>
+                
+                <div class="key-insight">
+                    <strong>Key Insight:</strong> Complex environments may have non-trivial topological structure that requires multiple local policies coordinated by a meta-policy.
+                </div>
+            </section>
 
-                <!-- References -->
-                <h2>Further Reading</h2>
-                <ul class="list-disc pl-6">
-                    <li>Farber's "Topological Complexity of Motion Planning" (2003)</li>
-                    <li>Sutton & Barto's "Reinforcement Learning: An Introduction" (2018)</li>
-                    <li>My previous post on <a href="#" class="text-blue-400 hover:text-blue-300">Non-Markovian Decision Processes</a></li>
+            <!-- Theoretical Foundation -->
+            <section>
+                <h2>Theoretical Foundation</h2>
+                
+                <h3>Topological Complexity</h3>
+                <p>The <strong>topological complexity</strong> TC(X) of a space X is the minimum number of local sections needed to cover the space.</p>
+                
+                <div class="equation-box">
+                    <p>If TC(X) = 1: Single global policy sufficient</p>
+                    <p>If TC(X) > 1: Multiple local policies required</p>
+                </div>
+                
+                <h3>Cohomological Obstructions</h3>
+                <p>Memory requirements in partially observable environments correspond to non-vanishing cohomology groups:</p>
+                
+                <div class="equation-box">
+                    <p>$$H^k(\mathcal{C}(M)) \neq 0 \implies k\text{-step memory requirement}$$</p>
+                </div>
+                
+                <p>where $\mathcal{C}(M)$ is the transition complex of the POMDP $M$.</p>
+            </section>
+
+            <!-- Algorithm Overview -->
+            <section>
+                <h2>TopoGRPO Algorithm</h2>
+                
+                <div class="algorithm-box">
+                    <p><strong>Algorithm: TOPO-GRPO</strong></p>
+                    <p><strong>Input:</strong> Environment, iterations N, trajectories T, discount γ</p>
+                    <ol>
+                        <li>Initialize local policy π_θ, meta-policy π_θ₀, embedder φ</li>
+                        <li><strong>For</strong> iteration = 1 to N:</li>
+                        <li>&nbsp;&nbsp;&nbsp;&nbsp;Collect trajectories using current policies</li>
+                        <li>&nbsp;&nbsp;&nbsp;&nbsp;Embed history sequences: X = φ(histories)</li>
+                        <li>&nbsp;&nbsp;&nbsp;&nbsp;Compute charts via clustering: C = DBSCAN(X)</li>
+                        <li>&nbsp;&nbsp;&nbsp;&nbsp;Assign charts to trajectories</li>
+                        <li>&nbsp;&nbsp;&nbsp;&nbsp;Compute localized advantages within charts</li>
+                        <li>&nbsp;&nbsp;&nbsp;&nbsp;Update policies using combined loss function</li>
+                        <li><strong>Return:</strong> Trained policies π_θ, π_θ₀</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Core Components -->
+            <section>
+                <h2>Core Components</h2>
+                
+                <ul class="component-list">
+                    <li>
+                        <strong>Local Policy π_θ(a|s,c):</strong> Maps states and chart assignments to action distributions. Learns specialized behaviors for different regions of the state space.
+                    </li>
+                    <li>
+                        <strong>Meta-Policy π_θ₀(c|x):</strong> Selects appropriate charts based on embedded history sequences. Provides global coordination between local behaviors.
+                    </li>
+                    <li>
+                        <strong>History Embedder φ(h):</strong> Neural network (LSTM/Transformer) that maps sequences of (state, action, reward) tuples to fixed-size embeddings.
+                    </li>
+                    <li>
+                        <strong>Chart Computer:</strong> DBSCAN clustering algorithm that discovers topological structure in the embedded experience manifold.
+                    </li>
                 </ul>
-            </article>
+            </section>
 
-            <!-- Comments section -->
-            <section id="comments" style="margin-top: 4rem;">
-                <h2>Comments</h2>
-                <div style="display: flex; flex-direction: column; gap: 2rem;">
-                    <!-- Comment form -->
-                    <div class="callout-box">
-                        <h3>Leave a comment</h3>
-                        <form style="margin-top: 1rem;">
-                            <div style="margin-bottom: 1rem;">
-                                <label for="comment" style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Your thoughts</label>
-                                <textarea id="comment" rows="4" style="width: 100%; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 0.5rem; padding: 0.75rem; color: var(--text-primary);"></textarea>
-                            </div>
-                            <button type="submit" style="background: var(--accent-gradient); color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; border: none; font-weight: 600; cursor: pointer;">
-                                Post Comment
-                            </button>
-                        </form>
-                    </div>
+            <!-- Topological Decomposition -->
+            <section>
+                <h2>Topological Decomposition</h2>
+                
+                <div class="topology-diagram">
+                    <div class="chart">Chart 1</div>
+                    <div class="connection"></div>
+                    <div class="chart">Chart 2</div>
+                    <div class="connection"></div>
+                    <div class="chart">Chart 3</div>
+                </div>
+                
+                <h3>Chart Discovery Process</h3>
+                <ol>
+                    <li>Extract overlapping history windows from collected trajectories</li>
+                    <li>Embed each window using neural history embedder φ</li>
+                    <li>Apply DBSCAN clustering to discover natural groupings</li>
+                    <li>Assign chart labels to transitions based on clustering results</li>
+                    <li>Handle noise points by assigning to separate chart</li>
+                </ol>
+                
+                <p>This process automatically discovers the underlying topological structure of the experience manifold without manual specification.</p>
+            </section>
+
+            <!-- Localized Advantages -->
+            <section>
+                <h2>Localized Advantage Computation</h2>
+                
+                <p><strong>Standard Approach:</strong> Global normalization</p>
+                <div class="equation-box">
+                    <p>$$\hat{A}_t = \frac{G_t - \mu_{global}}{\sigma_{global}}$$</p>
+                </div>
+                
+                <p><strong>TopoGRPO Approach:</strong> Chart-localized normalization</p>
+                <div class="equation-box">
+                    <p>$$\hat{A}_t^{(c)} = \frac{G_t - \mu_c}{\sigma_c}$$</p>
+                </div>
+                
+                <p>where μ_c and σ_c are computed using only returns from chart c.</p>
+                
+                <div class="key-insight">
+                    <strong>Advantage:</strong> By normalizing within topological regions, we exploit the assumption that reward structure is locally simpler, leading to more stable advantage estimates with reduced variance.
                 </div>
             </section>
 
-            <!-- Newsletter signup -->
-            <section class="axiom-box" style="margin-top: 4rem;">
-                <div style="max-width: 32rem; margin: 0 auto;">
-                    <h2 style="margin-bottom: 1rem; color: white;">Stay Updated</h2>
-                    <p style="margin-bottom: 2rem; color: rgba(255,255,255,0.9);">Get notified about new posts on AI, mathematics, and their beautiful intersections.</p>
-                    <form style="display: flex; gap: 1rem; max-width: 28rem; margin: 0 auto;">
-                        <input type="email" placeholder="Your email" style="flex: 1; padding: 0.75rem 1rem; border-radius: 0.5rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;">
-                        <button type="submit" style="padding: 0.75rem 1.5rem; background: white; color: var(--accent-blue); border-radius: 0.5rem; font-weight: 700; border: none; cursor: pointer;">
-                            Subscribe
-                        </button>
-                    </form>
+            <!-- Loss Function -->
+            <section>
+                <h2>Combined Loss Function</h2>
+                
+                <div class="equation-box">
+                    <p>$$\mathcal{L}_{total} = \mathcal{L}_{local} + \alpha \mathcal{L}_{meta} + \beta \mathcal{L}_{KL}$$</p>
+                </div>
+                
+                <h3>Local Policy Loss (PPO)</h3>
+                <div class="equation-box">
+                    <p>$$\mathcal{L}_{local} = -\mathbb{E}\left[\min\left(r_t(\theta)\hat{A}_t^{(c)}, \text{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon)\hat{A}_t^{(c)}\right)\right]$$</p>
+                </div>
+                
+                <h3>Meta-Policy Loss (REINFORCE)</h3>
+                <div class="equation-box">
+                    <p>$$\mathcal{L}_{meta} = -\mathbb{E}\left[\hat{A}_t^{(c)} \log \pi_{\theta_0}(c_t|x_t)\right]$$</p>
+                </div>
+                
+                <h3>KL Divergence Penalty</h3>
+                <div class="equation-box">
+                    <p>$$\mathcal{L}_{KL} = \mathbb{E}\left[D_{KL}(\pi_\theta(\cdot|s,c) \| \pi_{ref}(\cdot|s,c))\right]$$</p>
                 </div>
             </section>
 
-            <!-- Footer with social links -->
-            <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <div style="font-size: 0.875rem; color: var(--text-muted);">
-                        © 2024 Sethu Iyer · <a href="#">About</a> · <a href="#">Contact</a>
-                    </div>
-                    <div style="display: flex; gap: 1rem;">
-                        <a href="https://twitter.com/sethuiyer" style="color: var(--text-muted);">
-                            <svg style="width: 1.5rem; height: 1.5rem;" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
-                            </svg>
-                        </a>
-                        <a href="https://github.com/sethuiyer" style="color: var(--text-muted);">
-                            <svg style="width: 1.5rem; height: 1.5rem;" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
-                            </svg>
-                        </a>
-                    </div>
+            <!-- Implementation -->
+            <section>
+                <h2>Implementation Details</h2>
+                
+                <h3>Network Architectures</h3>
+                <ul>
+                    <li><strong>Local Policy:</strong> Feed-forward network with state and chart embeddings as input</li>
+                    <li><strong>Meta-Policy:</strong> Feed-forward network mapping history embeddings to chart probabilities</li>
+                    <li><strong>History Embedder:</strong> LSTM with 2 layers, hidden dimension 256</li>
+                </ul>
+                
+                <h3>Training Parameters</h3>
+                <div class="code-block">
+# Hyperparameters
+gamma = 0.99              # Discount factor
+alpha = 0.3               # Meta-policy loss weight  
+beta = 0.01               # KL divergence weight
+eps_clip = 0.2            # PPO clipping parameter
+lr_local = 1e-4           # Local policy learning rate
+lr_meta = 3e-4            # Meta-policy learning rate
+chart_eps = 0.4           # DBSCAN epsilon
+chart_min_samples = 3     # DBSCAN minimum samples
                 </div>
-            </footer>
+            </section>
+
+            <!-- Experimental Results -->
+            <section>
+                <h2>Experimental Results</h2>
+                
+                <h3>CartPole-v1 Environment</h3>
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Average Reward</th>
+                            <th>Standard Deviation</th>
+                            <th>Improvement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Random Policy</td>
+                            <td>17.8</td>
+                            <td>5.64</td>
+                            <td>Baseline</td>
+                        </tr>
+                        <tr>
+                            <td><strong>TopoGRPO</strong></td>
+                            <td><strong>44.4</strong></td>
+                            <td><strong>21.04</strong></td>
+                            <td><strong>2.5x</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>Chart Discovery Statistics</h3>
+                <ul>
+                    <li><strong>Charts Discovered:</strong> 1-4 charts dynamically during training</li>
+                    <li><strong>Noise Points:</strong> Effectively handled by separate chart assignment</li>
+                    <li><strong>Training Stability:</strong> No NaN issues with proper gradient clipping</li>
+                </ul>
+            </section>
+
+            <!-- Complexity Analysis -->
+            <section>
+                <h2>Computational Complexity</h2>
+                
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Phase</th>
+                            <th>Complexity</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Data Collection</td>
+                            <td>O(T × S × H)</td>
+                            <td>T trajectories, S steps, H history length</td>
+                        </tr>
+                        <tr>
+                            <td>History Embedding</td>
+                            <td>O(W × H × d)</td>
+                            <td>W windows, H history, d embedding dim</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Chart Computation</strong></td>
+                            <td><strong>O(W²)</strong></td>
+                            <td><strong>DBSCAN clustering bottleneck</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Advantage Computation</td>
+                            <td>O(N)</td>
+                            <td>Linear in number of transitions</td>
+                        </tr>
+                        <tr>
+                            <td>Policy Updates</td>
+                            <td>O(B × E)</td>
+                            <td>Batch size × epochs</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <p><strong>Overall Complexity:</strong> O(I × W²) where I is iterations and W is number of history windows.</p>
+            </section>
+
+            <!-- Future Directions -->
+            <section>
+                <h2>Future Research Directions</h2>
+                
+                <h3>Algorithmic Improvements</h3>
+                <ul>
+                    <li><strong>Prime-Number Hashing:</strong> O(log n) topological sketching for scalability</li>
+                    <li><strong>Persistent Homology:</strong> Track topological features across multiple scales</li>
+                    <li><strong>Hyperbolic Meta-Policies:</strong> Natural representation of hierarchical structures</li>
+                </ul>
+                
+                <h3>Theoretical Developments</h3>
+                <ul>
+                    <li><strong>Dixmier-Douady Loss:</strong> Gerbe-theoretic policy consistency guarantees</li>
+                    <li><strong>Convergence Analysis:</strong> Formal guarantees for topological decomposition</li>
+                    <li><strong>Sample Complexity:</strong> Bounds for chart discovery and policy learning</li>
+                </ul>
+                
+                <h3>Applications</h3>
+                <ul>
+                    <li><strong>Continuous Control:</strong> Extension to continuous action spaces</li>
+                    <li><strong>Multi-Agent Systems:</strong> Topological coordination mechanisms</li>
+                    <li><strong>Foundation Models:</strong> Application to large-scale language model training</li>
+                </ul>
+            </section>
+
+            <!-- Conclusion -->
+            <section>
+                <h2>Conclusion</h2>
+                
+                <p>TopoGRPO represents a novel approach to reinforcement learning that:</p>
+                
+                <ul>
+                    <li><strong>Automatically discovers</strong> topological structure in complex environments</li>
+                    <li><strong>Learns specialized policies</strong> for different regions of the state space</li>
+                    <li><strong>Provides global coordination</strong> through meta-policy mechanisms</li>
+                    <li><strong>Achieves improved performance</strong> through localized advantage computation</li>
+                </ul>
+                
+                <div class="key-insight">
+                    <strong>Key Contribution:</strong> This work demonstrates that complex reinforcement learning problems are not merely "larger versions of simple problems," but possess intrinsic geometric structure that can be exploited for more efficient learning.
+                </div>
+                
+                <p>The integration of topological principles with policy optimization opens new avenues for understanding and solving complex sequential decision problems.</p>
+            </section>
+
+            <!-- Thank You -->
+            <section class="center">
+                <h1>Thank You</h1>
+                <h2>Questions?</h2>
+                
+                <div style="margin-top: 3em; font-size: 0.9em; color: #7f8c8d;">
+                    <p><strong>Implementation:</strong> Available in PyTorch</p>
+                    <p><strong>Paper:</strong> "On the Topological Obstructions of Bellman Recursion"</p>
+                </div>
+            </section>
+
         </div>
-
     </div>
 
-    <!-- Mermaid.js -->
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <!-- Reveal.js JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    
+    <!-- KaTeX JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
     <script>
-        // Initialize Mermaid
-        mermaid.initialize({ 
-            startOnLoad: true,
-            theme: 'base',
-            themeVariables: {
-                background: '#111827',
-                primaryColor: '#1F2937',
-                primaryTextColor: '#F9FAFB',
-                secondaryColor: '#374151',
-                tertiaryColor: '#4B5563',
-                lineColor: '#6B7280',
-                textColor: '#D1D5DB',
-                mainBkg: '#1F2937',
-                secondBkg: '#374151',
-                border1: '#4B5563',
-                border2: '#6B7280',
-                arrowheadColor: '#D1D5DB',
-                fontFamily: 'Inter, sans-serif'
-            }
+        // Initialize Reveal.js
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            
+            // Controls
+            controls: true,
+            progress: true,
+            center: false,
+            touch: true,
+            loop: false,
+            
+            // Enable scrolling
+            overview: true,
+            scrollActivationWidth: null,
+            
+            // Proper sizing with scrolling support
+            width: 1400,
+            height: 900,
+            margin: 0.1,
+            minScale: 0.2,
+            maxScale: 2.0,
+            
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
         });
 
-        // Initialize KaTeX - PROPER FIX
+        // Initialize KaTeX
         document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(function() {
-                renderMathInElement(document.body, {
-                    delimiters: [
-                        {left: '$$', right: '$$', display: true},
-                        {left: '$', right: '$', display: false},
-                        {left: '\\(', right: '\\)', display: false},
-                        {left: '\\[', right: '\\]', display: true}
-                    ],
-                    throwOnError: false,
-                    macros: {
-                        "\\RR": "\\mathbb{R}",
-                        "\\NN": "\\mathbb{N}",
-                        "\\ZZ": "\\mathbb{Z}",
-                        "\\smile": "\\smallfrown"
-                    }
-                });
-                console.log("KaTeX rendering completed!");
-            }, 500);
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                throwOnError: false
+            });
+        });
+        
+        // Re-render math after slide transitions
+        Reveal.addEventListener('slidechanged', function(event) {
+            renderMathInElement(event.currentSlide, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                throwOnError: false
+            });
+            
+            // Check if slide is scrollable and add appropriate class
+            checkScrollable(event.currentSlide);
+        });
+        
+        // Function to check if a slide is scrollable
+        function checkScrollable(slide) {
+            if (slide.scrollHeight > slide.clientHeight) {
+                slide.classList.add('scrollable');
+            } else {
+                slide.classList.remove('scrollable');
+            }
+        }
+        
+        // Check all slides on load
+        Reveal.addEventListener('ready', function() {
+            const slides = document.querySelectorAll('.reveal .slides section');
+            slides.forEach(checkScrollable);
         });
     </script>
-
-<button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
-
-<script>
-window.addEventListener('scroll', () => {
-  const btn = document.getElementById('back-to-top');
-  if (window.scrollY > 300) {
-    btn.style.display = 'flex';
-  } else {
-    btn.style.display = 'none';
-  }
-});
-</script>
-
 </body>
-</html>
+</html> 
