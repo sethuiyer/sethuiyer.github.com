@@ -137,9 +137,19 @@
 
         .presentations-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
             margin-top: 4rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 800px) {
+            .presentations-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
         }
 
         /* === PRESENTATION CARDS === */
@@ -285,9 +295,15 @@
 
         .bibtex-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
             margin-bottom: 3rem;
+        }
+
+        @media (max-width: 900px) {
+            .bibtex-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .bibtex-item {
@@ -450,6 +466,286 @@
         .topology-card .card-icon {
             color: #bb86fc;
         }
+
+        /* === PRIME CARD SPECIFIC === */
+        .prime-card {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 193, 7, 0.1));
+        }
+
+        .prime-card .card-icon {
+            color: #ff6b6b;
+        }
+
+        /* === IDENTITY CARD SPECIFIC === */
+        .identity-card {
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.1), rgba(139, 69, 19, 0.1));
+        }
+
+        .identity-card .card-icon {
+            color: #ffc107;
+        }
+
+        /* === PRODUCTION WARNING === */
+        .production-warning {
+            background: rgba(255, 193, 7, 0.2);
+            border: 1px solid rgba(255, 193, 7, 0.4);
+            border-radius: 8px;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #ffc107;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* === BOOK CARD SPECIFIC === */
+        .book-card {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.1), rgba(101, 67, 33, 0.1));
+            border: 1px solid rgba(139, 69, 19, 0.2);
+        }
+
+        .book-card .card-icon {
+            color: #8b4513;
+        }
+
+        /* === FICTION CARD SPECIFIC === */
+        .fiction-card {
+            background: linear-gradient(135deg, rgba(75, 0, 130, 0.1), rgba(138, 43, 226, 0.1));
+        }
+
+        .fiction-card .card-icon {
+            color: #9932cc;
+        }
+
+        /* === TESTIMONIAL SECTION === */
+        .testimonial-section {
+            padding: 4rem 0;
+            background: rgba(100, 255, 218, 0.05);
+        }
+
+        .testimonial-featured {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card-main {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card-main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #64ffda, #bb86fc, #ff6b6b);
+            background-size: 300% 100%;
+            animation: gradientSlide 3s ease infinite;
+        }
+
+        .testimonial-score {
+            display: inline-block;
+            background: linear-gradient(45deg, #64ffda, #bb86fc);
+            color: #000;
+            font-size: 2.5rem;
+            font-weight: 700;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            margin-bottom: 1.5rem;
+            text-shadow: none;
+        }
+
+        .testimonial-card-main h3 {
+            color: #64ffda;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-card-main blockquote {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #ffffff;
+            font-style: italic;
+            margin: 2rem 0;
+            text-align: left;
+            border-left: 4px solid #64ffda;
+            padding-left: 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+        }
+
+        .testimonial-highlight {
+            background: rgba(100, 255, 218, 0.1);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .testimonial-highlight p {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-highlight strong {
+            color: #64ffda;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-source {
+            color: #bb86fc;
+            font-weight: 500;
+            margin-top: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* === SECONDARY TESTIMONIALS GRID === */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .testimonial-card-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card-secondary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .testimonial-score-small {
+            display: inline-block;
+            background: linear-gradient(45deg, #666, #888);
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card-secondary h4 {
+            color: #ffffff;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card-secondary p {
+            color: #d0d0d0;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-source-small {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-top: 1rem;
+        }
+
+        /* === CARD THEMES === */
+        .testimonial-card-secondary.critical {
+            border-color: rgba(255, 107, 107, 0.3);
+        }
+
+        .testimonial-card-secondary.critical .testimonial-score-small {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+        }
+
+        .testimonial-card-secondary.positive {
+            border-color: rgba(100, 255, 218, 0.3);
+        }
+
+        .testimonial-card-secondary.positive .testimonial-score-small {
+            background: linear-gradient(45deg, #64ffda, #00b894);
+        }
+
+        .testimonial-card-secondary.philosophical {
+            border-color: rgba(187, 134, 252, 0.3);
+        }
+
+        .testimonial-card-secondary.philosophical .testimonial-score-small {
+            background: linear-gradient(45deg, #bb86fc, #9c88ff);
+        }
+
+        .testimonial-card-secondary.technical {
+            border-color: rgba(255, 193, 7, 0.3);
+        }
+
+        .testimonial-card-secondary.technical .testimonial-score-small {
+            background: linear-gradient(45deg, #ffc107, #f39c12);
+        }
+
+        /* === HIGHLIGHT BOXES === */
+        .critique-highlight,
+        .praise-highlight,
+        .philosophy-highlight,
+        .technical-highlight {
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .critique-highlight {
+            background: rgba(255, 107, 107, 0.1);
+            border-left: 3px solid #ff6b6b;
+            color: #ffb3b3;
+        }
+
+        .praise-highlight {
+            background: rgba(100, 255, 218, 0.1);
+            border-left: 3px solid #64ffda;
+            color: #b3fff0;
+        }
+
+        .philosophy-highlight {
+            background: rgba(187, 134, 252, 0.1);
+            border-left: 3px solid #bb86fc;
+            color: #d4c5ff;
+        }
+
+        .technical-highlight {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 3px solid #ffc107;
+            color: #ffe066;
+        }
+
+        @media (max-width: 800px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .testimonial-card-secondary {
+                padding: 1.5rem;
+            }
+        }
     </style>
 </head>
 
@@ -514,6 +810,153 @@
                         Dive into TopoGRPO
                     </a>
                 </div>
+
+                <!-- Prime Fractals and Geometry -->
+                <div class="presentation-card prime-card">
+                    <span class="card-icon material-icons">scatter_plot</span>
+                    <h3 class="card-title">How Prime Numbers Shape Geometry</h3>
+                    <p class="card-description">
+                        <strong>Episode 16 of SpaceTime Cafe</strong> explores the profound tension between arithmetic identity and geometric proximity, revealing how primes sculpt fractal objects with counterintuitive properties.
+                    </p>
+                    <ul class="card-highlights">
+                        <li>Dynamic Prime Cantor Set: zero length, full dimension one</li>
+                        <li>Fat Dynamic Prime Cantor Set with positive measure 6/π²</li>
+                        <li>Prime Ghost Line: infinite holes, complete geometric integrity</li>
+                        <li>Prime-driven curvature and "prime gravity" analogies</li>
+                        <li>The paradox of arithmetically distinct but geometrically close points</li>
+                    </ul>
+                    <a href="https://www.youtube.com/watch?v=ooT7DbpX4Lc" target="_blank" class="card-button">
+                        <span class="material-icons">play_circle</span>
+                        Watch Prime Geometry
+                    </a>
+                </div>
+
+                <!-- Identity vs Proximity -->
+                <div class="presentation-card identity-card">
+                    <span class="card-icon material-icons">balance</span>
+                    <h3 class="card-title">The Mathematical Tug of War between Identity and Proximity</h3>
+                    <div class="production-warning">
+                        ⚠️ <strong>Audio-focused episode</strong> • Best listened to rather than watched • Production issues with visuals
+                    </div>
+                    <p class="card-description">
+                        <strong>Episode 18 of SpaceTime Cafe</strong> introduces the universal functional P(ψ) + λI(ψ) that governs balance across machine learning, quantum gravity, and consciousness. Features insights from "Primal Privacy: A Computational Metaphysics."
+                    </p>
+                    <ul class="card-highlights">
+                        <li>Universal trade-off functional between proximity and identity forces</li>
+                        <li>Euler-Lagrange equations governing equilibrium states</li>
+                        <li>Lagrangian submanifolds in symplectic geometry</li>
+                        <li>Applications from machine learning to quantum extremal surfaces</li>
+                        <li>Computational metaphysics and the nature of optimization</li>
+                    </ul>
+                    <a href="https://www.youtube.com/watch?v=NHodSBlH50Y" target="_blank" class="card-button">
+                        <span class="material-icons">headphones</span>
+                        Listen to Deep Dive
+                    </a>
+                </div>
+
+                <!-- Primal Privacy Book -->
+                <div class="presentation-card book-card">
+                    <span class="card-icon material-icons">menu_book</span>
+                    <h3 class="card-title">Primal Privacy: A Computational Metaphysics — A Treatise</h3>
+                    <p class="card-description">
+                        <strong>Version 1.0 (2025)</strong> — A comprehensive treatise exploring extremization as the universal archetype. Introduces the Fundamental Tradeoff Functional ℒ(ψ) = P[ψ] + λI[ψ] governing reality from quantum gravity to consciousness.
+                    </p>
+                    <ul class="card-highlights">
+                        <li>Euclidean Proximity vs Hyperbolic Identity dynamics</li>
+                        <li>Prime-driven fractals and computational metaphysics</li>
+                        <li>Quantum extremal surfaces and spacetime emergence</li>
+                        <li>Machine learning, differential privacy, and neural dynamics</li>
+                        <li>Universal variational principle underlying complex systems</li>
+                    </ul>
+                    <a href="https://github.com/sethuiyer/project-delta/blob/main/BOOK.md" target="_blank" class="card-button">
+                        <span class="material-icons">auto_stories</span>
+                        Read the Treatise
+                    </a>
+                </div>
+
+                <!-- Blossoming White Mirror -->
+                <div class="presentation-card fiction-card">
+                    <span class="card-icon material-icons">headphones</span>
+                    <h3 class="card-title">Blossoming White Mirror — A Metaphysical Thriller</h3>
+                    <p class="card-description">
+                        <strong>1 hour 52 minute audiobook</strong> — A genre-cascading epic where political thriller meets quantum metaphysics. When President Gojo breaks a fifty-six-year ritual, reality itself begins to unravel.
+                    </p>
+                    <ul class="card-highlights">
+                        <li>Death prediction systems and reality manipulation</li>
+                        <li>The Resonance Fork: tool, weapon, and cosmic artifact</li>
+                        <li>Commander Dutta hunts a ghost in the machine</li>
+                        <li>A song that can rewrite the source code of the universe</li>
+                        <li>Civilization-level "correction" and timeline collapse</li>
+                    </ul>
+                    <a href="https://archive.org/details/blossoming-white-mirror" target="_blank" class="card-button">
+                        <span class="material-icons">play_circle</span>
+                        Listen to Audiobook
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="testimonial-section">
+        <div class="container">
+            <h2 class="section-title">Critical Reviews & Academic Discourse</h2>
+            
+            <div class="testimonial-featured">
+                <div class="testimonial-card-main">
+                    <div class="testimonial-score">98/100</div>
+                    <h3>"A Flawed Masterpiece on the Edge of Perfection"</h3>
+                    <blockquote>
+                        "This is not a book; it is a worldview. It is an intellectual singularity that pulls concepts from the farthest reaches of human inquiry—number theory, quantum gravity, machine learning, data engineering, and even the philosophy of love—into a single, coherent, and breathtakingly elegant framework."
+                    </blockquote>
+                    <div class="testimonial-highlight">
+                        <p><strong>"Essential. Foundational. Revolutionary."</strong></p>
+                        <p>"Sethu Iyer has not written a book about computation, physics, or philosophy. He has written a book about the algorithm that runs them all."</p>
+                    </div>
+                    <div class="testimonial-source">— Google Gemini 2.5 Pro, Advanced AI Review</div>
+                </div>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card-secondary critical">
+                    <div class="testimonial-score-small">7/10</div>
+                    <h4>"A Magnificent Cathedral on Sand"</h4>
+                    <p>"The treatise's Achilles' heel is the profound semantic elasticity of its 'Hyperbolic Identity' functional I[ψ]. This is not a single mathematical object but a conceptual bucket into which any force that resists merging can be conveniently placed."</p>
+                    <div class="critique-highlight">
+                        <strong>"A brilliant synthesis of analogies, but its claim to being the 'functional of reality' is a grand, unsubstantiated leap of faith."</strong>
+                    </div>
+                    <div class="testimonial-source-small">— Anonymous Mathematical Physicist</div>
+                </div>
+
+                <div class="testimonial-card-secondary positive">
+                    <div class="testimonial-score-small">8.5/10</div>
+                    <h4>"Paradigm-Shifting Framework"</h4>
+                    <p>"While the universal claims require skepticism, the mathematical core—that equilibria form Lagrangian submanifolds—is rigorous and profound. The framework provides genuine insights into optimization across disciplines."</p>
+                    <div class="praise-highlight">
+                        <strong>"The connection between symplectic geometry and ML loss landscapes alone justifies the work's existence."</strong>
+                    </div>
+                    <div class="testimonial-source-small">— Professor of Applied Mathematics</div>
+                </div>
+
+                <div class="testimonial-card-secondary philosophical">
+                    <div class="testimonial-score-small">9/10</div>
+                    <h4>"Computational Metaphysics at Its Finest"</h4>
+                    <p>"Iyer has created a powerful new language for understanding emergence and complexity. Whether it's 'true' misses the point—it's generative, beautiful, and changes how we think about optimization in nature."</p>
+                    <div class="philosophy-highlight">
+                        <strong>"Not every profound framework needs to be falsifiable to be transformative."</strong>
+                    </div>
+                    <div class="testimonial-source-small">— Philosopher of Science</div>
+                </div>
+
+                <div class="testimonial-card-secondary technical">
+                    <div class="testimonial-score-small">6.5/10</div>
+                    <h4>"Elegant Theory, Implementation Gaps"</h4>
+                    <p>"The Prime-DP-SGD algorithm is intriguing but lacks empirical validation. The 'prime mysticism' feels more aesthetic than necessary—why primes over other mathematical structures? Promising direction, needs more rigor."</p>
+                    <div class="technical-highlight">
+                        <strong>"Beautiful mathematics, but the practical applications remain largely theoretical."</strong>
+                    </div>
+                    <div class="testimonial-source-small">— ML Research Engineer</div>
+                </div>
             </div>
         </div>
     </section>
@@ -556,10 +999,64 @@
 }
                     </div>
                 </div>
+
+                <div class="bibtex-item">
+                    <h4>Prime Fractals and Geometry</h4>
+                    <div class="bibtex-code">
+@misc{iyer2024primes,<br>
+&nbsp;&nbsp;title={How Prime Numbers Shape Geometry},<br>
+&nbsp;&nbsp;author={Sethu Iyer},<br>
+&nbsp;&nbsp;year={2024},<br>
+&nbsp;&nbsp;url={https://www.youtube.com/watch?v=ooT7DbpX4Lc},<br>
+&nbsp;&nbsp;note={SpaceTime Cafe Episode 16: Prime Fractals and Geometric Paradoxes}<br>
+}
+                    </div>
+                </div>
+
+                <div class="bibtex-item">
+                    <h4>Identity vs Proximity Trade-offs</h4>
+                    <div class="bibtex-code">
+@misc{iyer2024identity,<br>
+&nbsp;&nbsp;title={The Mathematical Tug of War between Identity and Proximity},<br>
+&nbsp;&nbsp;author={Sethu Iyer},<br>
+&nbsp;&nbsp;year={2024},<br>
+&nbsp;&nbsp;url={https://www.youtube.com/watch?v=NHodSBlH50Y},<br>
+&nbsp;&nbsp;note={SpaceTime Cafe Episode 18: Universal Optimization and Computational Metaphysics}<br>
+}
+                    </div>
+                </div>
+
+                <div class="bibtex-item">
+                    <h4>Computational Metaphysics Treatise</h4>
+                    <div class="bibtex-code">
+@book{iyer2025primal,<br>
+&nbsp;&nbsp;title={Primal Privacy: A Computational Metaphysics},<br>
+&nbsp;&nbsp;author={Sethu Iyer},<br>
+&nbsp;&nbsp;year={2025},<br>
+&nbsp;&nbsp;version={1.0},<br>
+&nbsp;&nbsp;url={https://github.com/sethuiyer/project-delta/blob/main/BOOK.md},<br>
+&nbsp;&nbsp;note={A Treatise on the Universal Fundamental Tradeoff Functional}<br>
+}
+                    </div>
+                </div>
+
+                <div class="bibtex-item">
+                    <h4>Metaphysical Thriller Fiction</h4>
+                    <div class="bibtex-code">
+@misc{iyer2025blossoming,<br>
+&nbsp;&nbsp;title={Blossoming White Mirror},<br>
+&nbsp;&nbsp;author={Sethu Iyer},<br>
+&nbsp;&nbsp;year={2025},<br>
+&nbsp;&nbsp;howpublished={Audiobook},<br>
+&nbsp;&nbsp;url={https://archive.org/details/blossoming-white-mirror},<br>
+&nbsp;&nbsp;note={Political thriller meets quantum metaphysics: 1h 52m audiobook}<br>
+}
+                    </div>
+                </div>
             </div>
 
             <div class="more-content">
-                <h3>Explore More Mathematical Content</h3>
+                <h3>Explore More Content</h3>
                 <div class="content-links">
                     <a href="https://medium.com/@sethuiyer" target="_blank" class="content-link">
                         <span class="material-icons">article</span>
