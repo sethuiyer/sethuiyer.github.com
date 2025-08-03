@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematical Explorations | Sethu Iyer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* === GLOBAL RESET & BASE === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* === ANIMATED BACKGROUND === */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #64ffda;
+            border-radius: 50%;
+            animation: float 8s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* === HEADER === */
+        .header {
+            position: relative;
+            z-index: 100;
+            padding: 2rem 0;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .terminal-prompt {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            color: #64ffda;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+        }
+
+        .main-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #64ffda, #bb86fc, #ff6b6b);
+            background-size: 300% 300%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: gradientShift 6s ease-in-out infinite;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #a0a0a0;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* === MAIN CONTAINER === */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* === PRESENTATIONS GRID === */
+        .presentations-section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #ffffff;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #64ffda, #bb86fc);
+            border-radius: 2px;
+        }
+
+        .presentations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        /* === PRESENTATION CARDS === */
+        .presentation-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .presentation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #64ffda, #bb86fc, #ff6b6b);
+            background-size: 300% 100%;
+            animation: gradientSlide 3s ease infinite;
+        }
+
+        .presentation-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(100, 255, 218, 0.2);
+            border-color: rgba(100, 255, 218, 0.3);
+        }
+
+        @keyframes gradientSlide {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .card-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #b0b0b0;
+            margin-bottom: 2rem;
+        }
+
+        .card-highlights {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .card-highlights li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            color: #d0d0d0;
+        }
+
+        .card-highlights li::before {
+            content: '▸';
+            color: #64ffda;
+            font-weight: bold;
+            margin-right: 0.8rem;
+        }
+
+        .card-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(45deg, #64ffda, #bb86fc);
+            color: #000;
+            text-decoration: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #bb86fc, #64ffda);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .card-button:hover::before {
+            left: 0;
+        }
+
+        .card-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.3);
+        }
+
+        /* === CITATION SECTION === */
+        .citation-section {
+            padding: 4rem 0;
+        }
+
+        .citation-notice {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .citation-card {
+            background: rgba(100, 255, 218, 0.1);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .citation-card h3 {
+            color: #64ffda;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .citation-card p {
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        .bibtex-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .bibtex-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .bibtex-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(100, 255, 218, 0.3);
+        }
+
+        .bibtex-item h4 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .bibtex-code {
+            background: #1a1a2e;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #64ffda;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        .more-content {
+            text-align: center;
+        }
+
+        .more-content h3 {
+            color: #ffffff;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .content-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .content-link {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .content-link:hover {
+            transform: translateY(-5px);
+            border-color: rgba(187, 134, 252, 0.3);
+            background: rgba(187, 134, 252, 0.1);
+        }
+
+        .content-link .material-icons {
+            font-size: 2.5rem;
+            color: #bb86fc;
+        }
+
+        .content-link strong {
+            color: #ffffff;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .content-link p {
+            color: #b0b0b0;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* === FOOTER === */
+        .footer {
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 4rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: #64ffda;
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-link:hover {
+            color: #bb86fc;
+            transform: translateY(-2px);
+        }
+
+        .copyright {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .presentations-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .presentation-card {
+                padding: 2rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* === MATHEMATICS CARD SPECIFIC === */
+        .mathematics-card {
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1), rgba(187, 134, 252, 0.1));
+        }
+
+        .mathematics-card .card-icon {
+            color: #64ffda;
+        }
+
+        /* === TOPOLOGY CARD SPECIFIC === */
+        .topology-card {
+            background: linear-gradient(135deg, rgba(187, 134, 252, 0.1), rgba(255, 107, 107, 0.1));
+        }
+
+        .topology-card .card-icon {
+            color: #bb86fc;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="background-animation" id="backgroundAnimation"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="terminal-prompt">$ cd /home/sethuiyer/presentations && ls -la</div>
+            <h1 class="main-title">Mathematical Explorations</h1>
+            <p class="subtitle">
+                Where abstract mathematics meets computational reality—exploring the deep connections between 
+                <strong>spectral logic</strong>, <strong>topological optimization</strong>, and the fundamental structures that govern both proofs and algorithms.
+            </p>
+        </div>
+    </header>
+
+    <!-- Blog Posts Section -->
+    <section class="presentations-section">
+        <div class="container">
+            <h2 class="section-title">Blog Posts</h2>
+            
+            <div class="presentations-grid">
+                <!-- Mathematics with a Pulse -->
+                <div class="presentation-card mathematics-card">
+                    <span class="card-icon material-icons">music_note</span>
+                    <h3 class="card-title">Mathematics with a Pulse</h3>
+                    <p class="card-description">
+                        Episode 30 of SpaceTime Cafe introduces <strong>spectral logic</strong>—a revolutionary framework treating mathematical proofs as thermodynamic journeys with measurable energy costs.
+                    </p>
+                    <ul class="card-highlights">
+                        <li>Prime-weighted axiom costs and proof partition functions</li>
+                        <li>Arithmetic acoustics: numbers as vibrating strings</li>
+                        <li>Wave-particle duality for integers</li>
+                        <li>Quadratic reciprocity as sympathetic resonance</li>
+                        <li>Arithmetic uncertainty principle</li>
+                    </ul>
+                    <a href="https://sethuiyer.github.io/blog/mathematics-with-pulse/" class="card-button">
+                        <span class="material-icons">play_arrow</span>
+                        Explore Spectral Logic
+                    </a>
+                </div>
+
+                <!-- Topology of Planning -->
+                <div class="presentation-card topology-card">
+                    <span class="card-icon material-icons">hub</span>
+                    <h3 class="card-title">Topology of Planning</h3>
+                    <p class="card-description">
+                        <strong>TopoGRPO</strong> extends policy optimization through topological decomposition, discovering that complex RL problems possess intrinsic geometric structure exploitable for efficient learning.
+                    </p>
+                    <ul class="card-highlights">
+                        <li>Cohomological obstructions in partially observable environments</li>
+                        <li>Chart discovery via DBSCAN clustering</li>
+                        <li>Localized advantage computation within topological regions</li>
+                        <li>Prime-number hashing for scalable topological sketching</li>
+                        <li>Dixmier-Douady loss functions with gerbe-theoretic guarantees</li>
+                    </ul>
+                    <a href="https://sethuiyer.github.io/blog/topology-of-planning/" class="card-button">
+                        <span class="material-icons">explore</span>
+                        Dive into TopoGRPO
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Citation Section -->
+    <section class="citation-section">
+        <div class="container">
+            <h2 class="section-title">BibTeX Index</h2>
+            
+            <div class="citation-notice">
+                <div class="citation-card">
+                    <h3>📚 If you find these ideas useful, <strong>CONSIDER CITING</strong> this blog</h3>
+                    <p>This research represents original mathematical explorations at the intersection of spectral theory, topology, and computational methods. Academic attribution helps advance these interdisciplinary conversations.</p>
+                </div>
+            </div>
+
+            <div class="bibtex-grid">
+                <div class="bibtex-item">
+                    <h4>Spectral Logic Framework</h4>
+                    <div class="bibtex-code">
+@misc{iyer2025spectral,<br>
+&nbsp;&nbsp;title={Mathematics with a Pulse: Spectral Logic and Arithmetic Acoustics},<br>
+&nbsp;&nbsp;author={Sethu Iyer},<br>
+&nbsp;&nbsp;year={2025},<br>
+&nbsp;&nbsp;url={https://sethuiyer.github.io/blog/mathematics-with-pulse/},<br>
+&nbsp;&nbsp;note={SpaceTime Cafe Episode 30}<br>
+}
+                    </div>
+                </div>
+
+                <div class="bibtex-item">
+                    <h4>Topological Policy Optimization</h4>
+                    <div class="bibtex-code">
+@misc{iyer2025topo,<br>
+&nbsp;&nbsp;title={TopoGRPO: Topological Group Relative Policy Optimization},<br>
+&nbsp;&nbsp;author={Sethu Iyer},<br>
+&nbsp;&nbsp;year={2025},<br>
+&nbsp;&nbsp;url={https://sethuiyer.github.io/blog/topology-of-planning/},<br>
+&nbsp;&nbsp;note={On the Topological Obstructions of Bellman Recursion}<br>
+}
+                    </div>
+                </div>
+            </div>
+
+            <div class="more-content">
+                <h3>Explore More Mathematical Content</h3>
+                <div class="content-links">
+                    <a href="https://medium.com/@sethuiyer" target="_blank" class="content-link">
+                        <span class="material-icons">article</span>
+                        <div>
+                            <strong>Medium Blog</strong>
+                            <p>Deep mathematical explorations: Strange Loops, Fiber Bundles, Hyperbolic Geometry</p>
+                        </div>
+                    </a>
+                    <a href="https://www.youtube.com/@SethuIyer95/videos" target="_blank" class="content-link">
+                        <span class="material-icons">play_circle</span>
+                        <div>
+                            <strong>SpaceTime Cafe</strong>
+                            <p>30+ episodes on mathematics, physics, and computational theory</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://github.com/sethuiyer" target="_blank" class="footer-link">
+                    <span class="material-icons">code</span>
+                    /usr/bin/git
+                </a>
+                <a href="https://www.youtube.com/@SethuIyer95" target="_blank" class="footer-link">
+                    <span class="material-icons">play_circle</span>
+                    /usr/share/videos
+                </a>
+                <a href="https://medium.com/@sethuiyer" target="_blank" class="footer-link">
+                    <span class="material-icons">article</span>
+                    /var/www/medium
+                </a>
+                <a href="https://scholar.google.com/citations?user=ivR07L8AAAAJ&hl=en" target="_blank" class="footer-link">
+                    <span class="material-icons">school</span>
+                    /usr/share/scholar
+                </a>
+            </div>
+            <p class="copyright">$ echo "© 2025 Sethu Iyer | Where mathematics meets computation" >> /dev/stdout</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animated background particles
+        function createParticles() {
+            const backgroundAnimation = document.getElementById('backgroundAnimation');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                backgroundAnimation.appendChild(particle);
+            }
+        }
+
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize particles when page loads
+        document.addEventListener('DOMContentLoaded', createParticles);
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe presentation cards
+        document.querySelectorAll('.presentation-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Terminal typing effect for the prompt
+        function typeEffect(element, text, speed = 50) {
+            let i = 0;
+            element.textContent = '';
+            const timer = setInterval(() => {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(timer);
+                }
+            }, speed);
+        }
+
+        // Apply typing effect to terminal prompt
+        window.addEventListener('load', () => {
+            const prompt = document.querySelector('.terminal-prompt');
+            const originalText = prompt.textContent;
+            typeEffect(prompt, originalText, 30);
+        });
+    </script>
+</body>
+</html>
