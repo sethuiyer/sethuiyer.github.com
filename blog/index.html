@@ -517,239 +517,511 @@
             color: #9932cc;
         }
 
-        /* === TESTIMONIAL SECTION === */
-        .testimonial-section {
-            padding: 4rem 0;
-            background: rgba(100, 255, 218, 0.05);
-        }
 
-        .testimonial-featured {
-            max-width: 800px;
-            margin: 0 auto;
-        }
 
-        .testimonial-card-main {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(100, 255, 218, 0.3);
-            border-radius: 20px;
-            padding: 3rem;
-            text-align: center;
+        /* === FEATURED NOVEL SECTION === */
+        .novel-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a2e, #16213e);
             position: relative;
             overflow: hidden;
         }
 
-        .testimonial-card-main::before {
+        .novel-section::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #64ffda, #bb86fc, #ff6b6b);
-            background-size: 300% 100%;
-            animation: gradientSlide 3s ease infinite;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(100, 255, 218, 0.1), transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(187, 134, 252, 0.1), transparent 50%);
+            pointer-events: none;
         }
 
-        .testimonial-score {
-            display: inline-block;
-            background: linear-gradient(45deg, #64ffda, #bb86fc);
-            color: #000;
-            font-size: 2.5rem;
-            font-weight: 700;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            margin-bottom: 1.5rem;
-            text-shadow: none;
+        .novel-showcase {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 3rem;
+            backdrop-filter: blur(20px);
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .testimonial-card-main h3 {
-            color: #64ffda;
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-        }
-
-        .testimonial-card-main blockquote {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: #ffffff;
-            font-style: italic;
-            margin: 2rem 0;
-            text-align: left;
-            border-left: 4px solid #64ffda;
-            padding-left: 2rem;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 1.5rem 2rem;
-            border-radius: 10px;
-        }
-
-        .testimonial-highlight {
-            background: rgba(100, 255, 218, 0.1);
-            border: 1px solid rgba(100, 255, 218, 0.3);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
-        }
-
-        .testimonial-highlight p {
-            color: #ffffff;
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .testimonial-highlight strong {
-            color: #64ffda;
-            font-size: 1.1rem;
-        }
-
-        .testimonial-source {
-            color: #bb86fc;
-            font-weight: 500;
-            margin-top: 2rem;
-            font-size: 1.1rem;
-        }
-
-        /* === SECONDARY TESTIMONIALS GRID === */
-        .testimonials-grid {
+        .novel-header {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
+            grid-template-columns: auto 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 3rem;
         }
 
-        .testimonial-card-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .novel-cover {
+            position: relative;
+        }
+
+        .cover-art {
+            width: 200px;
+            height: 280px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f0f23);
             border-radius: 15px;
-            padding: 2rem;
-            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(100, 255, 218, 0.3);
             position: relative;
             overflow: hidden;
         }
 
-        .testimonial-card-secondary:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        .novel-icon {
+            font-size: 4rem !important;
+            color: #64ffda;
+            z-index: 2;
         }
 
-        .testimonial-score-small {
-            display: inline-block;
-            background: linear-gradient(45deg, #666, #888);
-            color: #fff;
-            font-size: 1.2rem;
-            font-weight: 600;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            margin-bottom: 1rem;
+        .cover-glow {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, #64ffda, #bb86fc, #64ffda);
+            opacity: 0.3;
+            animation: rotate 10s linear infinite;
         }
 
-        .testimonial-card-secondary h4 {
-            color: #ffffff;
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
         }
 
-        .testimonial-card-secondary p {
-            color: #d0d0d0;
-            line-height: 1.6;
+        .novel-title {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff, #64ffda);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .novel-subtitle {
+            font-size: 1.5rem;
+            color: #bb86fc;
             margin-bottom: 1.5rem;
-            font-size: 0.95rem;
         }
 
-        .testimonial-source-small {
+        .novel-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .novel-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             color: #a0a0a0;
             font-size: 0.9rem;
-            font-style: italic;
-            margin-top: 1rem;
         }
 
-        /* === CARD THEMES === */
-        .testimonial-card-secondary.critical {
-            border-color: rgba(255, 107, 107, 0.3);
+        .novel-description {
+            color: #d0d0d0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
         }
 
-        .testimonial-card-secondary.critical .testimonial-score-small {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+        .novel-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, #64ffda, #bb86fc);
+            color: #000;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
         }
 
-        .testimonial-card-secondary.positive {
-            border-color: rgba(100, 255, 218, 0.3);
+        .novel-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(100, 255, 218, 0.4);
         }
 
-        .testimonial-card-secondary.positive .testimonial-score-small {
-            background: linear-gradient(45deg, #64ffda, #00b894);
+        /* === GENRE PROGRESSION === */
+        .genre-progression {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border-left: 4px solid #64ffda;
         }
 
-        .testimonial-card-secondary.philosophical {
-            border-color: rgba(187, 134, 252, 0.3);
+        .progression-title {
+            color: #64ffda;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
         }
 
-        .testimonial-card-secondary.philosophical .testimonial-score-small {
-            background: linear-gradient(45deg, #bb86fc, #9c88ff);
+        .progression-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        .testimonial-card-secondary.technical {
-            border-color: rgba(255, 193, 7, 0.3);
+        .genre-stage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            text-align: center;
+            min-width: 120px;
         }
 
-        .testimonial-card-secondary.technical .testimonial-score-small {
-            background: linear-gradient(45deg, #ffc107, #f39c12);
+        .stage-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a0a0a0;
+            transition: all 0.3s ease;
         }
 
-        /* === HIGHLIGHT BOXES === */
-        .critique-highlight,
-        .praise-highlight,
-        .philosophy-highlight,
-        .technical-highlight {
-            padding: 1rem;
-            border-radius: 8px;
-            margin: 1rem 0;
+        .genre-stage.active .stage-icon {
+            background: linear-gradient(135deg, #64ffda, #bb86fc);
+            color: #000;
+        }
+
+        .stage-label {
+            color: #d0d0d0;
             font-size: 0.9rem;
-            line-height: 1.5;
+            font-weight: 500;
         }
 
-        .critique-highlight {
-            background: rgba(255, 107, 107, 0.1);
-            border-left: 3px solid #ff6b6b;
-            color: #ffb3b3;
+        .progression-arrow {
+            color: #64ffda;
+            font-size: 1.5rem;
+            font-weight: bold;
         }
 
-        .praise-highlight {
-            background: rgba(100, 255, 218, 0.1);
-            border-left: 3px solid #64ffda;
-            color: #b3fff0;
+        /* === MATHEMATICAL CONNECTIONS === */
+        .mathematical-connections {
+            margin: 3rem 0;
         }
 
-        .philosophy-highlight {
+        .connections-title {
+            color: #bb86fc;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .connections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .connection-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1.5rem;
             background: rgba(187, 134, 252, 0.1);
-            border-left: 3px solid #bb86fc;
-            color: #d4c5ff;
+            border-radius: 12px;
+            border: 1px solid rgba(187, 134, 252, 0.3);
+            transition: all 0.3s ease;
         }
 
-        .technical-highlight {
-            background: rgba(255, 193, 7, 0.1);
-            border-left: 3px solid #ffc107;
-            color: #ffe066;
+        .connection-item:hover {
+            transform: translateY(-3px);
+            background: rgba(187, 134, 252, 0.15);
+        }
+
+        .connection-icon {
+            color: #bb86fc;
+            font-size: 1.5rem !important;
+            flex-shrink: 0;
+        }
+
+        .connection-content h5 {
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .connection-content p {
+            color: #d0d0d0;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* === NOVEL THEMES === */
+        .novel-themes {
+            margin: 3rem 0 0 0;
+        }
+
+        .themes-title {
+            color: #64ffda;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .themes-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .theme-tag {
+            background: rgba(100, 255, 218, 0.1);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            color: #64ffda;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .theme-tag:hover {
+            background: rgba(100, 255, 218, 0.2);
+            transform: translateY(-2px);
         }
 
         @media (max-width: 800px) {
-            .testimonials-grid {
+            .novel-header {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                text-align: center;
             }
-            
-            .testimonial-card-secondary {
-                padding: 1.5rem;
+
+            .cover-art {
+                width: 150px;
+                height: 210px;
+                margin: 0 auto;
+            }
+
+            .novel-title {
+                font-size: 2.5rem;
+            }
+
+            .progression-flow {
+                flex-direction: column;
+            }
+
+            .progression-arrow {
+                transform: rotate(90deg);
+            }
+
+            .novel-meta {
+                justify-content: center;
             }
         }
     </style>
 </head>
 
 <body>
+    <!-- Elegant Math-Computational Hero Background -->
+    <svg id="heroBackground"
+         xmlns="http://www.w3.org/2000/svg"
+         width="100%" height="100%"
+         viewBox="0 0 1440 900"
+         preserveAspectRatio="xMidYMid slice"
+         style="position:fixed; inset:0; z-index:-2; pointer-events:none;">
+
+      <!-- Base gradient -->
+      <defs>
+        <radialGradient id="rg1" cx="20%" cy="25%" r="60%">
+          <stop offset="0%" stop-color="#10203d"/>
+          <stop offset="60%" stop-color="#0b1120"/>
+          <stop offset="100%" stop-color="#080a12"/>
+        </radialGradient>
+
+        <!-- Soft glow gradients -->
+        <radialGradient id="glowTeal" cx="30%" cy="20%" r="35%">
+          <stop offset="0%" stop-color="rgba(100,255,218,0.35)"/>
+          <stop offset="100%" stop-color="rgba(100,255,218,0)"/>
+        </radialGradient>
+
+        <radialGradient id="glowPurple" cx="75%" cy="80%" r="40%">
+          <stop offset="0%" stop-color="rgba(187,134,252,0.28)"/>
+          <stop offset="100%" stop-color="rgba(187,134,252,0)"/>
+        </radialGradient>
+
+        <radialGradient id="glowCoral" cx="80%" cy="25%" r="30%">
+          <stop offset="0%" stop-color="rgba(255,107,107,0.18)"/>
+          <stop offset="100%" stop-color="rgba(255,107,107,0)"/>
+        </radialGradient>
+
+        <!-- Animated blob gradient -->
+        <linearGradient id="blobGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#64ffda"/>
+          <stop offset="50%" stop-color="#bb86fc"/>
+          <stop offset="100%" stop-color="#ff6b6b"/>
+        </linearGradient>
+
+        <!-- Noise overlay (subtle texture) -->
+        <filter id="grain">
+          <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="2" stitchTiles="stitch" result="turb"/>
+          <feColorMatrix type="saturate" values="0"/>
+          <feComponentTransfer>
+            <feFuncA type="table" tableValues="0 0 0 0 0 0.08 0.12 0.16 0.2"/>
+          </feComponentTransfer>
+          <feBlend mode="soft-light"/>
+        </filter>
+
+        <!-- Glow filter for stars -->
+        <filter id="starGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="0.8" result="b"/>
+          <feMerge>
+            <feMergeNode in="b"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+
+        <!-- Thin grid lines pattern (subtle) -->
+        <pattern id="fineGrid" width="60" height="60" patternUnits="userSpaceOnUse">
+          <path d="M60 0 L0 0 0 60" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <path d="M60 30 L0 30 M30 0 L30 60" fill="none" stroke="rgba(255,255,255,0.025)" stroke-width="1"/>
+        </pattern>
+
+        <!-- Math ring gradient stroke -->
+        <linearGradient id="ringStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="rgba(100,255,218,0.6)"/>
+          <stop offset="50%" stop-color="rgba(187,134,252,0.5)"/>
+          <stop offset="100%" stop-color="rgba(255,107,107,0.45)"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Background -->
+      <rect x="0" y="0" width="1440" height="900" fill="url(#rg1)"/>
+
+      <!-- Soft glows -->
+      <circle cx="300" cy="200" r="420" fill="url(#glowTeal)"/>
+      <circle cx="1080" cy="720" r="520" fill="url(#glowPurple)"/>
+      <circle cx="1180" cy="240" r="340" fill="url(#glowCoral)"/>
+
+      <!-- Subtle grid -->
+      <rect x="0" y="0" width="1440" height="900" fill="url(#fineGrid)"/>
+
+      <!-- Animated spectral blob 1 -->
+      <g opacity="0.35">
+        <path id="blob1"
+              fill="url(#blobGrad)"
+              d="M 260 420
+                 C 240 320, 360 250, 460 260
+                 C 580 270, 640 370, 600 460
+                 C 560 550, 430 580, 350 540
+                 C 280 500, 280 480, 260 420 Z">
+          <animate attributeName="d" dur="14s" repeatCount="indefinite"
+                   values="
+                   M 260 420 C 240 320, 360 250, 460 260 C 580 270, 640 370, 600 460 C 560 550, 430 580, 350 540 C 280 500, 280 480, 260 420 Z;
+                   M 250 410 C 230 330, 360 230, 470 250 C 600 280, 650 360, 590 470 C 530 580, 420 600, 330 540 C 270 500, 270 470, 250 410 Z;
+                   M 270 430 C 250 310, 370 260, 480 270 C 590 290, 660 380, 610 450 C 560 520, 430 560, 340 530 C 290 500, 290 490, 270 430 Z;
+                   M 260 420 C 240 320, 360 250, 460 260 C 580 270, 640 370, 600 460 C 560 550, 430 580, 350 540 C 280 500, 280 480, 260 420 Z"/>
+        </path>
+      </g>
+
+      <!-- Animated spectral blob 2 -->
+      <g opacity="0.25">
+        <path id="blob2"
+              fill="url(#blobGrad)"
+              d="M 980 640
+                 C 940 560, 1020 460, 1110 460
+                 C 1210 460, 1280 540, 1260 620
+                 C 1240 700, 1160 760, 1080 740
+                 C 1000 720, 1000 700, 980 640 Z">
+          <animate attributeName="d" dur="18s" repeatCount="indefinite"
+                   values="
+                   M 980 640 C 940 560, 1020 460, 1110 460 C 1210 460, 1280 540, 1260 620 C 1240 700, 1160 760, 1080 740 C 1000 720, 1000 700, 980 640 Z;
+                   M 970 630 C 930 560, 1030 450, 1120 470 C 1220 490, 1290 550, 1250 630 C 1210 710, 1140 770, 1060 740 C 990 710, 990 690, 970 630 Z;
+                   M 990 650 C 950 570, 1010 470, 1100 460 C 1210 450, 1300 560, 1270 640 C 1240 720, 1160 770, 1070 750 C 1000 730, 1000 710, 990 650 Z;
+                   M 980 640 C 940 560, 1020 460, 1110 460 C 1210 460, 1280 540, 1260 620 C 1240 700, 1160 760, 1080 740 C 1000 720, 1000 700, 980 640 Z"/>
+        </path>
+      </g>
+
+      <!-- Concentric math rings (spectral/topological vibe) -->
+      <g opacity="0.35">
+        <circle cx="720" cy="460" r="180" fill="none" stroke="url(#ringStroke)" stroke-width="1.5"/>
+        <circle cx="720" cy="460" r="260" fill="none" stroke="url(#ringStroke)" stroke-width="1" stroke-dasharray="2 6"/>
+        <circle cx="720" cy="460" r="340" fill="none" stroke="url(#ringStroke)" stroke-width="0.8" stroke-dasharray="1 8"/>
+        <!-- subtle rotation illusion via dashed arc -->
+        <g transform="translate(720,460)">
+          <path d="M 0 -220 A 220 220 0 0 1 138 176"
+                fill="none" stroke="rgba(100,255,218,0.6)" stroke-width="2" stroke-linecap="round">
+            <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="24s" repeatCount="indefinite"/>
+          </path>
+        </g>
+      </g>
+
+      <!-- Starfield -->
+      <g filter="url(#starGlow)">
+        <!-- Generate a curated star set for balance -->
+        <g fill="#cdeff1" opacity="0.8">
+          <circle cx="120" cy="100" r="1.1"/>
+          <circle cx="220" cy="180" r="0.9"/>
+          <circle cx="300" cy="80" r="0.8"/>
+          <circle cx="420" cy="140" r="1.0"/>
+          <circle cx="560" cy="110" r="0.7"/>
+          <circle cx="800" cy="100" r="1.0"/>
+          <circle cx="980" cy="140" r="0.85"/>
+          <circle cx="1150" cy="90" r="1.0"/>
+          <circle cx="1300" cy="160" r="0.8"/>
+
+          <circle cx="140" cy="360" r="0.8"/>
+          <circle cx="280" cy="320" r="0.7"/>
+          <circle cx="520" cy="300" r="0.9"/>
+          <circle cx="660" cy="340" r="0.8"/>
+          <circle cx="860" cy="320" r="0.9"/>
+          <circle cx="1080" cy="340" r="0.8"/>
+          <circle cx="1280" cy="300" r="0.9"/>
+
+          <circle cx="180" cy="620" r="0.9"/>
+          <circle cx="360" cy="680" r="0.75"/>
+          <circle cx="540" cy="640" r="0.85"/>
+          <circle cx="720" cy="700" r="1.1"/>
+          <circle cx="900" cy="660" r="0.85"/>
+          <circle cx="1100" cy="700" r="0.9"/>
+          <circle cx="1320" cy="640" r="0.8"/>
+        </g>
+        <!-- Twinkling animation for a subset -->
+        <g fill="#ffffff">
+          <circle cx="250" cy="250" r="1.2">
+            <animate attributeName="opacity" values="0.2;1;0.2" dur="3.8s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="780" cy="220" r="1.1">
+            <animate attributeName="opacity" values="0.2;1;0.2" dur="4.6s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="1040" cy="520" r="1.3">
+            <animate attributeName="opacity" values="0.2;1;0.2" dur="4s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="620" cy="780" r="1.1">
+            <animate attributeName="opacity" values="0.2;1;0.2" dur="3.4s" repeatCount="indefinite"/>
+          </circle>
+        </g>
+      </g>
+
+      <!-- Faint geometric guides: rays suggesting topology/planning -->
+      <g opacity="0.08" stroke="#ffffff" stroke-width="1">
+        <line x1="720" y1="460" x2="20" y2="40"/>
+        <line x1="720" y1="460" x2="1420" y2="140"/>
+        <line x1="720" y1="460" x2="140" y2="820"/>
+        <line x1="720" y1="460" x2="1320" y2="880"/>
+      </g>
+
+      <!-- Noise overlay -->
+      <rect x="0" y="0" width="1440" height="900" filter="url(#grain)" opacity="0.12"/>
+
+    </svg>
+
     <!-- Animated Background -->
     <div class="background-animation" id="backgroundAnimation"></div>
 
@@ -874,92 +1146,185 @@
                     </a>
                 </div>
 
-                <!-- Blossoming White Mirror -->
-                <div class="presentation-card fiction-card">
-                    <span class="card-icon material-icons">headphones</span>
-                    <h3 class="card-title">Blossoming White Mirror — A Metaphysical Thriller</h3>
+                <!-- Category Theory in Deep Learning -->
+                <div class="presentation-card theory-card">
+                    <span class="card-icon material-icons">category</span>
+                    <h3 class="card-title">Category Theory in Deep Learning</h3>
                     <p class="card-description">
-                        <strong>1 hour 52 minute audiobook</strong> — A genre-cascading epic where political thriller meets quantum metaphysics. When President Gojo breaks a fifty-six-year ritual, reality itself begins to unravel.
+                        <strong>Medium Deep Dive</strong> — A new lens for abstraction, composition, and the nature of intelligence. Exploring how categorical structures provide fundamental insights into neural architectures and learning dynamics.
                     </p>
                     <ul class="card-highlights">
-                        <li>Death prediction systems and reality manipulation</li>
-                        <li>The Resonance Fork: tool, weapon, and cosmic artifact</li>
-                        <li>Commander Dutta hunts a ghost in the machine</li>
-                        <li>A song that can rewrite the source code of the universe</li>
-                        <li>Civilization-level "correction" and timeline collapse</li>
+                        <li>Functorial neural network architectures</li>
+                        <li>Compositional learning and abstraction layers</li>
+                        <li>Natural transformations in deep representations</li>
+                        <li>Category-theoretic foundations of intelligence</li>
+                        <li>Morphisms, objects, and learning as functor optimization</li>
                     </ul>
-                    <a href="https://archive.org/details/blossoming-white-mirror" target="_blank" class="card-button">
-                        <span class="material-icons">play_circle</span>
-                        Listen to Audiobook
+                    <a href="https://medium.com/@sethuiyer/category-theory-in-deep-learning-a-new-lens-for-abstraction-composition-and-the-nature-of-2806963c677f" target="_blank" class="card-button">
+                        <span class="material-icons">article</span>
+                        Read on Medium
                     </a>
                 </div>
+
+                <!-- Hyperbolic Geometry for Hierarchies -->
+                <div class="presentation-card geometry-card">
+                    <span class="card-icon material-icons">blur_on</span>
+                    <h3 class="card-title">The Unreasonable Effectiveness of Hyperbolic Geometry</h3>
+                    <p class="card-description">
+                        <strong>Geometric Insights</strong> — Exploring how hyperbolic spaces naturally represent hierarchical structures with exponential precision. From Poincaré embeddings to tree-like data in continuous curved manifolds.
+                    </p>
+                    <ul class="card-highlights">
+                        <li>Poincaré ball models for hierarchy representation</li>
+                        <li>Exponential capacity in finite-dimensional spaces</li>
+                        <li>Tree structures and hyperbolic distance metrics</li>
+                        <li>Applications in NLP and knowledge graphs</li>
+                        <li>Curvature as a natural measure of hierarchy depth</li>
+                    </ul>
+                    <a href="https://medium.com/@sethuiyer/the-unreasonable-effectiveness-of-hyperbolic-geometry-in-representing-hierarchies-aa3a6e8232f2" target="_blank" class="card-button">
+                        <span class="material-icons">article</span>
+                        Read on Medium
+                    </a>
+                </div>
+
+                <!-- Understanding Generalization -->
+                <div class="presentation-card generalization-card">
+                    <span class="card-icon material-icons">psychology</span>
+                    <h3 class="card-title">Understanding Generalization</h3>
+                    <p class="card-description">
+                        <strong>Medium Deep Dive</strong> — Journey through complexity and simplicity. Exploring the fundamental mechanisms by which machine learning models transcend their training data to make meaningful predictions on unseen examples.
+                    </p>
+                    <ul class="card-highlights">
+                        <li>Bennett vs Simmons: The complexity debate in modern ML</li>
+                        <li>Oxford's "grokking" phenomenon: from memorization to understanding</li>
+                        <li>Why deep networks violate Occam's Razor yet still generalize</li>
+                        <li>Category theory morphisms and universal properties in learning</li>
+                        <li>Information theory and Kolmogorov complexity in neural pruning</li>
+                    </ul>
+                    <a href="https://medium.com/@sethuiyer/understanding-generalization-dbbec4f5985a" target="_blank" class="card-button">
+                        <span class="material-icons">article</span>
+                        Read on Medium
+                    </a>
+                </div>
+
+
             </div>
         </div>
     </section>
 
-    <!-- Testimonial Section -->
-    <section class="testimonial-section">
+    <!-- Featured Novel Section -->
+    <section class="novel-section">
         <div class="container">
-            <h2 class="section-title">Critical Reviews & Academic Discourse</h2>
+            <h2 class="section-title">Featured Novel</h2>
             
-            <div class="testimonial-featured">
-                <div class="testimonial-card-main">
-                    <div class="testimonial-score">98/100</div>
-                    <h3>"A Flawed Masterpiece on the Edge of Perfection"</h3>
-                    <blockquote>
-                        "This is not a book; it is a worldview. It is an intellectual singularity that pulls concepts from the farthest reaches of human inquiry—number theory, quantum gravity, machine learning, data engineering, and even the philosophy of love—into a single, coherent, and breathtakingly elegant framework."
-                    </blockquote>
-                    <div class="testimonial-highlight">
-                        <p><strong>"Essential. Foundational. Revolutionary."</strong></p>
-                        <p>"Sethu Iyer has not written a book about computation, physics, or philosophy. He has written a book about the algorithm that runs them all."</p>
+            <div class="novel-showcase">
+                <div class="novel-header">
+                    <div class="novel-cover">
+                        <div class="cover-art">
+                            <span class="material-icons novel-icon">auto_stories</span>
+                            <div class="cover-glow"></div>
+                        </div>
                     </div>
-                    <div class="testimonial-source">— Google Gemini 2.5 Pro, Advanced AI Review</div>
+                    
+                    <div class="novel-info">
+                        <h3 class="novel-title">Blossoming White Mirror</h3>
+                        <p class="novel-subtitle">A Metaphysical Thriller</p>
+                        <div class="novel-meta">
+                            <span class="duration"><span class="material-icons">schedule</span> 1h 52m audiobook</span>
+                            <span class="format"><span class="material-icons">headphones</span> Full narration</span>
+                            <span class="availability"><span class="material-icons">public</span> Archive.org</span>
+                        </div>
+                        
+                        <p class="novel-description">
+                            When President Gojo breaks a fifty-six-year surveillance ritual, reality itself begins to unravel. A genre-cascading epic where political thriller meets quantum metaphysics, exploring the mathematical nature of consciousness and the price of perfect order.
+                        </p>
+                        
+                        <a href="https://archive.org/details/blossoming-white-mirror" target="_blank" class="novel-cta">
+                            <span class="material-icons">play_circle</span>
+                            Listen to Full Audiobook
+                        </a>
+                    </div>
                 </div>
-            </div>
-
-            <div class="testimonials-grid">
-                <div class="testimonial-card-secondary critical">
-                    <div class="testimonial-score-small">7/10</div>
-                    <h4>"A Magnificent Cathedral on Sand"</h4>
-                    <p>"The treatise's Achilles' heel is the profound semantic elasticity of its 'Hyperbolic Identity' functional I[ψ]. This is not a single mathematical object but a conceptual bucket into which any force that resists merging can be conveniently placed."</p>
-                    <div class="critique-highlight">
-                        <strong>"A brilliant synthesis of analogies, but its claim to being the 'functional of reality' is a grand, unsubstantiated leap of faith."</strong>
+                
+                <div class="genre-progression">
+                    <h4 class="progression-title">Genre Evolution</h4>
+                    <div class="progression-flow">
+                        <div class="genre-stage active">
+                            <div class="stage-icon"><span class="material-icons">gavel</span></div>
+                            <span class="stage-label">Political Thriller</span>
+                        </div>
+                        <div class="progression-arrow">→</div>
+                        <div class="genre-stage">
+                            <div class="stage-icon"><span class="material-icons">memory</span></div>
+                            <span class="stage-label">Sci-Fi Mystery</span>
+                        </div>
+                        <div class="progression-arrow">→</div>
+                        <div class="genre-stage">
+                            <div class="stage-icon"><span class="material-icons">blur_on</span></div>
+                            <span class="stage-label">Quantum Metaphysics</span>
+                        </div>
+                        <div class="progression-arrow">→</div>
+                        <div class="genre-stage">
+                            <div class="stage-icon"><span class="material-icons">groups</span></div>
+                            <span class="stage-label">Social Transformation</span>
+                        </div>
                     </div>
-                    <div class="testimonial-source-small">— Anonymous Mathematical Physicist</div>
                 </div>
-
-                <div class="testimonial-card-secondary positive">
-                    <div class="testimonial-score-small">8.5/10</div>
-                    <h4>"Paradigm-Shifting Framework"</h4>
-                    <p>"While the universal claims require skepticism, the mathematical core—that equilibria form Lagrangian submanifolds—is rigorous and profound. The framework provides genuine insights into optimization across disciplines."</p>
-                    <div class="praise-highlight">
-                        <strong>"The connection between symplectic geometry and ML loss landscapes alone justifies the work's existence."</strong>
+                
+                <div class="mathematical-connections">
+                    <h4 class="connections-title">Mathematical Philosophy in Fiction</h4>
+                    <div class="connections-grid">
+                        <div class="connection-item">
+                            <span class="connection-icon material-icons">tune</span>
+                            <div class="connection-content">
+                                <h5>The Resonance Fork</h5>
+                                <p>Reality-tuning device embodying the universal functional P(ψ) + λI(ψ)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="connection-item">
+                            <span class="connection-icon material-icons">music_note</span>
+                            <div class="connection-content">
+                                <h5>Nada Lineage Harmonics</h5>
+                                <p>Ancient mantras connecting to arithmetic acoustics and spectral logic</p>
+                            </div>
+                        </div>
+                        
+                        <div class="connection-item">
+                            <span class="connection-icon material-icons">balance</span>
+                            <div class="connection-content">
+                                <h5>Surveillance vs Freedom</h5>
+                                <p>The proximity/identity tradeoff explored through political narrative</p>
+                            </div>
+                        </div>
+                        
+                        <div class="connection-item">
+                            <span class="connection-icon material-icons">insights</span>
+                            <div class="connection-content">
+                                <h5>Reality Optimization</h5>
+                                <p>Universe as active optimization process, "correcting" toward equilibrium</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="testimonial-source-small">— Professor of Applied Mathematics</div>
                 </div>
-
-                <div class="testimonial-card-secondary philosophical">
-                    <div class="testimonial-score-small">9/10</div>
-                    <h4>"Computational Metaphysics at Its Finest"</h4>
-                    <p>"Iyer has created a powerful new language for understanding emergence and complexity. Whether it's 'true' misses the point—it's generative, beautiful, and changes how we think about optimization in nature."</p>
-                    <div class="philosophy-highlight">
-                        <strong>"Not every profound framework needs to be falsifiable to be transformative."</strong>
+                
+                <div class="novel-themes">
+                    <h4 class="themes-title">Core Themes</h4>
+                    <div class="themes-list">
+                        <div class="theme-tag">Death Prediction Systems</div>
+                        <div class="theme-tag">Computational Metaphysics</div>
+                        <div class="theme-tag">Reality Manipulation</div>
+                        <div class="theme-tag">Harmonic Consciousness</div>
+                        <div class="theme-tag">Timeline Correction</div>
+                        <div class="theme-tag">Social Optimization</div>
+                        <div class="theme-tag">Cosmic Mathematics</div>
+                        <div class="theme-tag">Free Will vs Determinism</div>
                     </div>
-                    <div class="testimonial-source-small">— Philosopher of Science</div>
-                </div>
-
-                <div class="testimonial-card-secondary technical">
-                    <div class="testimonial-score-small">6.5/10</div>
-                    <h4>"Elegant Theory, Implementation Gaps"</h4>
-                    <p>"The Prime-DP-SGD algorithm is intriguing but lacks empirical validation. The 'prime mysticism' feels more aesthetic than necessary—why primes over other mathematical structures? Promising direction, needs more rigor."</p>
-                    <div class="technical-highlight">
-                        <strong>"Beautiful mathematics, but the practical applications remain largely theoretical."</strong>
-                    </div>
-                    <div class="testimonial-source-small">— ML Research Engineer</div>
                 </div>
             </div>
         </div>
     </section>
+
+
 
     <!-- Citation Section -->
     <section class="citation-section">
@@ -1041,18 +1406,48 @@
                 </div>
 
                 <div class="bibtex-item">
-                    <h4>Metaphysical Thriller Fiction</h4>
+                    <h4>Category Theory & Deep Learning</h4>
                     <div class="bibtex-code">
-@misc{iyer2025blossoming,<br>
-&nbsp;&nbsp;title={Blossoming White Mirror},<br>
+@article{iyer2025category,<br>
+&nbsp;&nbsp;title={Category Theory in Deep Learning: A New Lens for Abstraction, Composition, and the Nature of Intelligence},<br>
 &nbsp;&nbsp;author={Sethu Iyer},<br>
 &nbsp;&nbsp;year={2025},<br>
-&nbsp;&nbsp;howpublished={Audiobook},<br>
-&nbsp;&nbsp;url={https://archive.org/details/blossoming-white-mirror},<br>
-&nbsp;&nbsp;note={Political thriller meets quantum metaphysics: 1h 52m audiobook}<br>
+&nbsp;&nbsp;journal={Medium},<br>
+&nbsp;&nbsp;url={https://medium.com/@sethuiyer/category-theory-in-deep-learning-a-new-lens-for-abstraction-composition-and-the-nature-of-2806963c677f},<br>
+&nbsp;&nbsp;note={Functorial neural architectures and categorical foundations of intelligence}<br>
 }
                     </div>
                 </div>
+
+                <div class="bibtex-item">
+                    <h4>Hyperbolic Geometry & Hierarchies</h4>
+                    <div class="bibtex-code">
+@article{iyer2024hyperbolic,<br>
+&nbsp;&nbsp;title={The Unreasonable Effectiveness of Hyperbolic Geometry in Representing Hierarchies},<br>
+&nbsp;&nbsp;author={Sethu Iyer},<br>
+&nbsp;&nbsp;year={2024},<br>
+&nbsp;&nbsp;journal={Medium},<br>
+&nbsp;&nbsp;url={https://medium.com/@sethuiyer/the-unreasonable-effectiveness-of-hyperbolic-geometry-in-representing-hierarchies-aa3a6e8232f2},<br>
+&nbsp;&nbsp;note={Poincaré embeddings and exponential hierarchy representation in curved manifolds}<br>
+}
+                    </div>
+                </div>
+
+                <div class="bibtex-item">
+                    <h4>Understanding Generalization</h4>
+                    <div class="bibtex-code">
+@article{iyer2024generalization,<br>
+&nbsp;&nbsp;title={Understanding Generalization: Journey through complexity and simplicity},<br>
+&nbsp;&nbsp;author={Sethu Iyer},<br>
+&nbsp;&nbsp;year={2024},<br>
+&nbsp;&nbsp;journal={Medium},<br>
+&nbsp;&nbsp;url={https://medium.com/@sethuiyer/understanding-generalization-dbbec4f5985a},<br>
+&nbsp;&nbsp;note={Bias-variance tradeoff and the mystery of deep learning generalization}<br>
+}
+                    </div>
+                </div>
+
+
             </div>
 
             <div class="more-content">

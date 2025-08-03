@@ -41,6 +41,114 @@
   <link rel="shortcut icon" type="image/x-icon" href="./img/title.ico">
 </head>
 <body>
+<!-- Light Vintage Portfolio Background (matches vintage CSS palette) -->
+<svg id="vintagePortfolioBG"
+     xmlns="http://www.w3.org/2000/svg"
+     width="100%" height="100%"
+     viewBox="0 0 1440 1200"
+     preserveAspectRatio="xMidYMid slice"
+     style="position:fixed; inset:0; z-index:-2; pointer-events:none;">
+
+  <defs>
+    <!-- Colors from CSS vars approximated in SVG -->
+    <!-- --primary-blue: #3b5998; --primary-pink: #ee3380; --primary-orange: #ff6600; --light-gray: #f0f2f5 -->
+    <linearGradient id="bgSweep" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0f2f5"/>
+      <stop offset="55%" stop-color="#f0f2f5"/>
+      <stop offset="100%" stop-color="#f6f0f6"/>
+    </linearGradient>
+
+    <!-- Soft brand sweep overlay -->
+    <linearGradient id="brandSweep" x1="0%" y1="20%" x2="100%" y2="80%">
+      <stop offset="0%" stop-color="rgba(59,89,152,0.18)"/>
+      <stop offset="50%" stop-color="rgba(238,51,128,0.10)"/>
+      <stop offset="100%" stop-color="rgba(255,102,0,0.10)"/>
+    </linearGradient>
+
+    <!-- Dot grid pattern (very subtle) -->
+    <pattern id="dotGrid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="rgba(0,0,0,0.06)"/>
+    </pattern>
+
+    <!-- Subtle paper grain -->
+    <filter id="paperGrain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="turb"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0 0.06 0.08"/>
+      </feComponentTransfer>
+      <feBlend mode="soft-light"/>
+    </filter>
+
+    <!-- Light concentric ring stroke -->
+    <linearGradient id="ringStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="rgba(59,89,152,0.35)"/>
+      <stop offset="50%" stop-color="rgba(238,51,128,0.28)"/>
+      <stop offset="100%" stop-color="rgba(255,102,0,0.25)"/>
+    </linearGradient>
+
+    <!-- Soft blobs -->
+    <radialGradient id="blobBlue" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(59,89,152,0.20)"/>
+      <stop offset="100%" stop-color="rgba(59,89,152,0)"/>
+    </radialGradient>
+    <radialGradient id="blobPink" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(238,51,128,0.18)"/>
+      <stop offset="100%" stop-color="rgba(238,51,128,0)"/>
+    </radialGradient>
+    <radialGradient id="blobOrange" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(255,102,0,0.14)"/>
+      <stop offset="100%" stop-color="rgba(255,102,0,0)"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Base -->
+  <rect width="1440" height="1200" fill="url(#bgSweep)"/>
+
+  <!-- Subtle brand sweep -->
+  <rect width="1440" height="1200" fill="url(#brandSweep)"/>
+
+  <!-- Dot grid -->
+  <rect width="1440" height="1200" fill="url(#dotGrid)" opacity="0.35"/>
+
+  <!-- Soft blobs (positioned to avoid clashing with cards) -->
+  <g>
+    <!-- Top-left faint blue -->
+    <circle cx="220" cy="180" r="320" fill="url(#blobBlue)"/>
+    <!-- Top-right faint pink -->
+    <circle cx="1180" cy="160" r="280" fill="url(#blobPink)"/>
+    <!-- Bottom-right faint orange -->
+    <circle cx="1220" cy="980" r="360" fill="url(#blobOrange)"/>
+    <!-- Bottom-left blend -->
+    <circle cx="180" cy="980" r="300" fill="url(#blobPink)" opacity="0.5"/>
+    <circle cx="240" cy="1040" r="260" fill="url(#blobBlue)" opacity="0.45"/>
+  </g>
+
+  <!-- Concentric rings behind hero area (center-top-ish) -->
+  <g transform="translate(720,220)" opacity="0.35">
+    <circle r="220" fill="none" stroke="url(#ringStroke)" stroke-width="1.5"/>
+    <circle r="290" fill="none" stroke="url(#ringStroke)" stroke-width="1" stroke-dasharray="2 8"/>
+    <circle r="360" fill="none" stroke="url(#ringStroke)" stroke-width="0.8" stroke-dasharray="1 10"/>
+    <!-- slow rotating arc for gentle motion in supporting browsers -->
+    <path d="M 0 -260 A 260 260 0 0 1 160 210"
+          fill="none" stroke="rgba(59,89,152,0.45)" stroke-width="2" stroke-linecap="round">
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="28s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- Very soft diagonal band to echo hero gradient direction -->
+  <g opacity="0.10">
+    <linearGradient id="diagBand" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b5998"/>
+      <stop offset="50%" stop-color="#ee3380"/>
+      <stop offset="100%" stop-color="#ff6600"/>
+    </linearGradient>
+    <path d="M -200 200 L 1600 -100 L 1600 100 L -200 400 Z" fill="url(#diagBand)"/>
+  </g>
+
+  <!-- Paper grain -->
+  <rect width="1440" height="1200" filter="url(#paperGrain)" opacity="0.12"/>
+</svg>
   <!-- Header -->
   <header class="header">
     <div class="container nav-container">
@@ -141,7 +249,9 @@
       <h3> Senior AI Research Engineer <span class="date-range"><time datetime="2022-02">May 2025</time> - <time datetime="present">Present</time></span></h3>
       <p class="company-name"><i class="fas fa-building"></i> Workato (Bengaluru, India)</p>
       <ul style="margin-top: 15px; padding-left: 20px;">
-        <li> Working on the state of the art AI research.</li>
+        <li>Working on making enterprise search platforms significantly more intelligent and effective</li>
+        <li>Contributing to cutting-edge AI research initiatives in the search and automation domain</li>
+        <li>Collaborating with cross-functional teams to enhance user experience and system capabilities</li>
       </ul>
     </div>
 
