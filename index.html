@@ -1,173 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sethu Iyer | Portfolio</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <meta name="description" content="Sethu Iyer's Portfolio - Data Scientist, AI Researcher, LLM Specialist, ML Engineer">
+  <meta name="description"
+    content="Sethu Iyer's Portfolio - Data Scientist, AI Researcher, LLM Specialist, ML Engineer">
+  <script async defer src="https://beampipe.io/js/tracker.js" data-beampipe-domain="sethuiyer.github.io"></script>
   <!-- Add LeetCode API script -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <!-- Inline script for calculating experience years -->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       function updateExperience() {
         const startDate = new Date('2018-09-01');
         const currentDate = new Date();
-        
+
         // Calculate total months
-        const totalMonths = (currentDate.getFullYear() - startDate.getFullYear()) * 12 + 
-                           (currentDate.getMonth() - startDate.getMonth());
-        
+        const totalMonths = (currentDate.getFullYear() - startDate.getFullYear()) * 12 +
+          (currentDate.getMonth() - startDate.getMonth());
+
         // Calculate years and remaining months
         const years = Math.floor(totalMonths / 12);
         const remainingMonths = totalMonths % 12;
-        
+
         // Format the experience string
         const experience = `${years}.${remainingMonths}`;
-        
+
         // Update the DOM
         const experienceElement = document.getElementById('experience-years');
         if (experienceElement) {
-            experienceElement.textContent = experience;
+          experienceElement.textContent = experience;
         }
       }
-      
+
       // Calculate experience immediately
       updateExperience();
     });
   </script>
   <link rel="shortcut icon" type="image/x-icon" href="./img/title.ico">
 </head>
+
 <body>
-<!-- Light Vintage Portfolio Background (matches vintage CSS palette) -->
-<svg id="vintagePortfolioBG"
-     xmlns="http://www.w3.org/2000/svg"
-     width="100%" height="100%"
-     viewBox="0 0 1440 1200"
-     preserveAspectRatio="xMidYMid slice"
-     style="position:fixed; inset:0; z-index:-2; pointer-events:none;">
+  <!-- Light Vintage Portfolio Background (matches vintage CSS palette) -->
+  <svg id="vintagePortfolioBG" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1440 1200"
+    preserveAspectRatio="xMidYMid slice" style="position:fixed; inset:0; z-index:-2; pointer-events:none;">
 
-  <defs>
-    <!-- Colors from CSS vars approximated in SVG -->
-    <!-- --primary-blue: #3b5998; --primary-pink: #ee3380; --primary-orange: #ff6600; --light-gray: #f0f2f5 -->
-    <linearGradient id="bgSweep" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#f0f2f5"/>
-      <stop offset="55%" stop-color="#f0f2f5"/>
-      <stop offset="100%" stop-color="#f6f0f6"/>
-    </linearGradient>
+    <defs>
+      <!-- Colors from CSS vars approximated in SVG -->
+      <!-- --primary-blue: #3b5998; --primary-pink: #ee3380; --primary-orange: #ff6600; --light-gray: #f0f2f5 -->
+      <linearGradient id="bgSweep" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#f0f2f5" />
+        <stop offset="55%" stop-color="#f0f2f5" />
+        <stop offset="100%" stop-color="#f6f0f6" />
+      </linearGradient>
 
-    <!-- Soft brand sweep overlay -->
-    <linearGradient id="brandSweep" x1="0%" y1="20%" x2="100%" y2="80%">
-      <stop offset="0%" stop-color="rgba(59,89,152,0.18)"/>
-      <stop offset="50%" stop-color="rgba(238,51,128,0.10)"/>
-      <stop offset="100%" stop-color="rgba(255,102,0,0.10)"/>
-    </linearGradient>
+      <!-- Soft brand sweep overlay -->
+      <linearGradient id="brandSweep" x1="0%" y1="20%" x2="100%" y2="80%">
+        <stop offset="0%" stop-color="rgba(59,89,152,0.18)" />
+        <stop offset="50%" stop-color="rgba(238,51,128,0.10)" />
+        <stop offset="100%" stop-color="rgba(255,102,0,0.10)" />
+      </linearGradient>
 
-    <!-- Dot grid pattern (very subtle) -->
-    <pattern id="dotGrid" width="48" height="48" patternUnits="userSpaceOnUse">
-      <circle cx="2" cy="2" r="1.2" fill="rgba(0,0,0,0.06)"/>
-    </pattern>
+      <!-- Dot grid pattern (very subtle) -->
+      <pattern id="dotGrid" width="48" height="48" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1.2" fill="rgba(0,0,0,0.06)" />
+      </pattern>
 
-    <!-- Subtle paper grain -->
-    <filter id="paperGrain">
-      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="turb"/>
-      <feColorMatrix type="saturate" values="0"/>
-      <feComponentTransfer>
-        <feFuncA type="table" tableValues="0 0 0.06 0.08"/>
-      </feComponentTransfer>
-      <feBlend mode="soft-light"/>
-    </filter>
+      <!-- Subtle paper grain -->
+      <filter id="paperGrain">
+        <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="turb" />
+        <feColorMatrix type="saturate" values="0" />
+        <feComponentTransfer>
+          <feFuncA type="table" tableValues="0 0 0.06 0.08" />
+        </feComponentTransfer>
+        <feBlend mode="soft-light" />
+      </filter>
 
-    <!-- Light concentric ring stroke -->
-    <linearGradient id="ringStroke" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="rgba(59,89,152,0.35)"/>
-      <stop offset="50%" stop-color="rgba(238,51,128,0.28)"/>
-      <stop offset="100%" stop-color="rgba(255,102,0,0.25)"/>
-    </linearGradient>
+      <!-- Light concentric ring stroke -->
+      <linearGradient id="ringStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="rgba(59,89,152,0.35)" />
+        <stop offset="50%" stop-color="rgba(238,51,128,0.28)" />
+        <stop offset="100%" stop-color="rgba(255,102,0,0.25)" />
+      </linearGradient>
 
-    <!-- Soft blobs -->
-    <radialGradient id="blobBlue" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="rgba(59,89,152,0.20)"/>
-      <stop offset="100%" stop-color="rgba(59,89,152,0)"/>
-    </radialGradient>
-    <radialGradient id="blobPink" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="rgba(238,51,128,0.18)"/>
-      <stop offset="100%" stop-color="rgba(238,51,128,0)"/>
-    </radialGradient>
-    <radialGradient id="blobOrange" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="rgba(255,102,0,0.14)"/>
-      <stop offset="100%" stop-color="rgba(255,102,0,0)"/>
-    </radialGradient>
-  </defs>
+      <!-- Soft blobs -->
+      <radialGradient id="blobBlue" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="rgba(59,89,152,0.20)" />
+        <stop offset="100%" stop-color="rgba(59,89,152,0)" />
+      </radialGradient>
+      <radialGradient id="blobPink" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="rgba(238,51,128,0.18)" />
+        <stop offset="100%" stop-color="rgba(238,51,128,0)" />
+      </radialGradient>
+      <radialGradient id="blobOrange" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="rgba(255,102,0,0.14)" />
+        <stop offset="100%" stop-color="rgba(255,102,0,0)" />
+      </radialGradient>
+    </defs>
 
-  <!-- Base -->
-  <rect width="1440" height="1200" fill="url(#bgSweep)"/>
+    <!-- Base -->
+    <rect width="1440" height="1200" fill="url(#bgSweep)" />
 
-  <!-- Subtle brand sweep -->
-  <rect width="1440" height="1200" fill="url(#brandSweep)"/>
+    <!-- Subtle brand sweep -->
+    <rect width="1440" height="1200" fill="url(#brandSweep)" />
 
-  <!-- Dot grid -->
-  <rect width="1440" height="1200" fill="url(#dotGrid)" opacity="0.35"/>
+    <!-- Dot grid -->
+    <rect width="1440" height="1200" fill="url(#dotGrid)" opacity="0.35" />
 
-  <!-- Soft blobs (positioned to avoid clashing with cards) -->
-  <g>
-    <!-- Top-left faint blue -->
-    <circle cx="220" cy="180" r="320" fill="url(#blobBlue)"/>
-    <!-- Top-right faint pink -->
-    <circle cx="1180" cy="160" r="280" fill="url(#blobPink)"/>
-    <!-- Bottom-right faint orange -->
-    <circle cx="1220" cy="980" r="360" fill="url(#blobOrange)"/>
-    <!-- Bottom-left blend -->
-    <circle cx="180" cy="980" r="300" fill="url(#blobPink)" opacity="0.5"/>
-    <circle cx="240" cy="1040" r="260" fill="url(#blobBlue)" opacity="0.45"/>
-  </g>
+    <!-- Soft blobs (positioned to avoid clashing with cards) -->
+    <g>
+      <!-- Top-left faint blue -->
+      <circle cx="220" cy="180" r="320" fill="url(#blobBlue)" />
+      <!-- Top-right faint pink -->
+      <circle cx="1180" cy="160" r="280" fill="url(#blobPink)" />
+      <!-- Bottom-right faint orange -->
+      <circle cx="1220" cy="980" r="360" fill="url(#blobOrange)" />
+      <!-- Bottom-left blend -->
+      <circle cx="180" cy="980" r="300" fill="url(#blobPink)" opacity="0.5" />
+      <circle cx="240" cy="1040" r="260" fill="url(#blobBlue)" opacity="0.45" />
+    </g>
 
-  <!-- Concentric rings behind hero area (center-top-ish) -->
-  <g transform="translate(720,220)" opacity="0.35">
-    <circle r="220" fill="none" stroke="url(#ringStroke)" stroke-width="1.5"/>
-    <circle r="290" fill="none" stroke="url(#ringStroke)" stroke-width="1" stroke-dasharray="2 8"/>
-    <circle r="360" fill="none" stroke="url(#ringStroke)" stroke-width="0.8" stroke-dasharray="1 10"/>
-    <!-- slow rotating arc for gentle motion in supporting browsers -->
-    <path d="M 0 -260 A 260 260 0 0 1 160 210"
-          fill="none" stroke="rgba(59,89,152,0.45)" stroke-width="2" stroke-linecap="round">
-      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="28s" repeatCount="indefinite"/>
-    </path>
-  </g>
+    <!-- Concentric rings behind hero area (center-top-ish) -->
+    <g transform="translate(720,220)" opacity="0.35">
+      <circle r="220" fill="none" stroke="url(#ringStroke)" stroke-width="1.5" />
+      <circle r="290" fill="none" stroke="url(#ringStroke)" stroke-width="1" stroke-dasharray="2 8" />
+      <circle r="360" fill="none" stroke="url(#ringStroke)" stroke-width="0.8" stroke-dasharray="1 10" />
+      <!-- slow rotating arc for gentle motion in supporting browsers -->
+      <path d="M 0 -260 A 260 260 0 0 1 160 210" fill="none" stroke="rgba(59,89,152,0.45)" stroke-width="2"
+        stroke-linecap="round">
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="28s"
+          repeatCount="indefinite" />
+      </path>
+    </g>
 
-  <!-- Very soft diagonal band to echo hero gradient direction -->
-  <g opacity="0.10">
-    <linearGradient id="diagBand" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#3b5998"/>
-      <stop offset="50%" stop-color="#ee3380"/>
-      <stop offset="100%" stop-color="#ff6600"/>
-    </linearGradient>
-    <path d="M -200 200 L 1600 -100 L 1600 100 L -200 400 Z" fill="url(#diagBand)"/>
-  </g>
+    <!-- Very soft diagonal band to echo hero gradient direction -->
+    <g opacity="0.10">
+      <linearGradient id="diagBand" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#3b5998" />
+        <stop offset="50%" stop-color="#ee3380" />
+        <stop offset="100%" stop-color="#ff6600" />
+      </linearGradient>
+      <path d="M -200 200 L 1600 -100 L 1600 100 L -200 400 Z" fill="url(#diagBand)" />
+    </g>
 
-  <!-- Paper grain -->
-  <rect width="1440" height="1200" filter="url(#paperGrain)" opacity="0.12"/>
-</svg>
+    <!-- Paper grain -->
+    <rect width="1440" height="1200" filter="url(#paperGrain)" opacity="0.12" />
+  </svg>
   <!-- Header -->
   <header class="header">
     <div class="container nav-container">
       <a href="#" class="logo">
         <span class="logo-text">~</span>
       </a>
-      
+
       <button class="menu-toggle" aria-label="Toggle navigation menu">
         <i class="fas fa-bars"></i>
       </button>
-      
+
       <ul class="nav-menu">
         <li class="nav-item"><a href="#profile" class="nav-link">Profile</a></li>
-        <li class="nav-item"><a href="https://sethuiyer.github.io/blog/" class="nav-link">Blog</a></li>
         <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
         <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
         <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
         <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
-        <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+        <li class="nav-item"><a href="#shunyabar" class="nav-link">ShunyaBar</a></li>
+        <li class="nav-item"><a href="https://sethuiyer.github.io/blog/" class="nav-link">Blog</a></li>
         <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
     </div>
@@ -184,80 +186,158 @@
   <!-- Profile Section -->
   <section id="profile" class="profile-section container animated-section">
     <div class="profile-header">
-      <img src="https://avatars.githubusercontent.com/u/7423757?v=4" alt="Portrait of Sethu Iyer - Data Scientist and AI Researcher" class="profile-img">
+      <img src="https://avatars.githubusercontent.com/u/7423757?v=4"
+        alt="Portrait of Sethu Iyer - Data Scientist and AI Researcher" class="profile-img">
       <div class="profile-info">
         <h2 class="profile-name">$ cat /etc/profile</h2>
         <p class="profile-title">Data Scientist & AI Researcher</p>
         <p>
-          <a href="https://github.com/sethuiyer" target="_blank"><i class="fab fa-github"></i> /usr/bin/git</a> &nbsp;|&nbsp;
-          <a href="https://huggingface.co/sethuiyer" target="_blank"><i class="fas fa-rocket"></i> /usr/local/huggingface</a> &nbsp;|&nbsp;
-          <a href="https://linkedin.com/in/stuehieyr" target="_blank"><i class="fab fa-linkedin"></i> /var/log/professional</a> &nbsp;|&nbsp;
-          <a href="https://scholar.google.com/citations?user=ivR07L8AAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap"></i> /usr/share/scholar</a> &nbsp;|&nbsp;
+          <a href="https://github.com/sethuiyer" target="_blank"><i class="fab fa-github"></i> /usr/bin/git</a>
+          &nbsp;|&nbsp;
+          <a href="https://huggingface.co/sethuiyer" target="_blank"><i class="fas fa-rocket"></i>
+            /usr/local/huggingface</a> &nbsp;|&nbsp;
+          <a href="https://linkedin.com/in/stuehieyr" target="_blank"><i class="fab fa-linkedin"></i>
+            /var/log/professional</a> &nbsp;|&nbsp;
+          <a href="https://scholar.google.com/citations?user=ivR07L8AAAAJ&hl=en" target="_blank"><i
+              class="fas fa-graduation-cap"></i> /usr/share/scholar</a> &nbsp;|&nbsp;
           <a href="https://sethuiyer.github.io/blog/" target="_blank"><i class="fas fa-blog"></i> /var/www/blog</a>
         </p>
         <p class="mt-10">
-          <a href="https://kaggle.com/brobear1995" target="_blank"><i class="fab fa-kaggle"></i> /opt/kaggle</a> &nbsp;|&nbsp;
-          <a href="https://leetcode.com/u/brobear/" target="_blank"><i class="fas fa-code"></i> /usr/bin/leetcode</a> &nbsp;|&nbsp;
-          <a href="https://x.com/sureihty" target="_blank"><i class="fab fa-twitter"></i> /var/log/social</a> &nbsp;|&nbsp;
-          <a href="https://www.youtube.com/@SethuIyer95" target="_blank"><i class="fab fa-youtube"></i> /usr/share/videos</a> &nbsp;|&nbsp;
+          <a href="https://kaggle.com/brobear1995" target="_blank"><i class="fab fa-kaggle"></i> /opt/kaggle</a>
+          &nbsp;|&nbsp;
+          <a href="https://leetcode.com/u/brobear/" target="_blank"><i class="fas fa-code"></i> /usr/bin/leetcode</a>
+          &nbsp;|&nbsp;
+          <a href="https://x.com/sureihty" target="_blank"><i class="fab fa-twitter"></i> /var/log/social</a>
+          &nbsp;|&nbsp;
+          <a href="https://www.youtube.com/@SethuIyer95" target="_blank"><i class="fab fa-youtube"></i>
+            /usr/share/videos</a> &nbsp;|&nbsp;
           <a href="https://medium.com/@sethuiyer" target="_blank"><i class="fab fa-medium"></i> /var/www/medium</a>
         </p>
-        
+
       </div>
     </div>
 
-       <div class="vintage-card">
-      <p id="bio-text">I'm an interdisciplinary AI professional with <span id="experience-years"></span> years of experience building production-grade LLM architectures, search, retrieval systems and end to end product development . Mathematics and Computer Science is my foundation. Conversational AI, Search, and exploring seemingly unrelated yet connected concepts are my playgrounds.  
-</p>
+    <div class="vintage-card">
+      <p id="bio-text">I'm an interdisciplinary AI professional with <span id="experience-years"></span> years of
+        experience building production-grade LLM architectures, search, retrieval systems and end to end product
+        development . Mathematics and Computer Science is my foundation. Conversational AI, Search, and exploring
+        seemingly unrelated yet connected concepts are my playgrounds.
+      </p>
     </div>
   </section>
 
   <!-- About Section -->
   <section id="about" class="about-section container animated-section">
     <h2 class="section-title">About Me</h2>
-    
+
     <div class="testimonial-box">
       <h3>Education & Background</h3>
-      <p>I have a strong background in mathematics and computer science with a dual degree from BITS Pilani. My interdisciplinary approach allows me to tackle problems from multiple angles, drawing insights from graph theory, topology, functional analysis, and computational methods.</p>
+      <p>I have a strong background in mathematics and computer science with a dual degree from BITS Pilani. My
+        interdisciplinary approach allows me to tackle problems from multiple angles, drawing insights from graph
+        theory, topology, functional analysis, and computational methods.</p>
     </div>
 
     <div class="testimonial-box">
       <h3>Research Focus</h3>
-      <p>My research focuses on developing <b>novel interpretability metrics</b> for LLMs to enhance transparency in decision-making. </p>
+      <p>My research focuses on developing <b>novel interpretability metrics</b> for LLMs to enhance transparency in
+        decision-making, alongside exploring <b>physics-informed mathematical algorithms</b> — treating Boolean satisfiability as thermodynamic free energy minimization on Riemannian manifolds, and applying concepts from spectral graph theory, persistent homology, and Langevin dynamics to build next-generation constraint solvers.</p>
     </div>
-    
+
   </section>
 
   <!-- Current Focus Section -->
   <section class="about-section container animated-section">
     <h2 class="section-title">Current Focus</h2>
-    
+
     <div class="testimonial-box">
       <h3>Active Research Areas</h3>
       <ul style="margin-top: 15px; padding-left: 20px;">
         <li><i class="fas fa-brain"></i> Attention Entropy based interpretability metrics for LLMs</li>
         <li><i class="fas fa-microchip"></i> TPU mixed precision fine-tuning for LLM tool selection and planning modules</li>
+        <li><i class="fas fa-atom"></i> <strong>NitroSAT</strong> — Physics-informed MaxSAT solver treating SAT as Langevin flow on a prime-weighted hyperbolic manifold</li>
+        <li><i class="fas fa-fire"></i> <strong>BAHA</strong> — Branch-Aware Holonomy Annealing for detecting thermodynamic phase transitions via specific heat monitoring</li>
+        <li><i class="fas fa-divide"></i> <strong>Multiplicative PINNs</strong> — Euler product gates replacing additive loss to eliminate gradient conflict in Physics-Informed Neural Networks</li>
       </ul>
-      <p style="margin-top: 15px;"><strong>All research areas align towards building scalable, interpretable, and production-grade LLM systems.</strong></p>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="skills-section container animated-section">
+    <h2 class="section-title">Skills & Expertise</h2>
+
+    <div class="skills-container">
+      <!-- AI/ML & LLMs -->
+      <div class="skill-category">
+        <h3>AI/ML & LLMs</h3>
+        <ul class="skill-list">
+          <li class="skill-item">Hugging Face Transformers</li>
+          <li class="skill-item">PEFT (LoRA, QLoRA)</li>
+          <li class="skill-item">Retrieval-Augmented Generation (RAG)</li>
+          <li class="skill-item">Prompt Engineering</li>
+          <li class="skill-item">Fine-tuning LLMs</li>
+          <li class="skill-item">Computer Vision</li>
+        </ul>
+      </div>
+
+      <!-- Programming & Development -->
+      <div class="skill-category">
+        <h3>Programming & Development</h3>
+        <ul class="skill-list">
+          <li class="skill-item">Python (Advanced)</li>
+          <li class="skill-item">C/C++, Go, Scala</li>
+          <li class="skill-item">SQL, CUDA, MATLAB</li>
+          <li class="skill-item">Flask, Docker</li>
+          <li class="skill-item">Svelte, Quasar Framework</li>
+          <li class="skill-item">CI/CD, Linux</li>
+        </ul>
+      </div>
+
+      <!-- ML Frameworks & Tools -->
+      <div class="skill-category">
+        <h3>ML Frameworks & Tools</h3>
+        <ul class="skill-list">
+          <li class="skill-item">TensorFlow, PyTorch</li>
+          <li class="skill-item">Scikit-learn, SpaCy</li>
+          <li class="skill-item">OpenCV, XGBoost, CatBoost</li>
+          <li class="skill-item">ONNX Runtime</li>
+          <li class="skill-item">Mixed Precision Training</li>
+          <li class="skill-item">TPU Utilization</li>
+        </ul>
+      </div>
+
+      <!-- Big Data & Databases -->
+      <div class="skill-category">
+        <h3>Big Data & Databases</h3>
+        <ul class="skill-list">
+          <li class="skill-item">Apache Spark</li>
+          <li class="skill-item">Elasticsearch</li>
+          <li class="skill-item">Redis</li>
+          <li class="skill-item">MongoDB</li>
+          <li class="skill-item">PostgreSQL</li>
+        </ul>
+      </div>
+
     </div>
   </section>
 
   <!-- Work Experience Section -->
   <section id="experience" class="about-section container animated-section">
     <h2 class="section-title">Work Experience</h2>
-    
+
     <div class="testimonial-box">
-      <h3> Senior AI Research Engineer <span class="date-range"><time datetime="2022-02">May 2025</time> - <time datetime="present">Present</time></span></h3>
+      <h3> Senior AI Research Engineer <span class="date-range"><time datetime="2022-02">May 2025</time> - <time
+            datetime="present">Present</time></span></h3>
       <p class="company-name"><i class="fas fa-building"></i> Workato (Bengaluru, India)</p>
       <ul style="margin-top: 15px; padding-left: 20px;">
-        <li>Working on making enterprise search platforms significantly more intelligent and effective</li>
+        <li>Working on making enterprise search significantly more intelligent and effective</li>
         <li>Contributing to cutting-edge AI research initiatives in the search and automation domain</li>
         <li>Collaborating with cross-functional teams to enhance user experience and system capabilities</li>
       </ul>
     </div>
 
     <div class="testimonial-box">
-      <h3>Deep Learning Researcher & Data Scientist <span class="date-range"><time datetime="2022-02">Feb 2022</time> - <time datetime="present">Apr 2025</time></span></h3>
+      <h3>Deep Learning Researcher & Data Scientist <span class="date-range"><time datetime="2022-02">Feb 2022</time> -
+          <time datetime="present">Apr 2025</time></span></h3>
       <p class="company-name"><i class="fas fa-building"></i> Jio Platforms Ltd (Hyderabad, India)</p>
       <ul style="margin-top: 15px; padding-left: 20px;">
         <li>Developed novel interpretability metrics for LLMs to enhance transparency in decision-making</li>
@@ -266,30 +346,35 @@
         <li>Core contributor of a multi-lingual, contextualized medical entity search system</li>
       </ul>
     </div>
-    
+
     <div class="testimonial-box">
-      <h3>Research and Development Engineer <span class="date-range"><time datetime="2018-09">Sep 2018</time> - <time datetime="2022-02">Feb 2022</time></span></h3>
+      <h3>Research and Development Engineer <span class="date-range"><time datetime="2018-09">Sep 2018</time> - <time
+            datetime="2022-02">Feb 2022</time></span></h3>
       <p class="company-name"><i class="fas fa-building"></i> Amelia / IPSoft (Bengaluru, India)</p>
       <ul style="margin-top: 15px; padding-left: 20px;">
         <li>Core contributor to EazyML — an explainable AutoML platform for tabular data</li>
-        <li>Designed a skin disease classification system using Google AutoML Vision (F1 Score: 0.64 over 65 diseases)</li>
-        <li>Built a zero-shot concept matcher with BERT and mathematical distance metrics, ideas to revenue within 40 days</li>
+        <li>Designed a skin disease classification system using Google AutoML Vision (F1 Score: 0.64 over 65 diseases)
+        </li>
+        <li>Built a zero-shot concept matcher with BERT and mathematical distance metrics, ideas to revenue within 40
+          days</li>
         <li>Refactored legacy codebases with modern Python OOP principles, type annotations, and best practices</li>
       </ul>
     </div>
     <div class="testimonial-box">
-      <h3>Research Intern <span class="date-range"><time datetime="2018-07">Jul 2018</time> - <time datetime="2018-09">Sep 2018</time></span></h3>
+      <h3>Research Intern <span class="date-range"><time datetime="2018-07">Jul 2018</time> - <time
+            datetime="2018-09">Sep 2018</time></span></h3>
       <p class="company-name"><i class="fas fa-flask"></i> Video Analytics Lab, IISc Bengaluru</p>
       <ul style="margin-top: 15px; padding-left: 20px;">
         <li>Accelerated Sketch-GAN model training by 3x via CUDA optimization</li>
         <li>Created PyQt widgets for streamlined data annotation workflows</li>
       </ul>
     </div>
-    
+
     <div class="testimonial-box">
-      <h3>Student Researcher <span class="date-range"><time datetime="2017-07">Jul 2017</time> - <time datetime="2018-07">Jul 2018</time></span></h3>
+      <h3>Student Researcher <span class="date-range"><time datetime="2017-07">Jul 2017</time> - <time
+            datetime="2018-07">Jul 2018</time></span></h3>
       <p class="company-name"><i class="fas fa-university"></i> BITS Pilani Goa Campus</p>
-      
+
       <div class="project-block">
         <h4>Game Theory in Machine Learning (Jul 2017 - Dec 2017)</h4>
         <p>Research under Dr. Jajati Keshari Sahoo exploring novel applications of game theory in ensemble learning:</p>
@@ -323,14 +408,16 @@
   <!-- Education Section -->
   <section id="education" class="about-section container animated-section">
     <h2 class="section-title">Education</h2>
-    
+
     <div class="testimonial-box">
-      <h3>Birla Institute of Technology and Science, Pilani <span class="date-range"><time datetime="2013">2013</time> - <time datetime="2018">2018</time></span></h3>
+      <h3>Birla Institute of Technology and Science, Pilani <span class="date-range"><time datetime="2013">2013</time> -
+          <time datetime="2018">2018</time></span></h3>
       <p class="company-name"><i class="fas fa-university"></i> Dual Degree: M.Sc Mathematics & B.E Computer Science</p>
       <p style="margin-top: 10px;">GPA: 7.47/10 (Equivalent to 3.7/4.0 US Scale)</p>
-      <p class="mt-10"><strong>Relevant Courses:</strong> Functional Analysis, Data Structures and Algorithms, Advanced Probability and Statistics, Graph Theory, Topology, Operations Research, Machine Learning, Quantum Computing</p>
+      <p class="mt-10"><strong>Relevant Courses:</strong> Functional Analysis, Data Structures and Algorithms, Advanced
+        Probability and Statistics, Graph Theory, Topology, Operations Research, Machine Learning, Quantum Computing</p>
     </div>
-    
+
     <div class="testimonial-box">
       <h3>Certifications</h3>
       <ul style="margin-top: 15px; padding-left: 20px;">
@@ -340,12 +427,14 @@
         <li>Intermediate and Advanced Machine Learning - Kaggle</li>
       </ul>
     </div>
-    
+
     <div class="testimonial-box">
       <h3>Publications</h3>
-      <p class="mt-10"><strong>Image captioning-based image search engine: An alternative to retrieval by metadata</strong></p>
+      <p class="mt-10"><strong>Image captioning-based image search engine: An alternative to retrieval by
+          metadata</strong></p>
       <p>S. Iyer, S. Chaturvedi, T. Dash - Soft Computing for Problem Solving: SocProS 2017, Volume 2, 181-191</p>
-      <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=ivR07L8AAAAJ&citation_for_view=ivR07L8AAAAJ:u5HHmVD_uO8C" target="_blank" class="mt-10 inline-block">
+      <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=ivR07L8AAAAJ&citation_for_view=ivR07L8AAAAJ:u5HHmVD_uO8C"
+        target="_blank" class="mt-10 inline-block">
         <i class="fas fa-external-link-alt"></i> View on Google Scholar
       </a>
     </div>
@@ -354,7 +443,7 @@
   <!-- Projects Section -->
   <section id="projects" class="projects-section container animated-section">
     <h2 class="section-title">Featured Projects</h2>
-    
+
     <div class="filter-container mb-20">
       <button class="vintage-button filter-btn active" data-filter="all">All</button>
       <button class="vintage-button filter-btn" data-filter="llm">LLM</button>
@@ -366,13 +455,14 @@
       <button class="vintage-button filter-btn" data-filter="quantum">Quantum Computing</button>
       <button class="vintage-button filter-btn" data-filter="education">Education</button>
     </div>
-    
+
     <div class="project-grid">
       <!-- Project 1 -->
       <div class="project-card llm">
         <div class="project-info">
           <h3 class="project-title">DeydooGPT</h3>
-          <p class="project-desc">AI Assistant built on fine-tuned Mistral 7B with 8000-token context handling for enhanced understanding of complex conversations.</p>
+          <p class="project-desc">AI Assistant built on fine-tuned Mistral 7B with 8000-token context handling for
+            enhanced understanding of complex conversations.</p>
           <div class="project-tags">
             <span class="project-tag">LLM</span>
             <span class="project-tag">Fine-tuning</span>
@@ -383,12 +473,13 @@
           </a>
         </div>
       </div>
-      
+
       <!-- Project 2 -->
       <div class="project-card llm ai">
         <div class="project-info">
           <h3 class="project-title">Clinical Diagnosis Engine</h3>
-          <p class="project-desc">Medical diagnosis system using Graph RAG techniques, achieving 85.83% production accuracy for clinical applications.</p>
+          <p class="project-desc">Medical diagnosis system using Graph RAG techniques, achieving 85.83% production
+            accuracy for clinical applications.</p>
           <div class="project-tags">
             <span class="project-tag">Graph RAG</span>
             <span class="project-tag">Healthcare AI</span>
@@ -399,12 +490,13 @@
           </a>
         </div>
       </div>
-      
+
       <!-- Project 3 -->
       <div class="project-card optimization">
         <div class="project-info">
           <h3 class="project-title">Scalable BERT Inference Pipeline</h3>
-          <p class="project-desc">High-performance inference system that reduced latency by 50% using ZeroMQ & NGINX for efficient handling of NLP requests.</p>
+          <p class="project-desc">High-performance inference system that reduced latency by 50% using ZeroMQ & NGINX for
+            efficient handling of NLP requests.</p>
           <div class="project-tags">
             <span class="project-tag">Optimization</span>
             <span class="project-tag">NLP</span>
@@ -415,28 +507,31 @@
           </a>
         </div>
       </div>
-      
+
       <!-- Project 4 -->
       <div class="project-card search ai">
         <div class="project-info">
           <h3 class="project-title">Image-to-Image Search</h3>
-          <p class="project-desc">A reverse image search engine powered by Elasticsearch and TensorFlow for advanced image recognition and retrieval.</p>
+          <p class="project-desc">A reverse image search engine powered by Elasticsearch and TensorFlow for advanced
+            image recognition and retrieval.</p>
           <div class="project-tags">
             <span class="project-tag">Computer Vision</span>
             <span class="project-tag">Search</span>
             <span class="project-tag">Python</span>
           </div>
-          <a href="https://github.com/sethuiyer/Image-to-Image-Search" target="_blank" style="display: inline-block; margin-top: 15px;">
+          <a href="https://github.com/sethuiyer/Image-to-Image-Search" target="_blank"
+            style="display: inline-block; margin-top: 15px;">
             <i class="fab fa-github"></i> View on GitHub
           </a>
         </div>
       </div>
-      
+
       <!-- Project 5 -->
       <div class="project-card ai optimization">
         <div class="project-info">
           <h3 class="project-title">EazyML</h3>
-          <p class="project-desc">Core technical member for this explainable AutoML platform for tabular data that automates model selection, hyperparameter tuning, and provides interpretable results.</p>
+          <p class="project-desc">Core technical member for this explainable AutoML platform for tabular data that
+            automates model selection, hyperparameter tuning, and provides interpretable results.</p>
           <div class="project-tags">
             <span class="project-tag">AutoML</span>
             <span class="project-tag">Explainable AI</span>
@@ -447,44 +542,49 @@
           </a>
         </div>
       </div>
-      
+
       <!-- Project 6 -->
       <div class="project-card web">
         <div class="project-info">
           <h3 class="project-title">Keyflix</h3>
-          <p class="project-desc">Educational platform with video content and intelligent recommendation system to personalize learning experiences.</p>
+          <p class="project-desc">Educational platform with video content and intelligent recommendation system to
+            personalize learning experiences.</p>
           <div class="project-tags">
             <span class="project-tag">Education</span>
             <span class="project-tag">Recommendations</span>
             <span class="project-tag">JavaScript</span>
           </div>
-          <a href="https://github.com/sethuiyer/keyflix" target="_blank" style="display: inline-block; margin-top: 15px;">
+          <a href="https://github.com/sethuiyer/keyflix" target="_blank"
+            style="display: inline-block; margin-top: 15px;">
             <i class="fab fa-github"></i> View on GitHub
           </a>
         </div>
       </div>
-      
+
       <!-- Project 7 -->
       <div class="project-card ai">
         <div class="project-info">
           <h3 class="project-title">Newsboat Recommender</h3>
-          <p class="project-desc">RSS feed recommender using hybrid approach combining lexical and BERT-based content analysis for personalized news delivery.</p>
+          <p class="project-desc">RSS feed recommender using hybrid approach combining lexical and BERT-based content
+            analysis for personalized news delivery.</p>
           <div class="project-tags">
             <span class="project-tag">NLP</span>
             <span class="project-tag">Recommendations</span>
             <span class="project-tag">Python</span>
           </div>
-          <a href="https://github.com/sethuiyer/newsboat-recommender" target="_blank" style="display: inline-block; margin-top: 15px;">
+          <a href="https://github.com/sethuiyer/newsboat-recommender" target="_blank"
+            style="display: inline-block; margin-top: 15px;">
             <i class="fab fa-github"></i> View on GitHub
           </a>
         </div>
       </div>
-      
+
       <!-- Project 8 -->
       <div class="project-card optimization">
         <div class="project-info">
           <h3 class="project-title">FDE-Solver</h3>
-          <p class="project-desc">MATLAB solver for Fractional Differential Equations with applications in mathematical modeling and simulations.</p>
+          <p class="project-desc">MATLAB solver for Fractional Differential Equations with applications in mathematical
+            modeling and simulations.</p>
           <div class="project-tags">
             <span class="project-tag">Mathematics</span>
             <span class="project-tag">Numerical Methods</span>
@@ -495,12 +595,13 @@
           </a>
         </div>
       </div>
-      
+
       <!-- Project 9 -->
       <div class="project-card search ai">
         <div class="project-info">
           <h3 class="project-title">Zero-shot Concept Matcher</h3>
-          <p class="project-desc">System that uses BERT and mathematical distance metrics to match concepts without prior training, boosting accuracy by 35%.</p>
+          <p class="project-desc">System that uses BERT and mathematical distance metrics to match concepts without
+            prior training, boosting accuracy by 35%.</p>
           <div class="project-tags">
             <span class="project-tag">NLP</span>
             <span class="project-tag">Zero-shot Learning</span>
@@ -516,7 +617,9 @@
       <div class="project-card ai llm">
         <div class="project-info">
           <h3 class="project-title">YouTube Video Assistant</h3>
-          <p class="project-desc">A production-ready Python tool that enables natural conversations with YouTube videos using ASR, NLP, and LLMs. Features include automatic transcription, context-aware responses, and efficient caching.</p>
+          <p class="project-desc">A production-ready Python tool that enables natural conversations with YouTube videos
+            using ASR, NLP, and LLMs. Features include automatic transcription, context-aware responses, and efficient
+            caching.</p>
           <div class="project-tags">
             <span class="project-tag">ASR</span>
             <span class="project-tag">NLP</span>
@@ -533,7 +636,9 @@
       <div class="project-card web education">
         <div class="project-info">
           <h3 class="project-title">YACR - Ultimate IT Roadmap</h3>
-          <p class="project-desc">A comprehensive 9-10 month roadmap transforming beginners into job-ready IT professionals. Features structured learning paths, hands-on projects, and industry-aligned curriculum covering CS fundamentals to advanced AI.</p>
+          <p class="project-desc">A comprehensive 9-10 month roadmap transforming beginners into job-ready IT
+            professionals. Features structured learning paths, hands-on projects, and industry-aligned curriculum
+            covering CS fundamentals to advanced AI.</p>
           <div class="project-tags">
             <span class="project-tag">Education</span>
             <span class="project-tag">Roadmap</span>
@@ -550,16 +655,18 @@
       <div class="project-card ai llm">
         <div class="project-info">
           <h3 class="project-title">DeydooRAG</h3>
-          <p class="project-desc">A production-grade RAG pipeline using txtai for semantic search and LLM orchestration. Features include dynamic index management, query classification, and lightning-fast retrievals (3s search, <2s retrieval). Includes real-world examples with multilingual support.</p>
-          <div class="project-tags">
-            <span class="project-tag">RAG</span>
-            <span class="project-tag">Semantic Search</span>
-            <span class="project-tag">LLM</span>
-            <span class="project-tag">Python</span>
-          </div>
-          <a href="https://codeberg.org/aninokuma/DeydooRAG" target="_blank" class="mt-15 inline-block">
-            <i class="fab fa-codeberg"></i> View on Codeberg
-          </a>
+          <p class="project-desc">A production-grade RAG pipeline using txtai for semantic search and LLM orchestration.
+            Features include dynamic index management, query classification, and lightning-fast retrievals (3s search,
+            <2s retrieval). Includes real-world examples with multilingual support.</p>
+              <div class="project-tags">
+                <span class="project-tag">RAG</span>
+                <span class="project-tag">Semantic Search</span>
+                <span class="project-tag">LLM</span>
+                <span class="project-tag">Python</span>
+              </div>
+              <a href="https://codeberg.org/aninokuma/DeydooRAG" target="_blank" class="mt-15 inline-block">
+                <i class="fab fa-codeberg"></i> View on Codeberg
+              </a>
         </div>
       </div>
 
@@ -567,7 +674,8 @@
       <div class="project-card ai">
         <div class="project-info">
           <h3 class="project-title">Simple Chatbot</h3>
-          <p class="project-desc">A chatbot application built using Python and AIML (Artificial Intelligence Markup Language) for natural language processing and pattern matching.</p>
+          <p class="project-desc">A chatbot application built using Python and AIML (Artificial Intelligence Markup
+            Language) for natural language processing and pattern matching.</p>
           <div class="project-tags">
             <span class="project-tag">Python</span>
             <span class="project-tag">AIML</span>
@@ -583,7 +691,8 @@
       <div class="project-card optimization">
         <div class="project-info">
           <h3 class="project-title">Game of Thrones Visualization</h3>
-          <p class="project-desc">Interactive visualization of the Game of Thrones dataset using t-SNE dimensionality reduction, featured in a YouTube video for its innovative approach to data visualization.</p>
+          <p class="project-desc">Interactive visualization of the Game of Thrones dataset using t-SNE dimensionality
+            reduction, featured in a YouTube video for its innovative approach to data visualization.</p>
           <div class="project-tags">
             <span class="project-tag">Python</span>
             <span class="project-tag">t-SNE</span>
@@ -600,7 +709,9 @@
       <div class="project-card optimization">
         <div class="project-info">
           <h3 class="project-title">DAPS (Dynamic Adaptive Prime Sampling)</h3>
-          <p class="project-desc">A novel optimization algorithm that uses prime number-based grid sampling to avoid aliasing problems common in regular grid search methods. Features dynamic resolution adaptation and domain shrinking around promising regions, with primes serving as resolution knobs for accuracy control.</p>
+          <p class="project-desc">A novel optimization algorithm that uses prime number-based grid sampling to avoid
+            aliasing problems common in regular grid search methods. Features dynamic resolution adaptation and domain
+            shrinking around promising regions, with primes serving as resolution knobs for accuracy control.</p>
           <div class="project-tags">
             <span class="project-tag">Mathematics</span>
             <span class="project-tag">Optimization</span>
@@ -617,7 +728,9 @@
       <div class="project-card ai optimization quantum">
         <div class="project-info">
           <h3 class="project-title">QuHabiton</h3>
-          <p class="project-desc">A creative experimental habit tracker leveraging quantum physics, topology, and data analysis principles. Features include probabilistic habit representation, quantum machine learning for pattern analysis, behavioral topography visualization, and adaptive learning based on habit topology.</p>
+          <p class="project-desc">A creative experimental habit tracker leveraging quantum physics, topology, and data
+            analysis principles. Features include probabilistic habit representation, quantum machine learning for
+            pattern analysis, behavioral topography visualization, and adaptive learning based on habit topology.</p>
           <div class="project-tags">
             <span class="project-tag">Quantum Computing</span>
             <span class="project-tag">Habit Tracking</span>
@@ -634,7 +747,9 @@
       <div class="project-card optimization quantum">
         <div class="project-info">
           <h3 class="project-title">List Coloring via Grover's Algorithm</h3>
-          <p class="project-desc">Implementation of list coloring problem using Grover's algorithm through SAT formulation, developed during IIT Delhi's Quantum Machine Learning course. Demonstrates quantum computing applications in graph theory and constraint satisfaction problems.</p>
+          <p class="project-desc">Implementation of list coloring problem using Grover's algorithm through SAT
+            formulation, developed during IIT Delhi's Quantum Machine Learning course. Demonstrates quantum computing
+            applications in graph theory and constraint satisfaction problems.</p>
           <div class="project-tags">
             <span class="project-tag">Quantum Computing</span>
             <span class="project-tag">Graph Theory</span>
@@ -651,14 +766,17 @@
       <div class="project-card ai llm memory">
         <div class="project-info">
           <h3 class="project-title">LLM Episodic Memory System (Experimental)</h3>
-          <p class="project-desc">A cognitive architecture for LLMs featuring surprise-driven memory formation, Legendre polynomial-based orthogonal paragraph embeddings, and dynamic memory refinement. Implements temporal decay, access boosts, and contradiction detection for biologically-inspired memory management.</p>
+          <p class="project-desc">A cognitive architecture for LLMs featuring surprise-driven memory formation, Legendre
+            polynomial-based orthogonal paragraph embeddings, and dynamic memory refinement. Implements temporal decay,
+            access boosts, and contradiction detection for biologically-inspired memory management.</p>
           <div class="project-tags">
             <span class="project-tag">LLM</span>
             <span class="project-tag">Memory Systems</span>
             <span class="project-tag">Cognitive Architecture</span>
             <span class="project-tag">Python</span>
           </div>
-          <a href="https://github.com/sethuiyer/llm-experiments/blob/main/episodic_memory.py" target="_blank" class="mt-15 inline-block">
+          <a href="https://github.com/sethuiyer/llm-experiments/blob/main/episodic_memory.py" target="_blank"
+            class="mt-15 inline-block">
             <i class="fab fa-github"></i> View on GitHub
           </a>
         </div>
@@ -666,96 +784,143 @@
     </div>
   </section>
 
-  <!-- Skills Section -->
-  <section id="skills" class="skills-section container animated-section">
-    <h2 class="section-title">Skills & Expertise</h2>
-    
-    <div class="skills-container">
-      <!-- AI/ML & LLMs -->
-      <div class="skill-category">
-        <h3>AI/ML & LLMs</h3>
-        <ul class="skill-list">
-          <li class="skill-item">Hugging Face Transformers</li>
-          <li class="skill-item">PEFT (LoRA, QLoRA)</li>
-          <li class="skill-item">Retrieval-Augmented Generation (RAG)</li>
-          <li class="skill-item">Prompt Engineering</li>
-          <li class="skill-item">Fine-tuning LLMs</li>
-          <li class="skill-item">Computer Vision</li>
-        </ul>
-      </div>
-      
-      <!-- Programming & Development -->
-      <div class="skill-category">
-        <h3>Programming & Development</h3>
-        <ul class="skill-list">
-          <li class="skill-item">Python (Advanced)</li>
-          <li class="skill-item">C/C++, Go, Scala</li>
-          <li class="skill-item">SQL, CUDA, MATLAB</li>
-          <li class="skill-item">Flask, Docker</li>
-          <li class="skill-item">Svelte, Quasar Framework</li>
-          <li class="skill-item">CI/CD, Linux</li>
-        </ul>
-      </div>
-      
-      <!-- ML Frameworks & Tools -->
-      <div class="skill-category">
-        <h3>ML Frameworks & Tools</h3>
-        <ul class="skill-list">
-          <li class="skill-item">TensorFlow, PyTorch</li>
-          <li class="skill-item">Scikit-learn, SpaCy</li>
-          <li class="skill-item">OpenCV, XGBoost, CatBoost</li>
-          <li class="skill-item">ONNX Runtime</li>
-          <li class="skill-item">Mixed Precision Training</li>
-          <li class="skill-item">TPU Utilization</li>
-        </ul>
-      </div>
-      
-      <!-- Big Data & Databases -->
-      <div class="skill-category">
-        <h3>Big Data & Databases</h3>
-        <ul class="skill-list">
-          <li class="skill-item">Apache Spark</li>
-          <li class="skill-item">Elasticsearch</li>
-          <li class="skill-item">Redis</li>
-          <li class="skill-item">MongoDB</li>
-          <li class="skill-item">PostgreSQL</li>
-        </ul>
-      </div>
-      
-    </div>
-  </section>
+  <!-- ShunyaBar Labs Section -->
+  <section id="shunyabar" class="about-section container animated-section">
+    <h2 class="section-title">ShunyaBar Labs</h2>
 
-  <!-- Publications Section -->
-  <section class="about-section container animated-section">
-    <h2 class="section-title">Publications & Research</h2>
-    
     <div class="testimonial-box">
-      <h3>Image captioning-based image search engine: An alternative to retrieval by metadata</h3>
-      <p>A research paper introducing an innovative approach to image search using captioning techniques instead of traditional metadata, published in SocProS 2017.</p>
-      <p><strong>Authors:</strong> S. Iyer, S. Chaturvedi, T. Dash</p>
-      <p><strong>Publication:</strong> Soft Computing for Problem Solving: SocProS 2017, Volume 2, 181-191</p>
-      <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=ivR07L8AAAAJ&citation_for_view=ivR07L8AAAAJ:u5HHmVD_uO8C" target="_blank" class="mt-10 inline-block">
-        <i class="fas fa-external-link-alt"></i> View on Google Scholar
-      </a>
+      <h3><i class="fas fa-flask"></i> Deep-Tech Research Lab</h3>
+      <p><strong>Unapologetically ambitious, practically useful, Foundational Deep-Tech research lab from
+          India.</strong></p>
+      <p style="margin-top: 15px;">
+        Computation is physics, and constraint solving is thermodynamic equilibration. ShunyaBar Labs develops
+        constraint solvers that treat Boolean satisfiability and combinatorial optimization as continuous physical
+        systems rather than discrete search problems.
+      </p>
+      <p style="margin-top: 15px;">
+        <a href="https://shunyabar.foo/" target="_blank"><i class="fas fa-external-link-alt"></i> Visit shunyabar.foo</a>
+      </p>
     </div>
-    
-    <div class="testimonial-box">
-      <h3>LLM Interpretability Metrics</h3>
-      <p>Ongoing research in developing novel interpretability metrics for large language models to enhance transparency in decision-making and improve model trustworthiness.</p>
-      <p><strong>Status:</strong> In progress</p>
+
+    <div class="project-grid" style="margin-top: 30px;">
+      <!-- NitroSAT -->
+      <div class="project-card">
+        <div class="project-info">
+          <h3 class="project-title">NitroSAT</h3>
+          <p class="project-desc">The SAT solver that removes the search tree. Continuous gradient flow replaces
+            backtracking. Prime-weighted hyperbolic geometry breaks symmetry traps. Linear O(M) time on industrial
+            instances.</p>
+          <div class="project-tags">
+            <span class="project-tag">SAT Solver</span>
+            <span class="project-tag">Prime Weights</span>
+            <span class="project-tag">C + LuaJIT</span>
+          </div>
+          <a href="https://sethuiyer.github.io/NitroSAT/" target="_blank" class="mt-15 inline-block">
+            <i class="fas fa-external-link-alt"></i> View NitroSAT
+          </a>
+        </div>
+      </div>
+
+      <!-- BAHA -->
+      <div class="project-card">
+        <div class="project-info">
+          <h3 class="project-title">BAHA</h3>
+          <p class="project-desc">An optimizer that detects thermodynamic phase transitions. When algorithms freeze,
+            BAHA computes the exact escape path using Lambert-W branch enumeration. Deterministic basin-hopping replaces
+            random restarts.</p>
+          <div class="project-tags">
+            <span class="project-tag">Optimization</span>
+            <span class="project-tag">Thermodynamics</span>
+            <span class="project-tag">C++</span>
+          </div>
+          <a href="https://sethuiyer.github.io/baha/" target="_blank" class="mt-15 inline-block">
+            <i class="fas fa-external-link-alt"></i> View BAHA
+          </a>
+          <a href="https://sethuiyer.github.io/casimir-sat-solver/" target="_blank" class="mt-15 inline-block"
+            style="margin-left: 15px;">
+            <i class="fas fa-external-link-alt"></i> View Casimir SAT Solver
+          </a>
+        </div>
+      </div>
+
+      <!-- Multiplicative PINNs -->
+      <div class="project-card">
+        <div class="project-info">
+          <h3 class="project-title">Multiplicative PINNs</h3>
+          <p class="project-desc">Constraint learning without gradient conflict. Euler product gates align physics and
+            data losses. Solves the gradient pathology problem, dropping conflicts from 45% to just 2%.</p>
+          <div class="project-tags">
+            <span class="project-tag">Physics-Informed NNs</span>
+            <span class="project-tag">CFD</span>
+            <span class="project-tag">Python</span>
+          </div>
+          <a href="https://sethuiyer.github.io/multiplicative-pinn-framework/" target="_blank"
+            class="mt-15 inline-block">
+            <i class="fas fa-external-link-alt"></i> View Multiplicative PINNs
+          </a>
+        </div>
+      </div>
+
+      <!-- Navokoj -->
+      <div class="project-card">
+        <div class="project-info">
+          <h3 class="project-title">Navokoj API</h3>
+          <p class="project-desc">Enterprise constraint intelligence platform. GPU-accelerated API with six engines
+            (Nano, Mini, Pro, Hybrid, Q-State, Zeta). Includes DEFEKT diagnostics for pre-solve analysis and solvability
+            prediction.</p>
+          <div class="project-tags">
+            <span class="project-tag">Enterprise</span>
+            <span class="project-tag">GPU-accelerated</span>
+            <span class="project-tag">API</span>
+          </div>
+          <a href="https://shunyabar.foo/" target="_blank" class="mt-15 inline-block">
+            <i class="fas fa-external-link-alt"></i> View Navokoj
+          </a>
+        </div>
+      </div>
     </div>
-    
-    <div class="testimonial-box">
-      <h3>Episodic Memory Mechanisms in LLMs</h3>
-      <p>Research exploring innovative approaches to enhance long-text coherence in large language models through the integration of episodic memory mechanisms.</p>
-      <p><strong>Status:</strong> In progress</p>
+
+    <div class="testimonial-box" style="margin-top: 30px;">
+      <h3><i class="fas fa-book"></i> Publications (Zenodo)</h3>
+      <ul style="margin-top: 15px; padding-left: 20px;">
+        <li style="margin-bottom: 15px;">
+          <a href="https://doi.org/10.5281/zenodo.18753235" target="_blank">NitroSAT: A Physics-Informed MaxSAT Solver
+            Using Heat Kernel Diffusion, Persistent Homology, and Branch-Aware Holonomy Annealing</a>
+          <br><span style="font-size: 0.9em; color: #666;">Sethurathienam Iyer (2026)</span>
+        </li>
+        <li style="margin-bottom: 15px;">
+          <a href="https://doi.org/10.5281/zenodo.18373732" target="_blank">Multiplicative Calculus for Hardness
+            Detection and Branch-Aware Optimization</a>
+          <br><span style="font-size: 0.9em; color: #666;">Sethurathienam Iyer (2026)</span>
+        </li>
+        <li style="margin-bottom: 15px;">
+          <a href="https://doi.org/10.5281/zenodo.18214172" target="_blank">ShunyaBar: Spectral–Arithmetic Phase
+            Transitions for Combinatorial Optimization</a>
+          <br><span style="font-size: 0.9em; color: #666;">Sethurathienam Iyer (2025)</span>
+        </li>
+        <li style="margin-bottom: 15px;">
+          <a href="https://doi.org/10.5281/zenodo.17596089" target="_blank">Spectral-Multiplicative Optimization
+            Framework</a>
+          <br><span style="font-size: 0.9em; color: #666;">Sethurathienam Iyer (2025)</span>
+        </li>
+        <li>
+          <a href="https://doi.org/10.5281/zenodo.17394165" target="_blank">Solving SAT with Quantum Vacuum Dynamics</a>
+          <br><span style="font-size: 0.9em; color: #666;">Sethurathienam Iyer (2025)</span>
+        </li>
+      </ul>
+      <div style="margin-top: 20px; padding: 15px; background: #fff3cd; border: 1px solid #ffc107; border-radius: 4px;">
+        <p style="margin: 0; font-size: 0.9em;"><strong><i class="fas fa-paper-plane"></i> Seeking arXiv Endorsement</strong></p>
+        <p style="margin: 10px 0 0 0; font-size: 0.85em;">Sethurathienam Iyer requests your endorsement to submit an article to the math.NT section of arXiv.</p>
+        <p style="margin: 10px 0 0 0; font-size: 0.85em;"><a href="https://arxiv.org/auth/endorse?x=7YQOQ9" target="_blank">https://arxiv.org/auth/endorse?x=7YQOQ9</a></p>
+        <p style="margin: 5px 0 0 0; font-size: 0.8em; color: #666;">Endorsement Code: 7YQOQ9</p>
+      </div>
     </div>
   </section>
 
   <!-- Contact Section -->
   <section id="contact" class="contact-section container animated-section">
     <h2 class="section-title">Get in Touch</h2>
-    
+
     <div class="contact-info text-center mb-30">
       <p><i class="fas fa-envelope"></i> Email: <a href="mailto:sethuiyer95@gmail.com">sethuiyer95@gmail.com</a></p>
     </div>
@@ -789,12 +954,14 @@
           <i class="fas fa-blog"></i>
         </a>
       </div>
-      
-      <p class="footer-text">© 2025 Sethu Iyer. All rights reserved. <span class="vintage-label">$ echo "Built by Sethu Iyer | 2014 - 2025" > /dev/null</span></p>
+
+      <p class="footer-text">© 2026 Sethu Iyer. All rights reserved. <span class="vintage-label">$ echo "Built by Sethu
+          Iyer | 2014 - 2026" > /dev/null</span></p>
     </div>
   </footer>
 
   <script src="js/script.js"></script>
-  
+
 </body>
-</html> 
+
+</html>
