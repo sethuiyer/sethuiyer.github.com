@@ -60,15 +60,15 @@ All projects use prime weights for constraint identity:
 - Factor Agent: Agent/capability weighting
 
 ### Partition Function
-All projects use $Z(\beta) = \sum e^{-\beta E(s)}$:
-- BAHA: Fracture detection via $\rho(\beta)$
+All projects use \(Z(\beta) = \sum e^{-\beta E(s)}\):
+- BAHA: Fracture detection via \(\rho(\beta)\)
 - Navokoj: Energy definition for geometric flow
 - Multiplicative PINN: Local partition function per constraint
 - Casimir SAT: Equilibrium sampling distribution
 
 ### Phase Transitions
 - BAHA: Direct detection via Lambert W
-- NitroSAT: Critical $\beta$ scaling
+- NitroSAT: Critical \(\beta\) scaling
 - Navokoj: Adiabatic quench schedule
 - Spectral-Multiplicative: Heat kernel smoothing
 

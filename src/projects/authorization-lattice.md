@@ -20,7 +20,7 @@ A lattice is a partially ordered set where any two elements have a unique greate
 
 Each capability receives a prime weight. The **divisibility relation** determines permission inheritance:
 
-$$p_a | p_b \iff \text{capability } a \subseteq \text{capability } b$$
+\(p_a | p_b \iff \text{capability } a \subseteq \text{capability } b\)
 
 This is **exact** — no ambiguity, no override rules, no special cases.
 

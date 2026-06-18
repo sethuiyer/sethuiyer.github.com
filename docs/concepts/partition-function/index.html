@@ -1700,46 +1700,46 @@
 <p><strong>Why this matters</strong>: By watching how the partition function changes as you cool the system, you can detect when the solution landscape is about to "fracture" — when it goes from one smooth surface to many disconnected pieces. This fracture is the root of computational hardness.</p>
 <hr />
 <h2 id="the-mathematics">The Mathematics<a class="headerlink" href="#the-mathematics" title="Permanent link">&para;</a></h2>
-<div class="arithmatex">\[Z(\beta) = \sum_{s \in \mathcal{S}} e^{-\beta E(s)}\]</div>
+<p><span class="arithmatex">\(Z(\beta) = \sum_{s \in \mathcal{S}} e^{-\beta E(s)}\)</span></p>
 <p>Where:
 - <span class="arithmatex">\(\mathcal{S}\)</span> is the <strong>state space</strong> (all possible solutions)
 - <span class="arithmatex">\(E(s)\)</span> is the <strong>energy</strong> of state <span class="arithmatex">\(s\)</span>
 - <span class="arithmatex">\(\beta = 1/T\)</span> is the <strong>inverse temperature</strong>
 - The sum runs over all states</p>
 <p>The partition function generates all thermodynamic quantities:</p>
-<div class="arithmatex">\[\langle E \rangle = -\frac{d}{d\beta} \ln Z(\beta)$$
-$$C_v = \frac{d^2}{d\beta^2} \ln Z(\beta)$$
-$$\rho(\beta) = \left| \frac{d}{d\beta} \ln Z(\beta) \right| \quad \text{(fracture detector)}\]</div>
+<p><span class="arithmatex">\(\langle E \rangle = -\frac{d}{d\beta} \ln Z(\beta)\)</span>
+<span class="arithmatex">\(C_v = \frac{d^2}{d\beta^2} \ln Z(\beta)\)</span>
+<span class="arithmatex">\(\rho(\beta) = \left| \frac{d}{d\beta} \ln Z(\beta) \right| \quad \text{-- fracture detector}\)</span></p>
 <hr />
 <h2 id="role-across-projects">Role Across Projects<a class="headerlink" href="#role-across-projects" title="Permanent link">&para;</a></h2>
 <h3 id="baha">BAHA<a class="headerlink" href="#baha" title="Permanent link">&para;</a></h3>
-<p>BAHA monitors <span class="arithmatex">\(\rho(\beta) = |d/d\beta \ln Z|\)</span> to detect when the landscape fractures:</p>
+<p>BAHA monitors <span class="arithmatex">\(\rho(\beta) = \left| \frac{d}{d\beta} \log Z(\beta) \right|\)</span> to detect when the landscape fractures:</p>
 <ul>
 <li>When <span class="arithmatex">\(\rho\)</span> exceeds a threshold, the system has entered a <strong>saddle-node bifurcation</strong></li>
 <li>BAHA then uses the Lambert W function to enumerate branches and jump to different basins</li>
 </ul>
 <h3 id="navokoj">Navokoj<a class="headerlink" href="#navokoj" title="Permanent link">&para;</a></h3>
 <p>Defines energy as:
-$<span class="arithmatex">\(E = -\mathbf{w} \cdot \log P(\text{clause satisfied})\)</span>$</p>
+<span class="arithmatex">\(E = -\mathbf{w} \cdot \log P(\text{clause satisfied})\)</span></p>
 <p>The geometric flow on the Arithmetic Manifold minimizes this energy.</p>
 <h3 id="multiplicative-pinn">Multiplicative PINN<a class="headerlink" href="#multiplicative-pinn" title="Permanent link">&para;</a></h3>
 <p>The constraint factor <span class="arithmatex">\(C(\mathbf{v}) \sim e^{\gamma \mathbf{v}}\)</span> is a <strong>local partition function</strong> — it summarizes constraint satisfaction at each point in weight space.</p>
 <h3 id="casimir-sat">Casimir SAT<a class="headerlink" href="#casimir-sat" title="Permanent link">&para;</a></h3>
 <p>The Langevin dynamics samples from:
-$<span class="arithmatex">\(P(s) \propto e^{-\beta E(s)}\)</span>$</p>
+<span class="arithmatex">\(P(s) \propto e^{-\beta E(s)}\)</span></p>
 <p>This is the equilibrium distribution of the partition function at temperature T.</p>
 <h3 id="spectral-multiplicative-framework">Spectral-Multiplicative Framework<a class="headerlink" href="#spectral-multiplicative-framework" title="Permanent link">&para;</a></h3>
 <p>The heat kernel trace:
-$<span class="arithmatex">\(\text{Tr}(e^{-tL}) \approx Z(\beta)\)</span>$</p>
+<span class="arithmatex">\(\text{Tr}(e^{-tL}) \approx Z(\beta)\)</span></p>
 <p>is computed on the graph Laplacian <span class="arithmatex">\(L\)</span>, giving spectral access to the partition function on large graphs.</p>
 <hr />
 <h2 id="the-fracture-detection-formula">The Fracture Detection Formula<a class="headerlink" href="#the-fracture-detection-formula" title="Permanent link">&para;</a></h2>
 <p>The key observable is:</p>
-<div class="arithmatex">\[\rho(\beta) = \left| \frac{d}{d\beta} \ln Z(\beta) \right|\]</div>
+<p><span class="arithmatex">\(\rho(\beta) = \left| \frac{d}{d\beta} \ln Z(\beta) \right|\)</span></p>
 <p>This measures the <strong>rate of free energy change</strong> with temperature. When <span class="arithmatex">\(\rho\)</span> spikes, the system is undergoing a phase transition — the landscape is fracturing into multiple basins.</p>
 <p>The Lambert W function describes the bifurcation:</p>
-<div class="arithmatex">\[C = \frac{4\delta^2}{k_{max}^2 \cdot d_{clause} \cdot \beta}$$
-$$\ln K^* = -C \cdot W\left(-\frac{1}{C}\right)\]</div>
+<p><span class="arithmatex">\(C = \frac{4\delta^2}{k_{max}^2 \cdot d_{clause} \cdot \beta}\)</span>
+<span class="arithmatex">\(\ln K^* = -C \cdot W\left(-\frac{1}{C}\right)\)</span></p>
 <p>This <span class="arithmatex">\(\ln K / \ln \ln K\)</span> scaling is the fingerprint of prime-weighted systems.</p>
 <hr />
 <h2 id="key-insight">Key Insight<a class="headerlink" href="#key-insight" title="Permanent link">&para;</a></h2>

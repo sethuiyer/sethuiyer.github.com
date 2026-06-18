@@ -1671,18 +1671,18 @@
 <p>Enterprise-scale graph partitioning (100K+ variables) with rigorous mathematical guarantees. Solves the NP-hard balanced graph partitioning problem using spectral heat kernels and quantum-inspired Casimir forces.</p>
 <h2 id="key-innovation">Key Innovation<a class="headerlink" href="#key-innovation" title="Permanent link">&para;</a></h2>
 <p><strong>Heat Kernel Spectral Action</strong>:</p>
-<div class="arithmatex">\[\text{Tr}(e^{-tL}) \approx Z(\beta)\]</div>
+<p><span class="arithmatex">\(\text{Tr}(e^{-tL}) \approx Z(\beta)\)</span></p>
 <p>Computed via <strong>Taylor series approximation</strong> in O(nnz) (sparse matrix-vector multiply) instead of O(n³).</p>
 <p><strong>Multiplicative Prime-Weight Constraints</strong>:</p>
-<div class="arithmatex">\[P_{\text{mult}} = \prod_{v} \left(1 - \frac{1}{p_v^2}\right)\]</div>
+<p><span class="arithmatex">\(P_{\text{mult}} = \prod_{v} \left(1 - \frac{1}{p_v^2}\right)\)</span></p>
 <p><strong>Casimir Force Diagnostics</strong>:</p>
 <p>The Casimir effect (quantum vacuum fluctuations between conducting plates) provides a model for how "almost-satisfying" configurations coagulate into stable solutions.</p>
 <h3 id="angular-parameterization">Angular Parameterization<a class="headerlink" href="#angular-parameterization" title="Permanent link">&para;</a></h3>
 <p>Variables are embedded in <span class="arithmatex">\([0, 2\pi)^K\)</span> for discrete optimization:</p>
-<div class="arithmatex">\[x_i = \frac{1}{2}(1 + \cos \theta_i)\]</div>
+<p><span class="arithmatex">\(x_i = \frac{1}{2}(1 + \cos \theta_i)\)</span></p>
 <p>This ensures continuous values while maintaining discrete interpretability.</p>
 <h3 id="unified-energy-function">Unified Energy Function<a class="headerlink" href="#unified-energy-function" title="Permanent link">&para;</a></h3>
-<div class="arithmatex">\[E = \underbrace{\text{Tr}(e^{-tL})}_{\text{spectral}} + \underbrace{\lambda_1 E_{\text{balance}}}_{\text{penalty}} + \underbrace{\lambda_2 H_{\text{Shannon}}}_{\text{entropy}} + \underbrace{\lambda_3 P_{\text{mult}}}_{\text{multiplicative}}\]</div>
+<p><span class="arithmatex">\(E = \underbrace{\text{Tr}(e^{-tL})}_{\text{spectral}} + \underbrace{\lambda_1 E_{\text{balance}}}_{\text{penalty}} + \underbrace{\lambda_2 H_{\text{Shannon}}}_{\text{entropy}} + \underbrace{\lambda_3 P_{\text{mult}}}_{\text{multiplicative}}\)</span></p>
 <h3 id="correlation-guard">Correlation Guard<a class="headerlink" href="#correlation-guard" title="Permanent link">&para;</a></h3>
 <p>Maintains <span class="arithmatex">\(\rho \geq 0.99\)</span> between spectral and multiplicative functionals — ensuring both views of the problem agree.</p>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>

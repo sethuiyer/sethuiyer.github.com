@@ -8,13 +8,13 @@ Enterprise-scale graph partitioning (100K+ variables) with rigorous mathematical
 
 **Heat Kernel Spectral Action**:
 
-$$\text{Tr}(e^{-tL}) \approx Z(\beta)$$
+\(\text{Tr}(e^{-tL}) \approx Z(\beta)\)
 
 Computed via **Taylor series approximation** in O(nnz) (sparse matrix-vector multiply) instead of O(n³).
 
 **Multiplicative Prime-Weight Constraints**:
 
-$$P_{\text{mult}} = \prod_{v} \left(1 - \frac{1}{p_v^2}\right)$$
+\(P_{\text{mult}} = \prod_{v} \left(1 - \frac{1}{p_v^2}\right)\)
 
 **Casimir Force Diagnostics**:
 
@@ -22,19 +22,19 @@ The Casimir effect (quantum vacuum fluctuations between conducting plates) provi
 
 ### Angular Parameterization
 
-Variables are embedded in $[0, 2\pi)^K$ for discrete optimization:
+Variables are embedded in \([0, 2\pi)^K\) for discrete optimization:
 
-$$x_i = \frac{1}{2}(1 + \cos \theta_i)$$
+\(x_i = \frac{1}{2}(1 + \cos \theta_i)\)
 
 This ensures continuous values while maintaining discrete interpretability.
 
 ### Unified Energy Function
 
-$$E = \underbrace{\text{Tr}(e^{-tL})}_{\text{spectral}} + \underbrace{\lambda_1 E_{\text{balance}}}_{\text{penalty}} + \underbrace{\lambda_2 H_{\text{Shannon}}}_{\text{entropy}} + \underbrace{\lambda_3 P_{\text{mult}}}_{\text{multiplicative}}$$
+\(E = \underbrace{\text{Tr}(e^{-tL})}_{\text{spectral}} + \underbrace{\lambda_1 E_{\text{balance}}}_{\text{penalty}} + \underbrace{\lambda_2 H_{\text{Shannon}}}_{\text{entropy}} + \underbrace{\lambda_3 P_{\text{mult}}}_{\text{multiplicative}}\)
 
 ### Correlation Guard
 
-Maintains $\rho \geq 0.99$ between spectral and multiplicative functionals — ensuring both views of the problem agree.
+Maintains \(\rho \geq 0.99\) between spectral and multiplicative functionals — ensuring both views of the problem agree.
 
 ## Results
 

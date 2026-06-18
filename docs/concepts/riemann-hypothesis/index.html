@@ -1787,23 +1787,23 @@
 <p>As clause count <span class="arithmatex">\(K\)</span> grows, two forces compete in the constraint graph:</p>
 <h3 id="1-geometric-weakening">1. Geometric Weakening<a class="headerlink" href="#1-geometric-weakening" title="Permanent link">&para;</a></h3>
 <p>The spectral gap closes as constraints proliferate:</p>
-<div class="arithmatex">\[\lambda_2(G_K) \sim K^{-\gamma}\]</div>
+<p><span class="arithmatex">\(\lambda_2(G_K) \sim K^{-\gamma}\)</span></p>
 <p>The spectral gap determines how quickly information (gradients) diffuses through the constraint graph. When the gap closes, diffusion slows — the landscape becomes rough.</p>
 <h3 id="2-prime-fluctuation-decay">2. Prime Fluctuation Decay<a class="headerlink" href="#2-prime-fluctuation-decay" title="Permanent link">&para;</a></h3>
 <p>The distribution of primes causes fluctuations in the weight function. The variance of these fluctuations decays as:</p>
-<div class="arithmatex">\[\Phi(K) \sim K^{\sigma - 1}\]</div>
+<p><span class="arithmatex">\(\Phi(K) \sim K^{\sigma - 1}\)</span></p>
 <p>where <span class="arithmatex">\(\sigma\)</span> is the supremum of real parts of <span class="arithmatex">\(\zeta(s)\)</span> zeros.</p>
 <p><strong>Key</strong>: If RH is true, <span class="arithmatex">\(\sigma = 1/2\)</span>, so <span class="arithmatex">\(\Phi(K) \sim K^{-1/2}\)</span>.</p>
 <hr />
 <h2 id="the-stability-condition">The Stability Condition<a class="headerlink" href="#the-stability-condition" title="Permanent link">&para;</a></h2>
 <p>For gradient flow to remain stable as <span class="arithmatex">\(K \to \infty\)</span>:</p>
-<div class="arithmatex">\[1 - \sigma &gt; \gamma\]</div>
+<p><span class="arithmatex">\(1 - \sigma &gt; \gamma\)</span></p>
 <p>This is the <strong>Arithmetic Stability Condition (ASC)</strong>.</p>
 <h3 id="case-1-rh-is-true-12">Case 1: RH is True (σ = 1/2)<a class="headerlink" href="#case-1-rh-is-true-12" title="Permanent link">&para;</a></h3>
-<div class="arithmatex">\[1 - 1/2 = 1/2 &gt; \gamma\]</div>
+<p><span class="arithmatex">\(1 - 1/2 = 1/2 &gt; \gamma\)</span></p>
 <p>For any <span class="arithmatex">\(\gamma &lt; 1/2\)</span>, the system is stable. The spectral gap closes slower than prime fluctuations decay.</p>
 <h3 id="case-2-rh-is-false-12">Case 2: RH is False (σ &gt; 1/2)<a class="headerlink" href="#case-2-rh-is-false-12" title="Permanent link">&para;</a></h3>
-<div class="arithmatex">\[1 - \sigma &lt; 1/2\]</div>
+<p><span class="arithmatex">\(1 - \sigma &lt; 1/2\)</span></p>
 <p>There exists some <span class="arithmatex">\(\gamma\)</span> such that <span class="arithmatex">\(1 - \sigma &lt; \gamma\)</span>, and the system becomes unstable at scale.</p>
 <hr />
 <h2 id="the-asymptotic-lock-conjecture">The Asymptotic Lock Conjecture<a class="headerlink" href="#the-asymptotic-lock-conjecture" title="Permanent link">&para;</a></h2>
@@ -1821,28 +1821,28 @@
 <p>The solver's behavior changes at the RH boundary — above it, the solver is stable; below it, the solver degrades.</p>
 <h3 id="connection-to-phase-transitions">Connection to Phase Transitions<a class="headerlink" href="#connection-to-phase-transitions" title="Permanent link">&para;</a></h3>
 <p>The Lambert W phase transition threshold:</p>
-<div class="arithmatex">\[\ln K^* = -C \cdot W\left(-\frac{1}{C}\right)\]</div>
+<p><span class="arithmatex">\(\ln K^* = -C \cdot W\left(-\frac{1}{C}\right)\)</span></p>
 <p>and the Riemann stability condition:</p>
-<div class="arithmatex">\[1 - \sigma &gt; \gamma\]</div>
+<p><span class="arithmatex">\(1 - \sigma &gt; \gamma\)</span></p>
 <p>are <strong>two views of the same phenomenon</strong>:
 - The Lambert W tells you when the landscape fractures locally
 - The RH condition tells you when fractures are unrecoverable at scale</p>
 <hr />
 <h2 id="the-euler-product-connection">The Euler Product Connection<a class="headerlink" href="#the-euler-product-connection" title="Permanent link">&para;</a></h2>
 <p>The Riemann zeta function:</p>
-<div class="arithmatex">\[\zeta(s) = \prod_{p} \frac{1}{1 - p^{-s}}\]</div>
+<p><span class="arithmatex">\(\zeta(s) = \prod_{p} \frac{1}{1 - p^{-s}}\)</span></p>
 <p>is the <strong>continuous limit</strong> of the prime-weighted constraint factor:</p>
-<div class="arithmatex">\[P_{\text{mult}} = \prod_{v} \left(1 - \frac{1}{p_v^2}\right) \to \frac{1}{\zeta(2)}\]</div>
+<p><span class="arithmatex">\(P_{\text{mult}} = \prod_{v} \left(1 - \frac{1}{p_v^2}\right) \to \frac{1}{\zeta(2)}\)</span></p>
 <p>The phase transition at <span class="arithmatex">\(\beta = 1\)</span> (where <span class="arithmatex">\(\zeta(1) = \infty\)</span>) is the point where the multiplicative constraint factor diverges — this is the "superconducting phase" where constraints propagate without dissipation.</p>
 <hr />
 <h2 id="mathematical-details">Mathematical Details<a class="headerlink" href="#mathematical-details" title="Permanent link">&para;</a></h2>
 <h3 id="the-prime-number-theorem">The Prime Number Theorem<a class="headerlink" href="#the-prime-number-theorem" title="Permanent link">&para;</a></h3>
 <p>The Prime Number Theorem states:</p>
-<div class="arithmatex">\[\pi(x) \sim \frac{x}{\ln x}\]</div>
+<p><span class="arithmatex">\(\pi(x) \sim \frac{x}{\ln x}\)</span></p>
 <p>This controls the asymptotic behavior of prime weights <span class="arithmatex">\(W(p_K) = 1/(1 + \ln p_K)\)</span>.</p>
 <h3 id="the-explicit-formula">The Explicit Formula<a class="headerlink" href="#the-explicit-formula" title="Permanent link">&para;</a></h3>
 <p>The connection between <span class="arithmatex">\(\zeta(s)\)</span> and primes is made precise by:</p>
-<div class="arithmatex">\[\psi(x) = \sum_{n \leq x} \Lambda(n) = x - \sum_{\rho} \frac{x^\rho}{\rho} - \ln(2\pi)\]</div>
+<p><span class="arithmatex">\(\psi(x) = \sum_{n \leq x} \Lambda(n) = x - \sum_{\rho} \frac{x^\rho}{\rho} - \ln(2\pi)\)</span></p>
 <p>where <span class="arithmatex">\(\Lambda\)</span> is the von Mangoldt function and the sum is over non-trivial zeros <span class="arithmatex">\(\rho\)</span> of <span class="arithmatex">\(\zeta(s)\)</span>.</p>
 <p>This formula shows exactly how the zeros of <span class="arithmatex">\(\zeta(s)\)</span> control the distribution of primes.</p>
 <hr />

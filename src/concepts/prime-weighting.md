@@ -12,26 +12,26 @@ Prime weighting solves this by giving every constraint a unique mathematical ide
 
 ## The Mathematics
 
-Each constraint $c$ receives a prime $p_c$ and weight:
+Each constraint \(c\) receives a prime \(p_c\) and weight:
 
-$$W(p_c) = \frac{1}{1 + \ln(p_c)}$$
+\(W(p_c) = \frac{1}{1 + \ln(p_c)}\)
 
 **Key properties**:
 
 - **Monotonic**: Larger primes → smaller weights (refinement, not dominance)
 - **Logarithmic suppression**: Prevents large primes from vanishing entirely
-- **Prime Number Theorem**: The $K$-th prime $p_K \sim K \ln K$, so weights scale consistently
+- **Prime Number Theorem**: The \(K\)-th prime \(p_K \sim K \ln K\), so weights scale consistently
 
 ### Why This Formula?
 
-The weight formula $W(p) = 1/(1 + \ln p)$ emerges from the **Prime Number Theorem**:
+The weight formula \(W(p) = 1/(1 + \ln p)\) emerges from the **Prime Number Theorem**:
 
-$$p_K \sim K \ln K$$
+\(p_K \sim K \ln K\)
 
 This means:
-$$\frac{1}{1 + \ln p_K} \sim \frac{1}{1 + \ln K + \ln \ln K}$$
+\(\frac{1}{1 + \ln p_K} \sim \frac{1}{1 + \ln K + \ln \ln K}\)
 
-So the $K$-th constraint receives weight $\approx 1/K$ — a natural harmonic scaling that matches the structure of modular arithmetic.
+So the \(K\)-th constraint receives weight \(\approx 1/K\) — a natural harmonic scaling that matches the structure of modular arithmetic.
 
 ---
 
@@ -39,13 +39,13 @@ So the $K$-th constraint receives weight $\approx 1/K$ — a natural harmonic sc
 
 The prime weights connect to the Riemann zeta function via the **Euler product**:
 
-$$\zeta(s) = \prod_{p \text{ prime}} \frac{1}{1 - p^{-s}}$$
+\(\zeta(s) = \prod_{p \text{ prime}} \frac{1}{1 - p^{-s}}\)
 
 When constraints compose multiplicatively:
 
-$$P_{\text{mult}} = \prod_{v} \left(1 - \frac{1}{p_v^2}\right) \approx \prod_{p} \left(1 - \frac{1}{p^{2}}\right) = \frac{1}{\zeta(2)} = \frac{6}{\pi^2}$$
+\(P_{\text{mult}} = \prod_{v} \left(1 - \frac{1}{p_v^2}\right) \approx \prod_{p} \left(1 - \frac{1}{p^{2}}\right) = \frac{1}{\zeta(2)} = \frac{6}{\pi^2}\)
 
-The constraint satisfaction probability approaches $\zeta(2)^{-1}$ — a constant! This is the **multiplicative bootstrap** that makes the system stable.
+The constraint satisfaction probability approaches \(\zeta(2)^{-1}\) — a constant! This is the **multiplicative bootstrap** that makes the system stable.
 
 ---
 
@@ -57,7 +57,7 @@ Every integer factors uniquely into primes. This means:
 
 - **Multiplicative independence**: No prime can be expressed as a product of other primes
 - **Unique factorization**: Each constraint's gradient signature is distinct
-- **No collisions**: The mapping $c \to p_c$ is injective
+- **No collisions**: The mapping \(c \to p_c\) is injective
 
 ### Contrast with Uniform Weights
 
@@ -85,7 +85,7 @@ The prime-weighted system:
 ## Prime Weighting in Practice
 
 ### BAHA
-Each clause gets a prime weight; the fracture detector monitors the free energy gradient $\rho(\beta)$.
+Each clause gets a prime weight; the fracture detector monitors the free energy gradient \(\rho(\beta)\).
 
 ### Navokoj
 The Arithmetic Sector uses prime-weighted operators as the identity kernel — each constraint flows along its own geometric path.
@@ -94,7 +94,7 @@ The Arithmetic Sector uses prime-weighted operators as the identity kernel — e
 Each physics constraint (Navier-Stokes, Poisson, etc.) receives a distinct prime weight, enabling multiplicative enforcement without gradient conflicts.
 
 ### Spectral-Multiplicative Framework
-Graph partitioning constraints receive prime weights that maintain $\rho \geq 0.99$ correlation between spectral and multiplicative functionals.
+Graph partitioning constraints receive prime weights that maintain \(\rho \geq 0.99\) correlation between spectral and multiplicative functionals.
 
 ---
 

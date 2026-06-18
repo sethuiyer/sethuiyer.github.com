@@ -10,7 +10,7 @@ NitroSAT maps Boolean satisfiability to a **physics-informed dynamical system on
 
 1. **Continuous Relaxation**: Maps Boolean variables to continuous values in [0,1]
 2. **Prime Weighting**: Number-theoretic clause weights via Prime Number Theorem
-3. **Heat Kernel Diffusion**: Spectral smoothing via $\exp(t\Delta)$
+3. **Heat Kernel Diffusion**: Spectral smoothing via \(\exp(t\Delta)\)
 4. **BAHA**: Lambert W function for phase transitions
 5. **Persistent Homology**: Tracks Betti numbers to guide repair
 6. **NADAM Optimization**: Nesterov-accelerated adaptive moment estimation
@@ -19,17 +19,17 @@ NitroSAT maps Boolean satisfiability to a **physics-informed dynamical system on
 
 Uses the **Inverted Poincaré Disk** metric:
 
-$$ds^2 = \frac{4|dz|^2}{(|z|^2(1-|z|^2)^2)}$$
+\(ds^2 = \frac{4|dz|^2}{(|z|^2(1-|z|^2)^2)}\)
 
 This provides a natural geometry for probability-valued variables.
 
 ### Free Energy
 
-$$F[x] = \lambda E_{kin}[x] + E_{pot}[x] - \frac{1}{\beta}S[x]$$
+\(F[x] = \lambda E_{kin}[x] + E_{pot}[x] - \frac{1}{\beta}S[x]\)
 
 Gradient flow:
 
-$$\frac{\partial x}{\partial t} = -\frac{\delta F}{\delta x}$$
+\(\frac{\partial x}{\partial t} = -\frac{\delta F}{\delta x}\)
 
 ## Results
 

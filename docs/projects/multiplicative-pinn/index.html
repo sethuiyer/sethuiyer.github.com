@@ -1665,15 +1665,15 @@
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Arithmetic Manifold: Loss = DataLoss × ConstraintFactor(PhysicsLoss)  (multiplicative)
 </code></pre></div>
 <p>The <strong>Euler Gate</strong>:
-$<span class="arithmatex">\(G(\mathbf{v}) = \prod_{c} (1 - p_c^{-\tau v_c})\)</span>$</p>
+<span class="arithmatex">\(G(\mathbf{v}) = \prod_{c} (1 - p_c^{-\tau v_c})\)</span></p>
 <p>The <strong>Exponential Barrier</strong>:
-$<span class="arithmatex">\(B(\mathbf{v}) = \exp(\gamma \|\mathbf{v}\|_2^2)\)</span>$</p>
+<span class="arithmatex">\(B(\mathbf{v}) = \exp(\gamma \|\mathbf{v}\|_2^2)\)</span></p>
 <p>Combined: <span class="arithmatex">\(C(\mathbf{v}) = G(\mathbf{v}) \times B(\mathbf{v})\)</span></p>
 <h3 id="why-it-works">Why It Works<a class="headerlink" href="#why-it-works" title="Permanent link">&para;</a></h3>
 <p>When constraints are satisfied, <span class="arithmatex">\(G(\mathbf{v}) \to 1\)</span> and <span class="arithmatex">\(B(\mathbf{v}) \approx 1\)</span>. When violated, <span class="arithmatex">\(G(\mathbf{v}) \to 0\)</span> and <span class="arithmatex">\(B(\mathbf{v}) \to \infty\)</span>. The product <strong>zeroes out</strong> any solution that violates a constraint.</p>
 <h3 id="superconducting-phase">Superconducting Phase<a class="headerlink" href="#superconducting-phase" title="Permanent link">&para;</a></h3>
 <p>At critical <span class="arithmatex">\(\beta = 1\)</span>, the Riemann zeta function diverges:
-$<span class="arithmatex">\(\zeta(1) = \infty\)</span>$</p>
+<span class="arithmatex">\(\zeta(1) = \infty\)</span></p>
 <p>This nucleates a "superconducting phase" where constraints propagate without dissipation — gradients flow freely when physics is satisfied.</p>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <table>

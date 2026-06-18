@@ -21,11 +21,11 @@ In SAT solving:
 
 ### The Dynamics
 
-Variables are probabilities $x_i \in [0,1]$. The Langevin dynamics:
+Variables are probabilities \(x_i \in [0,1]\). The Langevin dynamics:
 
-$$\frac{dx_i}{dt} = -\eta \frac{\partial E}{\partial x_i} + \sqrt{2T} \xi$$
+\(\frac{dx_i}{dt} = -\eta \frac{\partial E}{\partial x_i} + \sqrt{2T} \xi\)
 
-where $\xi$ is Gaussian noise. This samples from $P(s) \propto e^{-\beta E(s)}$ — the partition function equilibrium distribution.
+where \(\xi\) is Gaussian noise. This samples from \(P(s) \propto e^{-\beta E(s)}\) — the partition function equilibrium distribution.
 
 ## The Blog
 

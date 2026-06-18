@@ -1702,7 +1702,7 @@
 <h2 id="the-five-proof-points">The Five Proof Points<a class="headerlink" href="#the-five-proof-points" title="Permanent link">&para;</a></h2>
 <h3 id="1-primes-provide-identity">1. Primes Provide Identity<a class="headerlink" href="#1-primes-provide-identity" title="Permanent link">&para;</a></h3>
 <p>Each constraint in a problem gets a unique prime weight:</p>
-<div class="arithmatex">\[W(p_c) = \frac{1}{1 + \ln(p_c)}\]</div>
+<p><span class="arithmatex">\(W(p_c) = \frac{1}{1 + \ln(p_c)}\)</span></p>
 <p><strong>Why primes?</strong></p>
 <ul>
 <li><strong>Fundamental Theorem of Arithmetic</strong>: Primes are multiplicatively independent — no prime can be expressed as a product of other primes</li>
@@ -1725,15 +1725,17 @@
 <hr />
 <h3 id="3-phase-transitions-are-detectable-and-navigable">3. Phase Transitions Are Detectable and Navigable<a class="headerlink" href="#3-phase-transitions-are-detectable-and-navigable" title="Permanent link">&para;</a></h3>
 <p>Hard problems "crack" at phase transitions. When the landscape fractures (thermodynamic fracture), standard gradient descent fails.</p>
-<p>BAHA detects fractures via:
-$<span class="arithmatex">\(\rho(\beta) = \left| \frac{d}{d\beta} \log Z(\beta) \right|\)</span>$</p>
+<p>BAHA detects fractures via:</p>
+<div class="arithmatex">\[
+\rho(\beta) = \left| \frac{d}{d\beta} \log Z(\beta) \right|
+\]</div>
 <p>When ρ exceeds a threshold, the system enters a <strong>saddle-node bifurcation</strong> governed by the <strong>Lambert W function</strong>:</p>
-<div class="arithmatex">\[\ln K^* = -C \cdot W\left(-\frac{1}{C}\right)\]</div>
+<p><span class="arithmatex">\(\ln K^* = -C \cdot W\left(-\frac{1}{C}\right)\)</span></p>
 <p>This ln K / ln ln K scaling is a <strong>fingerprint of the prime weight function</strong> — no other weighting produces this specific scaling law.</p>
 <hr />
 <h3 id="4-the-partition-function-is-universal">4. The Partition Function Is Universal<a class="headerlink" href="#4-the-partition-function-is-universal" title="Permanent link">&para;</a></h3>
 <p>Every project begins with the <strong>partition function</strong>:</p>
-<div class="arithmatex">\[Z(\beta) = \sum_{s \in \mathcal{S}} e^{-\beta E(s)}\]</div>
+<p><span class="arithmatex">\(Z(\beta) = \sum_{s \in \mathcal{S}} e^{-\beta E(s)}\)</span></p>
 <p>where <span class="arithmatex">\(\mathcal{S}\)</span> is the state space, <span class="arithmatex">\(E(s)\)</span> is the energy of state s, and β is inverse temperature.</p>
 <table>
 <thead>

@@ -12,15 +12,15 @@ Constraint satisfaction problems have phase transitions too. At certain problem 
 
 ## The SAT Phase Transition
 
-For random K-SAT with $K=3$:
+For random K-SAT with \(K=3\):
 
-$$\alpha \approx 4.27 \text{ clauses per variable}$$
+\(\alpha \approx 4.27 \text{ clauses per variable}\)
 
 | Regime | Behavior |
 |--------|----------|
-| $\alpha < 4.2$ | Almost all formulas are satisfiable; solutions are easy to find |
-| $\alpha \approx 4.27$ | **Phase transition** — solutions exist but are hard to find |
-| $\alpha > 4.3$ | Almost all formulas are unsatisfiable |
+| \(\alpha < 4.2\) | Almost all formulas are satisfiable; solutions are easy to find |
+| \(\alpha \approx 4.27\) | **Phase transition** — solutions exist but are hard to find |
+| \(\alpha > 4.3\) | Almost all formulas are unsatisfiable |
 
 The phase transition is marked by the **appearance of a giant connected component** in the solution space, surrounded by exponentially many small clusters. This fragmentation is what makes problems hard.
 
@@ -32,9 +32,9 @@ BAHA introduces the concept of **thermodynamic fracture** — when the solution 
 
 The fracture detector monitors:
 
-$$\rho(\beta) = \left| \frac{d}{d\beta} \ln Z(\beta) \right|$$
+\(\rho(\beta) = \left| \frac{d}{d\beta} \ln Z(\beta) \right|\)
 
-When $\rho$ exceeds a threshold, the system has entered the fractured regime:
+When \(\rho\) exceeds a threshold, the system has entered the fractured regime:
 
 ```
 Low ρ (smooth landscape)     High ρ (fractured landscape)
@@ -48,15 +48,15 @@ Convex optimization           Non-convex nightmare
 
 ## The Lambert W Function
 
-The exit from the strongly convex regime is governed by the **Lambert W function** — the inverse of $f(w) = w e^w$.
+The exit from the strongly convex regime is governed by the **Lambert W function** — the inverse of \(f(w) = w e^w\).
 
 The critical condition:
 
-$$C = \frac{4\delta^2}{k_{max}^2 \cdot d_{clause} \cdot \beta}$$
+\(C = \frac{4\delta^2}{k_{max}^2 \cdot d_{clause} \cdot \beta}\)
 
-The critical problem size $K^*$ at which phase transition occurs:
+The critical problem size \(K^*\) at which phase transition occurs:
 
-$$\ln K^* = -C \cdot W\left(-\frac{1}{C}\right)$$
+\(\ln K^* = -C \cdot W\left(-\frac{1}{C}\right)\)
 
 **The ln K / ln ln K scaling** is a fingerprint of prime-weighted systems — no other weighting function produces this exact asymptotic.
 
@@ -64,12 +64,12 @@ $$\ln K^* = -C \cdot W\left(-\frac{1}{C}\right)$$
 
 The Lambert W function has two real branches:
 
-- **$W_0(z)$** (principal branch): Small arguments, smooth basin transitions
-- **$W_{-1}(z)$** (secondary branch): Large arguments, escape from deep local minima
+- **\(W_0(z)\)** (principal branch): Small arguments, smooth basin transitions
+- **\(W_{-1}(z)\)** (secondary branch): Large arguments, escape from deep local minima
 
 BAHA uses both branches:
-- $W_0$ for normal operation
-- $W_{-1}$ for escaping fractured basins
+- \(W_0\) for normal operation
+- \(W_{-1}\) for escaping fractured basins
 
 ---
 
@@ -77,13 +77,13 @@ BAHA uses both branches:
 
 ### BAHA
 
-BAHA detects fractures via $\rho(\beta)$ and uses Lambert W branches to enumerate new basins. When the landscape fractures, BAHA jumps to a different basin rather than trying to climb out.
+BAHA detects fractures via \(\rho(\beta)\) and uses Lambert W branches to enumerate new basins. When the landscape fractures, BAHA jumps to a different basin rather than trying to climb out.
 
 ### NitroSAT
 
-NitroSAT embeds the critical $\beta$ scaling:
+NitroSAT embeds the critical \(\beta\) scaling:
 
-$$\ln K^* = -C \cdot W\left(-\frac{1}{C}\right)$$
+\(\ln K^* = -C \cdot W\left(-\frac{1}{C}\right)\)
 
 This tells the solver when to switch from spectral initialization to BAHA-powered repair.
 
@@ -91,13 +91,13 @@ This tells the solver when to switch from spectral initialization to BAHA-powere
 
 The adiabatic quench schedule:
 
-$$\beta(t) = \beta_0 + r t$$
+\(\beta(t) = \beta_0 + r t\)
 
 is designed to pass through the phase transition slowly — adiabatic meaning "slow enough to stay in equilibrium."
 
 ### Spectral-Multiplicative Framework
 
-The heat kernel $e^{-tL}$ smooths the landscape near phase transitions, acting as a **preconditioner** that makes the transition less severe.
+The heat kernel \(e^{-tL}\) smooths the landscape near phase transitions, acting as a **preconditioner** that makes the transition less severe.
 
 ---
 
@@ -106,7 +106,7 @@ The heat kernel $e^{-tL}$ smooths the landscape near phase transitions, acting a
 Phase transitions are simultaneously:
 
 1. **The source of hardness** — The fractured landscape has exponentially many local minima
-2. **A source of signal** — The fracture detector $\rho(\beta)$ tells you exactly when you're in trouble
+2. **A source of signal** — The fracture detector \(\rho(\beta)\) tells you exactly when you're in trouble
 3. **A design opportunity** — By knowing where the phase transition is, you can design algorithms that handle it specifically
 
 Standard simulated annealing ignores phase transitions — it just cools down and hopes for the best. BAHA **detects and targets** the phase transition directly.

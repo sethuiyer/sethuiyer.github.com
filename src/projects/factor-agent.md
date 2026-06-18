@@ -24,7 +24,7 @@ The Elixir/OTP supervision tree implements:
 
 When a perturbation arrives, the system computes:
 
-$$z' = z + kM, \text{ where } M = \prod_{p \in S} p$$
+\(z' = z + kM, \text{ where } M = \prod_{p \in S} p\)
 
 This is **identical to the CRT repair** in Geometry of Conditional Logic! The same safe-corridor mathematics applies to multi-agent repair.
 

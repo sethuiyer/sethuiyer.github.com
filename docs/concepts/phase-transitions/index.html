@@ -1729,7 +1729,7 @@
 <hr />
 <h2 id="the-sat-phase-transition">The SAT Phase Transition<a class="headerlink" href="#the-sat-phase-transition" title="Permanent link">&para;</a></h2>
 <p>For random K-SAT with <span class="arithmatex">\(K=3\)</span>:</p>
-<div class="arithmatex">\[\alpha \approx 4.27 \text{ clauses per variable}\]</div>
+<p><span class="arithmatex">\(\alpha \approx 4.27 \text{ clauses per variable}\)</span></p>
 <table>
 <thead>
 <tr>
@@ -1757,7 +1757,7 @@
 <h2 id="thermodynamic-fracture">Thermodynamic Fracture<a class="headerlink" href="#thermodynamic-fracture" title="Permanent link">&para;</a></h2>
 <p>BAHA introduces the concept of <strong>thermodynamic fracture</strong> — when the solution landscape shatters at the phase transition.</p>
 <p>The fracture detector monitors:</p>
-<div class="arithmatex">\[\rho(\beta) = \left| \frac{d}{d\beta} \ln Z(\beta) \right|\]</div>
+<p><span class="arithmatex">\(\rho(\beta) = \left| \frac{d}{d\beta} \ln Z(\beta) \right|\)</span></p>
 <p>When <span class="arithmatex">\(\rho\)</span> exceeds a threshold, the system has entered the fractured regime:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Low ρ (smooth landscape)     High ρ (fractured landscape)
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>─────────────────────         ─────────────────────────────
@@ -1769,9 +1769,9 @@
 <h2 id="the-lambert-w-function">The Lambert W Function<a class="headerlink" href="#the-lambert-w-function" title="Permanent link">&para;</a></h2>
 <p>The exit from the strongly convex regime is governed by the <strong>Lambert W function</strong> — the inverse of <span class="arithmatex">\(f(w) = w e^w\)</span>.</p>
 <p>The critical condition:</p>
-<div class="arithmatex">\[C = \frac{4\delta^2}{k_{max}^2 \cdot d_{clause} \cdot \beta}\]</div>
+<p><span class="arithmatex">\(C = \frac{4\delta^2}{k_{max}^2 \cdot d_{clause} \cdot \beta}\)</span></p>
 <p>The critical problem size <span class="arithmatex">\(K^*\)</span> at which phase transition occurs:</p>
-<div class="arithmatex">\[\ln K^* = -C \cdot W\left(-\frac{1}{C}\right)\]</div>
+<p><span class="arithmatex">\(\ln K^* = -C \cdot W\left(-\frac{1}{C}\right)\)</span></p>
 <p><strong>The ln K / ln ln K scaling</strong> is a fingerprint of prime-weighted systems — no other weighting function produces this exact asymptotic.</p>
 <h3 id="the-two-branches">The Two Branches<a class="headerlink" href="#the-two-branches" title="Permanent link">&para;</a></h3>
 <p>The Lambert W function has two real branches:</p>
@@ -1788,11 +1788,11 @@
 <p>BAHA detects fractures via <span class="arithmatex">\(\rho(\beta)\)</span> and uses Lambert W branches to enumerate new basins. When the landscape fractures, BAHA jumps to a different basin rather than trying to climb out.</p>
 <h3 id="nitrosat">NitroSAT<a class="headerlink" href="#nitrosat" title="Permanent link">&para;</a></h3>
 <p>NitroSAT embeds the critical <span class="arithmatex">\(\beta\)</span> scaling:</p>
-<div class="arithmatex">\[\ln K^* = -C \cdot W\left(-\frac{1}{C}\right)\]</div>
+<p><span class="arithmatex">\(\ln K^* = -C \cdot W\left(-\frac{1}{C}\right)\)</span></p>
 <p>This tells the solver when to switch from spectral initialization to BAHA-powered repair.</p>
 <h3 id="navokoj">Navokoj<a class="headerlink" href="#navokoj" title="Permanent link">&para;</a></h3>
 <p>The adiabatic quench schedule:</p>
-<div class="arithmatex">\[\beta(t) = \beta_0 + r t\]</div>
+<p><span class="arithmatex">\(\beta(t) = \beta_0 + r t\)</span></p>
 <p>is designed to pass through the phase transition slowly — adiabatic meaning "slow enough to stay in equilibrium."</p>
 <h3 id="spectral-multiplicative-framework">Spectral-Multiplicative Framework<a class="headerlink" href="#spectral-multiplicative-framework" title="Permanent link">&para;</a></h3>
 <p>The heat kernel <span class="arithmatex">\(e^{-tL}\)</span> smooths the landscape near phase transitions, acting as a <strong>preconditioner</strong> that makes the transition less severe.</p>

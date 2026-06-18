@@ -1748,7 +1748,7 @@
 <hr />
 <h2 id="the-problem-with-additive">The Problem with Additive<a class="headerlink" href="#the-problem-with-additive" title="Permanent link">&para;</a></h2>
 <p>Standard PINN loss:</p>
-<div class="arithmatex">\[\mathcal{L} = \mathcal{L}_{\text{data}} + \lambda_1 \mathcal{L}_{\text{physics}} + \lambda_2 \mathcal{L}_{\text{BC}}\]</div>
+<p><span class="arithmatex">\(\mathcal{L} = \mathcal{L}_{\text{data}} + \lambda_1 \mathcal{L}_{\text{physics}} + \lambda_2 \mathcal{L}_{\text{BC}}\)</span></p>
 <p><strong>Gradient conflicts arise</strong>:
 - The gradient of <span class="arithmatex">\(\mathcal{L}_{\text{data}}\)</span> may point opposite to <span class="arithmatex">\(\mathcal{L}_{\text{physics}}\)</span>
 - The weights <span class="arithmatex">\(\lambda_1, \lambda_2\)</span> must be tuned by hand
@@ -1757,27 +1757,27 @@
 <hr />
 <h2 id="the-multiplicative-solution">The Multiplicative Solution<a class="headerlink" href="#the-multiplicative-solution" title="Permanent link">&para;</a></h2>
 <p>The Arithmetic Manifold replaces additive penalties with multiplicative constraint factors:</p>
-<div class="arithmatex">\[\mathcal{L} = \mathcal{L}_{\text{data}} \times C(\mathbf{v})\]</div>
+<p><span class="arithmatex">\(\mathcal{L} = \mathcal{L}_{\text{data}} \times C(\mathbf{v})\)</span></p>
 <p>Where the constraint factor is:</p>
-<div class="arithmatex">\[C(\mathbf{v}) = \underbrace{G(\mathbf{v})}_{\text{Euler Gate}} \times \underbrace{B(\mathbf{v})}_{\text{Exponential Barrier}}\]</div>
+<p><span class="arithmatex">\(C(\mathbf{v}) = \underbrace{G(\mathbf{v})}_{\text{Euler Gate}} \times \underbrace{B(\mathbf{v})}_{\text{Exponential Barrier}}\)</span></p>
 <h3 id="euler-gate-attenuates-violations">Euler Gate (attenuates violations)<a class="headerlink" href="#euler-gate-attenuates-violations" title="Permanent link">&para;</a></h3>
-<div class="arithmatex">\[G(\mathbf{v}) = \prod_{c} \left(1 - p_c^{-\tau v_c}\right)\]</div>
+<p><span class="arithmatex">\(G(\mathbf{v}) = \prod_{c} \left(1 - p_c^{-\tau v_c}\right)\)</span></p>
 <p>When constraint <span class="arithmatex">\(c\)</span> is satisfied (<span class="arithmatex">\(v_c &gt; 0\)</span>), the gate attenuates. The product structure means <strong>all constraints contribute simultaneously</strong>.</p>
 <h3 id="exponential-barrier-amplifies-violations">Exponential Barrier (amplifies violations)<a class="headerlink" href="#exponential-barrier-amplifies-violations" title="Permanent link">&para;</a></h3>
-<div class="arithmatex">\[B(\mathbf{v}) = \exp(\gamma \|\mathbf{v}\|_2^2)\]</div>
+<p><span class="arithmatex">\(B(\mathbf{v}) = \exp(\gamma \|\mathbf{v}\|_2^2)\)</span></p>
 <p>When any constraint is violated, the barrier grows exponentially, pulling the optimizer back.</p>
 <hr />
 <h2 id="why-multiplicative-works">Why Multiplicative Works<a class="headerlink" href="#why-multiplicative-works" title="Permanent link">&para;</a></h2>
 <h3 id="1-no-gradient-cancellation">1. No Gradient Cancellation<a class="headerlink" href="#1-no-gradient-cancellation" title="Permanent link">&para;</a></h3>
 <p>When constraints compose multiplicatively:</p>
-<div class="arithmatex">\[\frac{\partial}{\partial \theta} \ln C(\mathbf{v}) = \sum_c \frac{\partial \ln g_c}{\partial \theta}\]</div>
+<p><span class="arithmatex">\(\frac{\partial}{\partial \theta} \ln C(\mathbf{v}) = \sum_c \frac{\partial \ln g_c}{\partial \theta}\)</span></p>
 <p>The <strong>logarithm converts products to sums</strong>. Gradient contributions add — they don't cancel.</p>
 <h3 id="2-self-normalizing">2. Self-Normalizing<a class="headerlink" href="#2-self-normalizing" title="Permanent link">&para;</a></h3>
-<div class="arithmatex">\[0 &lt; G(\mathbf{v}) &lt; 1 \quad \text{and} \quad B(\mathbf{v}) &gt; 1\]</div>
+<p><span class="arithmatex">\(0 &lt; G(\mathbf{v}) &lt; 1 \quad \text{and} \quad B(\mathbf{v}) &gt; 1\)</span></p>
 <p>The Euler gate is bounded; the barrier grows monotonically. The product <span class="arithmatex">\(C(\mathbf{v})\)</span> never explodes or vanishes (for finite <span class="arithmatex">\(\gamma\)</span>).</p>
 <h3 id="3-phase-transition-at-critical">3. Phase Transition at Critical β<a class="headerlink" href="#3-phase-transition-at-critical" title="Permanent link">&para;</a></h3>
 <p>At critical inverse temperature <span class="arithmatex">\(\beta = 1\)</span>, the Riemann zeta function diverges:</p>
-<div class="arithmatex">\[\zeta(1) = \infty\]</div>
+<p><span class="arithmatex">\(\zeta(1) = \infty\)</span></p>
 <p>This nucleates a <strong>"superconducting phase"</strong> where constraints propagate without dissipation. The optimization landscape becomes convex.</p>
 <hr />
 <h2 id="results-multiplicative-vs-additive">Results: Multiplicative vs Additive<a class="headerlink" href="#results-multiplicative-vs-additive" title="Permanent link">&para;</a></h2>
@@ -1825,7 +1825,7 @@
 <hr />
 <h2 id="connection-to-euler-products">Connection to Euler Products<a class="headerlink" href="#connection-to-euler-products" title="Permanent link">&para;</a></h2>
 <p>The Euler product structure:</p>
-<div class="arithmatex">\[\zeta(s) = \prod_{p} \frac{1}{1 - p^{-s}}\]</div>
+<p><span class="arithmatex">\(\zeta(s) = \prod_{p} \frac{1}{1 - p^{-s}}\)</span></p>
 <p>Is the <strong>continuous limit</strong> of the multiplicative constraint factor. As <span class="arithmatex">\(s \to 1\)</span>, <span class="arithmatex">\(\zeta(s) \to \infty\)</span> — the product diverges. This is the phase transition that creates the superconducting regime.</p>
 <hr />
 <h2 id="key-insight">Key Insight<a class="headerlink" href="#key-insight" title="Permanent link">&para;</a></h2>

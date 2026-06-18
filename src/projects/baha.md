@@ -6,9 +6,16 @@ Simulated annealing gets stuck in local minima because it treats the solution la
 
 ## Key Innovation
 
-**Thermodynamic Fracture Detection**: BAHA monitors $\rho(\beta) = |d/d\beta \ln Z|$ to detect when the landscape shatters into multiple disconnected basins.
+**Thermodynamic Fracture Detection**: BAHA monitors
 
-**Lambert W Branch Enumeration**: When fracture is detected, BAHA uses both $W_0$ (principal) and $W_{-1}$ (secondary) branches of the Lambert W function to enumerate new basins and jump selectively.
+\[
+\rho(\beta) = \left| \frac{d}{d\beta} \log Z(\beta) \right|
+
+\]
+
+to detect when the landscape shatters into multiple disconnected basins.
+
+**Lambert W Branch Enumeration**: When fracture is detected, BAHA uses both \(W_0\) (principal) and \(W_{-1}\) (secondary) branches of the Lambert W function to enumerate new basins and jump selectively.
 
 **Why it works**: The ln K / ln ln K scaling of the phase transition is a fingerprint of prime-weighted systems. No other weighting function produces this exact asymptotic.
 
@@ -47,4 +54,4 @@ BranchAwareOptimizer
 
 ## Connection to Core Vision
 
-BAHA is the **phase transition engine** of the Arithmetic Manifold. It detects when the landscape fractures (via $\rho(\beta)$) and provides the navigation mechanism (Lambert W branches) to escape. All other algorithms use BAHA or a BAHA-like detection when operating near criticality.
+BAHA is the **phase transition engine** of the Arithmetic Manifold. It detects when the landscape fractures (via \(\rho(\beta)\)) and provides the navigation mechanism (Lambert W branches) to escape. All other algorithms use BAHA or a BAHA-like detection when operating near criticality.

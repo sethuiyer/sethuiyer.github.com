@@ -22,11 +22,11 @@ Now make this mathematical. In physics-informed neural networks (PINNs), the add
 
 Standard PINN loss:
 
-$$\mathcal{L} = \mathcal{L}_{\text{data}} + \lambda_1 \mathcal{L}_{\text{physics}} + \lambda_2 \mathcal{L}_{\text{BC}}$$
+\(\mathcal{L} = \mathcal{L}_{\text{data}} + \lambda_1 \mathcal{L}_{\text{physics}} + \lambda_2 \mathcal{L}_{\text{BC}}\)
 
 **Gradient conflicts arise**:
-- The gradient of $\mathcal{L}_{\text{data}}$ may point opposite to $\mathcal{L}_{\text{physics}}$
-- The weights $\lambda_1, \lambda_2$ must be tuned by hand
+- The gradient of \(\mathcal{L}_{\text{data}}\) may point opposite to \(\mathcal{L}_{\text{physics}}\)
+- The weights \(\lambda_1, \lambda_2\) must be tuned by hand
 - At convergence, gradients may cancel, causing oscillations
 
 **Result**: 31.31% monotonicity violations in Navier-Stokes (standard approach).
@@ -37,21 +37,21 @@ $$\mathcal{L} = \mathcal{L}_{\text{data}} + \lambda_1 \mathcal{L}_{\text{physics
 
 The Arithmetic Manifold replaces additive penalties with multiplicative constraint factors:
 
-$$\mathcal{L} = \mathcal{L}_{\text{data}} \times C(\mathbf{v})$$
+\(\mathcal{L} = \mathcal{L}_{\text{data}} \times C(\mathbf{v})\)
 
 Where the constraint factor is:
 
-$$C(\mathbf{v}) = \underbrace{G(\mathbf{v})}_{\text{Euler Gate}} \times \underbrace{B(\mathbf{v})}_{\text{Exponential Barrier}}$$
+\(C(\mathbf{v}) = \underbrace{G(\mathbf{v})}_{\text{Euler Gate}} \times \underbrace{B(\mathbf{v})}_{\text{Exponential Barrier}}\)
 
 ### Euler Gate (attenuates violations)
 
-$$G(\mathbf{v}) = \prod_{c} \left(1 - p_c^{-\tau v_c}\right)$$
+\(G(\mathbf{v}) = \prod_{c} \left(1 - p_c^{-\tau v_c}\right)\)
 
-When constraint $c$ is satisfied ($v_c > 0$), the gate attenuates. The product structure means **all constraints contribute simultaneously**.
+When constraint \(c\) is satisfied (\(v_c > 0\)), the gate attenuates. The product structure means **all constraints contribute simultaneously**.
 
 ### Exponential Barrier (amplifies violations)
 
-$$B(\mathbf{v}) = \exp(\gamma \|\mathbf{v}\|_2^2)$$
+\(B(\mathbf{v}) = \exp(\gamma \|\mathbf{v}\|_2^2)\)
 
 When any constraint is violated, the barrier grows exponentially, pulling the optimizer back.
 
@@ -63,21 +63,21 @@ When any constraint is violated, the barrier grows exponentially, pulling the op
 
 When constraints compose multiplicatively:
 
-$$\frac{\partial}{\partial \theta} \ln C(\mathbf{v}) = \sum_c \frac{\partial \ln g_c}{\partial \theta}$$
+\(\frac{\partial}{\partial \theta} \ln C(\mathbf{v}) = \sum_c \frac{\partial \ln g_c}{\partial \theta}\)
 
 The **logarithm converts products to sums**. Gradient contributions add — they don't cancel.
 
 ### 2. Self-Normalizing
 
-$$0 < G(\mathbf{v}) < 1 \quad \text{and} \quad B(\mathbf{v}) > 1$$
+\(0 < G(\mathbf{v}) < 1 \quad \text{and} \quad B(\mathbf{v}) > 1\)
 
-The Euler gate is bounded; the barrier grows monotonically. The product $C(\mathbf{v})$ never explodes or vanishes (for finite $\gamma$).
+The Euler gate is bounded; the barrier grows monotonically. The product \(C(\mathbf{v})\) never explodes or vanishes (for finite \(\gamma\)).
 
 ### 3. Phase Transition at Critical β
 
-At critical inverse temperature $\beta = 1$, the Riemann zeta function diverges:
+At critical inverse temperature \(\beta = 1\), the Riemann zeta function diverges:
 
-$$\zeta(1) = \infty$$
+\(\zeta(1) = \infty\)
 
 This nucleates a **"superconducting phase"** where constraints propagate without dissipation. The optimization landscape becomes convex.
 
@@ -111,9 +111,9 @@ When you're in the superconducting phase, all constraints are satisfied simultan
 
 The Euler product structure:
 
-$$\zeta(s) = \prod_{p} \frac{1}{1 - p^{-s}}$$
+\(\zeta(s) = \prod_{p} \frac{1}{1 - p^{-s}}\)
 
-Is the **continuous limit** of the multiplicative constraint factor. As $s \to 1$, $\zeta(s) \to \infty$ — the product diverges. This is the phase transition that creates the superconducting regime.
+Is the **continuous limit** of the multiplicative constraint factor. As \(s \to 1\), \(\zeta(s) \to \infty\) — the product diverges. This is the phase transition that creates the superconducting regime.
 
 ---
 

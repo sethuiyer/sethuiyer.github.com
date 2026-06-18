@@ -16,9 +16,9 @@ The same is true for constraints: without prime weighting, every constraint look
 
 ### 2. The Riemann Zeta Function as Infinite Memory
 
-$$\zeta(s) = \sum_{n=1}^{\infty} \frac{1}{n^s} = \prod_{p} \frac{1}{1 - p^{-s}}$$
+\(\zeta(s) = \sum_{n=1}^{\infty} \frac{1}{n^s} = \prod_{p} \frac{1}{1 - p^{-s}}\)
 
-The zeta function **remembers all primes simultaneously**. The Euler product shows that $\zeta(s)$ encodes the entire structure of primality.
+The zeta function **remembers all primes simultaneously**. The Euler product shows that \(\zeta(s)\) encodes the entire structure of primality.
 
 This is memory in the thermodynamic sense: not stored data, but **coordinated dynamics** that preserve information across scales.
 
@@ -35,9 +35,9 @@ The essay makes a precise claim:
 > As K clauses grow, stability requires prime fluctuation decay (σ) to exceed spectral gap closure (γ) — the same condition as the Riemann Hypothesis.
 
 This isn't a metaphor. The asymptotic stability condition:
-$$1 - \sigma > \gamma$$
+\(1 - \sigma > \gamma\)
 
-is **literally the same statement** as the Riemann Hypothesis condition when $\gamma = 1/2$.
+is **literally the same statement** as the Riemann Hypothesis condition when \(\gamma = 1/2\).
 
 ## Key Files
 

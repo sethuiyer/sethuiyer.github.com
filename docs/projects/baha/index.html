@@ -1642,7 +1642,11 @@
 <h2 id="what-it-solves">What It Solves<a class="headerlink" href="#what-it-solves" title="Permanent link">&para;</a></h2>
 <p>Simulated annealing gets stuck in local minima because it treats the solution landscape as one smooth surface. BAHA detects when the landscape <strong>fractures</strong> (thermodynamic fracture) and uses complex-plane branch enumeration to jump to entirely different solution basins.</p>
 <h2 id="key-innovation">Key Innovation<a class="headerlink" href="#key-innovation" title="Permanent link">&para;</a></h2>
-<p><strong>Thermodynamic Fracture Detection</strong>: BAHA monitors <span class="arithmatex">\(\rho(\beta) = |d/d\beta \ln Z|\)</span> to detect when the landscape shatters into multiple disconnected basins.</p>
+<p><strong>Thermodynamic Fracture Detection</strong>: BAHA monitors</p>
+<p>[
+\rho(\beta) = \left| \frac{d}{d\beta} \log Z(\beta) \right|</p>
+<p>]</p>
+<p>to detect when the landscape shatters into multiple disconnected basins.</p>
 <p><strong>Lambert W Branch Enumeration</strong>: When fracture is detected, BAHA uses both <span class="arithmatex">\(W_0\)</span> (principal) and <span class="arithmatex">\(W_{-1}\)</span> (secondary) branches of the Lambert W function to enumerate new basins and jump selectively.</p>
 <p><strong>Why it works</strong>: The ln K / ln ln K scaling of the phase transition is a fingerprint of prime-weighted systems. No other weighting function produces this exact asymptotic.</p>
 <h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>

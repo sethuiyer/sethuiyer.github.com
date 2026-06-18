@@ -16,7 +16,7 @@ Constraint satisfaction as **geometric flow** — treating constraints as flowin
 
 ### Energy Definition
 
-$$E = -\mathbf{w} \cdot \log P(\text{clause satisfied})$$
+\(E = -\mathbf{w} \cdot \log P(\text{clause satisfied})\)
 
 Each clause contributes to the energy based on its prime weight and satisfaction probability.
 
@@ -24,7 +24,7 @@ Each clause contributes to the energy based on its prime weight and satisfaction
 
 The system is cooled slowly through the phase transition:
 
-$$\beta(t) = \beta_0 + r t$$
+\(\beta(t) = \beta_0 + r t\)
 
 "Adiabatic" means slow enough that the system stays in equilibrium — it always knows where the ground state is.
 

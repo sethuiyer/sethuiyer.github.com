@@ -1757,7 +1757,7 @@
 <hr />
 <h2 id="the-mathematics">The Mathematics<a class="headerlink" href="#the-mathematics" title="Permanent link">&para;</a></h2>
 <p>Each constraint <span class="arithmatex">\(c\)</span> receives a prime <span class="arithmatex">\(p_c\)</span> and weight:</p>
-<div class="arithmatex">\[W(p_c) = \frac{1}{1 + \ln(p_c)}\]</div>
+<p><span class="arithmatex">\(W(p_c) = \frac{1}{1 + \ln(p_c)}\)</span></p>
 <p><strong>Key properties</strong>:</p>
 <ul>
 <li><strong>Monotonic</strong>: Larger primes → smaller weights (refinement, not dominance)</li>
@@ -1766,16 +1766,16 @@
 </ul>
 <h3 id="why-this-formula">Why This Formula?<a class="headerlink" href="#why-this-formula" title="Permanent link">&para;</a></h3>
 <p>The weight formula <span class="arithmatex">\(W(p) = 1/(1 + \ln p)\)</span> emerges from the <strong>Prime Number Theorem</strong>:</p>
-<div class="arithmatex">\[p_K \sim K \ln K\]</div>
+<p><span class="arithmatex">\(p_K \sim K \ln K\)</span></p>
 <p>This means:
-$<span class="arithmatex">\(\frac{1}{1 + \ln p_K} \sim \frac{1}{1 + \ln K + \ln \ln K}\)</span>$</p>
+<span class="arithmatex">\(\frac{1}{1 + \ln p_K} \sim \frac{1}{1 + \ln K + \ln \ln K}\)</span></p>
 <p>So the <span class="arithmatex">\(K\)</span>-th constraint receives weight <span class="arithmatex">\(\approx 1/K\)</span> — a natural harmonic scaling that matches the structure of modular arithmetic.</p>
 <hr />
 <h2 id="the-euler-product-connection">The Euler Product Connection<a class="headerlink" href="#the-euler-product-connection" title="Permanent link">&para;</a></h2>
 <p>The prime weights connect to the Riemann zeta function via the <strong>Euler product</strong>:</p>
-<div class="arithmatex">\[\zeta(s) = \prod_{p \text{ prime}} \frac{1}{1 - p^{-s}}\]</div>
+<p><span class="arithmatex">\(\zeta(s) = \prod_{p \text{ prime}} \frac{1}{1 - p^{-s}}\)</span></p>
 <p>When constraints compose multiplicatively:</p>
-<div class="arithmatex">\[P_{\text{mult}} = \prod_{v} \left(1 - \frac{1}{p_v^2}\right) \approx \prod_{p} \left(1 - \frac{1}{p^{2}}\right) = \frac{1}{\zeta(2)} = \frac{6}{\pi^2}\]</div>
+<p><span class="arithmatex">\(P_{\text{mult}} = \prod_{v} \left(1 - \frac{1}{p_v^2}\right) \approx \prod_{p} \left(1 - \frac{1}{p^{2}}\right) = \frac{1}{\zeta(2)} = \frac{6}{\pi^2}\)</span></p>
 <p>The constraint satisfaction probability approaches <span class="arithmatex">\(\zeta(2)^{-1}\)</span> — a constant! This is the <strong>multiplicative bootstrap</strong> that makes the system stable.</p>
 <hr />
 <h2 id="why-primes-are-special">Why Primes Are Special<a class="headerlink" href="#why-primes-are-special" title="Permanent link">&para;</a></h2>

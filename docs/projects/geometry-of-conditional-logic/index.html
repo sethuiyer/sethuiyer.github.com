@@ -1672,11 +1672,11 @@
 <h2 id="key-innovation">Key Innovation<a class="headerlink" href="#key-innovation" title="Permanent link">&para;</a></h2>
 <p><strong>Chinese Remainder Theorem (CRT) Encoding</strong>:</p>
 <p>Each Boolean condition is assigned a distinct prime <span class="arithmatex">\(p_i\)</span>. The CRT reconstruction is:</p>
-<div class="arithmatex">\[z' = z + kM, \text{ where } M = \prod_{p \in S} p$$
-$$k \equiv (c - z) \cdot M^{-1} \pmod{p_t}\]</div>
+<p><span class="arithmatex">\(z' = z + kM, \text{ where } M = \prod_{p \in S} p\)</span>
+<span class="arithmatex">\(k \equiv (c - z) \cdot M^{-1} \pmod{p_t}\)</span></p>
 <p>This is a <strong>"safe corridor"</strong> — a fully differentiable path that fixes broken constraints without disturbing solved ones.</p>
 <h3 id="smooth-cosine-loss">Smooth Cosine Loss<a class="headerlink" href="#smooth-cosine-loss" title="Permanent link">&para;</a></h3>
-<div class="arithmatex">\[L_i(z) = 1 - \cos\left(\frac{2\pi}{p_i} \cdot (z - a_i)\right)\]</div>
+<p><span class="arithmatex">\(L_i(z) = 1 - \cos\left(\frac{2\pi}{p_i} \cdot (z - a_i)\right)\)</span></p>
 <p>Each constraint gets a smooth sinusoidal "groove" — satisfying the constraint means falling into the groove.</p>
 <h3 id="garners-algorithm">Garner's Algorithm<a class="headerlink" href="#garners-algorithm" title="Permanent link">&para;</a></h3>
 <p>Fully differentiable CRT reconstruction that provides the safe corridor between solution basins.</p>

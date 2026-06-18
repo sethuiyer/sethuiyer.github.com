@@ -16,7 +16,7 @@ The central thesis:
 
 Each constraint in a problem gets a unique prime weight:
 
-$$W(p_c) = \frac{1}{1 + \ln(p_c)}$$
+\(W(p_c) = \frac{1}{1 + \ln(p_c)}\)
 
 **Why primes?**
 
@@ -53,11 +53,14 @@ This creates a "superconducting" optimization landscape where gradients flow wit
 Hard problems "crack" at phase transitions. When the landscape fractures (thermodynamic fracture), standard gradient descent fails.
 
 BAHA detects fractures via:
-$$\rho(\beta) = \left| \frac{d}{d\beta} \log Z(\beta) \right|$$
+
+\[
+\rho(\beta) = \left| \frac{d}{d\beta} \log Z(\beta) \right|
+\]
 
 When ρ exceeds a threshold, the system enters a **saddle-node bifurcation** governed by the **Lambert W function**:
 
-$$\ln K^* = -C \cdot W\left(-\frac{1}{C}\right)$$
+\(\ln K^* = -C \cdot W\left(-\frac{1}{C}\right)\)
 
 This ln K / ln ln K scaling is a **fingerprint of the prime weight function** — no other weighting produces this specific scaling law.
 
@@ -67,9 +70,9 @@ This ln K / ln ln K scaling is a **fingerprint of the prime weight function** �
 
 Every project begins with the **partition function**:
 
-$$Z(\beta) = \sum_{s \in \mathcal{S}} e^{-\beta E(s)}$$
+\(Z(\beta) = \sum_{s \in \mathcal{S}} e^{-\beta E(s)}\)
 
-where $\mathcal{S}$ is the state space, $E(s)$ is the energy of state s, and β is inverse temperature.
+where \(\mathcal{S}\) is the state space, \(E(s)\) is the energy of state s, and β is inverse temperature.
 
 | Project | Role of Z(β) |
 |---------|--------------|

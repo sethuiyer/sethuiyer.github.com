@@ -15,21 +15,21 @@ Arithmetic Manifold: Loss = DataLoss × ConstraintFactor(PhysicsLoss)  (multipli
 ```
 
 The **Euler Gate**:
-$$G(\mathbf{v}) = \prod_{c} (1 - p_c^{-\tau v_c})$$
+\(G(\mathbf{v}) = \prod_{c} (1 - p_c^{-\tau v_c})\)
 
 The **Exponential Barrier**:
-$$B(\mathbf{v}) = \exp(\gamma \|\mathbf{v}\|_2^2)$$
+\(B(\mathbf{v}) = \exp(\gamma \|\mathbf{v}\|_2^2)\)
 
-Combined: $C(\mathbf{v}) = G(\mathbf{v}) \times B(\mathbf{v})$
+Combined: \(C(\mathbf{v}) = G(\mathbf{v}) \times B(\mathbf{v})\)
 
 ### Why It Works
 
-When constraints are satisfied, $G(\mathbf{v}) \to 1$ and $B(\mathbf{v}) \approx 1$. When violated, $G(\mathbf{v}) \to 0$ and $B(\mathbf{v}) \to \infty$. The product **zeroes out** any solution that violates a constraint.
+When constraints are satisfied, \(G(\mathbf{v}) \to 1\) and \(B(\mathbf{v}) \approx 1\). When violated, \(G(\mathbf{v}) \to 0\) and \(B(\mathbf{v}) \to \infty\). The product **zeroes out** any solution that violates a constraint.
 
 ### Superconducting Phase
 
-At critical $\beta = 1$, the Riemann zeta function diverges:
-$$\zeta(1) = \infty$$
+At critical \(\beta = 1\), the Riemann zeta function diverges:
+\(\zeta(1) = \infty\)
 
 This nucleates a "superconducting phase" where constraints propagate without dissipation — gradients flow freely when physics is satisfied.
 

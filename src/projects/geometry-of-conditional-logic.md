@@ -8,16 +8,16 @@
 
 **Chinese Remainder Theorem (CRT) Encoding**:
 
-Each Boolean condition is assigned a distinct prime $p_i$. The CRT reconstruction is:
+Each Boolean condition is assigned a distinct prime \(p_i\). The CRT reconstruction is:
 
-$$z' = z + kM, \text{ where } M = \prod_{p \in S} p$$
-$$k \equiv (c - z) \cdot M^{-1} \pmod{p_t}$$
+\(z' = z + kM, \text{ where } M = \prod_{p \in S} p\)
+\(k \equiv (c - z) \cdot M^{-1} \pmod{p_t}\)
 
 This is a **"safe corridor"** — a fully differentiable path that fixes broken constraints without disturbing solved ones.
 
 ### Smooth Cosine Loss
 
-$$L_i(z) = 1 - \cos\left(\frac{2\pi}{p_i} \cdot (z - a_i)\right)$$
+\(L_i(z) = 1 - \cos\left(\frac{2\pi}{p_i} \cdot (z - a_i)\right)\)
 
 Each constraint gets a smooth sinusoidal "groove" — satisfying the constraint means falling into the groove.
 
