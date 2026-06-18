@@ -34,6 +34,10 @@ The essay explores:
 - The connection between quantum vacuum and constraint satisfaction
 - How "attractive forces" between almost-satisfying assignments lead to solutions
 
+## Website
+
+**Live:** [sethuiyer.github.io/casimir-sat-solver](https://sethuiyer.github.io/casimir-sat-solver)
+
 ## Key Files
 
 - `casimir-sat-solver/README.md` — Overview

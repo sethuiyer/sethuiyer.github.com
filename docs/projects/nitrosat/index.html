@@ -87,7 +87,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#nitrosat-physics-informed-maxsat-solver" class="md-skip">
+        <a href="#nitrosat-a-physics-informed-anytime-maxsat-approximator" class="md-skip">
           Skip to content
         </a>
       
@@ -866,10 +866,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-it-solves" class="md-nav__link">
+  <a href="#what-it-is" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What It Solves
+        What It Is
       
     </span>
   </a>
@@ -877,22 +877,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-innovation" class="md-nav__link">
+  <a href="#architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Key Innovation
+        Architecture
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Key Innovation">
+    <nav class="md-nav" aria-label="Architecture">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#the-metric" class="md-nav__link">
+  <a href="#1-continuous-relaxation-and-gradient-based-flow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The Metric
+        1. Continuous Relaxation and Gradient-Based Flow
       
     </span>
   </a>
@@ -900,10 +900,93 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#free-energy" class="md-nav__link">
+  <a href="#2-spectral-initialization-and-basin-navigation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Free Energy
+        2. Spectral Initialization and Basin Navigation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-topological-repair-and-cycle-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Topological Repair and Cycle Resolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-prime-number-weighting-and-symmetry-breaking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Prime Number Weighting and Symmetry Breaking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-the-metric-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. The Metric Space
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-free-energy-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Free Energy Framework
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Characteristics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Characteristics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where-it-excels-regular-and-structured-geometries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where It Excels: Regular and Structured Geometries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-it-encounters-limits-high-expansion-and-unstructured-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where It Encounters Limits: High-Expansion and Unstructured Graphs
       
     </span>
   </a>
@@ -927,6 +1010,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#limitations-self-assessment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations (Self-Assessment)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connection-to-the-arithmetic-manifold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connection to the Arithmetic Manifold
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#website" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Website
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#key-files" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -938,10 +1054,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#connection-to-core-vision" class="md-nav__link">
+  <a href="#citing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Connection to Core Vision
+        Citing
       
     </span>
   </a>
@@ -1690,27 +1806,106 @@
 
 
 
-<h1 id="nitrosat-physics-informed-maxsat-solver">NitroSAT: Physics-Informed MaxSAT Solver<a class="headerlink" href="#nitrosat-physics-informed-maxsat-solver" title="Permanent link">&para;</a></h1>
-<h2 id="what-it-solves">What It Solves<a class="headerlink" href="#what-it-solves" title="Permanent link">&para;</a></h2>
-<p>High-performance maximum satisfiability (MaxSAT) solving with O(M) linear time complexity. Handles massive CNF instances (100K+ variables) where traditional solvers fail.</p>
-<h2 id="key-innovation">Key Innovation<a class="headerlink" href="#key-innovation" title="Permanent link">&para;</a></h2>
-<p>NitroSAT maps Boolean satisfiability to a <strong>physics-informed dynamical system on a Riemannian manifold</strong>:</p>
-<ol>
-<li><strong>Continuous Relaxation</strong>: Maps Boolean variables to continuous values in [0,1]</li>
-<li><strong>Prime Weighting</strong>: Number-theoretic clause weights via Prime Number Theorem</li>
-<li><strong>Heat Kernel Diffusion</strong>: Spectral smoothing via <span class="arithmatex">\(\exp(t\Delta)\)</span></li>
-<li><strong>BAHA</strong>: Lambert W function for phase transitions</li>
-<li><strong>Persistent Homology</strong>: Tracks Betti numbers to guide repair</li>
-<li><strong>NADAM Optimization</strong>: Nesterov-accelerated adaptive moment estimation</li>
-</ol>
-<h3 id="the-metric">The Metric<a class="headerlink" href="#the-metric" title="Permanent link">&para;</a></h3>
-<p>Uses the <strong>Inverted Poincaré Disk</strong> metric:</p>
-<p><span class="arithmatex">\(ds^2 = \frac{4|dz|^2}{(|z|^2(1-|z|^2)^2)}\)</span></p>
-<p>This provides a natural geometry for probability-valued variables.</p>
-<h3 id="free-energy">Free Energy<a class="headerlink" href="#free-energy" title="Permanent link">&para;</a></h3>
-<p><span class="arithmatex">\(F[x] = \lambda E_{kin}[x] + E_{pot}[x] - \frac{1}{\beta}S[x]\)</span></p>
-<p>Gradient flow:</p>
-<p><span class="arithmatex">\(\frac{\partial x}{\partial t} = -\frac{\delta F}{\delta x}\)</span></p>
+<h1 id="nitrosat-a-physics-informed-anytime-maxsat-approximator">NitroSAT: A Physics-Informed Anytime MaxSAT Approximator<a class="headerlink" href="#nitrosat-a-physics-informed-anytime-maxsat-approximator" title="Permanent link">&para;</a></h1>
+<h2 id="what-it-is">What It Is<a class="headerlink" href="#what-it-is" title="Permanent link">&para;</a></h2>
+<p>NitroSAT is a continuous-relaxation MaxSAT solver that approaches hard constraint satisfaction problems through physics-informed optimization rather than classic discrete backtrack-search paradigms. It operates as a <strong>deterministic, sub-second anytime approximator</strong> — designed for massive, structured industrial instances where finding a high-quality solution quickly matters more than proving optimality.</p>
+<p>The core insight: by translating discrete logical constructs into continuous topological manifolds, NitroSAT bypasses the exponential search spaces that cripple CDCL solvers on structured geometries like hardware verification circuits, university timetabling, and grid-coloring problems.</p>
+<hr />
+<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<h3 id="1-continuous-relaxation-and-gradient-based-flow">1. Continuous Relaxation and Gradient-Based Flow<a class="headerlink" href="#1-continuous-relaxation-and-gradient-based-flow" title="Permanent link">&para;</a></h3>
+<p>Traditional SAT solvers operate in the discrete boolean domain <span class="arithmatex">\(\{0, 1\}^n\)</span>, where moving between states requires discrete variable flips. This makes the search space highly non-convex and susceptible to combinatorial explosions.</p>
+<p>NitroSAT relaxes variables from discrete bits to continuous coordinates within a bounded hypercube <span class="arithmatex">\([0, 1]^n\)</span>. This transforms the discrete constraint satisfaction problem into a continuous energy minimization problem.</p>
+<p><strong>WAdam Optimizer</strong>: The engine uses gradient-based flows to traverse the energy landscape. By computing gradients of a differentiable loss function constructed from the clauses, the solver navigates toward regions of high constraint satisfaction without committing to premature discrete branching choices.</p>
+<p><strong>Thermal/Langevin Annealing</strong>: To prevent the gradient flow from getting trapped in shallow local minima, the system incorporates thermal noise (<span class="arithmatex">\(\beta\)</span> sensitivity via Langevin dynamics). This allows the system to probabilistically "jump" over energy barriers during early optimization phases, cooling down over iterations to settle into a deep attraction basin.</p>
+<h3 id="2-spectral-initialization-and-basin-navigation">2. Spectral Initialization and Basin Navigation<a class="headerlink" href="#2-spectral-initialization-and-basin-navigation" title="Permanent link">&para;</a></h3>
+<p>A critical challenge in non-convex optimization is the starting point. Random initialization often lands the solver in highly chaotic regions of the landscape.</p>
+<p><strong>Spectral Methods</strong>: By leveraging spectral properties of the constraint graph (the Laplacian and adjacency matrices of the variable-clause incidence), NitroSAT computes an initial coordinate mapping that positions the solver inside a favorable valley of the global energy landscape.</p>
+<p><strong>Basin Recovery</strong>: On adversarial planted 3-SAT testing, NitroSAT consistently navigates into the <em>planted basin</em> — generating assignments that are 94% to 96% bit-similar to the optimum, even when it doesn't find the exact unique planted assignment. The spectral initialization effectively reduces the search space by positioning the continuous trajectory inside the correct attraction region.</p>
+<h3 id="3-topological-repair-and-cycle-resolution">3. Topological Repair and Cycle Resolution<a class="headerlink" href="#3-topological-repair-and-cycle-resolution" title="Permanent link">&para;</a></h3>
+<p>Highly structured constraint graphs (such as grids, circuit multipliers, and timetables) contain topological loops or "frustrations" where satisfying one local cluster of constraints violates another nearby cluster.</p>
+<p><strong>Persistent Homology (<span class="arithmatex">\(\beta_1\)</span> Tracking)</strong>: The engine tracks topological cycles through the first Betti number <span class="arithmatex">\(\beta_1\)</span>. High topological complexity scores correlate with regions where the solver's continuous coordinates are conflicted — the gradients dissolve into noise because every local improvement creates a corresponding local violation elsewhere.</p>
+<p><strong>Topological Repair Phase</strong>: Once the continuous flow plateaus, the engine applies targeted topological repairs to resolve localized cyclical contradictions. This phase surgically adjusts variables involved in high-friction cycles, resolving the topological bottlenecks that would otherwise cause pure gradient descent to stall.</p>
+<h3 id="4-prime-number-weighting-and-symmetry-breaking">4. Prime Number Weighting and Symmetry Breaking<a class="headerlink" href="#4-prime-number-weighting-and-symmetry-breaking" title="Permanent link">&para;</a></h3>
+<p>One of the distinctive theoretical aspects of the engine is the use of prime weights derived from the Prime Number Theorem, rather than uniform clause weights.</p>
+<p><strong>Breaking Algebraic Symmetry</strong>: In uniform weighting, multiple configurations of unsatisfied clauses can yield the exact same energy output, leading to flat plateaus ("glassy" states) where gradients vanish. The solver loses all signal about which direction to move.</p>
+<p><strong>Topological Smoothing</strong>: Assigning prime-based weights creates a mathematically unique signature for different combinations of unsatisfied constraints. According to ablation studies, this prime-weighting mechanism reduces <span class="arithmatex">\(\beta_1\)</span> post-solve topological cycles from 79 to 20 on structured geometries, accelerating convergence by approximately 3x to 4x compared to uniform weighting.</p>
+<h3 id="5-the-metric-space">5. The Metric Space<a class="headerlink" href="#5-the-metric-space" title="Permanent link">&para;</a></h3>
+<p>NitroSAT uses the <strong>Inverted Poincaré Disk</strong> metric for probability-valued variables:</p>
+<div class="arithmatex">\[ds^2 = \frac{4|dz|^2}{(|z|^2(1-|z|^2)^2)}\]</div>
+<p>This provides a natural geometry for the <span class="arithmatex">\([0,1]\)</span> variable domain, ensuring that probability mass is appropriately concentrated near boundaries where discrete solutions live.</p>
+<h3 id="6-free-energy-framework">6. Free Energy Framework<a class="headerlink" href="#6-free-energy-framework" title="Permanent link">&para;</a></h3>
+<p>The optimization follows a free energy functional:</p>
+<div class="arithmatex">\[F[x] = \lambda E_{kin}[x] + E_{pot}[x] - \frac{1}{\beta}S[x]\]</div>
+<p>with gradient flow:</p>
+<div class="arithmatex">\[\frac{\partial x}{\partial t} = -\frac{\delta F}{\delta x}\]</div>
+<p>where <span class="arithmatex">\(E_{kin}\)</span> encodes kinetic energy from the optimizer momentum, <span class="arithmatex">\(E_{pot}\)</span> encodes constraint violations, and <span class="arithmatex">\(S[x]\)</span> is an entropy term modulated by the inverse temperature <span class="arithmatex">\(\beta\)</span>.</p>
+<hr />
+<h2 id="performance-characteristics">Performance Characteristics<a class="headerlink" href="#performance-characteristics" title="Permanent link">&para;</a></h2>
+<h3 id="where-it-excels-regular-and-structured-geometries">Where It Excels: Regular and Structured Geometries<a class="headerlink" href="#where-it-excels-regular-and-structured-geometries" title="Permanent link">&para;</a></h3>
+<p>NitroSAT performs exceptionally well on problems with high local symmetry, regular degree distributions, and low-dimensional manifold structure:</p>
+<table>
+<thead>
+<tr>
+<th>Problem Class</th>
+<th>Example</th>
+<th>Why NitroSAT Works</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hardware multipliers</td>
+<td>512-bit circuit verification</td>
+<td>Regular gate structure enables efficient heat kernel propagation</td>
+</tr>
+<tr>
+<td>University timetabling</td>
+<td>80M-clause instances</td>
+<td>Structured conflict graph with exploitable topology</td>
+</tr>
+<tr>
+<td>Grid coloring</td>
+<td>Edwards-Anderson 3D spin glasses</td>
+<td>Low-dimensional manifold aligns with spectral initialization</td>
+</tr>
+<tr>
+<td>Planted satisfiability</td>
+<td>Adversarial 3-SAT</td>
+<td>Spectral method finds the planted basin reliably</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why</strong>: The heat kernel diffusion and continuous relaxation can propagate local constraint signals globally across a regular grid. The gradient descent step efficiently locates the optimal basin because the underlying geometry provides a coherent global structure.</p>
+<h3 id="where-it-encounters-limits-high-expansion-and-unstructured-graphs">Where It Encounters Limits: High-Expansion and Unstructured Graphs<a class="headerlink" href="#where-it-encounters-limits-high-expansion-and-unstructured-graphs" title="Permanent link">&para;</a></h3>
+<p>NitroSAT plateaus on problems designed to lack local bottlenecks and low-dimensional representations:</p>
+<table>
+<thead>
+<tr>
+<th>Problem Class</th>
+<th>Example</th>
+<th>Why It Struggles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Expander graphs</td>
+<td>Urquhart formulas</td>
+<td>No local geometry to exploit — landscape is flat and frustrated</td>
+</tr>
+<tr>
+<td>Random 3-SAT</td>
+<td>Phase transition (<span class="arithmatex">\(\alpha \approx 4.27\)</span>)</td>
+<td>Exponential conflicts without topological structure</td>
+</tr>
+<tr>
+<td>Sparse random graphs</td>
+<td>High-degree random regular graphs</td>
+<td>Global connectivity destroys basin structure</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why</strong>: In expander graphs, every variable cluster is highly connected to every other cluster without regular geometric structure. The continuous energy landscape becomes almost completely flat and frustrated. The gradient signal dissolves into chaotic noise because local improvements are immediately offset by global violations.</p>
+<p>On expanders, NitroSAT typically achieves approximately 90% satisfaction and cannot improve further — the topological repair phase has no low-hanging cycles to fix because the frustration is global, not local.</p>
+<hr />
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1738,6 +1933,13 @@
 <td>5.92s</td>
 </tr>
 <tr>
+<td>University Timetabling</td>
+<td>80M clauses</td>
+<td>—</td>
+<td>SAT (100%)</td>
+<td>73s</td>
+</tr>
+<tr>
 <td>Random CNF (5000+ instances)</td>
 <td>Various</td>
 <td>Various</td>
@@ -1753,20 +1955,53 @@
 </tr>
 </tbody>
 </table>
-<h2 id="key-files">Key Files<a class="headerlink" href="#key-files" title="Permanent link">&para;</a></h2>
+<p><strong>Median satisfaction across 5,000+ random CNF instances</strong>: 99.7%</p>
+<hr />
+<h2 id="limitations-self-assessment">Limitations (Self-Assessment)<a class="headerlink" href="#limitations-self-assessment" title="Permanent link">&para;</a></h2>
+<p>NitroSAT is <strong>not</strong> designed to replace exact solvers when mathematical certificates of unsatisfiability or global optimality proofs are required. It is an anytime approximator.</p>
+<p>Known limitations:</p>
 <ul>
-<li><code>NitroSAT/README.md</code> — Overview</li>
-<li><code>NitroSAT/docs/MATH.md</code> — Mathematical foundations</li>
-<li>DOI: <a href="https://doi.org/10.5281/zenodo.18753235">10.5281/zenodo.18753235</a></li>
+<li><strong>Expander graphs</strong>: Plateaus around 90% satisfaction; no path to improvement via topological repair</li>
+<li><strong>Random 3-SAT at phase transition</strong>: Structured approaches struggle here; CDCL solvers have structural advantages</li>
+<li><strong>UNSAT certification</strong>: Does not produce proofs of unsatisfiability</li>
+<li><strong>Exact optimum</strong>: Returns high-quality approximations, not proven-optimal solutions</li>
 </ul>
-<h2 id="connection-to-core-vision">Connection to Core Vision<a class="headerlink" href="#connection-to-core-vision" title="Permanent link">&para;</a></h2>
-<p>NitroSAT is the <strong>flagship implementation</strong> of the Arithmetic Manifold. It combines:
-- Prime weighting (from partition function theory)
-- Phase transition detection (BAHA/Lambert W)
-- Riemann Hypothesis embedding (asymptotic stability condition)</p>
+<p>The 2^1024 framing in earlier documentation was incorrect. XOR chains define affine subspaces (dimension <span class="arithmatex">\(n - r\)</span> where <span class="arithmatex">\(r\)</span> is rank), not the full power set. The relevant metric is basin fidelity — how close the returned assignment is to the planted optimum — not the cardinality of the unconstrained solution space.</p>
+<hr />
+<h2 id="connection-to-the-arithmetic-manifold">Connection to the Arithmetic Manifold<a class="headerlink" href="#connection-to-the-arithmetic-manifold" title="Permanent link">&para;</a></h2>
+<p>NitroSAT is the <strong>flagship implementation</strong> of the Arithmetic Manifold framework. It combines:</p>
+<ul>
+<li><strong>Prime weighting</strong>: From partition function theory — unique constraint signatures via the Fundamental Theorem of Arithmetic</li>
+<li><strong>Spectral initialization</strong>: Heat kernel trace <span class="arithmatex">\(\text{Tr}(e^{-tL})\)</span> as a basin-finding prior</li>
+<li><strong>Topological repair</strong>: Persistent homology tracking (Betti numbers) for guided repair</li>
+<li><strong>Phase transitions</strong>: BAHA/Lambert W detection for when to transition between optimization strategies</li>
+<li><strong>Riemann Hypothesis connection</strong>: The asymptotic stability condition <span class="arithmatex">\(1 - \sigma &gt; \gamma\)</span> governs when the continuous relaxation remains valid at scale</li>
+</ul>
 <blockquote>
 <p>"NitroSAT does not prove the Riemann Hypothesis. But it embeds RH as a phase boundary: the solver functions as a physical instrument whose asymptotic stability threshold coincides exactly with the critical line Re(s) = 1/2."</p>
 </blockquote>
+<hr />
+<h2 id="website">Website<a class="headerlink" href="#website" title="Permanent link">&para;</a></h2>
+<p><strong>Live:</strong> <a href="https://sethuiyer.github.io/NitroSAT">sethuiyer.github.io/NitroSAT</a></p>
+<h2 id="key-files">Key Files<a class="headerlink" href="#key-files" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>NitroSAT/README.md</code> — Full project overview and benchmark methodology</li>
+<li><code>NitroSAT/src/c/v2/nitrosatv2.c</code> — Core C99 implementation</li>
+<li>DOI: <a href="https://doi.org/10.5281/zenodo.18753235">10.5281/zenodo.18753235</a></li>
+<li>API: <a href="https://api.navokoj.shunyabar.foo">api.navokoj.shunyabar.foo</a></li>
+</ul>
+<hr />
+<h2 id="citing">Citing<a class="headerlink" href="#citing" title="Permanent link">&para;</a></h2>
+<p>If you use NitroSAT in research, please cite:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nc">@software</span><span class="p">{</span><span class="nl">nitrosat2026</span><span class="p">,</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="na">author</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Sethurathinam Iyer}</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="na">title</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{NitroSAT: A Physics-Informed MaxSAT Approximator}</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="na">year</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{2026}</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="na">publisher</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Zenodo}</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="na">doi</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{10.5281/zenodo.18753235}</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="na">url</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{https://github.com/sethuiyer/NitroSAT}</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">}</span>
+</code></pre></div>
 
 
 

@@ -43,6 +43,10 @@ Agent Primitives
 └── pₙ: Custom capabilities
 ```
 
+## Website
+
+**Live:** [sethuiyer.github.io/factor-agent](https://sethuiyer.github.io/factor-agent)
+
 ## Connection to Core Vision
 
 Factor Agent extends the Arithmetic Manifold to **multi-agent systems**. Prime factorization provides:

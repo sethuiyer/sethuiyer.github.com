@@ -41,6 +41,10 @@ The CRT has a crucial property: **modular arithmetic is closed under composition
 | Sudoku (5 cells) | baseline | 12,495x | **12,495x** |
 | Preserved solutions | k ≤ 5 | **100%** | — |
 
+## Website
+
+**Live:** [sethuiyer.github.io/geometry-of-conditional-logic](https://sethuiyer.github.io/geometry-of-conditional-logic)
+
 ## Key Files
 
 - `geometry-of-conditional-logic/README.md` — Overview

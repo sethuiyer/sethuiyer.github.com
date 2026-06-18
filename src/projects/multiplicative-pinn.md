@@ -41,6 +41,10 @@ This nucleates a "superconducting phase" where constraints propagate without dis
 | Monotonicity violations | 31.31% | **0%** |
 | Speedup over CFD | 1x | **100,000x** |
 
+## Website
+
+**Live:** [sethuiyer.github.io/multiplicative-pinn-framework](https://sethuiyer.github.io/multiplicative-pinn-framework)
+
 ## Key Files
 
 - `multiplicative-pinn-framework/README.md` — Overview

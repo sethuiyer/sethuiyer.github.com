@@ -45,6 +45,10 @@ Maintains \(\rho \geq 0.99\) between spectral and multiplicative functionals —
 | Cloud optimization (15,000 nodes) | **100%** |
 | Cost savings | **$1.4M/year** |
 
+## Website
+
+**Live:** [sethuiyer.github.io/spectral-multiplicative-framework](https://sethuiyer.github.io/spectral-multiplicative-framework)
+
 ## Key Files
 
 - `spectral-multiplicative-framework/README.md` — Overview

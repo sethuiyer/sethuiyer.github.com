@@ -39,6 +39,10 @@ The Authorization Lattice blog post explores:
 - How to have permissions without an owner
 - The algebraic structure of capability systems
 
+## Website
+
+**Live:** [sethuiyer.github.io/authorization-lattice](https://sethuiyer.github.io/authorization-lattice)
+
 ## Key Files
 
 - `authorization-lattice/index.html` — Full blog post

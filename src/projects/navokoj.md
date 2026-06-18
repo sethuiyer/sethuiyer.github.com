@@ -36,6 +36,10 @@ The system is cooled slowly through the phase transition:
 | Graph Coloring | 50 nodes | — | **100%** |
 | AI Escargot Sudoku | 729 | 8,850 | **99.85%** |
 
+## Website
+
+**Live:** [navokoj.shunyabar.foo](https://navokoj.shunyabar.foo) | **API:** [api.navokoj.shunyabar.foo](https://api.navokoj.shunyabar.foo)
+
 ## Key Files
 
 - `navokoj/README.md` — Overview

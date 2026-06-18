@@ -45,6 +45,10 @@ BranchAwareOptimizer
 | Graph Isomorphism (N=50) | 100% | 40% | **60% absolute** |
 | Overall pass rate | **84%** | — | across 26 problem domains |
 
+## Website
+
+**Live:** [sethuiyer.github.io/baha](https://sethuiyer.github.io/baha)
+
 ## Key Files
 
 - `baha/README.md` — Overview and quick start

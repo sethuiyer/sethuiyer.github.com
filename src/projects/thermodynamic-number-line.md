@@ -39,6 +39,10 @@ This isn't a metaphor. The asymptotic stability condition:
 
 is **literally the same statement** as the Riemann Hypothesis condition when \(\gamma = 1/2\).
 
+## Website
+
+**Live:** [sethuiyer.github.io/thermodynamic-number-line](https://sethuiyer.github.io/thermodynamic-number-line)
+
 ## Key Files
 
 - `thermodynamic-number-line/README.md` — Overview
