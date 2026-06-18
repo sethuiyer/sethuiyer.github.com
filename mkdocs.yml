@@ -73,6 +73,7 @@ nav:
     - Benchmarks: getting-started/benchmarks.md
   - Resources:
     - Navokoj Developer Guide: navokoj/index.md
+    - Product Strategy: product-strategy.md
     - Papers: references/papers.md
     - Related Work: references/related-work.md
     - Limitations & Boundaries: limitations.md
