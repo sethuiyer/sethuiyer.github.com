@@ -76,6 +76,7 @@ nav:
     - Papers: references/papers.md
     - Related Work: references/related-work.md
     - Limitations & Boundaries: limitations.md
+    - Roadmap (Post-Funding): TODO.md
 
 markdown_extensions:
   - pymdownx.highlight:
