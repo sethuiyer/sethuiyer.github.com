@@ -66,7 +66,7 @@
 
 ## Classical CDCL SAT Solvers
 
-**Kissat, CaDiCaL, Maplesat** are competition-grade CDCL solvers.
+**Kissat, CaDiCaL, Maplesat** are competition-grade CDCL solvers. They excel at proving UNSAT and finding exact solutions on structured problems.
 
 **Navokoj** differs fundamentally:
 - **CDCL** = Systematic search through boolean assignment space
@@ -74,33 +74,36 @@
 
 | Capability | CDCL Solvers | Navokoj |
 |------------|--------------|---------|
-| Million variables | Stalls | **Native** |
-| XOR constraints | Gaussian elim | **Continuous** |
+| Structured industrial (multipliers, timetabling) | Strong | **Strong** |
+| Expander / random hard | Strong | ~90% plateau |
+| XOR constraints | Gaussian elimination | **Continuous** |
 | Real-time (< 100ms) | ❌ | **✅** |
-| Always returns result | ❌ UNSAT | **Anytime** |
+| Always returns result | ❌ UNSAT/timeout | **Anytime** |
+| Million-variable scale | On structured problems | **On structured problems** |
 | GPU acceleration | Rare | **H100** |
+
+> CDCL solvers are exact solvers — when they find a solution or prove UNSAT, the answer is certified. Navokoj is an anytime approximator — it always returns a result, but doesn't produce unsatisfiability proofs. Choose based on your requirement: certify correctness (CDCL) or get the best available result fast (Navokoj).
 
 ---
 
 ## Our Differentiation
 
-### 1. Speed
+### 1. Real-Time Anytime
 
-```
-Gurobi:      45 seconds
-OR-Tools:    30 seconds
-CDCL:        10 seconds
-Navokoj:     347 milliseconds ⚡
-```
+Classical solvers: **UNSAT** → Done, no partial result.
+Navokoj: Always returns the best available assignment.
 
-### 2. Scale Without Compromise
+### 2. Structured Industrial Scale
 
-| Solver | 100k vars | 500k vars | 1M vars |
-|--------|-----------|-----------|---------|
-| Gurobi | ~30s | Timeout | Fail |
-| OR-Tools | ~20s | Timeout | Fail |
-| CDCL | ~60s | Stall | Crash |
-| **Navokoj** | **200ms** | **1s** | **347ms** |
+On problems with regular structure (hardware multipliers, timetabling, grid problems), Navokoj achieves:
+
+| Problem | Scale | Satisfaction | Time |
+|---------|-------|-------------|------|
+| Hardware multiplier | 788K vars, 2.6M clauses | **100%** | 5.92s |
+| Enterprise timetabling | 147K vars, 80M clauses | **100%** | 73s |
+| Grid coloring | 4M vars, 15M clauses | **100%** | 475s |
+
+> CDCL solvers are strong on structured problems too — these aren't cherry-picked comparisons. The difference is that Navokoj delivers high satisfaction consistently within a time bound, while CDCL may timeout or require exponential time on unfavorable instances.
 
 ### 3. Hardness Visibility
 

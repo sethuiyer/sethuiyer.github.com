@@ -74,6 +74,7 @@ nav:
     - Navokoj Developer Guide: navokoj/index.md
     - Papers: references/papers.md
     - Related Work: references/related-work.md
+    - Limitations & Boundaries: limitations.md
 
 markdown_extensions:
   - pymdownx.highlight:

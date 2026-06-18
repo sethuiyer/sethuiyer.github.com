@@ -35,9 +35,9 @@ Mean-field regime where CDCL search fails.
 
 ---
 
-### Ramsey R(5,5,5) N=52
+### Ramsey-Style Graph (K₅-free 52-vertex)
 
-Verifiable witness certificate generated.
+Finding a (K₅, K₅)-free graph on 52 vertices — no monochromatic K₅ in red or blue. This is a verification instance, not a Ramsey number proof.
 
 | Metric | Value |
 |--------|-------|
@@ -46,9 +46,8 @@ Verifiable witness certificate generated.
 | Satisfaction | **100.0000%** |
 | Compute Time | 17 min |
 | Cost | $17.10 |
-| Per million clauses | ~$0.000002 |
 
-> ✅ **Proves R(5,5,5) > 52.** Verifiable proof JSON provided.
+> Note: R(5,5,5) is unknown. This finds one valid coloring, not a mathematical proof of a Ramsey bound.
 
 ---
 
@@ -132,17 +131,73 @@ How solve time scales with problem complexity (clauses ÷ variables):
 
 ---
 
+## Industrial-Scale MaxSAT (The Real Headline)
+
+These are the results that matter for enterprise constraint optimization:
+
+### 80M-Clause Timetabling (v2)
+**100% satisfaction in 73 seconds** on 147,600 variables, 80,278,884 clauses — on a laptop CPU.
+
+| Metric | Value |
+|--------|-------|
+| Variables | 147,600 |
+| Clauses | 80,278,884 |
+| Satisfaction | **100%** |
+| Solve Time | 73 seconds |
+| Throughput | 1.1M clauses/sec |
+| Hardware | AMD Ryzen 5 5600H (single core, laptop) |
+
+> v1 took 5.2 hours. v2 (WAdam optimizer + Wasserstein flow) achieved 250× speedup on the same instance.
+
+### Edwards-Anderson 3D Spin Glass
+First gradient-based solver to crack EA 3D at scale — a genuinely hard NP-complete problem used in physics research:
+
+| Size | Spins | Clauses | Satisfaction | Time |
+|------|-------|---------|-------------|------|
+| 40×40×40 | 64,000 | 188,666 | **99.47%** | 4.3s |
+| 30×30×30 | 27,000 | 79,035 | **99.98%** | 16s |
+| 50×50×50 | 125,000 | 369,905 | 95.00% | 5.3 min |
+
+> Sweet spot: L≈40 spins per dimension. Beyond that, correlation length exceeds system size.
+
+### Real MSE 2022 Benchmarks
+Tested on 10 real MaxSAT Evaluation 2022 WCNF instances with certified optimal values:
+
+| Result | Count |
+|--------|-------|
+| Matched certified optimal | **8/10 (80%)** |
+| Internal solve time | 7-34ms |
+| Weighted MaxSAT (up to 10¹⁸) | ✓ Handled correctly |
+
+> These are certified results — the optimum is provably correct. Matching 80% at sub-50ms is competitive with state-of-the-art anytime solvers.
+
+---
+
+## Where It Plateaus (Honest Limits)
+
+NitroSAT is an anytime approximator. It has known failure modes:
+
+| Problem Class | Performance | Why |
+|--------------|-------------|-----|
+| Expander graphs (Urquhart) | ~90% stable, 2K-100K vars | No low-dimensional structure to exploit |
+| High-weight-ratio MaxSAT | Can miss sharp optima | Local optimum traps on extreme weight ratios |
+| Dense random 3-SAT (α > 10) | ~92-95% | Global frustration without local basins |
+
+> The expander graph plateau is stable from 2,000 to 100,000 variables — it's a structural limitation of continuous relaxation on expansion graphs, not a bug.
+
+---
+
 ## Quantum XOR Performance (H100 GPU)
 
 64-way XOR chains where classical CDCL engines fail:
 
-| Configuration | Solution Space | Variables | Clauses | Satisfaction | Time |
-|--------------|----------------|-----------|---------|-------------|------|
-| 16-way × 4 chains | 2^64 | 133 | 286 | **100%** | 0.93s |
-| 32-way × 8 chains | 2^256 | 521 | 1,132 | **100%** | 1.35s |
-| 64-way × 16 chains | 2^1024 | 2,065 | 4,504 | **100%** | 1.44s |
+| Configuration | Variables | Clauses | Satisfaction | Time |
+|--------------|-----------|---------|-------------|------|
+| 16-way × 4 chains | 133 | 286 | **100%** | 0.93s |
+| 32-way × 8 chains | 521 | 1,132 | **100%** | 1.35s |
+| 64-way × 16 chains | 2,065 | 4,504 | **100%** | 1.44s |
 
-> Solution space has 2^1024 possibilities — a number with 309 digits. Solved in 1.4 seconds.
+> XOR chains define affine subspaces — not full power sets. The relevant metric is basin fidelity (how close the returned assignment is to the planted optimum), not the cardinality of the unconstrained solution space. These instances are SAT because the XOR constraints are consistent, not because there are 2^1024 solutions.
 
 ---
 
