@@ -1,0 +1,58 @@
+:root {
+  --md-primary-fg-color: #243b6b;
+  --md-primary-fg-color--light: #38558f;
+  --md-primary-fg-color--dark: #172747;
+  --md-accent-fg-color: #00796b;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #4f66a6;
+  --md-accent-fg-color: #26a69a;
+}
+
+.md-typeset {
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.md-typeset h1 {
+  color: var(--md-primary-fg-color);
+}
+
+.md-typeset a {
+  font-weight: 500;
+}
+
+.md-typeset table:not([class]) {
+  font-size: 0.72rem;
+}
+
+.md-typeset .arithmatex {
+  overflow-x: auto;
+}
+
+.md-typeset div.arithmatex {
+  margin: 1.1em 0;
+}
+
+.md-typeset .katex-display {
+  margin: 0.8em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.md-typeset code {
+  border-radius: 0.25rem;
+}
+
+.md-nav__link--active,
+.md-tabs__link--active {
+  font-weight: 700;
+}

@@ -10,7 +10,6 @@ Simulated annealing gets stuck in local minima because it treats the solution la
 
 \[
 \rho(\beta) = \left| \frac{d}{d\beta} \log Z(\beta) \right|
-
 \]
 
 to detect when the landscape shatters into multiple disconnected basins.
