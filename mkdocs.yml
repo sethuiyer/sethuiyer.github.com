@@ -40,6 +40,7 @@ theme:
 
 nav:
   - Home: index.md
+  - Research Report: research-report.md
   - Core Vision:
     - The Arithmetic Manifold: core-vision.md
     - Concepts:
