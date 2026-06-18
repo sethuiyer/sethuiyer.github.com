@@ -1,0 +1,49 @@
+# Navokoj: Physics-Inspired SAT Framework
+
+## What It Solves
+
+Constraint satisfaction as **geometric flow** — treating constraints as flowing geometry rather than penalties to minimize. Navokoj is the reference implementation of the Arithmetic Manifold theory.
+
+## Key Innovation
+
+**Three-Sector Architecture**:
+
+1. **Arithmetic Sector**: Prime-weighted operators prevent symmetry traps
+2. **Geometric Sector**: Continuous manifold enables gradient flows
+3. **Dynamic Sector**: Adiabatic quench implements Hamiltonian dynamics
+
+**Core Principle**: Discrete problems → Continuous relaxation → Gradient flow → Discrete solution.
+
+### Energy Definition
+
+$$E = -\mathbf{w} \cdot \log P(\text{clause satisfied})$$
+
+Each clause contributes to the energy based on its prime weight and satisfaction probability.
+
+### Adiabatic Quench
+
+The system is cooled slowly through the phase transition:
+
+$$\beta(t) = \beta_0 + r t$$
+
+"Adiabatic" means slow enough that the system stays in equilibrium — it always knows where the ground state is.
+
+## Results
+
+| Problem | Variables | Clauses | Success Rate |
+|---------|-----------|---------|--------------|
+| 3-SAT (critical density) | 50 | ~215 | **99.4%** |
+| Graph Coloring | 50 nodes | — | **100%** |
+| AI Escargot Sudoku | 729 | 8,850 | **99.85%** |
+
+## Key Files
+
+- `navokoj/README.md` — Overview
+- `navokoj/MANIFOLD_IMPLEMENTATION.md` — The reference implementation of Arithmetic Manifold theory
+
+## Connection to Core Vision
+
+Navokoj is the **pure theory implementation** — it's explicitly described as "the reference implementation of the Arithmetic Manifold theory." It demonstrates that:
+- Prime-weighted operators provide unique gradient identity
+- Geometric flow on the manifold is superior to discrete search
+- The adiabatic quench successfully navigates phase transitions
