@@ -6,27 +6,27 @@
 
 | Approach | Key Idea | Relation to ShunyaBar |
 |----------|----------|----------------------|
-| **Simulated Annealing** (Kirkpatrick 1983) | Thermodynamic cooling for optimization | BAHA extends SA with fracture detection |
-| **Quantum Annealing** (Finnila 1994) | Quantum tunneling for optimization | Different physical mechanism, same goal |
-| **Statistical Physics approaches** (Mezard 2002) | Replica method for SAT | NitroSAT uses similar phase transition analysis |
-| **Belief Propagation** (Pearl 1982) | Message passing on factor graphs | Related to CRT decomposition in Geometry of Logic |
+| [**Simulated Annealing**](https://doi.org/10.1126/science.220.4598.671) (Kirkpatrick 1983) | Thermodynamic cooling for optimization | BAHA extends SA with fracture detection |
+| [**Quantum Annealing**](https://doi.org/10.1016/0009-2614(94)00117-0) (Finnila 1994) | Quantum tunneling for optimization | Different physical mechanism, same goal |
+| [**Statistical Physics approaches**](https://doi.org/10.1126/science.1073287) (Mezard 2002) | Replica method for SAT | NitroSAT uses similar phase transition analysis |
+| [**Belief Propagation**](https://cdn.aaai.org/AAAI/1982/AAAI82-032.pdf) (Pearl 1982) | Message passing on factor graphs | Related to CRT decomposition in Geometry of Logic |
 
 ### Constraint Satisfaction
 
 | Approach | Key Idea | Relation to ShunyaBar |
 |----------|----------|----------------------|
-| **WalkSAT** (Selman 1993) | Random walk + greedy | Different search strategy |
-| **DPLL** (Davis-Putnam-Logemann-Loveland) | Systematic backtracking | Foundation of modern SAT solvers |
-| **cdcl** (Moskewicz 2001) | Conflict-driven clause learning | NitroSAT uses BAHA-style learning |
-| **Survey Propagation** (Mezard 2002) | Message passing for random SAT | Related to partition function analysis |
+| [**WalkSAT**](https://cdn.aaai.org/AAAI/1993/AAAI93-068.pdf) (Selman 1993) | Random walk + greedy | Different search strategy |
+| [**DPLL**](https://doi.org/10.1145/368273.368557) (Davis-Putnam-Logemann-Loveland) | Systematic backtracking | Foundation of modern SAT solvers |
+| [**CDCL / Chaff**](https://doi.org/10.1145/378239.379017) (Moskewicz 2001) | Conflict-driven clause learning | NitroSAT uses BAHA-style learning |
+| [**Survey Propagation**](https://arxiv.org/abs/cond-mat/0207194) (Mezard 2002) | Message passing for random SAT | Related to partition function analysis |
 
 ### PINNs & Physics-Informed Learning
 
 | Approach | Key Idea | Relation to ShunyaBar |
 |----------|----------|----------------------|
-| **Standard PINNs** (Raissi 2019) | Additive physics loss | Multiplicative PINN extends this |
-| **Hard Constraints** (Raissi 2020) | Penalty-free imposition | Related to Euler gate approach |
-| **Deep Ritz** (E 2017) | Variational formulation | Alternative to PINN |
+| [**Standard PINNs**](https://doi.org/10.1016/j.jcp.2018.10.045) (Raissi 2019) | Additive physics loss | Multiplicative PINN extends this |
+| [**Hidden Fluid Mechanics**](https://doi.org/10.1126/science.aaw4741) (Raissi 2020) | Physics-constrained learning from sparse observations | Related to Euler gate approach |
+| [**Deep Ritz**](https://arxiv.org/abs/1710.00211) (E 2017) | Variational formulation | Alternative to PINN |
 
 ### Number-Theoretic Algorithms
 
