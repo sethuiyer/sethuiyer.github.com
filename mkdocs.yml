@@ -43,6 +43,7 @@ nav:
   - Research Report: research-report.md
   - Core Vision:
     - The Arithmetic Manifold: core-vision.md
+    - Axiom Architecture: axiom-architecture.md
     - Concepts:
       - Partition Function: concepts/partition-function.md
       - Prime Weighting: concepts/prime-weighting.md
