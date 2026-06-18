@@ -13,7 +13,7 @@
 
 - Navokoj API live and stable: `/v1/solve`, `/v1/diagnose`, hybrid XOR+CNF modes, batch, Q-SAT (N-ary)
 - Engines form a real spectrum: nano (94% / 870ms) → nitro (99.4% / 830ms) → pro (99.4% / 0.1–7s) → mini (99.77% / 40s+)
-- Per-instance engine choice matters: pro beats nitro on multi-constraint chains; mini is the high-quality fallback
+- Per-instance engine choice matters: pro beats nitro on multi-constraint chains; mini is the high quality fallback
 - Soundness preserved: UNSAT detection is correct on certified benchmarks (8/10 MSE 2022 WCNF matched optimal)
 - Honest limits: 1,000 vars / 5,000 clauses / 100 req/hr on free tier
 
@@ -44,7 +44,7 @@ The ZK story isn't dead — it's a **2027+ bet**, contingent on getting to 100% 
 
 Three plausible wedges. Pick one, kill the others.
 
-### Wedge A: "The Verifiable MaxSAT API" ✓ Recommended
+### Wedge A: "The Verifiable MaxSAT API" ✓ Primary
 
 | | |
 |---|---|
@@ -54,7 +54,7 @@ Three plausible wedges. Pick one, kill the others.
 | **Price** | Free tier → Pro $499/mo (500K clauses) → Enterprise $5K/mo+ (custom) |
 | **12-mo ARR target** | $300K (60 enterprise customers, conservative) |
 
-### Wedge B: "ZK Pre-Processor"
+### Wedge B: "ZK Pre-Processor" ✓ Secondary
 
 | | |
 |---|---|
@@ -64,125 +64,303 @@ Three plausible wedges. Pick one, kill the others.
 | **Price** | Per-circuit pricing, $50–$500 per decomposition |
 | **12-mo ARR target** | $150K (low base, but real ZK $ flow) |
 
-### Wedge C: "Hybrid AI Inference Routing"
+### Wedge C: "Hybrid AI Inference Routing" ❌ Kill
 
 | | |
 |---|---|
 | **What** | Local-search for fuzzy/cost-sensitive decisions, fallback to exact solver for verification |
-| **Why** | Real demand, less crowded than pure MaxSAT, plays to the pro engine's strength |
+| **Why** | Real demand, but <50ms p99 latency required — we can't deliver this today |
 | **Customer** | Robotics, real-time bidding, ad ranking, supply chain |
-| **Price** | Usage-based, $0.01–$0.10 per call |
-| **12-mo ARR target** | $500K (high if productized right, low if we can't get to <50ms p99) |
+| **Verdict** | Kill for now — it's a feature, not a company |
 
-> **Recommendation:** Wedge A primary, Wedge B secondary. Kill Wedge C for now — it's a feature, not a company.
+### Wedge Evaluation: CENTS Test
+
+| Wedge | Control | Entry | Need | Time Leverage | Scale | Score |
+|-------|---------|-------|------|--------------|-------|-------|
+| **Scheduling / Timetabling** | High | Medium | Very High | High | High | **Strong** |
+| **ZK Pre-Processor / Auditing** | Medium | High | High | Medium | Very High | Good |
+| **Agent Guardrails** | Medium | Low | Medium | High | Medium | Weak — kill |
+
+**Scheduling wins.** Clear pain, paying customers who understand value immediately, strongest proof point (80M clauses in 73s).
 
 ---
 
-## 4. 12-Month Roadmap (Specific Bets, Dates)
+## 4. The Proof-of-Optimality API Contract
+
+### Design Principles
+
+The `proof_artifact` is the core technical moat. **Schema rules:**
+
+1. **Weights must be positive integers.** Floats create precision issues that make `primal_cost == dual_lower_bound` true by accident. Fractional weights invalidate the optimality certificate.
+2. **Derivation graphs, not strings.** `resolution_chain` must be a structured derivation tree — clause IDs and resolution steps. The verifier reconstructs the proof, not parses English.
+3. **Three response cases.** Optimal, feasible-with-gap, infeasible. The client must be able to distinguish all three.
+
+### POST `/v1/solve` Request Payload
+
+```json
+{
+  "num_vars": 8,
+  "clauses": [
+    [1, 2],
+    [-1, 3],
+    [-2, -3],
+    [4, 5],
+    [-4, 6],
+    [-5, -6],
+    [7, 8],
+    [-7, -8]
+  ],
+  "weights": [1000, 1000, 1000, 1000, 1000, 1000, 1, 1],
+  "engine": "pro",
+  "timeout_budget_seconds": 5.0,
+  "generate_proof": true
+}
+```
+
+> **Note:** `weights` must be positive integers. The WCNF format requires integer arithmetic for the dual bound to be mathematically sound.
+
+### Response: Optimal Case
+
+```json
+{
+  "success": true,
+  "satisfiable": true,
+  "satisfaction_rate": 0.875,
+  "solve_time_seconds": 0.042,
+  "engine_used": "pro-geometric-l4",
+  "assignment": [true, false, true, true, false, true, true, false],
+  "proof_artifact": {
+    "primal_cost": 2,
+    "dual_lower_bound": 2,
+    "optimality_proven": true,
+    "unsat_cores": [
+      {
+        "core_index": 0,
+        "clause_ids": [6],
+        "weight": 1,
+        "derivation": {
+          "type": "trivial",
+          "input_clauses": [6]
+        }
+      },
+      {
+        "core_index": 1,
+        "clause_ids": [7],
+        "weight": 1,
+        "derivation": {
+          "type": "trivial",
+          "input_clauses": [7]
+        }
+      }
+    ],
+    "verification_command": "navokoj-verify --assignment instance.assignment --wcnf instance.wcnf --proof proof.json"
+  }
+}
+```
+
+**Derivation types:**
+
+| Type | Fields | Use |
+|------|--------|-----|
+| `trivial` | `input_clauses: [id]` | Single unsatisfied clause is its own core |
+| `resolution` | `left: core_id, right: core_id, resolvent: clause_id` | Multi-clause UNSAT core via resolution |
+
+### Response: Infeasible Case (UNSAT)
+
+```json
+{
+  "success": true,
+  "satisfiable": false,
+  "satisfaction_rate": 0.0,
+  "solve_time_seconds": 0.031,
+  "engine_used": "pro-geometric-l4",
+  "proof_artifact": {
+    "dual_lower_bound": 10000,
+    "infeasibility_proven": true,
+    "hard_clause_unsat_core": [0, 1, 2],
+    "derivation": {
+      "type": "resolution",
+      "left": {
+        "type": "resolution",
+        "left": {"type": "trivial", "input_clauses": [0]},
+        "right": {"type": "trivial", "input_clauses": [1]},
+        "resolvent": 10
+      },
+      "right": {"type": "trivial", "input_clauses": [2]},
+      "resolvent": 11
+    }
+  }
+}
+```
+
+> Hard clauses (weight = 0 in WCNF) form an unsatisfiable core. If the dual bound equals total hard weight, no feasible solution exists. This is critical for the audit wedge — clients must distinguish "optimal" from "infeasible" from "engine gave up."
+
+---
+
+## 5. Open-Source Strategy (Corrected)
+
+### The Flaw in the Original Split
+
+Putting proof generation in the closed layer is structurally weak. UNSAT core extraction is well-known — anyone with the open-source core can write their own. And "trust our closed-source proof checker" defeats the entire purpose of verification for security auditors.
+
+### The Correct Split
+
+| Layer | License | Contents |
+|-------|---------|----------|
+| **Verifier + Proof Format** | **Open (Apache 2.0)** | Proof format spec, verifier implementation, example clients. Security auditors download this and run it offline. |
+| **Engine Core** | **Open (Apache 2.0)** | Local-search relaxation loop, parsing, CNF/XOR primitives, basic heuristics. Community contribution path. |
+| **Proof Generation** | **Closed (Commercial)** | Which search trajectories produce good UNSAT cores. Telemetry. RBAC + audit logging. On-prem runtime. Advanced ZK pre-processing heuristics. |
+
+**Rationale:** The verifier being open-source is what makes the proof artifact trustworthy. "Download our open-source verifier, run it on the proof we gave you, confirm offline" — that's the security property the audit wedge requires. The closed layer is "our secret sauce for finding good proofs fast," not "our secret proof checker."
+
+---
+
+## 6. 12-Month Roadmap (Specific Bets, Dates)
 
 ### Q3 2026 (now → Sept)
 
-- [ ] Ship **Wedge A MVP**. Position the API as MaxSAT-first, drop "ZK" from the homepage title
-- [ ] **Engine improvement: mini correctness.** Audit the 99.77% → 99.9%+ claim. If can't get there, lower the marketing number honestly
-- [ ] **Pricing:** Lock the $499 Pro tier. Add a $99/month dev tier (5K clauses, 1K req/hr) for indie users
-- [ ] Hire: 1 DevRel, 1 Solutions Engineer
+- [ ] **Ship Wedge A MVP.** MaxSAT-first homepage, no ZK framing
+- [ ] **Fix API schema.** Integer weights only, derivation graphs, infeasibility case
+- [ ] **Pricing:** Lock Dev $99/mo, Pro $499/mo. Free tier → 500 req/hr
+- [ ] **3 design partner LOIs signed** (1 per wedge we intend to keep)
+- [ ] **First hire: Solutions Engineer** — 30-day plan: prospect list, pilot template, first 10 outreach calls
 - [ ] **ARR target:** $20K (early enterprise pilots)
 
 ### Q4 2026
 
-- [ ] Ship **Wedge B (ZK Pre-Processor)** as a sidecar product. Free tier of the solver for decomp; paid for the optimizer that actually re-encodes
-- [ ] Add **verifiable-optimality proof artifacts** to the API response. This is the long-term moat
-- [ ] Partner with one ZK framework (snarkjs or gnark) for a "use NitroSAT as preprocessor" integration
-- [ ] Hire: 1 backend, 1 ZK engineer (joint with research)
+- [ ] Ship **Wedge B (ZK Pre-Processor)** sidecar
+- [ ] **Proof-of-optimality artifact** in API response (UNSAT cores + derivation graph)
+- [ ] **Open-source verifier + proof format** (Apache 2.0)
+- [ ] Partner with snarkjs or gnark for "use NitroSAT as preprocessor" integration
+- [ ] **Second hire: DevRel** — open-source community, README + SDK docs
 - [ ] **ARR target:** $80K cumulative
 
 ### Q1 2027
 
-- [ ] Launch enterprise tier with **on-prem deployment + SOC2** in flight
-- [ ] **Open-source the engine core** (Apache 2.0) to drive adoption; keep the API and the proof artifacts as the commercial layer
-- [ ] First paid pilot of the ZK preprocessor (target: a real ZK audit firm, ~$25K contract)
+- [ ] Launch **Enterprise tier** — on-prem + SOC2 in flight
+- [ ] **Open-source engine core** — parsing, CNF/XOR, basic local-search loop
+- [ ] First paid ZK audit firm pilot (~$25K contract)
 - [ ] **ARR target:** $250K cumulative
 
 ### Q2 2027
 
-**Decision gate:** Do we re-enter ZK as primary? Requires:
-- 100% verifiable solver (we're 40-60% of the way there based on mini audits)
-- <1s p99 latency on depth-4-equivalent
-- At least one paying ZK customer in production
+**Decision gate** — requires ALL three:
+- [ ] 100% verifiable solver (mini audit: 40-60% there today)
+- [ ] <1s p99 latency on depth-4-equivalent
+- [ ] At least one paying ZK customer in production
 
-- [ ] If yes: spin out "Shunyabar ZK" as a separate product line
-- [ ] If no: stay MaxSAT
+**If yes:** Spin out "Shunyabar ZK" as separate product line
+**If no:** Stay MaxSAT; revisit ZK in 2028
+
 - [ ] **ARR target:** $500K cumulative
 
 ---
 
-## 5. Kill List
+## 7. Hiring Sequence
+
+> First hire is the bottleneck. Wrong first hire wastes 6 months.
+
+| Hire | When | 30-Day Mandate | Why First |
+|-------|------|----------------|-----------|
+| **Solutions Engineer** | Q3, week 1 | 3 signed LOIs, pilot template ready, 10 enterprise outreach calls | Revenue requires someone who can sell + deliver. Not marketing, not engineering. |
+| **DevRel** | Q4 | Open-source repo polished, SDK docs live, 3 community posts | Proof artifacts + open core need a community steward |
+| **Backend Engineer** | Q4 | Metered billing, on-prem Docker, SSO/RBAC | Infrastructure for Enterprise tier |
+| **ZK Engineer** | Q1 2027 | Partner integration (snarkjs/gnark), ZK preprocessor shipped | Only after ZK wedge validated |
+
+**Don't hire:** ZK engineer in Q3. Premature. The ZK wedge isn't validated yet.
+
+---
+
+## 8. Pilot Template (Q3 Must-Have)
+
+Every enterprise pilot follows this structure. Sales needs this ready before first outreach.
+
+```
+PILOT AGREEMENT
+├── Problem: [What they're trying to solve]
+├── Success criteria: [Measurable, e.g., "reduce scheduling compute time by 50%"]
+├── Deliverable: [Proof-of-concept in 30 days, or full integration in 60 days]
+├── Timeline: [Start date → demo date → decision date]
+├── Pricing: [$X pilot fee, credited toward annual contract]
+├── Payment: [Upfront, non-refundable]
+└── IP: [Results belong to customer, we can use anonymized case study]
+```
+
+**Target pilots by Q3 end:**
+- 1 scheduling / timetabling ($5K–$20K)
+- 1 ML feature selection ($5K)
+- 1 ZK preprocessor evaluation (free → paid conversion)
+
+---
+
+## 9. Kill List
 
 Things we explicitly **are NOT** doing in the next 12 months:
 
-| ❌ | Reason |
+| ❌ | Why |
 |---|---|
-| Real-time crypto / wallet / signing applications | Latency floor too high, audit surface too big |
-| Building our own ZK DSL | Circom, gnark, Noir, ZoKrates are crowded. We integrate, we don't compete |
-| General SAT solving market | Z3, Kissat, CaDiCaL dominate and we're not catching up. We're MaxSAT, not SAT |
-| Mobile / edge deployment | Engine footprint too big; we'd be shipping someone else's runtime anyway |
-| Custom hardware acceleration | GPUs are a research play, not a 2027 product. Revisit in 2028 if ZK lights up |
-| The "ZK with NitroSAT" framing on the homepage | Until we have a paying ZK customer. Stops misleading buyers |
+| Real-time crypto / wallet / signing | Latency + audit surface |
+| Build ZK DSL | Circom, gnark, Noir, ZoKrates are crowded. We integrate. |
+| General SAT market | Z3, Kissat, CaDiCaL dominate. We're MaxSAT, not SAT. |
+| Mobile / edge deployment | Engine footprint too big |
+| Custom hardware (GPUs) | Research play, not 2027 product |
+| ZK homepage framing | Until we have a paying ZK customer |
+| Wedge C (Agent Guardrails) | CENTS test failed. Kill it. |
 
 ---
 
-## 6. Pricing & Tier Strategy
+## 10. Pricing & Tier Strategy
 
 | Tier | Price | Limits | Target |
 |------|-------|--------|--------|
-| **Free** | $0 | 1K vars, 5K clauses, 100 req/hr | Hobbyists, evaluation |
+| **Free** | $0 | 1K vars, 5K clauses, 500 req/hr | Hobbyists, CI testing |
 | **Dev** | $99/mo | 10K vars, 50K clauses, 5K req/hr | Indie devs, small apps |
 | **Pro** | $499/mo | 100K vars, 500K clauses, 50K req/hr | Startups, mid-market |
-| **Enterprise** | Custom | Unlimited, on-prem optional | Large teams, regulated |
+| **Enterprise** | Custom $5K+/mo | Unlimited, on-prem optional | Large teams, regulated |
 
-**API key throttling note:** Free tier 100 req/hr forces conversion but also blocks serious testing. Move to 500 req/hr for free to drive dev adoption. Gate Pro at $499 by clauses, not requests — enterprise pays for complexity, not volume.
-
-**Proof artifacts:** Free tier gets assignment-only; Pro+ gets assignment + UNSAT proof certificate. This is the actual moat — don't give it away.
+**Proof artifacts:**
+- Free/Dev: assignment only (no proof)
+- Pro+: assignment + UNSAT proof certificate + derivation graph
+- Enterprise: + infeasibility proof when applicable
 
 ---
 
-## 7. Risk Register
+## 11. Risk Register
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|------------|--------|------------|
-| MaxSAT market commoditizes (MaxHS goes cloud, etc.) | Med | High | Open-source core; compete on proof artifacts + UX |
-| ZK framing attracts wrong-fit customers | High | Med | Aggressively rebrand Q3; redirect ZK interest to preprocessor |
-| Engine accuracy claims don't hold under audit | Med | Critical | Audit mini Q3; honest numbers if lower |
-| Research team leaves or pivots | Low | Critical | Open-source the engine; reduce single-point-of-failure |
-| Competitor ships 100% verifiable MaxSAT first | Med | High | Invest in proof artifacts NOW (Q3-Q4); this is the moat |
-| Funding / runway | Med | Critical | Cut burn to <$50K/mo; target $300K ARR by end of 2027 |
+| MaxSAT market commoditizes | Med | High | Open-source verifier + core; compete on proof artifacts + UX |
+| ZK framing attracts wrong-fit customers | High | Med | Rebrand Q3; redirect to preprocessor |
+| Engine accuracy claims don't hold | Med | Critical | Audit mini Q3; honest numbers if lower |
+| Proof schema has bugs | High | Critical | Integer weights only; derivation graph not string; infeasibility case |
+| Research team leaves | Low | Critical | Open-source verifier + core; reduce single-point-of-failure |
+| Competitor ships 100% verifiable MaxSAT first | Med | High | Invest in proof artifacts NOW (Q3-Q4) |
+| Funding / runway | Med | Critical | <$50K/mo burn; $300K ARR by end of 2027 |
 
 ---
 
-## 8. The Single Most Important Thing
+## 12. The Single Most Important Thing
 
-> **Get to 100% verifiable MaxSAT with a proof artifact in the API response.**
+> **Get to 3 signed design partner LOIs by end of Q3.**
 
-Everything else is positioning. This is the technical moat. If we have:
-- **100% accuracy** (provable, not just measured)
-- **<5s p99** on real instances
-- **A certificate** the user can verify independently
+Everything else is feature roadmap. Revenue feedback is the only signal that validates wedges. The proof artifact, the API schema, the open-source split — none of it matters if we don't have paying customers in the loop by Q4.
 
-…then we're the only game in town for high-stakes MaxSAT. ZK, audit, regulated industries all become adjacent.
+**The sequence:**
+1. Get LOIs first (Q3)
+2. Then build the proof artifact (Q4)
+3. Then open-source the verifier (Q4)
 
-If we don't get there, we're a fast MaxSAT API competing on price against free open-source tools. That's a bad place to be.
-
-**Q3 engineering priority: proof-of-optimality artifact. Everything else is marketing.**
+Not the other way around.
 
 ---
 
-## 9. Honest Verdicts
+## 13. Honest Verdicts
 
-1. **The ZK framing is hurting us.** It attracts customers we can't serve and dilutes our actual value prop. Cut it from the homepage in Q3.
-2. **The engine is real but undersold.** The hybrid local-search + systematic architecture is novel. Open-source the core in Q1 2027 to drive adoption; the API + proof artifacts stay commercial.
-3. **We're not a ZK company yet.** We might become one in 2028 if the technical moat (verifiable proofs) lands. Until then, lean into MaxSAT and don't pretend otherwise.
-4. **Hiring is critical and we can't do it wrong.** First 3 hires: Solutions Engineer (sells Pro tier), DevRel (community + open-source), ZK engineer (part-time until ZK wedge is validated).
-5. **The depth-4 Merkle result is research, not product.** It proved we understand the failure mode (exactly-one constraints, not the mult chain). That's valuable IP. But nobody's paying for it.
+1. **The ZK framing is hurting us.** Cut it from the homepage in Q3.
+2. **The engine is real but undersold.** The hybrid local-search + systematic architecture is novel. Open-source verifier + core in Q4 to drive adoption.
+3. **We're not a ZK company yet.** 2028+ if the verifiable proofs land. MaxSAT is now.
+4. **First hire is Solutions Engineer.** Not DevRel, not ZK engineer. Revenue requires someone who can sell.
+5. **The depth-4 Merkle result is research, not product.** Valuable IP. But nobody's paying for it yet.
 
 ---
 
