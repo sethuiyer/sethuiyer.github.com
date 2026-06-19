@@ -56,6 +56,7 @@ THE ARITHMETIC MANIFOLD
 All projects use prime weights for constraint identity:
 - BAHA, NitroSAT, Navokoj: Clause/constraint weighting
 - Multiplicative PINN: Physics law weighting
+- Prime Euler Activations: Activation and channel gating
 - Spectral-Multiplicative: Graph constraint weighting
 - Factor Agent: Agent/capability weighting
 

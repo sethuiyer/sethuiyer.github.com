@@ -53,6 +53,7 @@ nav:
       - Partition Function: concepts/partition-function.md
       - Prime Weighting: concepts/prime-weighting.md
       - Multiplicative vs Additive: concepts/multiplicative-vs-additive.md
+      - Prime Euler Activations: concepts/prime-euler-activations.md
       - Phase Transitions: concepts/phase-transitions.md
       - Riemann Hypothesis: concepts/riemann-hypothesis.md
       - Asymptotically Fair Stopping: concepts/asymptotically-fair-stopping.md

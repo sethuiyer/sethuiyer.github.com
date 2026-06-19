@@ -12,13 +12,13 @@
         <meta name="author" content="Sethurathienam Iyer">
       
       
-        <link rel="canonical" href="https://shunyabar.dev/concepts/riemann-hypothesis/">
+        <link rel="canonical" href="https://shunyabar.dev/concepts/prime-euler-activations/">
       
       
-        <link rel="prev" href="../phase-transitions/">
+        <link rel="prev" href="../multiplicative-vs-additive/">
       
       
-        <link rel="next" href="../asymptotically-fair-stopping/">
+        <link rel="next" href="../phase-transitions/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Riemann Hypothesis - ShunyaBar Labs</title>
+        <title>Prime Euler Activations - ShunyaBar Labs</title>
       
     
     
@@ -87,7 +87,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#the-riemann-hypothesis-as-stability-condition" class="md-skip">
+        <a href="#prime-euler-activations-and-zetadrop" class="md-skip">
           Skip to content
         </a>
       
@@ -121,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Riemann Hypothesis
+              Prime Euler Activations
             
           </span>
         </div>
@@ -703,10 +703,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../prime-euler-activations/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prime Euler Activations
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -722,6 +749,158 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-idea" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Idea
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prime-euler-gated-activation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prime Euler Gated Activation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#residual-pesilu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Residual PESiLU
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constraint-aware-activation-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constraint-Aware Activation Gate
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prime-indexed-sparse-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prime-Indexed Sparse Parameters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zetadrop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ZetaDrop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prime-mixture-of-experts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prime Mixture of Experts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spectral-gradient-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spectral Gradient Engine
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arithmetic-feature-grammar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arithmetic Feature Grammar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical Design
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pytorch-sketch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PyTorch Sketch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#claim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claim
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -759,37 +938,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Riemann Hypothesis
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../riemann-hypothesis/" class="md-nav__link">
         
   
   
@@ -805,237 +957,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#in-plain-english" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        In Plain English
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-two-competing-forces" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The Two Competing Forces
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="The Two Competing Forces">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-geometric-weakening" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Geometric Weakening
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-prime-fluctuation-decay" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Prime Fluctuation Decay
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-stability-condition" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The Stability Condition
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="The Stability Condition">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#case-1-rh-is-true-12" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Case 1: RH is True (σ = 1/2)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#case-2-rh-is-false-12" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Case 2: RH is False (σ &gt; 1/2)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-asymptotic-lock-conjecture" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The Asymptotic Lock Conjecture
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-this-means-practically" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What This Means Practically
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="What This Means Practically">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#nitrosat" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        NitroSAT
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#connection-to-phase-transitions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Connection to Phase Transitions
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-euler-product-connection" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The Euler Product Connection
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mathematical-details" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mathematical Details
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Mathematical Details">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#the-prime-number-theorem" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The Prime Number Theorem
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#the-explicit-formula" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The Explicit Formula
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-insight" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Insight
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#see-also" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        See Also
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2065,91 +1986,446 @@
 
 
 
-<h1 id="the-riemann-hypothesis-as-stability-condition">The Riemann Hypothesis as Stability Condition<a class="headerlink" href="#the-riemann-hypothesis-as-stability-condition" title="Permanent link">&para;</a></h1>
-<h2 id="in-plain-english">In Plain English<a class="headerlink" href="#in-plain-english" title="Permanent link">&para;</a></h2>
-<p>The Riemann Hypothesis (RH) is one of the most famous unsolved problems in mathematics — it states that all non-trivial zeros of the Riemann zeta function lie on the critical line <span class="arithmatex">\(\text{Re}(s) = 1/2\)</span>.</p>
-<p>Most people encounter this in number theory class and move on. The Arithmetic Manifold makes a bolder claim: <strong>the Riemann Hypothesis is a stability condition for constraint satisfaction algorithms</strong>. Not a metaphor, not an analogy — a literal condition that determines whether gradient flow on the constraint manifold remains stable as problems scale.</p>
-<p><strong>Why this matters</strong>: If RH is true (σ = 1/2), then our algorithms remain stable at any scale. If RH is false, there exist problem sizes where our algorithms will catastrophically fail. NitroSAT is described as "a physical instrument" for probing this connection.</p>
+<h1 id="prime-euler-activations-and-zetadrop">Prime Euler Activations and ZetaDrop<a class="headerlink" href="#prime-euler-activations-and-zetadrop" title="Permanent link">&para;</a></h1>
+<h2 id="core-idea">Core Idea<a class="headerlink" href="#core-idea" title="Permanent link">&para;</a></h2>
+<p>The Multiplicative PINN framework applies an arithmetic gate at the loss level:</p>
+<div class="arithmatex">\[
+L_{\text{mult}}=L_{\text{data}}\cdot C(v),
+\]</div>
+<p>where <span class="arithmatex">\(v\)</span> measures constraint violation and <span class="arithmatex">\(C(v)\)</span> rescales the optimization landscape. This preserves the main data-gradient direction while adding a structured correction through</p>
+<div class="arithmatex">\[
+\nabla_\theta L_{\text{mult}}
+=
+C(v)\nabla_\theta L_{\text{data}}
++
+L_{\text{data}}\nabla_\theta C(v).
+\]</div>
+<p>The same mechanism can be moved inside the network.</p>
+<p>Instead of applying the arithmetic gate only to the final loss, we can apply it to activations, channels, attention heads, LoRA ranks, or experts:</p>
+<div class="arithmatex">\[
+h_{l+1}
+=
+\sigma(W_lh_l+b_l)\odot A_\theta(z_l,c_l).
+\]</div>
+<p>The conceptual mutation is:</p>
+<div class="arithmatex">\[
+\boxed{
+\text{loss-level constraint gate}
+\Rightarrow
+\text{layer-level representation gate}
+\Rightarrow
+\text{activation-level spectral gate}.
+}
+\]</div>
+<p>The resulting object is a Prime Euler activation: a neural nonlinearity whose response is modulated by a finite Euler product.</p>
 <hr />
-<h2 id="the-two-competing-forces">The Two Competing Forces<a class="headerlink" href="#the-two-competing-forces" title="Permanent link">&para;</a></h2>
-<p>As clause count <span class="arithmatex">\(K\)</span> grows, two forces compete in the constraint graph:</p>
-<h3 id="1-geometric-weakening">1. Geometric Weakening<a class="headerlink" href="#1-geometric-weakening" title="Permanent link">&para;</a></h3>
-<p>The spectral gap closes as constraints proliferate:</p>
-<p><span class="arithmatex">\(\lambda_2(G_K) \sim K^{-\gamma}\)</span></p>
-<p>The spectral gap determines how quickly information (gradients) diffuses through the constraint graph. When the gap closes, diffusion slows — the landscape becomes rough.</p>
-<h3 id="2-prime-fluctuation-decay">2. Prime Fluctuation Decay<a class="headerlink" href="#2-prime-fluctuation-decay" title="Permanent link">&para;</a></h3>
-<p>The distribution of primes causes fluctuations in the weight function. The variance of these fluctuations decays as:</p>
-<p><span class="arithmatex">\(\Phi(K) \sim K^{\sigma - 1}\)</span></p>
-<p>where <span class="arithmatex">\(\sigma\)</span> is the supremum of real parts of <span class="arithmatex">\(\zeta(s)\)</span> zeros.</p>
-<p><strong>Key</strong>: If RH is true, <span class="arithmatex">\(\sigma = 1/2\)</span>, so <span class="arithmatex">\(\Phi(K) \sim K^{-1/2}\)</span>.</p>
+<h2 id="prime-euler-gated-activation">Prime Euler Gated Activation<a class="headerlink" href="#prime-euler-gated-activation" title="Permanent link">&para;</a></h2>
+<p>Let <span class="arithmatex">\(P\)</span> be a finite set of primes. Define a positive spectral coordinate</p>
+<div class="arithmatex">\[
+v=\operatorname{softplus}(z).
+\]</div>
+<p>The Euler gate is</p>
+<div class="arithmatex">\[
+G(z)
+=
+\prod_{p\in P}
+\left(1-p^{-\tau \operatorname{softplus}(z)}\right).
+\]</div>
+<p>A direct Prime Euler activation is</p>
+<div class="arithmatex">\[
+\boxed{
+\operatorname{EulerGate}(z)
+=
+z\prod_{p\in P}
+\left(1-p^{-\tau \operatorname{softplus}(z)}\right).
+}
+\]</div>
+<p>A smoother practical version uses SiLU as the base activation:</p>
+<div class="arithmatex">\[
+\operatorname{SiLU}(z)=z\sigma(z),
+\]</div>
+<p>and gates it:</p>
+<div class="arithmatex">\[
+\boxed{
+\operatorname{PESiLU}(z)
+=
+\operatorname{SiLU}(z)\cdot G(z).
+}
+\]</div>
+<p>Here PESiLU means <strong>Prime Euler Gated SiLU</strong>.</p>
+<p>The softplus is important because the Euler product naturally wants a nonnegative coordinate:</p>
+<div class="arithmatex">\[
+s=\tau v.
+\]</div>
+<p>Thus the activation does not merely ask whether <span class="arithmatex">\(z&gt;0\)</span>, as ReLU does. It asks which arithmetic spectral coordinate the activation occupies.</p>
 <hr />
-<h2 id="the-stability-condition">The Stability Condition<a class="headerlink" href="#the-stability-condition" title="Permanent link">&para;</a></h2>
-<p>For gradient flow to remain stable as <span class="arithmatex">\(K \to \infty\)</span>:</p>
-<p><span class="arithmatex">\(1 - \sigma &gt; \gamma\)</span></p>
-<p>This is the <strong>Arithmetic Stability Condition (ASC)</strong>.</p>
-<h3 id="case-1-rh-is-true-12">Case 1: RH is True (σ = 1/2)<a class="headerlink" href="#case-1-rh-is-true-12" title="Permanent link">&para;</a></h3>
-<p><span class="arithmatex">\(1 - 1/2 = 1/2 &gt; \gamma\)</span></p>
-<p>For any <span class="arithmatex">\(\gamma &lt; 1/2\)</span>, the system is stable. The spectral gap closes slower than prime fluctuations decay.</p>
-<h3 id="case-2-rh-is-false-12">Case 2: RH is False (σ &gt; 1/2)<a class="headerlink" href="#case-2-rh-is-false-12" title="Permanent link">&para;</a></h3>
-<p><span class="arithmatex">\(1 - \sigma &lt; 1/2\)</span></p>
-<p>There exists some <span class="arithmatex">\(\gamma\)</span> such that <span class="arithmatex">\(1 - \sigma &lt; \gamma\)</span>, and the system becomes unstable at scale.</p>
+<h2 id="residual-pesilu">Residual PESiLU<a class="headerlink" href="#residual-pesilu" title="Permanent link">&para;</a></h2>
+<p>The raw Euler product satisfies</p>
+<div class="arithmatex">\[
+G(0)=0,
+\]</div>
+<p>because each factor becomes <span class="arithmatex">\(1-1=0\)</span>. For activations, this can over-suppress gradients. A safer version keeps the base activation alive and uses the Euler gate only as a modulation:</p>
+<div class="arithmatex">\[
+\boxed{
+\operatorname{ResidualPESiLU}(z)
+=
+\operatorname{SiLU}(z)
+\left(1+\alpha G(z)\right).
+}
+\]</div>
+<p>This gives:</p>
+<div class="arithmatex">\[
+\text{base activation}
++
+\text{prime spectral modulation}.
+\]</div>
+<p>In practice this is the first version to benchmark, because it preserves the stability of SiLU while injecting a controlled arithmetic response.</p>
 <hr />
-<h2 id="the-asymptotic-lock-conjecture">The Asymptotic Lock Conjecture<a class="headerlink" href="#the-asymptotic-lock-conjecture" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>On critical mesh-like geometries (<span class="arithmatex">\(\gamma \to 1/2\)</span>), preserving stability strictly requires <span class="arithmatex">\(\sigma \to 1/2\)</span> (the Riemann Hypothesis).</p>
-</blockquote>
-<p>This is a conjecture — it's not proven. But the empirical evidence from NitroSAT's scaling behavior is consistent with the conjecture.</p>
+<h2 id="constraint-aware-activation-gate">Constraint-Aware Activation Gate<a class="headerlink" href="#constraint-aware-activation-gate" title="Permanent link">&para;</a></h2>
+<p>The activation gate can depend on a local constraint score rather than directly on <span class="arithmatex">\(z\)</span>.</p>
+<p>Let</p>
+<div class="arithmatex">\[
+v_l=\phi_l(h_l)
+\]</div>
+<p>measure local violation, salience, uncertainty, curvature, or physics inconsistency. Examples include:</p>
+<div class="arithmatex">\[
+v_l=|\nabla_x h_l|^2
+\]</div>
+<p>for smoothness,</p>
+<div class="arithmatex">\[
+v_l=\max(0,-h_l)
+\]</div>
+<p>for positivity,</p>
+<div class="arithmatex">\[
+v_l=|\nabla\cdot u_l|^2
+\]</div>
+<p>for incompressibility, or a learned score</p>
+<div class="arithmatex">\[
+v_l=\operatorname{softplus}(a^\top h_l+b).
+\]</div>
+<p>Then define</p>
+<div class="arithmatex">\[
+\boxed{
+h_{l+1}
+=
+\sigma(W_lh_l+b_l)\odot C(v_l).
+}
+\]</div>
+<p>with</p>
+<div class="arithmatex">\[
+C(v_l)
+=
+\operatorname{clamp}
+\left[
+\max\left(
+\prod_{p\in P}(1-p^{-\tau v_l}),
+e^{\gamma v_l}
+\right),
+\epsilon,
+M
+\right].
+\]</div>
+<p>This moves the Multiplicative PINN mechanism from global loss space into local representation space. The network does not wait for the final loss to punish constraint violations; it routes information differently through layers depending on constraint compatibility.</p>
 <hr />
-<h2 id="what-this-means-practically">What This Means Practically<a class="headerlink" href="#what-this-means-practically" title="Permanent link">&para;</a></h2>
-<h3 id="nitrosat">NitroSAT<a class="headerlink" href="#nitrosat" title="Permanent link">&para;</a></h3>
-<p>NitroSAT is described as:</p>
-<blockquote>
-<p>"NitroSAT does not prove the Riemann Hypothesis. But it embeds RH as a phase boundary: the solver functions as a physical instrument whose asymptotic stability threshold coincides exactly with the critical line Re(s) = 1/2."</p>
-</blockquote>
-<p>The solver's behavior changes at the RH boundary — above it, the solver is stable; below it, the solver degrades.</p>
-<h3 id="connection-to-phase-transitions">Connection to Phase Transitions<a class="headerlink" href="#connection-to-phase-transitions" title="Permanent link">&para;</a></h3>
-<p>The Lambert W phase transition threshold:</p>
-<p><span class="arithmatex">\(\ln K^* = -C \cdot W\left(-\frac{1}{C}\right)\)</span></p>
-<p>and the Riemann stability condition:</p>
-<p><span class="arithmatex">\(1 - \sigma &gt; \gamma\)</span></p>
-<p>are <strong>two views of the same phenomenon</strong>:
-- The Lambert W tells you when the landscape fractures locally
-- The RH condition tells you when fractures are unrecoverable at scale</p>
+<h2 id="prime-indexed-sparse-parameters">Prime-Indexed Sparse Parameters<a class="headerlink" href="#prime-indexed-sparse-parameters" title="Permanent link">&para;</a></h2>
+<p>The same gate can induce structured sparsity.</p>
+<p>Assign each neuron, channel, attention head, LoRA rank, or expert a prime:</p>
+<div class="arithmatex">\[
+p_1=2,\quad p_2=3,\quad p_3=5,\quad p_4=7,\dots.
+\]</div>
+<p>Then gate parameter block <span class="arithmatex">\(\theta_i\)</span> by</p>
+<div class="arithmatex">\[
+g_i(v)=1-p_i^{-\tau v},
+\]</div>
+<p>so the effective parameter is</p>
+<div class="arithmatex">\[
+\theta_i^{\mathrm{eff}}
+=
+g_i(v)\theta_i.
+\]</div>
+<p>For small <span class="arithmatex">\(v\)</span>,</p>
+<div class="arithmatex">\[
+p_i^{-\tau v}
+\approx
+1-\tau v\log p_i,
+\]</div>
+<p>and therefore</p>
+<div class="arithmatex">\[
+g_i(v)
+=
+1-p_i^{-\tau v}
+\approx
+\tau v\log p_i.
+\]</div>
+<p>This means prime-indexed blocks open at rates controlled by <span class="arithmatex">\(\log p_i\)</span>.</p>
+<p>There is also an attenuation form:</p>
+<div class="arithmatex">\[
+a_i(v)=p_i^{-\tau v}.
+\]</div>
+<p>This gives the opposite sparsity regime:</p>
+<div class="arithmatex">\[
+\boxed{
+a_i(v)=p_i^{-\tau v}
+\Rightarrow
+\text{small-prime core stays active while large-prime tail sparsifies}.
+}
+\]</div>
+<p>The opening form gives:</p>
+<div class="arithmatex">\[
+\boxed{
+g_i(v)=1-p_i^{-\tau v}
+\Rightarrow
+\text{large-prime refiners activate differently as violation grows}.
+}
+\]</div>
+<p>Together these define arithmetic structured sparsity:</p>
+<div class="arithmatex">\[
+2,3,5
+=
+\text{core basis},
+\]</div>
+<div class="arithmatex">\[
+7,11,13,\dots
+=
+\text{refinement basis},
+\]</div>
+<div class="arithmatex">\[
+\text{large primes}
+=
+\text{rare or high-frequency exception handlers}.
+\]</div>
 <hr />
-<h2 id="the-euler-product-connection">The Euler Product Connection<a class="headerlink" href="#the-euler-product-connection" title="Permanent link">&para;</a></h2>
-<p>The Riemann zeta function:</p>
-<p><span class="arithmatex">\(\zeta(s) = \prod_{p} \frac{1}{1 - p^{-s}}\)</span></p>
-<p>is the <strong>continuous limit</strong> of the prime-weighted constraint factor:</p>
-<p><span class="arithmatex">\(P_{\text{mult}} = \prod_{v} \left(1 - \frac{1}{p_v^2}\right) \to \frac{1}{\zeta(2)}\)</span></p>
-<p>The phase transition at <span class="arithmatex">\(\beta = 1\)</span> (where <span class="arithmatex">\(\zeta(1) = \infty\)</span>) is the point where the multiplicative constraint factor diverges — this is the "superconducting phase" where constraints propagate without dissipation.</p>
+<h2 id="zetadrop">ZetaDrop<a class="headerlink" href="#zetadrop" title="Permanent link">&para;</a></h2>
+<p>ZetaDrop is the dropout-like version of the idea.</p>
+<p>Ordinary dropout randomly suppresses units. ZetaDrop suppresses channels according to an Euler-product arithmetic prior:</p>
+<div class="arithmatex">\[
+\boxed{
+\operatorname{ZetaDrop}(h_i)
+=
+h_i\cdot p_i^{-\tau v}.
+}
+\]</div>
+<p>This is not random sparsity. It is spectral sparsity.</p>
+<p>A channel with a small prime index remains active longer:</p>
+<div class="arithmatex">\[
+2^{-\tau v}
+&gt;
+3^{-\tau v}
+&gt;
+5^{-\tau v}
+&gt;
+7^{-\tau v}.
+\]</div>
+<p>Thus the network receives a deterministic hierarchy:</p>
+<div class="arithmatex">\[
+\text{input difficulty or constraint violation}
+\Rightarrow
+\text{prime-indexed parameter budget}.
+\]</div>
+<p>Low-complexity inputs can use the small-prime core. Harder or higher-violation inputs can activate larger-prime refiners.</p>
 <hr />
-<h2 id="mathematical-details">Mathematical Details<a class="headerlink" href="#mathematical-details" title="Permanent link">&para;</a></h2>
-<h3 id="the-prime-number-theorem">The Prime Number Theorem<a class="headerlink" href="#the-prime-number-theorem" title="Permanent link">&para;</a></h3>
-<p>The Prime Number Theorem states:</p>
-<p><span class="arithmatex">\(\pi(x) \sim \frac{x}{\ln x}\)</span></p>
-<p>This controls the asymptotic behavior of prime weights <span class="arithmatex">\(W(p_K) = 1/(1 + \ln p_K)\)</span>.</p>
-<h3 id="the-explicit-formula">The Explicit Formula<a class="headerlink" href="#the-explicit-formula" title="Permanent link">&para;</a></h3>
-<p>The connection between <span class="arithmatex">\(\zeta(s)\)</span> and primes is made precise by:</p>
-<p><span class="arithmatex">\(\psi(x) = \sum_{n \leq x} \Lambda(n) = x - \sum_{\rho} \frac{x^\rho}{\rho} - \ln(2\pi)\)</span></p>
-<p>where <span class="arithmatex">\(\Lambda\)</span> is the von Mangoldt function and the sum is over non-trivial zeros <span class="arithmatex">\(\rho\)</span> of <span class="arithmatex">\(\zeta(s)\)</span>.</p>
-<p>This formula shows exactly how the zeros of <span class="arithmatex">\(\zeta(s)\)</span> control the distribution of primes.</p>
+<h2 id="prime-mixture-of-experts">Prime Mixture of Experts<a class="headerlink" href="#prime-mixture-of-experts" title="Permanent link">&para;</a></h2>
+<p>A practical MoE version assigns each expert <span class="arithmatex">\(E_i\)</span> a prime <span class="arithmatex">\(p_i\)</span>. Define</p>
+<div class="arithmatex">\[
+g_i(x)=1-p_i^{-\tau v(x)}
+\]</div>
+<p>or normalized weights</p>
+<div class="arithmatex">\[
+\alpha_i(x)
+=
+\frac{g_i(x)}{\sum_j g_j(x)}.
+\]</div>
+<p>Then</p>
+<div class="arithmatex">\[
+y
+=
+\sum_i\alpha_i(x)E_i(x).
+\]</div>
+<p>Small-prime experts provide coarse correction. Larger-prime experts become fine-correction experts. This is MoE-style conditional computation, but with a deterministic arithmetic prior instead of a fully learned softmax router.</p>
 <hr />
-<h2 id="key-insight">Key Insight<a class="headerlink" href="#key-insight" title="Permanent link">&para;</a></h2>
-<p>The Riemann Hypothesis is not decorative in the Arithmetic Manifold — it is <strong>load-bearing mathematics</strong>. It determines the asymptotic stability of gradient flow on the constraint manifold. If RH is true, we have a theory of everything for constraint satisfaction. If RH is false, we have a theory that breaks at scale.</p>
-<p>The connection is not proven — it's an open problem at the intersection of computational complexity and number theory. But NitroSAT's empirical behavior is consistent with the hypothesis, making it a falsifiable prediction.</p>
+<h2 id="spectral-gradient-engine">Spectral Gradient Engine<a class="headerlink" href="#spectral-gradient-engine" title="Permanent link">&para;</a></h2>
+<p>The mathematical reason the gate is not an arbitrary nonlinearity is its log-gradient.</p>
+<p>For</p>
+<div class="arithmatex">\[
+G(v)=\prod_{p\in P}(1-p^{-\tau v}),
+\]</div>
+<p>we have</p>
+<div class="arithmatex">\[
+\frac{d}{dv}\log G(v)
+=
+\tau
+\sum_{p\in P}
+\frac{\log p\;p^{-\tau v}}{1-p^{-\tau v}}.
+\]</div>
+<p>Expanding the denominator gives</p>
+<div class="arithmatex">\[
+\frac{d}{dv}\log G(v)
+=
+\tau
+\sum_{p\in P}
+\sum_{k\ge1}
+(\log p)p^{-k\tau v}.
+\]</div>
+<p>This is a finite-prime analogue of</p>
+<div class="arithmatex">\[
+-\frac{\zeta'(s)}{\zeta(s)}
+=
+\sum_{p,k\ge1}
+\frac{\log p}{p^{ks}}
+=
+\sum_{n\ge1}\frac{\Lambda(n)}{n^s}.
+\]</div>
+<p>So each gated neuron or parameter block receives a gradient correction shaped like a truncated prime-power spectrum.</p>
+<p>Normal activations have simple response curves:</p>
+<div class="arithmatex">\[
+\text{ReLU}=\text{threshold},
+\]</div>
+<div class="arithmatex">\[
+\text{GELU/SiLU}=\text{smooth probabilistic gate}.
+\]</div>
+<p>Prime Euler activations add a new layer:</p>
+<div class="arithmatex">\[
+\boxed{
+\text{activation}
+=
+\text{smooth gate}
++
+\text{arithmetic spectral hierarchy}.
+}
+\]</div>
 <hr />
-<h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="../prime-weighting/">Prime Weighting</a> — how prime distribution connects to the Riemann zeta function</li>
-<li><a href="../partition-function/">Partition Function</a> — the Euler product connection to <span class="arithmatex">\(\zeta(s)\)</span></li>
-<li><a href="../multiplicative-vs-additive/">Multiplicative vs Additive</a> — the superconducting phase at <span class="arithmatex">\(\beta = 1\)</span></li>
-<li><a href="../phase-transitions/">Phase Transitions</a> — the Lambert W connection to stability</li>
-<li><a href="../asymptotically-fair-stopping/">Asymptotically Fair Stopping</a> — the Prime STOP Law and RH-modulated convergence</li>
-<li><a href="../../core-vision/">The Arithmetic Manifold</a> — the unified theory</li>
-<li><a href="../../axiom-architecture/">Axiom Architecture</a> — the rigorous treatment of primes as convergence structure</li>
-<li><a href="../../projects/nitrosat/">NitroSAT</a> — the solver that embeds RH as a phase boundary</li>
-<li><a href="../../projects/thermodynamic-number-line/">Thermodynamic Number Line</a> — primes as thermodynamic fuel</li>
-</ul>
+<h2 id="arithmetic-feature-grammar">Arithmetic Feature Grammar<a class="headerlink" href="#arithmetic-feature-grammar" title="Permanent link">&para;</a></h2>
+<p>Prime-indexed parameters also suggest a factorization grammar for neural features.</p>
+<p>Atomic channels are assigned primes:</p>
+<div class="arithmatex">\[
+p_i=\text{atomic feature}.
+\]</div>
+<p>Composite interactions are represented by products:</p>
+<div class="arithmatex">\[
+p_ip_j=\text{pairwise interaction},
+\]</div>
+<div class="arithmatex">\[
+p_ip_jp_k=\text{higher-order interaction}.
+\]</div>
+<p>Prime powers represent repeated self-interactions:</p>
+<div class="arithmatex">\[
+p_i^k=\text{repeated self-interaction}.
+\]</div>
+<p>This mirrors the logarithmic derivative of the Euler product:</p>
+<div class="arithmatex">\[
+-\frac{\zeta'}{\zeta}
+=
+\sum_{p,k}
+\frac{\log p}{p^{ks}}.
+\]</div>
+<p>The architectural claim is that a network can separate atomic features, pairwise composites, and higher-order interactions using the arithmetic topology of primes and composites.</p>
+<hr />
+<h2 id="practical-design">Practical Design<a class="headerlink" href="#practical-design" title="Permanent link">&para;</a></h2>
+<p>A concrete layer-level design is</p>
+<div class="arithmatex">\[
+h_{l+1}
+=
+\sum_{i=1}^{m}
+p_i^{-\tau v_l}
+\cdot
+\sigma(W_{l,i}h_l).
+\]</div>
+<p>Add a budget penalty:</p>
+<div class="arithmatex">\[
+\Omega
+=
+\lambda
+\sum_i
+(\log p_i)^\alpha
+\|W_{l,i}\|_F^2.
+\]</div>
+<p>or</p>
+<div class="arithmatex">\[
+\Omega
+=
+\lambda
+\sum_i
+p_i^\beta
+\|W_{l,i}\|_1.
+\]</div>
+<p>This makes high-prime parameter blocks more expensive. The model learns to use small-prime blocks unless large-prime blocks are necessary.</p>
+<p>In this sense the prime hierarchy acts as an arithmetic Occam prior:</p>
+<div class="arithmatex">\[
+\boxed{
+\text{small primes}=\text{cheap universal features}
+}
+\]</div>
+<div class="arithmatex">\[
+\boxed{
+\text{large primes}=\text{expensive rare corrections}.
+}
+\]</div>
+<hr />
+<h2 id="pytorch-sketch">PyTorch Sketch<a class="headerlink" href="#pytorch-sketch" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn.functional</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">F</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">PrimeEulerGate</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">primes</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="n">tau</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">max_val</span><span class="o">=</span><span class="mf">1e6</span><span class="p">):</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>            <span class="s2">&quot;log_primes&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>            <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">primes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)),</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="p">)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">tau</span> <span class="o">=</span> <span class="n">tau</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">eps</span> <span class="o">=</span> <span class="n">eps</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">max_val</span> <span class="o">=</span> <span class="n">max_val</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        <span class="n">v</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softplus</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        <span class="n">terms</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">tau</span> <span class="o">*</span> <span class="n">v</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_primes</span><span class="p">)</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>        <span class="n">gate</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">gate</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_val</span><span class="p">)</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="k">class</span><span class="w"> </span><span class="nc">PESiLU</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">primes</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="n">tau</span><span class="o">=</span><span class="mf">3.0</span><span class="p">):</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">gate</span> <span class="o">=</span> <span class="n">PrimeEulerGate</span><span class="p">(</span><span class="n">primes</span><span class="o">=</span><span class="n">primes</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="n">tau</span><span class="p">)</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>        <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">silu</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">gate</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="k">class</span><span class="w"> </span><span class="nc">ResidualPESiLU</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">primes</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="n">tau</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">gate</span> <span class="o">=</span> <span class="n">PrimeEulerGate</span><span class="p">(</span><span class="n">primes</span><span class="o">=</span><span class="n">primes</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="n">tau</span><span class="p">)</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">alpha</span><span class="p">)))</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>        <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">silu</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">gate</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+</code></pre></div>
+<p>The first experiment should compare ReLU, GELU, SiLU, PESiLU, and ResidualPESiLU on:</p>
+<ol>
+<li>PINN toy PDEs.</li>
+<li>Monotonic regression.</li>
+<li>Classification calibration.</li>
+<li>Sparse feature routing.</li>
+<li>Mixture-of-experts routing.</li>
+</ol>
+<hr />
+<h2 id="claim">Claim<a class="headerlink" href="#claim" title="Permanent link">&para;</a></h2>
+<p>Prime Euler gated activations introduce a multiplicative spectral modulation whose log-gradient is a finite von Mangoldt expansion. This creates hierarchical activation sensitivity while preserving a stable base nonlinearity.</p>
+<p>In one line:</p>
+<div class="arithmatex">\[
+\boxed{
+\text{Multiplicative PINN gates can become activation-level observer kernels.}
+}
+\]</div>
+<p>ZetaDrop is the sparsity version:</p>
+<div class="arithmatex">\[
+\boxed{
+\text{dropout becomes deterministic spectral sparsity over prime-indexed parameters.}
+}
+\]</div>
 
 
 

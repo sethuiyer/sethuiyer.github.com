@@ -228,6 +228,7 @@ The Multiplicative PINN is the **proof of concept** that multiplicative constrai
 - [Spectral-Multiplicative](spectral-multiplicative.md) — multiplicative constraints in graph optimization
 - [Multiplicative vs Additive](../concepts/multiplicative-vs-additive.md) — the mathematical foundation
 - [Prime Weighting](../concepts/prime-weighting.md) — prime-weighted physics constraints
+- [Prime Euler Activations and ZetaDrop](../concepts/prime-euler-activations.md) — activation-level Euler gates and prime-indexed sparsity
 - [Partition Function](../concepts/partition-function.md) — local partition function per constraint
 - [STOP Operators as Resolution Flows](../concepts/stop-operator-manuscript.md) — Mellin observer view of Euler-product gates
 - [Benchmarks](../getting-started/benchmarks.md) — Navier-Stokes results comparison
