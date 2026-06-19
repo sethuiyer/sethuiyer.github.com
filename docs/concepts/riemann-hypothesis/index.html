@@ -994,7 +994,7 @@
   <a href="#case-1-rh-is-true-12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Case 1: RH is True (σ = 1/2)
+        Case 1: RH is True (σ = &frac12;)
       
     </span>
   </a>
@@ -1005,7 +1005,7 @@
   <a href="#case-2-rh-is-false-12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Case 2: RH is False (σ &gt; 1/2)
+        Case 2: RH is False (σ &gt; &frac12;)
       
     </span>
   </a>
@@ -2204,7 +2204,7 @@
 <h2 id="in-plain-english">In Plain English<a class="headerlink" href="#in-plain-english" title="Permanent link">&para;</a></h2>
 <p>The Riemann Hypothesis (RH) is one of the most famous unsolved problems in mathematics — it states that all non-trivial zeros of the Riemann zeta function lie on the critical line <span class="arithmatex">\(\text{Re}(s) = 1/2\)</span>.</p>
 <p>Most people encounter this in number theory class and move on. The Arithmetic Manifold makes a bolder claim: <strong>the Riemann Hypothesis is a stability condition for constraint satisfaction algorithms</strong>. Not a metaphor, not an analogy — a literal condition that determines whether gradient flow on the constraint manifold remains stable as problems scale.</p>
-<p><strong>Why this matters</strong>: If RH is true (σ = 1/2), then our algorithms remain stable at any scale. If RH is false, there exist problem sizes where our algorithms will catastrophically fail. NitroSAT is described as "a physical instrument" for probing this connection.</p>
+<p><strong>Why this matters</strong>: If RH is true (σ = &frac12;), then our algorithms remain stable at any scale. If RH is false, there exist problem sizes where our algorithms will catastrophically fail. NitroSAT is described as "a physical instrument" for probing this connection.</p>
 <hr />
 <h2 id="the-two-competing-forces">The Two Competing Forces<a class="headerlink" href="#the-two-competing-forces" title="Permanent link">&para;</a></h2>
 <p>As clause count <span class="arithmatex">\(K\)</span> grows, two forces compete in the constraint graph:</p>
@@ -2222,10 +2222,10 @@
 <p>For gradient flow to remain stable as <span class="arithmatex">\(K \to \infty\)</span>:</p>
 <p><span class="arithmatex">\(1 - \sigma &gt; \gamma\)</span></p>
 <p>This is the <strong>Arithmetic Stability Condition (ASC)</strong>.</p>
-<h3 id="case-1-rh-is-true-12">Case 1: RH is True (σ = 1/2)<a class="headerlink" href="#case-1-rh-is-true-12" title="Permanent link">&para;</a></h3>
+<h3 id="case-1-rh-is-true-12">Case 1: RH is True (σ = &frac12;)<a class="headerlink" href="#case-1-rh-is-true-12" title="Permanent link">&para;</a></h3>
 <p><span class="arithmatex">\(1 - 1/2 = 1/2 &gt; \gamma\)</span></p>
 <p>For any <span class="arithmatex">\(\gamma &lt; 1/2\)</span>, the system is stable. The spectral gap closes slower than prime fluctuations decay.</p>
-<h3 id="case-2-rh-is-false-12">Case 2: RH is False (σ &gt; 1/2)<a class="headerlink" href="#case-2-rh-is-false-12" title="Permanent link">&para;</a></h3>
+<h3 id="case-2-rh-is-false-12">Case 2: RH is False (σ &gt; &frac12;)<a class="headerlink" href="#case-2-rh-is-false-12" title="Permanent link">&para;</a></h3>
 <p><span class="arithmatex">\(1 - \sigma &lt; 1/2\)</span></p>
 <p>There exists some <span class="arithmatex">\(\gamma\)</span> such that <span class="arithmatex">\(1 - \sigma &lt; \gamma\)</span>, and the system becomes unstable at scale.</p>
 <hr />
@@ -2239,7 +2239,7 @@
 <h3 id="nitrosat">NitroSAT<a class="headerlink" href="#nitrosat" title="Permanent link">&para;</a></h3>
 <p>NitroSAT is described as:</p>
 <blockquote>
-<p>"NitroSAT does not prove the Riemann Hypothesis. But it embeds RH as a phase boundary: the solver functions as a physical instrument whose asymptotic stability threshold coincides exactly with the critical line Re(s) = 1/2."</p>
+<p>"NitroSAT does not prove the Riemann Hypothesis. But it embeds RH as a phase boundary: the solver functions as a physical instrument whose asymptotic stability threshold coincides exactly with the critical line Re(s) = &frac12;."</p>
 </blockquote>
 <p>The solver's behavior changes at the RH boundary — above it, the solver is stable; below it, the solver degrades.</p>
 <h3 id="connection-to-phase-transitions">Connection to Phase Transitions<a class="headerlink" href="#connection-to-phase-transitions" title="Permanent link">&para;</a></h3>
