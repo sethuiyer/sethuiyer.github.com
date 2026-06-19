@@ -25,6 +25,8 @@ We build constraint-solving tools that come with proof. Our work unifies ideas f
 
 Full methodology: [research report](research-report.md) · [production ledger](projects/nitrosat.md) · [limitations](limitations.md)
 
+Launch context: [Navokoj in production](blog/navokoj-launch.md) explains how the Arithmetic Manifold maps into the public API and solver tiers.
+
 ---
 
 ## Projects
@@ -75,3 +77,4 @@ Details: [pricing](marketing/pricing.md) · [use cases](marketing/use-cases.md) 
 
 - [Prime Weighting](concepts/prime-weighting.md) · [Partition Function](concepts/partition-function.md) · [Multiplicative vs Additive](concepts/multiplicative-vs-additive.md) · [Phase Transitions](concepts/phase-transitions.md) · [Riemann Hypothesis](concepts/riemann-hypothesis.md) · [Asymptotically Fair Stopping](concepts/asymptotically-fair-stopping.md)
 - [All Projects](projects/index.md) · [Why Navokoj](marketing/index.md) · [Glossary](glossary.md)
+- [Navokoj Launch](blog/navokoj-launch.md) · [Navokoj Developer Guide](navokoj/index.md) · [Pricing](marketing/pricing.md)

@@ -40,6 +40,8 @@ The system is cooled slowly through the phase transition:
 
 **Live:** [navokoj.shunyabar.foo](https://navokoj.shunyabar.foo) | **API:** [api.navokoj.shunyabar.foo](https://api.navokoj.shunyabar.foo)
 
+For the production framing, read the [Navokoj launch post](../blog/navokoj-launch.md).
+
 ## Key Files
 
 - `navokoj/README.md` — Overview
@@ -60,6 +62,7 @@ Navokoj is the **pure theory implementation** — it's explicitly described as "
 - [NitroSAT](nitrosat.md) — the high-performance engine inside Navokoj
 - [BAHA](baha.md) — fracture detection for Navokoj's quench schedule
 - [Developer Guide](../navokoj/index.md) — API reference and code examples
+- [Navokoj Launch](../blog/navokoj-launch.md) — production story and engine overview
 - [Prime Weighting](../concepts/prime-weighting.md) — operator identity in the Arithmetic Sector
 - [Partition Function](../concepts/partition-function.md) — energy definition for geometric flow
 - [Phase Transitions](../concepts/phase-transitions.md) — adiabatic quench through critical density

@@ -321,6 +321,7 @@ Solve multiple problems in one request:
 
 - [Benchmark Suite](https://github.com/shunyabar/navokoj-tests) — Run your own benchmarks
 - [Arithmetic Manifold Theory](../projects/navokoj.md) — The math behind Navokoj
+- [Navokoj Launch](../blog/navokoj-launch.md) — production overview and engine map
 
 ## Get Started
 
@@ -332,14 +333,15 @@ export NAVOKOJ_KEY="your_key_here"
 curl -X POST https://api.navokoj.shunyabar.foo/v1/diagnose \
   -H "Authorization: Bearer $NAVOKOJ_KEY" \
   -d '{"num_vars": 100, "clauses": [[1,2,3],[-1,4]]}'
+```
 
 ---
 
 ## See Also
 
 - [Navokoj Project Page](../projects/navokoj.md) — the theory behind the API
+- [Navokoj Launch](../blog/navokoj-launch.md) — product narrative and Mermaid architecture map
 - [NitroSAT Project Page](../projects/nitrosat.md) — the engine inside Navokoj
 - [Quick Start](../getting-started/quick-start.md) — get running in 5 minutes
 - [Glossary](../glossary.md) — terminology reference
 - [Pricing](../marketing/pricing.md) — tier comparison
-```

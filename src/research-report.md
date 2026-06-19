@@ -2,6 +2,8 @@
 *Comprehensive Workspace Assessment — June 2026*
 
 > **Audience marker:** This is a technical document for engineers and researchers. For the business-facing version, see the [product strategy](product-strategy.md) and [homepage](index.md). For deep mathematical foundations, see the [Axiom Architecture essay](axiom-architecture.md).
+>
+> For the shorter production narrative, see the [Navokoj launch post](blog/navokoj-launch.md).
 
 ---
 
@@ -50,6 +52,8 @@ graph TD
     D --> D2[Casimir SAT]:::project
     D --> D3[Spectral-Multiplicative Framework]:::project
 ```
+
+> *The diagram above is illustrative. Clickable project pages: [NitroSAT](projects/nitrosat.md) · [Navokoj](projects/navokoj.md) · [BAHA](projects/baha.md) · [Geometry of Conditional Logic](projects/geometry-of-conditional-logic.md) · [Factor Agent](projects/factor-agent.md) · [Multiplicative PINN](projects/multiplicative-pinn.md) · [Casimir SAT](projects/casimir-sat-solver.md) · [Spectral-Multiplicative Framework](projects/spectral-multiplicative.md) · [Authorization Lattice](projects/authorization-lattice.md) · [Thermodynamic Number Line](projects/thermodynamic-number-line.md).*
 
 ### 1.1 NitroSAT
 * **Role**: The high-performance production engine.

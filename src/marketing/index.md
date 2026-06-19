@@ -21,7 +21,7 @@ If that sounds like your problem, [read the use cases](use-cases.md).
 
 ### 1. Proofs, not promises
 
-Every Pro+ response includes a structured **proof artifact** — assignment + UNSAT cores + derivation graph. Our verifier is [open source](../glossary.md#verification--trust). You don't trust us. You download our verifier, run it against our response, and confirm offline. That is the trust model.
+Every Pro+ response includes a structured **proof artifact** — assignment + UNSAT cores + derivation graph. Our verifier is [open source](../glossary.md#verification-trust). You don't trust us. You download our verifier, run it against our response, and confirm offline. That is the trust model.
 
 For comparison: classical solvers (Gurobi, CPLEX, OR-Tools) give you an answer and ask you to take it on faith. CDCL SAT solvers (Z3, Kissat, CaDiCaL) give you proof artifacts but choke on million-variable industrial problems. We do both.
 
@@ -29,7 +29,7 @@ For comparison: classical solvers (Gurobi, CPLEX, OR-Tools) give you an answer a
 
 When the world changes, we don't restart from scratch. We preserve the parts of your schedule that already work and adjust only what changed. **847×–12,495× faster than recomputation**, with 95%+ of prior decisions untouched.
 
-This is the wedge for [hospital scheduling](use-cases.md#2-healthcare-workforce-scheduling), [fleet routing](use-cases.md#1-logistics--transportation), and [GPU cluster allocation](use-cases.md#3-cloud-infrastructure--devops).
+This is the wedge for [hospital scheduling](use-cases.md#2-healthcare-workforce-scheduling), [fleet routing](use-cases.md#1-logistics-transportation), and [GPU cluster allocation](use-cases.md#3-cloud-infrastructure-devops).
 
 ### 3. Honest numbers, everywhere
 
@@ -61,7 +61,7 @@ We benchmark against certified optimal solutions and report the gaps. Our [`mini
 | **Massive variable count** | 49K vars / 73.5K clauses | 100% in 0.291 seconds |
 | **Quality at scale** | 308 production runs | 79.87% at ≥99% satisfaction; 54.22% perfect |
 
-These are not benchmark suite numbers. They are what real customers ran through the Navokoj API over 77 days. Full ledger with all 13 monster runs and the three-modes analysis: [NitroSAT production data →](../projects/nitrosat.md#production-performance--supabase-ledger-2026-04-04--2026-06-19)
+These are not benchmark suite numbers. They are what real customers ran through the Navokoj API over 77 days. Full ledger with all 13 monster runs and the three-modes analysis: [NitroSAT production data →](../projects/nitrosat.md#production-performance-supabase-ledger-2026-04-04-2026-06-19)
 
 [Detailed benchmark methodology →](../research-report.md)
 
@@ -107,6 +107,7 @@ curl -X POST https://api.navokoj.shunyabar.foo/v1/solve \
 ## For the technical reader
 
 - [The Arithmetic Manifold (theory)](../core-vision.md) — the unified mathematical framework
+- [Navokoj launch post](../blog/navokoj-launch.md) — how the theory becomes a production API
 - [Axiom Architecture essay](../axiom-architecture.md) — the rigorous deep-dive
 - [Research report](../research-report.md) — per-project technical assessment
 - [Limitations](../limitations.md) — where we work and where we don't
@@ -118,6 +119,7 @@ curl -X POST https://api.navokoj.shunyabar.foo/v1/solve \
 ## See Also
 
 - [Use Cases](use-cases.md) — verticals where Navokoj excels
+- [Navokoj Launch](../blog/navokoj-launch.md) — launch narrative and solver-engine map
 - [Pricing](pricing.md) — tier comparison and engine guide
 - [Results](results.md) — verified benchmarks
 - [Competition](competition.md) — comparison with Gurobi, OR-Tools, CDCL
