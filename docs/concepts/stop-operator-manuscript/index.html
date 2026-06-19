@@ -1,0 +1,3042 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The Arithmetic Manifold - Physics-inspired optimization and constraint satisfaction">
+      
+      
+        <meta name="author" content="Sethurathienam Iyer">
+      
+      
+        <link rel="canonical" href="https://shunyabar.dev/concepts/stop-operator-manuscript/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>STOP Operators as Resolution Flows on Infinite Computational Paths - ShunyaBar Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+4:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Source Serif 4";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  <script async defer src="https://beampipe.io/js/tracker.js" data-beampipe-domain="sethuiyer.github.io"></script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#stop-operators-as-resolution-flows-on-infinite-computational-paths" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="ShunyaBar Labs" class="md-header__button md-logo" aria-label="ShunyaBar Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ShunyaBar Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              STOP Operators as Resolution Flows on Infinite Computational Paths
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../research-report/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Research Report
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../core-vision/" class="md-tabs__link">
+          
+  
+  
+  Core Vision
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../projects/" class="md-tabs__link">
+          
+  
+  
+  Projects
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../marketing/" class="md-tabs__link">
+          
+  
+  
+  Marketing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/quick-start/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../navokoj/" class="md-tabs__link">
+          
+  
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ShunyaBar Labs" class="md-nav__button md-logo" aria-label="ShunyaBar Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ShunyaBar Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research Report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core Vision
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Core Vision
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core-vision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Arithmetic Manifold
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../axiom-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Axiom Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../partition-function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Partition Function
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prime-weighting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prime Weighting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiplicative-vs-additive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiplicative vs Additive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../phase-transitions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phase Transitions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../riemann-hypothesis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Riemann Hypothesis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../asymptotically-fair-stopping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Asymptotically Fair Stopping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/baha/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BAHA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/nitrosat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NitroSAT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/navokoj/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Navokoj
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/multiplicative-pinn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiplicative PINN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/spectral-multiplicative/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spectral Multiplicative Framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/geometry-of-conditional-logic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Geometry of Conditional Logic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/casimir-sat-solver/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Casimir SAT Solver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/factor-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Factor Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/thermodynamic-number-line/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thermodynamic Number Line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/authorization-lattice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization Lattice
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Marketing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Marketing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../marketing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Why Navokoj
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../marketing/use-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Use Cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../marketing/pricing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pricing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../marketing/results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Results
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../marketing/competition/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Competition
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../marketing/bottleneck/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Bottleneck
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/lua-module/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lua Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Benchmarks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Resources
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../navokoj/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Navokoj Developer Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Papers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/related-work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Related Work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Limitations & Boundaries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TODO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap (Post-Funding)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="stop-operators-as-resolution-flows-on-infinite-computational-paths">STOP Operators as Resolution Flows on Infinite Computational Paths<a class="headerlink" href="#stop-operators-as-resolution-flows-on-infinite-computational-paths" title="Permanent link">&para;</a></h1>
+<p><em>Draft manuscript for journal development.</em></p>
+<h2 id="abstract">Abstract<a class="headerlink" href="#abstract" title="Permanent link">&para;</a></h2>
+<p>Classical analysis usually studies an infinite process through the existence or failure of a terminal limit. This paper develops an alternative formulation in which an infinite process is treated as a path and observation is modeled as a finite-resolution operation. Given a sequence of partial states <span class="arithmatex">\(S_n\)</span>, a stopping law <span class="arithmatex">\(\tau\)</span> induces the observable <span class="arithmatex">\(\mathbb{E}[S_\tau]\)</span>. We call this induced map the <strong>STOP operator</strong>.</p>
+<p>The central claim is that STOP is not merely a summability method. It is a <strong>resolution flow</strong>: a family of observer-dependent representations of the same infinite path. At microscopic scale, an observer may see individual events; at mesoscopic scale, densities; at spectral scale, poles, residues, and modes. Geometric stopping gives the first exact model of this principle by reproducing Abel summability: the survival probability of the observer becomes the Abel damping factor. For polynomial increment paths <span class="arithmatex">\(a_n=n^m\)</span>, the finite part of the stopped expectation is</p>
+<div class="arithmatex">\[
+\operatorname{FP}_{t=0}\mathbb{E}[S_\tau]
+=
+\zeta(-m)+\frac{1}{m+1}.
+\]</div>
+<p>The first term is the classical zeta-regularized contribution; the second is an observer survival correction. We use this split to motivate a general event-density-spectrum ladder, with prime events, prime density, and zeta modes as the motivating arithmetic example. We also formulate asymptotic fairness conditions for stopping laws, outline arithmetic observer kernels, and indicate extensions to Banach-valued paths and resolvent theory.</p>
+<h2 id="keywords">Keywords<a class="headerlink" href="#keywords" title="Permanent link">&para;</a></h2>
+<p>stopping times; resolution flow; Abel summability; divergent series; zeta regularization; observer theory; arithmetic kernels; prime number theorem; Banach spaces; resolvent operators</p>
+<h2 id="1-introduction">1. Introduction<a class="headerlink" href="#1-introduction" title="Permanent link">&para;</a></h2>
+<p>An infinite computation is usually evaluated by asking whether its sequence of partial states converges. If it does, the limit is declared to be the result. If it does not, classical analysis and computability theory usually treat the process as non-terminating or divergent.</p>
+<p>This binary distinction is too coarse for many infinite processes. A non-halting path can still possess stable statistical, spectral, or arithmetic structure. The relevant question is not only whether a terminal state exists, but which representation of the path becomes visible at a chosen observer scale.</p>
+<p>The central question of this paper is:</p>
+<blockquote>
+<p>What structure becomes visible when an infinite path is observed at finite resolution?</p>
+</blockquote>
+<p>At one resolution, the observer sees individual events. At another, it sees densities or averages. At another, it sees spectral modes. The object has not changed; the observer has.</p>
+<p>The STOP operator is our model for this change of resolution. In its simplest probabilistic form, the observer stops a path at a random finite horizon and measures</p>
+<div class="arithmatex">\[
+S_\bullet \longmapsto \mathbb{E}[S_\tau].
+\]</div>
+<p>This paper studies that map, and families of such maps, as mathematical objects.</p>
+<h3 id="11-main-idea">1.1 Main Idea<a class="headerlink" href="#11-main-idea" title="Permanent link">&para;</a></h3>
+<p>Let</p>
+<div class="arithmatex">\[
+S_n=\sum_{k=1}^n a_k
+\]</div>
+<p>be the partial state of a computation after <span class="arithmatex">\(n\)</span> steps. Instead of asking for <span class="arithmatex">\(\lim_{n\to\infty}S_n\)</span>, choose a positive integer-valued random variable <span class="arithmatex">\(\tau\)</span> and observe <span class="arithmatex">\(S_\tau\)</span>. The STOP observable is</p>
+<div class="arithmatex">\[
+\mathcal{O}_\tau(S)=\mathbb{E}[S_\tau].
+\]</div>
+<p>For convergent paths and sufficiently fair stopping laws, this recovers the usual limit. For divergent paths, it produces observer-dependent but often stable representations.</p>
+<p>Thus the proposed object is not a single number attached to a divergent process. It is a scale-indexed family:</p>
+<div class="arithmatex">\[
+\text{path}
+\xrightarrow{\text{observer scale}}
+\text{representation}.
+\]</div>
+<p>In this sense, STOP behaves like a resolution flow.</p>
+<h3 id="12-contributions">1.2 Contributions<a class="headerlink" href="#12-contributions" title="Permanent link">&para;</a></h3>
+<p>This manuscript develops the following claims.</p>
+<ol>
+<li>STOP operators define observer-scale representations of infinite paths.</li>
+<li>Geometric STOP gives a probabilistic interpretation of Abel summability.</li>
+<li>Fair stopping laws can be axiomatized using tail exploration and non-resonance conditions.</li>
+<li>Polynomial divergent paths admit finite STOP residues whose constant terms split into spectral and observer contributions.</li>
+<li>Arithmetic observer kernels lead naturally to an event-density-spectrum ladder involving prime events, prime density, Dirichlet characters, Mangoldt weights, Möbius weights, and zeta or <span class="arithmatex">\(L\)</span>-function spectra.</li>
+<li>Banach-valued STOP operators reduce geometric observation of linear dynamics to classical resolvent operators.</li>
+</ol>
+<h3 id="13-scope-and-status">1.3 Scope and Status<a class="headerlink" href="#13-scope-and-status" title="Permanent link">&para;</a></h3>
+<p>The geometric STOP identity is elementary and rigorous. The polynomial residue theorem follows from standard Mellin-transform or polylogarithm asymptotics. The broader language of resolution flow, observer geometry, arithmetic STOP laws, and observer symmetry is proposed as a research program; those sections should be read as formal directions rather than completed classification theorems.</p>
+<h2 id="2-computational-paths-and-stop-observers">2. Computational Paths and STOP Observers<a class="headerlink" href="#2-computational-paths-and-stop-observers" title="Permanent link">&para;</a></h2>
+<h3 id="definition-21-computational-path">Definition 2.1: Computational Path<a class="headerlink" href="#definition-21-computational-path" title="Permanent link">&para;</a></h3>
+<p>Let <span class="arithmatex">\(X\)</span> be a vector space, normed space, or topological state space. A <strong>computational path</strong> is a sequence</p>
+<div class="arithmatex">\[
+S_0,S_1,S_2,\ldots \in X.
+\]</div>
+<p>When <span class="arithmatex">\(X\)</span> is linear, we often write</p>
+<div class="arithmatex">\[
+S_n=\sum_{k=1}^n a_k,
+\]</div>
+<p>where <span class="arithmatex">\(a_k\in X\)</span> is the <span class="arithmatex">\(k\)</span>-th increment.</p>
+<h3 id="definition-22-stop-observer">Definition 2.2: STOP Observer<a class="headerlink" href="#definition-22-stop-observer" title="Permanent link">&para;</a></h3>
+<p>Let <span class="arithmatex">\(\tau\)</span> be a positive integer-valued random variable. The <strong>STOP observation</strong> of the path <span class="arithmatex">\(S_\bullet\)</span> is the random state</p>
+<div class="arithmatex">\[
+S_\tau.
+\]</div>
+<p>When the expectation exists, the associated <strong>STOP operator</strong> is</p>
+<div class="arithmatex">\[
+\mathcal{O}_\tau(S_\bullet)=\mathbb{E}[S_\tau].
+\]</div>
+<p>If <span class="arithmatex">\(\{\tau_\alpha\}\)</span> is a family of stopping laws depending on a scale parameter <span class="arithmatex">\(\alpha\)</span>, then <span class="arithmatex">\(\mathcal{O}_{\tau_\alpha}\)</span> is a family of observers.</p>
+<h3 id="remark-23-observation-is-not-completion">Remark 2.3: Observation Is Not Completion<a class="headerlink" href="#remark-23-observation-is-not-completion" title="Permanent link">&para;</a></h3>
+<p>The expression <span class="arithmatex">\(\mathbb{E}[S_\tau]\)</span> does not assume access to an infinite terminal state. It only uses finite states <span class="arithmatex">\(S_n\)</span>, weighted by the probability that the observer stops at <span class="arithmatex">\(n\)</span>. Thus the STOP operator is defined even when <span class="arithmatex">\(\lim_{n\to\infty}S_n\)</span> does not exist, provided the expectation is meaningful.</p>
+<h2 id="3-stop-as-a-resolution-flow">3. STOP as a Resolution Flow<a class="headerlink" href="#3-stop-as-a-resolution-flow" title="Permanent link">&para;</a></h2>
+<p>The STOP operator should be read as a change-of-resolution operator. It does not merely assign a number to a path. It determines which representation of the path is visible under an observer.</p>
+<p>Schematically:</p>
+<div class="arithmatex">\[
+\text{path}
+\xrightarrow{\text{observer scale}}
+\text{representation}.
+\]</div>
+<p>Different observer scales can expose different structures of the same object.</p>
+<table>
+<thead>
+<tr>
+<th>Observer scale</th>
+<th>Typical representation</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Microscopic</td>
+<td>individual events</td>
+<td>primes <span class="arithmatex">\(2,3,5,7,\ldots\)</span></td>
+</tr>
+<tr>
+<td>Mesoscopic</td>
+<td>density or averaged profile</td>
+<td><span class="arithmatex">\(\pi(x)\sim x/\log x\)</span></td>
+</tr>
+<tr>
+<td>Spectral</td>
+<td>modes, poles, residues</td>
+<td>zeta zeros, <span class="arithmatex">\(L\)</span>-functions</td>
+</tr>
+<tr>
+<td>Invariant</td>
+<td>structure stable across observers</td>
+<td>observer-independent limits or symmetries</td>
+</tr>
+</tbody>
+</table>
+<p>The object is not changing across these rows. The observer is.</p>
+<h3 id="31-the-prime-ladder">3.1 The Prime Ladder<a class="headerlink" href="#31-the-prime-ladder" title="Permanent link">&para;</a></h3>
+<p>Prime numbers provide the motivating example.</p>
+<p>At microscopic scale, the prime indicator</p>
+<div class="arithmatex">\[
+\mathbf{1}_{\mathrm{prime}}(n)
+\]</div>
+<p>is a sequence of discrete arithmetic events. It records whether each integer is prime.</p>
+<p>At mesoscopic scale, the individual events are replaced by their cumulative density:</p>
+<div class="arithmatex">\[
+\pi(x)\sim \frac{x}{\log x}.
+\]</div>
+<p>At spectral scale, the explicit formula expresses prime-counting data through the zeros of the zeta function. Schematically,</p>
+<div class="arithmatex">\[
+\pi(x)
+\approx
+\operatorname{Li}(x)
++
+\sum_\rho \text{oscillatory contribution from }\rho.
+\]</div>
+<p>Thus the same arithmetic object admits three representations:</p>
+<div class="arithmatex">\[
+\boxed{
+\text{prime events}
+\longleftrightarrow
+\text{prime density}
+\longleftrightarrow
+\text{zeta spectrum}
+}
+\]</div>
+<p>The observer determines which representation is visible.</p>
+<h3 id="32-relation-to-renormalization">3.2 Relation to Renormalization<a class="headerlink" href="#32-relation-to-renormalization" title="Permanent link">&para;</a></h3>
+<p>This viewpoint is analogous to a renormalization flow, but the flowing object is not a physical coupling. It is the representation of an infinite path under changing observer scale.</p>
+<p>For a family of observers <span class="arithmatex">\(\{\mathcal{O}_\alpha\}\)</span>, the resolution flow is</p>
+<div class="arithmatex">\[
+\alpha \longmapsto \mathcal{O}_\alpha(S_\bullet).
+\]</div>
+<p>The mathematical questions are then:</p>
+<ol>
+<li>Which observer families are admissible?</li>
+<li>Which observer changes preserve the same representation?</li>
+<li>Which features disappear under coarse observation?</li>
+<li>Which features become spectral modes?</li>
+<li>Which quantities survive all admissible observers?</li>
+</ol>
+<p>The rest of the paper develops the simplest exact instance of this picture: geometric stopping.</p>
+<h2 id="4-asymptotically-fair-stopping-laws">4. Asymptotically Fair Stopping Laws<a class="headerlink" href="#4-asymptotically-fair-stopping-laws" title="Permanent link">&para;</a></h2>
+<p>A stopping law should not be allowed to encode arbitrary bias. For example, a law that always stops at <span class="arithmatex">\(n=10\)</span> says almost nothing about the infinite tail. A law that always stops on even indices can falsely annihilate or amplify a periodic path.</p>
+<p>We therefore separate stopping laws that merely stop from stopping laws that fairly probe the tail.</p>
+<h3 id="definition-41-tail-exploration">Definition 4.1: Tail Exploration<a class="headerlink" href="#definition-41-tail-exploration" title="Permanent link">&para;</a></h3>
+<p>A family of stopping laws <span class="arithmatex">\(\{\tau_\alpha\}\)</span> satisfies <strong>tail exploration</strong> as <span class="arithmatex">\(\alpha\to\alpha_0\)</span> if, for every fixed <span class="arithmatex">\(M\geq 1\)</span>,</p>
+<div class="arithmatex">\[
+\lim_{\alpha\to\alpha_0}\Pr(\tau_\alpha&gt;M)=1.
+\]</div>
+<p>This condition forces the observer to move arbitrarily far into the path.</p>
+<h3 id="definition-42-spectral-non-resonance">Definition 4.2: Spectral Non-Resonance<a class="headerlink" href="#definition-42-spectral-non-resonance" title="Permanent link">&para;</a></h3>
+<p>Let <span class="arithmatex">\(p_n(\alpha)=\Pr(\tau_\alpha=n)\)</span>. A sufficient non-resonance condition is</p>
+<div class="arithmatex">\[
+\lim_{\alpha\to\alpha_0}
+\sum_{n\geq 1}|p_{n+1}(\alpha)-p_n(\alpha)|=0.
+\]</div>
+<p>This smoothness condition prevents the stopping distribution from locking onto a fixed periodic phase.</p>
+<h3 id="definition-43-asymptotically-fair-stop-law">Definition 4.3: Asymptotically Fair STOP Law<a class="headerlink" href="#definition-43-asymptotically-fair-stop-law" title="Permanent link">&para;</a></h3>
+<p>A family <span class="arithmatex">\(\{\tau_\alpha\}\)</span> is an <strong>asymptotically fair STOP law</strong> if it satisfies tail exploration and an appropriate non-resonance condition for the class of paths under study.</p>
+<h3 id="remark-44-fairness-is-path-class-dependent">Remark 4.4: Fairness Is Path-Class Dependent<a class="headerlink" href="#remark-44-fairness-is-path-class-dependent" title="Permanent link">&para;</a></h3>
+<p>No single fairness condition can be universal without qualification. A condition that is sufficient for bounded periodic paths may be insufficient for Liouville-type near-resonant phases or adversarial arithmetic sequences. A journal version should state fairness relative to a specified function class.</p>
+<h2 id="5-the-geometric-stop-identity">5. The Geometric STOP Identity<a class="headerlink" href="#5-the-geometric-stop-identity" title="Permanent link">&para;</a></h2>
+<p>The basic example is memoryless stopping.</p>
+<p>Let</p>
+<div class="arithmatex">\[
+\Pr(\tau=n)=p(1-p)^{n-1},\qquad 0&lt;p&lt;1.
+\]</div>
+<p>Then the observer stops at each step with constant hazard <span class="arithmatex">\(p\)</span>, and its survival probability to step <span class="arithmatex">\(k\)</span> is</p>
+<div class="arithmatex">\[
+\Pr(\tau\geq k)=(1-p)^{k-1}.
+\]</div>
+<h3 id="theorem-51-geometric-stop-identity">Theorem 5.1: Geometric STOP Identity<a class="headerlink" href="#theorem-51-geometric-stop-identity" title="Permanent link">&para;</a></h3>
+<p>Let</p>
+<div class="arithmatex">\[
+S_n=\sum_{k=1}^{n}a_k
+\]</div>
+<p>and let <span class="arithmatex">\(\tau\sim\operatorname{Geom}(p)\)</span>. Whenever the interchange of sums is justified,</p>
+<div class="arithmatex">\[
+\mathbb{E}[S_\tau]
+=
+\sum_{k\geq 1}a_k(1-p)^{k-1}.
+\]</div>
+<h3 id="lean-proof">Lean Proof<a class="headerlink" href="#lean-proof" title="Permanent link">&para;</a></h3>
+<p>The identity is just summation by survival probability:</p>
+<div class="arithmatex">\[
+\mathbb{E}[S_\tau]
+=
+\sum_{n\geq 1}p(1-p)^{n-1}S_n.
+\]</div>
+<p>Substitute <span class="arithmatex">\(S_n=\sum_{k\leq n}a_k\)</span> and reverse the order of summation:</p>
+<div class="arithmatex">\[
+\mathbb{E}[S_\tau]
+=
+\sum_{k\geq 1}a_k
+\sum_{n\geq k}p(1-p)^{n-1}.
+\]</div>
+<p>The inner sum is the survival probability</p>
+<div class="arithmatex">\[
+\sum_{n\geq k}p(1-p)^{n-1}
+=(1-p)^{k-1}.
+\]</div>
+<p>Therefore</p>
+<div class="arithmatex">\[
+\mathbb{E}[S_\tau]
+=
+\sum_{k\geq 1}a_k(1-p)^{k-1}.
+\]</div>
+<p><span class="arithmatex">\(\square\)</span></p>
+<h3 id="corollary-52-abel-summability-as-survival-weighting">Corollary 5.2: Abel Summability as Survival Weighting<a class="headerlink" href="#corollary-52-abel-summability-as-survival-weighting" title="Permanent link">&para;</a></h3>
+<p>Set <span class="arithmatex">\(x=1-p\)</span>. Then</p>
+<div class="arithmatex">\[
+\mathbb{E}[S_\tau]=\sum_{k\geq 1}a_kx^{k-1}.
+\]</div>
+<p>Thus geometric observation is Abel summation with the Abel parameter interpreted as observer survival probability.</p>
+<h2 id="6-examples">6. Examples<a class="headerlink" href="#6-examples" title="Permanent link">&para;</a></h2>
+<p>This section keeps the main computations explicit. The point is not that every divergent path receives a canonical value. The point is that each observer produces a definite observable, and the dependence on the observer can be computed.</p>
+<h3 id="61-grandi-path">6.1 Grandi Path<a class="headerlink" href="#61-grandi-path" title="Permanent link">&para;</a></h3>
+<p>Let</p>
+<div class="arithmatex">\[
+a_k=(-1)^{k-1}.
+\]</div>
+<p>Then <span class="arithmatex">\(S_n\)</span> alternates between <span class="arithmatex">\(1\)</span> and <span class="arithmatex">\(0\)</span>. Under geometric stopping,</p>
+<div class="arithmatex">\[
+\mathbb{E}[S_\tau]=\frac{1}{2-p}.
+\]</div>
+<p>Hence</p>
+<div class="arithmatex">\[
+\lim_{p\to 0^+}\mathbb{E}[S_\tau]=\frac{1}{2}.
+\]</div>
+<p>The non-halting alternating path has a stable fair-observer value.</p>
+<p>Numerically:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;"><span class="arithmatex">\(p\)</span></th>
+<th style="text-align: right;"><span class="arithmatex">\(\mathbb{E}[S_\tau]=1/(2-p)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0.666667</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">0.555556</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.526316</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0.512821</td>
+</tr>
+<tr>
+<td style="text-align: right;"><span class="arithmatex">\(0^+\)</span></td>
+<td style="text-align: right;">0.500000</td>
+</tr>
+</tbody>
+</table>
+<h3 id="62-alternating-linear-path">6.2 Alternating Linear Path<a class="headerlink" href="#62-alternating-linear-path" title="Permanent link">&para;</a></h3>
+<p>Let</p>
+<div class="arithmatex">\[
+a_k=(-1)^{k-1}k.
+\]</div>
+<p>Then</p>
+<div class="arithmatex">\[
+\mathbb{E}[S_\tau]
+=
+\sum_{k\geq 1}(-1)^{k-1}k(1-p)^{k-1}
+=
+\frac{1}{(2-p)^2}.
+\]</div>
+<p>Therefore</p>
+<div class="arithmatex">\[
+\lim_{p\to 0^+}\mathbb{E}[S_\tau]=\frac{1}{4}.
+\]</div>
+<p>This agrees with the Abel value of <span class="arithmatex">\(1-2+3-4+\cdots\)</span>.</p>
+<p>Numerically:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;"><span class="arithmatex">\(p\)</span></th>
+<th style="text-align: right;"><span class="arithmatex">\(\mathbb{E}[S_\tau]=1/(2-p)^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0.444444</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">0.308642</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.277008</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0.262985</td>
+</tr>
+<tr>
+<td style="text-align: right;"><span class="arithmatex">\(0^+\)</span></td>
+<td style="text-align: right;">0.250000</td>
+</tr>
+</tbody>
+</table>
+<h3 id="63-constant-positive-increments">6.3 Constant Positive Increments<a class="headerlink" href="#63-constant-positive-increments" title="Permanent link">&para;</a></h3>
+<p>Let</p>
+<div class="arithmatex">\[
+a_k=1.
+\]</div>
+<p>Then <span class="arithmatex">\(S_n=n\)</span>. The geometric STOP expectation is</p>
+<div class="arithmatex">\[
+\mathbb{E}[S_\tau]
+=
+\sum_{k\geq 1}(1-p)^{k-1}
+=
+\frac{1}{p}.
+\]</div>
+<p>Unlike the oscillatory examples, this does not converge as <span class="arithmatex">\(p\to 0^+\)</span>. The STOP operator still gives a finite value for each finite observer horizon, but the infinite-horizon limit diverges.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;"><span class="arithmatex">\(p\)</span></th>
+<th style="text-align: right;"><span class="arithmatex">\(\mathbb{E}[S_\tau]=1/p\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td style="text-align: right;"><span class="arithmatex">\(0^+\)</span></td>
+<td style="text-align: right;">diverges</td>
+</tr>
+</tbody>
+</table>
+<p>This is the first point where a second operation is needed: finite-part extraction.</p>
+<h3 id="64-linear-positive-increments">6.4 Linear Positive Increments<a class="headerlink" href="#64-linear-positive-increments" title="Permanent link">&para;</a></h3>
+<p>Let</p>
+<div class="arithmatex">\[
+a_k=k.
+\]</div>
+<p>Then <span class="arithmatex">\(S_n=n(n+1)/2\)</span>, and geometric STOP gives</p>
+<div class="arithmatex">\[
+\mathbb{E}[S_\tau]
+=
+\sum_{k\geq 1}k(1-p)^{k-1}
+=
+\frac{1}{p^2}.
+\]</div>
+<p>Numerically:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;"><span class="arithmatex">\(p\)</span></th>
+<th style="text-align: right;"><span class="arithmatex">\(\mathbb{E}[S_\tau]=1/p^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">400</td>
+</tr>
+<tr>
+<td style="text-align: right;"><span class="arithmatex">\(0^+\)</span></td>
+<td style="text-align: right;">diverges</td>
+</tr>
+</tbody>
+</table>
+<p>Again, the STOP expectation is meaningful at each finite observer scale but has no finite infinite-horizon limit.</p>
+<h3 id="65-quadratic-positive-increments">6.5 Quadratic Positive Increments<a class="headerlink" href="#65-quadratic-positive-increments" title="Permanent link">&para;</a></h3>
+<p>Let</p>
+<div class="arithmatex">\[
+a_k=k^2.
+\]</div>
+<p>Using</p>
+<div class="arithmatex">\[
+\sum_{k\geq 1}k^2q^{k-1}=\frac{1+q}{(1-q)^3},
+\]</div>
+<p>with <span class="arithmatex">\(q=1-p\)</span>, we get</p>
+<div class="arithmatex">\[
+\mathbb{E}[S_\tau]
+=
+\frac{2-p}{p^3}.
+\]</div>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;"><span class="arithmatex">\(p\)</span></th>
+<th style="text-align: right;"><span class="arithmatex">\(\mathbb{E}[S_\tau]=(2-p)/p^3\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">225</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">1900</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">15600</td>
+</tr>
+<tr>
+<td style="text-align: right;"><span class="arithmatex">\(0^+\)</span></td>
+<td style="text-align: right;">diverges</td>
+</tr>
+</tbody>
+</table>
+<p>These monotone examples motivate the residue construction in the next section.</p>
+<h2 id="7-stop-residues">7. STOP Residues<a class="headerlink" href="#7-stop-residues" title="Permanent link">&para;</a></h2>
+<p>Geometric STOP handles many oscillatory divergent paths directly. For monotone polynomial growth, the stopped expectation diverges as <span class="arithmatex">\(p\to 0^+\)</span>, but its Laurent expansion has a meaningful finite part.</p>
+<p>Use the continuous coordinate</p>
+<div class="arithmatex">\[
+p=1-e^{-t},\qquad t\to 0^+.
+\]</div>
+<p>Then</p>
+<div class="arithmatex">\[
+(1-p)^{k-1}=e^{-t(k-1)}.
+\]</div>
+<p>For <span class="arithmatex">\(a_k=k^m\)</span>, define</p>
+<div class="arithmatex">\[
+F_m(t)=\sum_{k\geq 1}k^m e^{-t(k-1)}.
+\]</div>
+<h3 id="definition-71-stop-residue">Definition 7.1: STOP Residue<a class="headerlink" href="#definition-71-stop-residue" title="Permanent link">&para;</a></h3>
+<p>Suppose <span class="arithmatex">\(F(t)\)</span> has an asymptotic expansion near <span class="arithmatex">\(t=0^+\)</span> of the form</p>
+<div class="arithmatex">\[
+F(t)\sim
+\sum_{j=-N}^{\infty}c_jt^j
++
+\sum_{\ell}d_\ell t^{r_\ell}\log t.
+\]</div>
+<p>The <strong>STOP residue</strong> or finite STOP part is</p>
+<div class="arithmatex">\[
+\operatorname{FP}_{t=0}F(t)=c_0.
+\]</div>
+<h3 id="theorem-72-polynomial-stop-residue">Theorem 7.2: Polynomial STOP Residue<a class="headerlink" href="#theorem-72-polynomial-stop-residue" title="Permanent link">&para;</a></h3>
+<p>For every integer <span class="arithmatex">\(m\geq 0\)</span>,</p>
+<div class="arithmatex">\[
+\operatorname{FP}_{t=0}
+\sum_{k\geq 1}k^m e^{-t(k-1)}
+=
+\zeta(-m)+\frac{1}{m+1}.
+\]</div>
+<p>The first few cases are:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;"><span class="arithmatex">\(m\)</span></th>
+<th>increments <span class="arithmatex">\(a_k\)</span></th>
+<th>stopped expectation <span class="arithmatex">\(F_m(t)\)</span></th>
+<th style="text-align: right;">finite STOP part</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0</td>
+<td><span class="arithmatex">\(1\)</span></td>
+<td><span class="arithmatex">\(\frac{1}{1-e^{-t}}\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(\frac{1}{2}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td><span class="arithmatex">\(k\)</span></td>
+<td><span class="arithmatex">\(\frac{1}{(1-e^{-t})^2}\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(\frac{5}{12}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td><span class="arithmatex">\(k^2\)</span></td>
+<td><span class="arithmatex">\(\frac{1+e^{-t}}{(1-e^{-t})^3}\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(\frac{1}{3}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td><span class="arithmatex">\(k^3\)</span></td>
+<td><span class="arithmatex">\(\frac{1+4e^{-t}+e^{-2t}}{(1-e^{-t})^4}\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(\frac{31}{120}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>These constants agree with <span class="arithmatex">\(\zeta(-m)+1/(m+1)\)</span>:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;"><span class="arithmatex">\(m\)</span></th>
+<th style="text-align: right;"><span class="arithmatex">\(\zeta(-m)\)</span></th>
+<th style="text-align: right;">observer correction <span class="arithmatex">\(1/(m+1)\)</span></th>
+<th style="text-align: right;">total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><span class="arithmatex">\(-1/2\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(1/2\)</span></td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;"><span class="arithmatex">\(-1/12\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(1/2\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(5/12\)</span></td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;"><span class="arithmatex">\(0\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(1/3\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(1/3\)</span></td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;"><span class="arithmatex">\(1/120\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(1/4\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(31/120\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="lean-proof-sketch">Lean Proof Sketch<a class="headerlink" href="#lean-proof-sketch" title="Permanent link">&para;</a></h3>
+<p>Write</p>
+<div class="arithmatex">\[
+F_m(t)=e^t\sum_{k\geq 1}k^m e^{-tk}.
+\]</div>
+<p>The inner sum is</p>
+<div class="arithmatex">\[
+\operatorname{Li}_{-m}(e^{-t}).
+\]</div>
+<p>Equivalently, by Mellin transform,</p>
+<div class="arithmatex">\[
+\sum_{k\geq 1}k^m e^{-tk}
+=
+\frac{1}{2\pi i}
+\int \Gamma(s)\zeta(s-m)t^{-s}\,ds.
+\]</div>
+<p>Shifting the contour gives the expansion</p>
+<div class="arithmatex">\[
+\sum_{k\geq 1}k^m e^{-tk}
+=
+m!t^{-(m+1)}+\zeta(-m)+O(t).
+\]</div>
+<p>Multiplication by <span class="arithmatex">\(e^t\)</span> leaves <span class="arithmatex">\(\zeta(-m)\)</span> as a constant contribution and adds a new constant from</p>
+<div class="arithmatex">\[
+m!t^{-(m+1)}\cdot \frac{t^{m+1}}{(m+1)!}
+=
+\frac{1}{m+1}.
+\]</div>
+<p>Therefore</p>
+<div class="arithmatex">\[
+\operatorname{FP}_{t=0}F_m(t)
+=
+\zeta(-m)+\frac{1}{m+1}.
+\]</div>
+<p><span class="arithmatex">\(\square\)</span></p>
+<h3 id="73-numerical-extraction-of-the-finite-part">7.3 Numerical Extraction of the Finite Part<a class="headerlink" href="#73-numerical-extraction-of-the-finite-part" title="Permanent link">&para;</a></h3>
+<p>For <span class="arithmatex">\(m=0\)</span>,</p>
+<div class="arithmatex">\[
+F_0(t)=\frac{1}{1-e^{-t}}
+=
+\frac{1}{t}+\frac{1}{2}+O(t).
+\]</div>
+<p>Subtracting the divergent term <span class="arithmatex">\(1/t\)</span> leaves a quantity tending to <span class="arithmatex">\(1/2\)</span>:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;"><span class="arithmatex">\(t\)</span></th>
+<th style="text-align: right;"><span class="arithmatex">\(F_0(t)\)</span></th>
+<th style="text-align: right;"><span class="arithmatex">\(F_0(t)-1/t\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">2.541494</td>
+<td style="text-align: right;">0.541494</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">5.516656</td>
+<td style="text-align: right;">0.516656</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">10.508332</td>
+<td style="text-align: right;">0.508332</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">20.504166</td>
+<td style="text-align: right;">0.504166</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">50.501667</td>
+<td style="text-align: right;">0.501667</td>
+</tr>
+<tr>
+<td style="text-align: right;"><span class="arithmatex">\(0^+\)</span></td>
+<td style="text-align: right;">diverges</td>
+<td style="text-align: right;">0.500000</td>
+</tr>
+</tbody>
+</table>
+<p>For <span class="arithmatex">\(m=1\)</span>,</p>
+<div class="arithmatex">\[
+F_1(t)=\frac{1}{(1-e^{-t})^2}
+=
+\frac{1}{t^2}+\frac{1}{t}+\frac{5}{12}+O(t).
+\]</div>
+<p>Subtracting the divergent terms leaves a quantity tending to <span class="arithmatex">\(5/12\)</span>:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;"><span class="arithmatex">\(t\)</span></th>
+<th style="text-align: right;"><span class="arithmatex">\(F_1(t)\)</span></th>
+<th style="text-align: right;"><span class="arithmatex">\(F_1(t)-1/t^2-1/t\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">6.459192</td>
+<td style="text-align: right;">0.459192</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">30.433489</td>
+<td style="text-align: right;">0.433489</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">110.425040</td>
+<td style="text-align: right;">0.425040</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">420.420844</td>
+<td style="text-align: right;">0.420844</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">2550.418335</td>
+<td style="text-align: right;">0.418335</td>
+</tr>
+<tr>
+<td style="text-align: right;"><span class="arithmatex">\(0^+\)</span></td>
+<td style="text-align: right;">diverges</td>
+<td style="text-align: right;">0.416667</td>
+</tr>
+</tbody>
+</table>
+<p>These tables show the operational meaning of the residue: it is what remains after removing the observer-scale divergences.</p>
+<h3 id="74-interpretation">7.4 Interpretation<a class="headerlink" href="#74-interpretation" title="Permanent link">&para;</a></h3>
+<p>The STOP residue is not identical to zeta regularization. It measures a different observable.</p>
+<p>Zeta regularization is attached to the increment stream <span class="arithmatex">\(a_n\)</span>. The STOP operator observes the accumulated state <span class="arithmatex">\(S_\tau\)</span>. The survival factor shifts the weighting by one discrete step and produces the correction term <span class="arithmatex">\(1/(m+1)\)</span>.</p>
+<p>Thus the correct decomposition is</p>
+<div class="arithmatex">\[
+\text{STOP residue}
+=
+\text{spectral residue}
++
+\text{observer correction}.
+\]</div>
+<p>For example, when <span class="arithmatex">\(m=1\)</span>,</p>
+<div class="arithmatex">\[
+\zeta(-1)+\frac{1}{2}
+=
+-\frac{1}{12}+\frac{1}{2}
+=
+\frac{5}{12}.
+\]</div>
+<p>The number <span class="arithmatex">\(5/12\)</span> should not be presented as a replacement for <span class="arithmatex">\(-1/12\)</span>. The two values correspond to different observables.</p>
+<h2 id="8-power-logarithmic-deformation">8. Power-Logarithmic Deformation<a class="headerlink" href="#8-power-logarithmic-deformation" title="Permanent link">&para;</a></h2>
+<p>The same method applies to increments of the form</p>
+<div class="arithmatex">\[
+a_n=n^m\log n.
+\]</div>
+<p>Define</p>
+<div class="arithmatex">\[
+F_{m,\log}(t)=
+\sum_{n\geq 1}n^m\log(n)e^{-t(n-1)}.
+\]</div>
+<p>Formally,</p>
+<div class="arithmatex">\[
+F_{m,\log}(t)
+=
+-
+\left.
+\frac{\partial}{\partial s}
+\left(
+e^t\operatorname{Li}_{s-m}(e^{-t})
+\right)
+\right|_{s=0}.
+\]</div>
+<p>The expected finite part has the form</p>
+<div class="arithmatex">\[
+\operatorname{FP}_{t=0}F_{m,\log}(t)
+=
+-\zeta'(-m)
++
+\frac{H_m-\gamma}{m+1},
+\]</div>
+<p>where <span class="arithmatex">\(H_m\)</span> is the <span class="arithmatex">\(m\)</span>-th harmonic number and <span class="arithmatex">\(\gamma\)</span> is Euler's constant.</p>
+<p>This supports the general principle that STOP residues decompose into spectral data and observer anomalies.</p>
+<h2 id="9-arithmetic-stop-observers">9. Arithmetic STOP Observers<a class="headerlink" href="#9-arithmetic-stop-observers" title="Permanent link">&para;</a></h2>
+<p>The geometric observer uses only temporal survival. More refined observers may include arithmetic structure. These arithmetic observers are where the resolution-flow viewpoint becomes most visible: the same prime process can be observed as events, densities, or spectral modes.</p>
+<p>Let <span class="arithmatex">\(W_t(n)\)</span> be a decay kernel, typically <span class="arithmatex">\(e^{-tn}\)</span>, and let <span class="arithmatex">\(\chi(n)\)</span> be an arithmetic weight. Define the arithmetic STOP transform</p>
+<div class="arithmatex">\[
+V_{W,\chi}(a;t)=
+\sum_{n\geq 1}a_nW_t(n)\chi(n).
+\]</div>
+<p>Different arithmetic lenses select different spectral objects.</p>
+<table>
+<thead>
+<tr>
+<th>Resolution</th>
+<th>Observer lens</th>
+<th>Transform suggested</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Event-level</td>
+<td><span class="arithmatex">\(\mathbf{1}_{\mathrm{prime}}(n)\)</span></td>
+<td>prime point process</td>
+</tr>
+<tr>
+<td>Density-level</td>
+<td><span class="arithmatex">\(\pi(x)\)</span>, weighted prime counts</td>
+<td><span class="arithmatex">\(x/\log x\)</span>, <span class="arithmatex">\(\operatorname{Li}(x)\)</span></td>
+</tr>
+<tr>
+<td>Character-level</td>
+<td>Dirichlet character <span class="arithmatex">\(\chi(n)\)</span></td>
+<td><span class="arithmatex">\(L(s,\chi)\)</span></td>
+</tr>
+<tr>
+<td>Prime-power level</td>
+<td>von Mangoldt <span class="arithmatex">\(\Lambda(n)\)</span></td>
+<td><span class="arithmatex">\(-\zeta'(s)/\zeta(s)\)</span></td>
+</tr>
+<tr>
+<td>Squarefree/debias level</td>
+<td>Möbius <span class="arithmatex">\(\mu(n)\)</span></td>
+<td><span class="arithmatex">\(1/\zeta(s)\)</span></td>
+</tr>
+<tr>
+<td>Modular-frequency level</td>
+<td>Ramanujan sums <span class="arithmatex">\(c_q(n)\)</span></td>
+<td>arithmetic Fourier/Ramanujan expansions</td>
+</tr>
+</tbody>
+</table>
+<p>This table is not a claim that all rows are probability laws. It is a map of observer lenses. Some are genuine stopping distributions; others are signed or weighted spectral probes.</p>
+<h3 id="example-91-the-modulo-four-character">Example 9.1: The Modulo-Four Character<a class="headerlink" href="#example-91-the-modulo-four-character" title="Permanent link">&para;</a></h3>
+<p>Let <span class="arithmatex">\(\chi_4\)</span> be the nontrivial character modulo <span class="arithmatex">\(4\)</span>:</p>
+<div class="arithmatex">\[
+\chi_4(n)=
+\begin{cases}
+0, &amp; n\text{ even},\\
+1, &amp; n\equiv 1\pmod 4,\\
+-1, &amp; n\equiv 3\pmod 4.
+\end{cases}
+\]</div>
+<p>Then</p>
+<div class="arithmatex">\[
+B(t)=\sum_{n\geq 1}\chi_4(n)e^{-tn}
+=
+e^{-t}-e^{-3t}+e^{-5t}-e^{-7t}+\cdots.
+\]</div>
+<p>This sums exactly:</p>
+<div class="arithmatex">\[
+B(t)=\frac{e^{-t}}{1+e^{-2t}}
+=
+\frac{1}{e^t+e^{-t}}
+=
+\frac{1}{2\cosh t}.
+\]</div>
+<p>Therefore</p>
+<div class="arithmatex">\[
+B(t)=\frac{1}{2}-\frac{t^2}{4}+O(t^4).
+\]</div>
+<p>Numerically:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;"><span class="arithmatex">\(t\)</span></th>
+<th style="text-align: right;"><span class="arithmatex">\(B(t)=1/(2\cosh t)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.324027</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0.443409</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">0.490164</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.497510</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0.499375</td>
+</tr>
+<tr>
+<td style="text-align: right;"><span class="arithmatex">\(0^+\)</span></td>
+<td style="text-align: right;">0.500000</td>
+</tr>
+</tbody>
+</table>
+<p>The fair STOP limit is <span class="arithmatex">\(1/2\)</span>, now arising from an arithmetic character rather than ordinary alternating time. The associated Dirichlet series is the beta function</p>
+<div class="arithmatex">\[
+L(s,\chi_4)=\beta(s).
+\]</div>
+<p>This suggests that arithmetic STOP observers should be studied as resolution probes for arithmetic spectra. The modulo-four observer does not merely smooth an alternating sequence; it selects a representation-theoretic component of the integers.</p>
+<h3 id="example-92-the-mangoldt-lens">Example 9.2: The Mangoldt Lens<a class="headerlink" href="#example-92-the-mangoldt-lens" title="Permanent link">&para;</a></h3>
+<p>Let <span class="arithmatex">\(\Lambda(n)\)</span> be the von Mangoldt function. The exponentially damped Mangoldt transform is</p>
+<div class="arithmatex">\[
+M(t)=\sum_{n\geq 1}\Lambda(n)e^{-tn}.
+\]</div>
+<p>This is not a probability law. It is a signed or weighted spectral probe. Its Dirichlet-series analogue is</p>
+<div class="arithmatex">\[
+\sum_{n\geq 1}\frac{\Lambda(n)}{n^s}
+=
+-\frac{\zeta'(s)}{\zeta(s)}.
+\]</div>
+<p>Thus the observer lens <span class="arithmatex">\(\Lambda(n)\)</span> selects prime-power structure. In a journal version, this section should be developed separately from probabilistic STOP laws, because <span class="arithmatex">\(\Lambda(n)\)</span> is an arithmetic weight rather than a stopping distribution.</p>
+<h3 id="example-93-the-mobius-lens">Example 9.3: The Möbius Lens<a class="headerlink" href="#example-93-the-mobius-lens" title="Permanent link">&para;</a></h3>
+<p>Similarly, the Möbius transform</p>
+<div class="arithmatex">\[
+U(t)=\sum_{n\geq 1}\mu(n)e^{-tn}
+\]</div>
+<p>corresponds formally to</p>
+<div class="arithmatex">\[
+\sum_{n\geq 1}\frac{\mu(n)}{n^s}
+=
+\frac{1}{\zeta(s)}.
+\]</div>
+<p>This lens suppresses numbers with repeated prime factors and alternates according to the parity of the number of prime factors. Its role is not to produce a positive stopping time, but to act as an arithmetic debiasing kernel.</p>
+<h3 id="94-resolution-interpretation">9.4 Resolution Interpretation<a class="headerlink" href="#94-resolution-interpretation" title="Permanent link">&para;</a></h3>
+<p>The arithmetic examples suggest the following dictionary:</p>
+<div class="arithmatex">\[
+\boxed{
+\text{event process}
+\to
+\text{density profile}
+\to
+\text{spectral transform}
+}
+\]</div>
+<p>For primes, this becomes:</p>
+<div class="arithmatex">\[
+\boxed{
+\mathbf{1}_{\mathrm{prime}}(n)
+\to
+\pi(x)\sim x/\log x
+\to
+\zeta(s),\rho,L(s,\chi)
+}
+\]</div>
+<p>This is the same pattern seen in the elementary STOP examples. A raw path is smoothed by an observer; the smoothed object may diverge; finite-part extraction or spectral transformation reveals a residue, pole, or mode. The observer does not create the structure from nothing. It selects the coordinate system in which that structure is visible.</p>
+<h2 id="10-banach-valued-and-operator-stop">10. Banach-Valued and Operator STOP<a class="headerlink" href="#10-banach-valued-and-operator-stop" title="Permanent link">&para;</a></h2>
+<p>Let <span class="arithmatex">\(X\)</span> be a Banach space and let</p>
+<div class="arithmatex">\[
+S_n=\sum_{k=1}^n a_k,\qquad a_k\in X.
+\]</div>
+<p>If the Bochner expectation exists, define</p>
+<div class="arithmatex">\[
+\mathcal{O}_\tau(S)=\mathbb{E}[S_\tau]\in X.
+\]</div>
+<p>For geometric stopping,</p>
+<div class="arithmatex">\[
+\mathbb{E}[S_\tau]
+=
+\sum_{k\geq 1}a_k(1-p)^{k-1},
+\]</div>
+<p>with convergence in <span class="arithmatex">\(X\)</span> whenever</p>
+<div class="arithmatex">\[
+\sum_{k\geq 1}\|a_k\|(1-p)^{k-1}&lt;\infty.
+\]</div>
+<h3 id="101-linear-dynamics">10.1 Linear Dynamics<a class="headerlink" href="#101-linear-dynamics" title="Permanent link">&para;</a></h3>
+<p>Let <span class="arithmatex">\(T:X\to X\)</span> be a bounded linear operator and consider the path</p>
+<div class="arithmatex">\[
+S_n=\sum_{k=0}^{n-1}T^kx.
+\]</div>
+<p>Then geometric STOP gives</p>
+<div class="arithmatex">\[
+\mathbb{E}[S_\tau]
+=
+\sum_{k\geq 0}(1-p)^kT^kx
+=
+(I-(1-p)T)^{-1}x,
+\]</div>
+<p>whenever the resolvent exists.</p>
+<p>Thus operator STOP is resolvent theory in probabilistic language. As <span class="arithmatex">\(p\to 0^+\)</span>, the observer probes the spectrum of <span class="arithmatex">\(T\)</span> near <span class="arithmatex">\(1\)</span>.</p>
+<h2 id="11-relation-to-existing-mathematics">11. Relation to Existing Mathematics<a class="headerlink" href="#11-relation-to-existing-mathematics" title="Permanent link">&para;</a></h2>
+<p>The STOP framework should not be positioned as replacing established summability theory, analytic number theory, or spectral theory. Its contribution is interpretive and structural: it organizes several known transformations as changes of observer resolution.</p>
+<ol>
+<li>Abel damping becomes survival probability.</li>
+<li>Regularization scheme dependence becomes observer dependence.</li>
+<li>Divergent paths become objects with scale-dependent representations.</li>
+<li>Arithmetic weights become observer lenses revealing event, density, and spectral descriptions.</li>
+<li>Operator divergence becomes resolvent singularity.</li>
+</ol>
+<p>Relevant existing areas include:</p>
+<ul>
+<li>Abel, Cesaro, Borel, and Ramanujan summability.</li>
+<li>Tauberian theory.</li>
+<li>Analytic continuation and zeta regularization.</li>
+<li>Heat-kernel regularization and spectral geometry.</li>
+<li>Stopping times and martingale theory.</li>
+<li>Ergodic averages and Abel means.</li>
+<li>Dirichlet series and arithmetic Fourier analysis.</li>
+<li>Resolvent theory on Banach spaces.</li>
+</ul>
+<h2 id="12-limitations-and-open-problems">12. Limitations and Open Problems<a class="headerlink" href="#12-limitations-and-open-problems" title="Permanent link">&para;</a></h2>
+<h3 id="121-fairness-must-be-formalized-by-path-class">12.1 Fairness Must Be Formalized by Path Class<a class="headerlink" href="#121-fairness-must-be-formalized-by-path-class" title="Permanent link">&para;</a></h3>
+<p>Tail exploration alone is not fairness. An observer can sample arbitrarily deep into a path while remaining phase-locked or arithmetically biased. A publishable version must state fairness relative to explicit classes of paths.</p>
+<h3 id="122-observer-dependence-is-a-feature-and-a-risk">12.2 Observer Dependence Is a Feature and a Risk<a class="headerlink" href="#122-observer-dependence-is-a-feature-and-a-risk" title="Permanent link">&para;</a></h3>
+<p>STOP values or representations are not canonical unless an observer class is specified. The framework should avoid claims such as "the value of a divergent series is..." and instead state "under this observer, the observable is..." or "at this resolution, the representation is..."</p>
+<h3 id="123-arithmetic-observers-require-positivity-care">12.3 Arithmetic Observers Require Positivity Care<a class="headerlink" href="#123-arithmetic-observers-require-positivity-care" title="Permanent link">&para;</a></h3>
+<p>Weights such as <span class="arithmatex">\(\mu(n)\)</span>, <span class="arithmatex">\(\chi(n)\)</span>, and Ramanujan sums are signed or complex. They are not probability laws without additional normalization or interpretation. A rigorous theory must distinguish probabilistic STOP laws from signed spectral probe kernels.</p>
+<h3 id="124-needed-theorems">12.4 Needed Theorems<a class="headerlink" href="#124-needed-theorems" title="Permanent link">&para;</a></h3>
+<p>A mature version of this theory should prove:</p>
+<ol>
+<li>Regularity: fair observers recover classical limits for convergent paths.</li>
+<li>Universality: fair observers agree on suitable bounded non-resonant path classes.</li>
+<li>Anomaly classification: polynomial and logarithmic paths have finite-dimensional observer corrections.</li>
+<li>Arithmetic correspondence: arithmetic observer kernels recover the expected <span class="arithmatex">\(L\)</span>-functions and logarithmic derivatives.</li>
+<li>Operator correspondence: STOP residues of linear systems correspond to finite parts of resolvents at spectral boundary points.</li>
+<li>Resolution equivalence: different observer families can be classified by the representations they preserve.</li>
+</ol>
+<h2 id="13-research-program">13. Research Program<a class="headerlink" href="#13-research-program" title="Permanent link">&para;</a></h2>
+<p>The broader research direction is to treat infinite computation as path-first rather than state-first.</p>
+<p>Classical completion asks:</p>
+<div class="arithmatex">\[
+\text{Does }S_n\text{ converge to a terminal state?}
+\]</div>
+<p>STOP theory asks:</p>
+<div class="arithmatex">\[
+\text{Which representations of the path appear under finite-resolution observation?}
+\]</div>
+<p>This reframes divergence from a binary defect into a stratified phenomenon. The same path may appear as an event sequence, an averaged density, a residue, or a spectral object depending on the observer scale.</p>
+<p>Possible next invariants include:</p>
+<ul>
+<li><strong>STOP depth</strong>: the number of observer/projection layers required to extract a finite stable observable.</li>
+<li><strong>Observer entropy</strong>: the amount of path information lost under a STOP law.</li>
+<li><strong>Observer symmetry</strong>: transformations of observer kernels that leave an observable invariant.</li>
+<li><strong>Arithmetic resonance</strong>: distinction between spurious phase-locking and structural number-theoretic resonance.</li>
+<li><strong>Resolution class</strong>: the equivalence class of observers that expose the same representation of an infinite path.</li>
+<li><strong>Spectral shadow</strong>: the modes, poles, residues, or zeros that appear after coarse observation.</li>
+</ul>
+<h2 id="14-observer-orbits-and-irreducibility-at-infinity">14. Observer Orbits and Irreducibility at Infinity<a class="headerlink" href="#14-observer-orbits-and-irreducibility-at-infinity" title="Permanent link">&para;</a></h2>
+<p>The resolution-flow viewpoint suggests a further object that does not appear in ordinary state-based mathematics.</p>
+<p>For a finite integer <span class="arithmatex">\(p\)</span>, classical arithmetic asks whether <span class="arithmatex">\(p\)</span> is prime:</p>
+<div class="arithmatex">\[
+p\neq ab
+\]</div>
+<p>except trivially. This is irreducibility under multiplication.</p>
+<p>But under STOP-style observation, a prime also has many coherent appearances:</p>
+<div class="arithmatex">\[
+p,
+\qquad
+\mathbf{1}_{\mathrm{prime}}(p),
+\qquad
+\frac{1}{\log p},
+\qquad
+e^{-tp},
+\qquad
+(1-p^{-s})^{-1},
+\qquad
+\chi(p)e^{-tp}.
+\]</div>
+<p>These are not different primes. They are different observer projections of the same prime event.</p>
+<p>This motivates the following informal definition.</p>
+<h3 id="definition-141-observer-orbit">Definition 14.1: Observer Orbit<a class="headerlink" href="#definition-141-observer-orbit" title="Permanent link">&para;</a></h3>
+<p>Given an object <span class="arithmatex">\(x\)</span> and a class of admissible observers <span class="arithmatex">\(\mathcal{A}\)</span>, the <strong>observer orbit</strong> of <span class="arithmatex">\(x\)</span> is the family</p>
+<div class="arithmatex">\[
+\operatorname{Orb}_{\mathcal{A}}(x)
+=
+\{\mathcal{O}(x):\mathcal{O}\in\mathcal{A}\}.
+\]</div>
+<p>For a prime <span class="arithmatex">\(p\)</span>, the observer orbit includes its state, event, density, STOP, character, and spectral appearances:</p>
+<div class="arithmatex">\[
+\operatorname{Orb}(p)
+=
+\left(
+p,\;
+\mathbf{1}_{\mathrm{prime}}(p),\;
+\frac{1}{\log p},\;
+e^{-tp},\;
+(1-p^{-s})^{-1},\;
+\chi(p)e^{-tp},\ldots
+\right).
+\]</div>
+<p>The conceptual shift is:</p>
+<div class="arithmatex">\[
+\boxed{
+\text{at infinity, an object is not only a state; it is a coherent family of observer appearances.}
+}
+\]</div>
+<h3 id="141-three-meanings-of-prime">14.1 Three Meanings of Prime<a class="headerlink" href="#141-three-meanings-of-prime" title="Permanent link">&para;</a></h3>
+<p>This separates three meanings of primality.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Meaning of prime</th>
+<th>Irreducible under</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Finite arithmetic</td>
+<td>ordinary prime number</td>
+<td>multiplication</td>
+</tr>
+<tr>
+<td>Infinite sequence</td>
+<td>algorithmically prime sequence</td>
+<td>compression or generation</td>
+</tr>
+<tr>
+<td>Observer flow</td>
+<td>spectral prime object</td>
+<td>admissible observer decomposition</td>
+</tr>
+</tbody>
+</table>
+<p>In the second row, an infinite digit sequence</p>
+<div class="arithmatex">\[
+x=0.d_1d_2d_3\cdots
+\]</div>
+<p>is prime-like if its prefixes cannot be generated by a substantially shorter rule. In algorithmic information terms, this asks whether</p>
+<div class="arithmatex">\[
+K(x_{1:N})\sim N,
+\]</div>
+<p>where <span class="arithmatex">\(K\)</span> denotes Kolmogorov complexity. Rational numbers are reducible because their expansions are eventually periodic. Algebraic irrationals and constants such as <span class="arithmatex">\(\pi\)</span> may have complicated digits but short generators. Chaitin-type <span class="arithmatex">\(\Omega\)</span> numbers are the natural candidates for algorithmic irreducibility.</p>
+<p>Thus:</p>
+<div class="arithmatex">\[
+\text{finite prime}
+=
+\text{irreducible under multiplication},
+\]</div>
+<p>while:</p>
+<div class="arithmatex">\[
+\text{infinite prime}
+=
+\text{irreducible under compression}.
+\]</div>
+<p>The STOP framework suggests a third form:</p>
+<div class="arithmatex">\[
+\boxed{
+\text{spectral prime}
+=
+\text{irreducible under observer flow}.
+}
+\]</div>
+<h3 id="142-large-primes-as-observer-shadows">14.2 Large Primes as Observer Shadows<a class="headerlink" href="#142-large-primes-as-observer-shadows" title="Permanent link">&para;</a></h3>
+<p>Consider the concrete prime</p>
+<div class="arithmatex">\[
+p=1,000,000,007.
+\]</div>
+<p>At state resolution, this is simply an integer that has no nontrivial factorization.</p>
+<p>At path resolution, it appears as a spike in the prime indicator sequence:</p>
+<div class="arithmatex">\[
+a_n=\mathbf{1}_{\mathrm{prime}}(n),
+\qquad
+a_p=1.
+\]</div>
+<p>At density resolution, it is one element of a local prime cloud with approximate density</p>
+<div class="arithmatex">\[
+\frac{1}{\log p}.
+\]</div>
+<p>At STOP resolution, it contributes the weight</p>
+<div class="arithmatex">\[
+e^{-tp}.
+\]</div>
+<p>At spectral resolution, it contributes an Euler factor</p>
+<div class="arithmatex">\[
+(1-p^{-s})^{-1}.
+\]</div>
+<p>At character resolution, it contributes</p>
+<div class="arithmatex">\[
+\chi(p)e^{-tp}.
+\]</div>
+<p>As <span class="arithmatex">\(p\to\infty\)</span>, the prime recedes as a concrete state. But its density contribution, STOP weight, character phase, and Euler factor remain as structured shadows in observer space.</p>
+<p>This is the more general path/state lesson:</p>
+<div class="arithmatex">\[
+\boxed{
+\text{large objects gradually disappear as states and persist as observer shadows.}
+}
+\]</div>
+<p>This section is not a theorem. It is a proposed direction: define irreducibility not only inside one algebra, but across a class of admissible observer projections.</p>
+<h2 id="15-conclusion">15. Conclusion<a class="headerlink" href="#15-conclusion" title="Permanent link">&para;</a></h2>
+<p>The STOP operator provides a model of observer-dependent resolution for infinite paths. Its elementary identity</p>
+<div class="arithmatex">\[
+\mathbb{E}[S_\tau]
+=
+\sum_{k\geq 1}a_k\Pr(\tau\geq k)
+\]</div>
+<p>shows that regularization factors can be interpreted as survival probabilities. For geometric stopping, this is exactly Abel summation. For polynomial divergent paths, the finite part splits into zeta data and an observer correction.</p>
+<p>The central message is not that STOP assigns a unique value to every divergent process. Rather, it makes observer scale explicit:</p>
+<div class="arithmatex">\[
+\text{path}
+=
+\text{event-level representation}
+\to
+\text{density-level representation}
+\to
+\text{spectral representation}.
+\]</div>
+<p>Equivalently:</p>
+<div class="arithmatex">\[
+\text{observable}
+=
+\text{path structure}
++
+\text{observer structure}.
+\]</div>
+<p>That decomposition is the candidate contribution. The path to publication is to formalize admissible observer classes, define equivalence of observer scales, prove universality and anomaly theorems for controlled path families, and situate the framework precisely within existing summability, spectral, probability, and renormalization-adjacent mathematics.</p>
+<h2 id="references-to-add">References to Add<a class="headerlink" href="#references-to-add" title="Permanent link">&para;</a></h2>
+<p>The following references should be added before external submission.</p>
+<ol>
+<li>G. H. Hardy, <em>Divergent Series</em>, Oxford University Press, 1949.</li>
+<li>E. C. Titchmarsh, <em>The Theory of the Riemann Zeta-Function</em>, Oxford University Press.</li>
+<li>A. Korevaar, <em>Tauberian Theory: A Century of Developments</em>, Springer.</li>
+<li>K. Knopp, <em>Theory and Application of Infinite Series</em>.</li>
+<li>J. B. Conway, <em>A Course in Functional Analysis</em>.</li>
+<li>N. Dunford and J. T. Schwartz, <em>Linear Operators</em>.</li>
+<li>H. Montgomery and R. Vaughan, <em>Multiplicative Number Theory I: Classical Theory</em>.</li>
+<li>H. Iwaniec and E. Kowalski, <em>Analytic Number Theory</em>.</li>
+<li>B. Simon, <em>Trace Ideals and Their Applications</em>.</li>
+<li>W. Feller, <em>An Introduction to Probability Theory and Its Applications</em>.</li>
+</ol>
+<h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../asymptotically-fair-stopping/">Asymptotically Fair Stopping</a></li>
+<li><a href="../riemann-hypothesis/">Riemann Hypothesis</a></li>
+<li><a href="../prime-weighting/">Prime Weighting</a></li>
+<li><a href="../partition-function/">Partition Function</a></li>
+<li><a href="../../axiom-architecture/">Axiom Architecture</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "content.code.copy", "content.code.annotate", "navigation.tabs", "navigation.sections", "toc.integrate", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../javascripts/katex.js"></script>
+      
+    
+  </body>
+</html>
