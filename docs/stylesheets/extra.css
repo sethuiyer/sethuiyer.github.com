@@ -22,26 +22,26 @@
 }
 
 [data-md-color-scheme="slate"] {
-  --md-primary-fg-color: #141414;
-  --md-primary-fg-color--light: #1f1f1f;
-  --md-primary-fg-color--dark: #080808;
-  --md-accent-fg-color: #f5c842;
+  --md-primary-fg-color: #0a0a0a;
+  --md-primary-fg-color--light: #141414;
+  --md-primary-fg-color--dark: #000000;
+  --md-accent-fg-color: #ffcc00;
   --md-default-bg-color: #0a0a0a;
   --md-default-fg-color: #e5e5e5;
-  --sb-bg: #080808;
-  --sb-surface: #141414;
-  --sb-surface-muted: #1a1a1a;
-  --sb-border: #2a2a2a;
+  --sb-bg: #050505;
+  --sb-surface: #0f0f0f;
+  --sb-surface-muted: #171717;
+  --sb-border: #2d2d2d;
   --sb-border-strong: #404040;
-  --sb-text-muted: #808080;
+  --sb-text-muted: #a0a0a0;
   --sb-heading: #ffffff;
-  --sb-link: #f5c842;
-  --sb-link-hover: #ffd866;
-  --sb-code-bg: #0d0d0d;
-  --sb-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
-  --sb-shadow-md: 0 16px 36px rgb(0 0 0 / 0.5);
-  --sb-accent: #f5c842;
-  --sb-accent-rgb: 245 200 66;
+  --sb-link: #ffcc00;
+  --sb-link-hover: #ffe44d;
+  --sb-code-bg: #080808;
+  --sb-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.5);
+  --sb-shadow-md: 0 20px 40px rgb(0 0 0 / 0.6);
+  --sb-accent: #ffcc00;
+  --sb-accent-rgb: 255 204 0;
 }
 
 html {
@@ -130,6 +130,25 @@ body {
   line-height: 1.75;
 }
 
+/* ========================================
+   Drop caps for first paragraph
+   ======================================== */
+
+.md-typeset > p:first-of-type:first-letter {
+  float: left;
+  margin: 0.1em 0.1em 0 0;
+  padding: 0 0.1em;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 3.2em;
+  font-weight: 700;
+  line-height: 0.8;
+  color: var(--sb-accent);
+}
+
+/* ========================================
+   Typography
+   ======================================== */
+
 .md-typeset > h1:first-child {
   margin: 0 0 1.1rem;
 }
@@ -143,9 +162,11 @@ body {
   letter-spacing: -0.01em;
 }
 
+/* Heading numbering */
 .md-typeset h1 {
   font-size: 2.1rem;
   line-height: 1.12;
+  counter-reset: h1;
 }
 
 .md-typeset h2 {
@@ -153,22 +174,225 @@ body {
   padding-top: 0.5rem;
   border-top: 1px solid var(--sb-border);
   font-size: 1.34rem;
+  counter-reset: h2;
+  counter-increment: h1;
+}
+
+.md-typeset h2::before {
+  content: counter(h1) ". ";
+  font-weight: 700;
+  color: var(--sb-accent);
 }
 
 .md-typeset h3 {
   margin-top: 2rem;
   font-size: 1.05rem;
+  counter-reset: h3;
+  counter-increment: h2;
+}
+
+.md-typeset h3::before {
+  content: counter(h1) "." counter(h2) ". ";
+  font-weight: 600;
+  color: var(--sb-text-muted);
+  margin-right: 0.5rem;
 }
 
 .md-typeset h4 {
   font-size: 0.88rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  counter-reset: h4;
+  counter-increment: h3;
+}
+
+.md-typeset h4::before {
+  content: counter(h1) "." counter(h2) "." counter(h3) ". ";
+  font-weight: 600;
+  color: var(--sb-text-muted);
+  margin-right: 0.5rem;
 }
 
 .md-typeset p,
 .md-typeset li {
   color: var(--md-default-fg-color);
+}
+
+/* ========================================
+   Pull quotes and academic callouts
+   ======================================== */
+
+/* Pull quote */
+.md-typeset .pull-quote {
+  margin: 2rem 0;
+  padding: 1.5rem 2rem;
+  background: var(--sb-surface);
+  border-left: 4px solid var(--sb-accent);
+  border-radius: 0.3rem;
+  box-shadow: var(--sb-shadow-sm);
+  position: relative;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.md-typeset .pull-quote::before,
+.md-typeset .pull-quote::after {
+  content: "\"";
+  position: absolute;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--sb-accent);
+  opacity: 0.3;
+}
+
+.md-typeset .pull-quote::before {
+  top: -0.5rem;
+  left: 0.5rem;
+}
+
+.md-typeset .pull-quote::after {
+  bottom: -1.5rem;
+  right: 0.5rem;
+}
+
+/* Academic callout */
+.md-typeset .callout {
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, var(--sb-surface) 0%, rgb(var(--sb-accent-rgb) / 0.05) 100%);
+  border: 1px solid var(--sb-border);
+  border-radius: 0.3rem;
+  box-shadow: var(--sb-shadow-sm);
+  position: relative;
+}
+
+.md-typeset .callout::before {
+  content: "📌";
+  position: absolute;
+  top: 0.5rem;
+  right: 0.8rem;
+  font-size: 1.2rem;
+}
+
+/* ========================================
+   Numbered theorem/proof environments
+   ======================================== */
+
+/* Theorem, Lemma, Proposition, Corollary */
+.md-typeset .theorem,
+.md-typeset .lemma,
+.md-typeset .proposition,
+.md-typeset .corollary {
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  background: var(--sb-surface);
+  border-left: 3px solid var(--sb-accent);
+  border-radius: 0.3rem;
+  box-shadow: var(--sb-shadow-sm);
+  position: relative;
+}
+
+.md-typeset .theorem::before,
+.md-typeset .lemma::before,
+.md-typeset .proposition::before,
+.md-typeset .corollary::before {
+  content: attr(data-type);
+  position: absolute;
+  top: 0.5rem;
+  right: 0.8rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--sb-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.md-typeset .theorem {
+  counter-reset: theorem;
+}
+
+.md-typeset .theorem::before { content: "Theorem"; }
+.md-typeset .lemma::before { content: "Lemma"; }
+.md-typeset .proposition::before { content: "Proposition"; }
+.md-typeset .corollary::before { content: "Corollary"; }
+
+/* Numbered theorem support */
+.md-typeset .theorem > :first-child,
+.md-typeset .lemma > :first-child,
+.md-typeset .proposition > :first-child,
+.md-typeset .corollary > :first-child {
+  margin-top: 0;
+}
+
+/* Proof */
+.md-typeset .proof {
+  margin: 1rem 0;
+  padding: 0.8rem 1.2rem;
+  background: rgb(var(--sb-accent-rgb) / 0.05);
+  border-left: 3px solid var(--sb-accent);
+  border-radius: 0.3rem;
+  font-style: italic;
+  position: relative;
+}
+
+.md-typeset .proof::before {
+  content: "Proof";
+  position: absolute;
+  top: 0.3rem;
+  right: 0.8rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--sb-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Remark */
+.md-typeset .remark {
+  margin: 1rem 0;
+  padding: 0.8rem 1.2rem;
+  background: var(--sb-surface-muted);
+  border-left: 3px solid #6b7280;
+  border-radius: 0.3rem;
+  position: relative;
+}
+
+.md-typeset .remark::before {
+  content: "Remark";
+  position: absolute;
+  top: 0.3rem;
+  right: 0.8rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Definition */
+.md-typeset .definition {
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  background: var(--sb-surface);
+  border-left: 3px solid #3b82f6;
+  border-radius: 0.3rem;
+  position: relative;
+}
+
+.md-typeset .definition::before {
+  content: "Definition";
+  position: absolute;
+  top: 0.5rem;
+  right: 0.8rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #3b82f6;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* ========================================
@@ -254,7 +478,8 @@ body {
   border-radius: 0;
   font-size: 0.82rem;
   position: relative;
-  box-shadow: none;
+  box-shadow: var(--sb-shadow-sm);
+  margin: 1.5rem 0;
 }
 
 .md-typeset table:not([class]) th {
@@ -265,6 +490,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 1;
+  padding: 0.8em 1em;
 }
 
 .md-typeset table:not([class]) td,
@@ -279,7 +505,48 @@ body {
 }
 
 [data-md-color-scheme="slate"] .md-typeset table:not([class]) tr:nth-child(even) td {
-  background: rgb(255 255 255 / 0.03);
+  background: rgb(255 255 255 / 0.04);
+}
+
+/* Table caption styling */
+.md-typeset table caption {
+  caption-side: bottom;
+  padding: 0.5rem 0;
+  color: var(--sb-text-muted);
+  font-size: 0.85rem;
+  font-style: italic;
+  text-align: left;
+}
+
+/* Table with borders */
+.md-typeset table.border-all {
+  border: 2px solid var(--sb-border-strong);
+}
+
+.md-typeset table.border-all th,
+.md-typeset table.border-all td {
+  border: 1px solid var(--sb-border);
+}
+
+/* Academic table styling for research papers */
+.md-typeset table.academic {
+  font-size: 0.85rem;
+  border-left: 2px solid var(--sb-accent);
+}
+
+.md-typeset table.academic th {
+  background: var(--sb-surface);
+  border-bottom: 1px solid var(--sb-border);
+  padding: 0.6em 0.8em;
+}
+
+.md-typeset table.academic td {
+  padding: 0.5em 0.8em;
+  border-bottom: 1px dashed var(--sb-border);
+}
+
+.md-typeset table.academic tr:last-child td {
+  border-bottom: none;
 }
 
 /* ========================================
@@ -303,11 +570,110 @@ body {
   line-height: 1.6;
 }
 
+/* Code blocks with line numbers */
 .md-typeset .highlight {
   margin: 1.25rem 0;
   overflow: hidden;
   border: 1px solid var(--sb-border);
   border-radius: 0.3rem;
+  box-shadow: var(--sb-shadow-sm);
+  position: relative;
+}
+
+.md-typeset .highlighttable {
+  border-radius: 0.3rem;
+  border-left: 3px solid var(--sb-accent);
+}
+
+/* Line numbers */
+.md-typeset .highlight .lineno {
+  display: table-cell;
+  padding: 1rem 0.5rem;
+  color: var(--sb-text-muted);
+  background: var(--sb-surface-muted);
+  border-right: 1px solid var(--sb-border);
+  text-align: right;
+  user-select: none;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+}
+
+/* Code with line numbers wrapper */
+.md-typeset .highlight pre {
+  margin: 0;
+  padding-left: 0.5rem;
+}
+
+/* Syntax highlighting improvements */
+.md-typeset .highlight .hll {
+  background: rgb(var(--sb-accent-rgb) / 0.1);
+}
+
+.md-typeset .highlight .err {
+  background: rgb(239 68 68 / 0.1);
+  color: #ef4444;
+}
+
+.md-typeset .highlight .c,
+.md-typeset .highlight .cd,
+.md-typeset .highlight .cpf,
+.md-typeset .highlight .c1,
+.md-typeset .highlight .cs {
+  color: #6b7280;
+  font-style: italic;
+}
+
+.md-typeset .highlight .k,
+.md-typeset .highlight .kc,
+.md-typeset .highlight .kd,
+.md-typeset .highlight .kn,
+.md-typeset .highlight .kp,
+.md-typeset .highlight .kr,
+.md-typeset .highlight .kt {
+  color: #d4af37;
+  font-weight: 600;
+}
+
+.md-typeset .highlight .o,
+.md-typeset .highlight .ow {
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+.md-typeset .highlight .s,
+.md-typeset .highlight .sb,
+.md-typeset .highlight .sc,
+.md-typeset .highlight .sd,
+.md-typeset .highlight .s2,
+.md-typeset .highlight .se,
+.md-typeset .highlight .sh,
+.md-typeset .highlight .si,
+.md-typeset .highlight .sx {
+  color: #10b981;
+}
+
+.md-typeset .highlight .mi,
+.md-typeset .highlight .il,
+.md-typeset .highlight .mo {
+  color: #f59e0b;
+}
+
+.md-typeset .highlight .nb,
+.md-typeset .highlight .ni {
+  color: #8b5cf6;
+}
+
+.md-typeset .highlight .nt {
+  color: #ef4444;
+}
+
+.md-typeset .highlight .nv {
+  color: #3b82f6;
+}
+
+.md-typeset .highlight .bp {
+  color: #6b7280;
+  font-style: italic;
 }
 
 .md-typeset .highlighttable {
@@ -324,19 +690,31 @@ body {
 }
 
 /* ========================================
-   Admonitions
+   Subtle animations for hover states
    ======================================== */
+
+.md-typeset a {
+  transition: all 0.2s ease;
+}
 
 .md-typeset .admonition,
 .md-typeset details {
   border: 1px solid var(--sb-border);
   border-radius: 0;
   box-shadow: none;
+  transition: all 0.2s ease;
+}
+
+.md-typeset .admonition:hover,
+.md-typeset details:hover {
+  box-shadow: var(--sb-shadow-sm);
+  transform: translateY(-1px);
 }
 
 .md-typeset .admonition-title,
 .md-typeset summary {
   font-weight: 750;
+  transition: color 0.15s ease;
 }
 
 .md-typeset .admonition.note {
@@ -357,6 +735,21 @@ body {
 
 .md-typeset .admonition.info {
   border-left: 3px solid var(--sb-accent);
+}
+
+/* Table row hover */
+.md-typeset table:not([class]) tr:hover td {
+  background: rgb(var(--sb-accent-rgb) / 0.08);
+}
+
+/* Highlight on link hover */
+.md-typeset a:hover {
+  text-decoration: underline;
+}
+
+/* Code block hover */
+.md-typeset .highlight:hover {
+  border-color: var(--sb-accent);
 }
 
 /* ========================================
@@ -508,7 +901,91 @@ body {
 }
 
 /* ========================================
-   Responsive
+   Decorative section brackets
+   ======================================== */
+
+/* Section divider with brackets */
+.md-typeset h2 {
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+.md-typeset h2::before {
+  content: "«";
+  position: absolute;
+  left: 0.5rem;
+  top: 0;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.5rem;
+  color: var(--sb-accent);
+  opacity: 0.5;
+}
+
+.md-typeset h2::after {
+  content: "»";
+  position: absolute;
+  right: 0.5rem;
+  top: 0;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.5rem;
+  color: var(--sb-accent);
+  opacity: 0.5;
+}
+
+/* Section separator */
+.md-typeset h2 + hr {
+  margin: 1.5rem 0 2.5rem;
+  border: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--sb-accent),
+    transparent
+  );
+  opacity: 0.3;
+}
+
+/* ========================================
+   Academic footnote styling
+   ======================================== */
+
+.md-typeset sup {
+  font-size: 0.75em;
+  line-height: 0;
+}
+
+.md-typeset sup a {
+  text-decoration: none;
+  color: var(--sb-accent);
+  font-weight: 600;
+}
+
+.md-typeset sup a:hover {
+  text-decoration: underline;
+}
+
+/* Footnote container */
+.md-typeset .footnote {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: var(--sb-surface-muted);
+  border-left: 3px solid var(--sb-accent);
+  border-radius: 0.3rem;
+  font-size: 0.85rem;
+}
+
+.md-typeset .footnote ol {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.md-typeset .footnote li {
+  margin: 0.3rem 0;
+}
+
+/* ========================================
+   Better responsive typography
    ======================================== */
 
 @media screen and (max-width: 44.984375em) {
@@ -518,6 +995,10 @@ body {
 
   .md-typeset h1 {
     font-size: 1.65rem;
+  }
+
+  .md-typeset h2 {
+    font-size: 1.25rem;
   }
 
   .md-typeset table:not([class]) {
@@ -535,5 +1016,21 @@ body {
 
   .sb-abstract {
     font-size: 0.85rem;
+  }
+
+  /* Smaller drop cap on mobile */
+  .md-typeset > p:first-of-type:first-letter {
+    font-size: 2.5em;
+  }
+
+  /* Smaller theorem boxes on mobile */
+  .md-typeset .theorem,
+  .md-typeset .lemma,
+  .md-typeset .proposition,
+  .md-typeset .corollary,
+  .md-typeset .proof,
+  .md-typeset .remark,
+  .md-typeset .definition {
+    padding: 0.8rem 1rem;
   }
 }
