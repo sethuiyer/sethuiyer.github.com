@@ -1767,13 +1767,13 @@
 <p><em>Draft manuscript for journal development.</em></p>
 <h2 id="abstract">Abstract<a class="headerlink" href="#abstract" title="Permanent link">&para;</a></h2>
 <p>Classical analysis usually studies an infinite process through the existence or failure of a terminal limit. This paper develops an alternative formulation in which an infinite process is treated as a path and observation is modeled as a finite-resolution operation. Given a sequence of partial states <span class="arithmatex">\(S_n\)</span>, a stopping law <span class="arithmatex">\(\tau\)</span> induces the observable <span class="arithmatex">\(\mathbb{E}[S_\tau]\)</span>. We call this induced map the <strong>STOP operator</strong>.</p>
-<p>The central claim is that STOP is not merely a summability method. It is a <strong>resolution flow</strong>: a family of observer-dependent representations of the same infinite path. At microscopic scale, an observer may see individual events; at mesoscopic scale, densities; at spectral scale, poles, residues, and modes. Geometric stopping gives the first exact model of this principle by reproducing Abel summability: the survival probability of the observer becomes the Abel damping factor. For polynomial increment paths <span class="arithmatex">\(a_n=n^m\)</span>, the finite part of the stopped expectation is</p>
+<p>The central claim is that STOP is not merely a summability method. It is a <strong>resolution flow</strong>: a family of observer-dependent representations of the same infinite path. At microscopic scale, an observer may see individual events; at mesoscopic scale, densities; at spectral scale, poles, residues, and modes. Geometric stopping gives the first exact model of this principle by reproducing Abel summability: the survival probability of the observer becomes the Abel damping factor. We prove a regularity theorem showing that tail-exploring observers recover ordinary limits under boundedness hypotheses, and we compute the finite parts of polynomial divergent paths. For increments <span class="arithmatex">\(a_n=n^m\)</span>, the geometric STOP residue is</p>
 <div class="arithmatex">\[
 \operatorname{FP}_{t=0}\mathbb{E}[S_\tau]
 =
 \zeta(-m)+\frac{1}{m+1}.
 \]</div>
-<p>The first term is the classical zeta-regularized contribution; the second is an observer survival correction. We use this split to motivate a general event-density-spectrum ladder, with prime events, prime density, and zeta modes as the motivating arithmetic example. We also formulate asymptotic fairness conditions for stopping laws, outline arithmetic observer kernels, and indicate extensions to Banach-valued paths and resolvent theory.</p>
+<p>The first term is the classical zeta-regularized contribution; the second is an observer survival correction. This split is the paper's main technical novelty: not Abel summability itself, but its derivation as survival-weighted observation and the resulting separation between spectral residue and observer correction. We use this split to motivate a general event-density-spectrum ladder, with prime events, prime density, and zeta modes as the motivating arithmetic example. We also distinguish probabilistic stopping laws from signed arithmetic probe kernels and indicate extensions to Banach-valued paths and resolvent theory.</p>
 <h2 id="keywords">Keywords<a class="headerlink" href="#keywords" title="Permanent link">&para;</a></h2>
 <p>stopping times; resolution flow; Abel summability; divergent series; zeta regularization; observer theory; arithmetic kernels; prime number theorem; Banach spaces; resolvent operators</p>
 <h2 id="1-introduction">1. Introduction<a class="headerlink" href="#1-introduction" title="Permanent link">&para;</a></h2>
@@ -1811,6 +1811,7 @@ S_n=\sum_{k=1}^n a_k
 <ol>
 <li>STOP operators define observer-scale representations of infinite paths.</li>
 <li>Geometric STOP gives a probabilistic interpretation of Abel summability.</li>
+<li>Tail-exploring STOP laws recover ordinary limits under boundedness or uniform-integrability assumptions.</li>
 <li>Fair stopping laws can be axiomatized using tail exploration and non-resonance conditions.</li>
 <li>Polynomial divergent paths admit finite STOP residues whose constant terms split into spectral and observer contributions.</li>
 <li>Arithmetic observer kernels lead naturally to an event-density-spectrum ladder involving prime events, prime density, Dirichlet characters, Mangoldt weights, Möbius weights, and zeta or <span class="arithmatex">\(L\)</span>-function spectra.</li>
@@ -1818,6 +1819,23 @@ S_n=\sum_{k=1}^n a_k
 </ol>
 <h3 id="13-scope-and-status">1.3 Scope and Status<a class="headerlink" href="#13-scope-and-status" title="Permanent link">&para;</a></h3>
 <p>The geometric STOP identity is elementary and rigorous. The polynomial residue theorem follows from standard Mellin-transform or polylogarithm asymptotics. The broader language of resolution flow, observer geometry, arithmetic STOP laws, and observer symmetry is proposed as a research program; those sections should be read as formal directions rather than completed classification theorems.</p>
+<h3 id="14-what-is-new">1.4 What Is New<a class="headerlink" href="#14-what-is-new" title="Permanent link">&para;</a></h3>
+<p>The paper does not claim to invent Abel summability, finite-part regularization, zeta regularization, stopping times, Tauberian theory, heat kernels, or resolvents. These are established subjects.</p>
+<p>The proposed contribution is the organization of these tools around a single observer principle:</p>
+<div class="arithmatex">\[
+\text{observable}
+=
+\text{path structure}
++
+\text{observer structure}.
+\]</div>
+<p>Concretely, the new claims are:</p>
+<ol>
+<li>Abel damping is exactly survival weighting for a geometric observer.</li>
+<li>The finite STOP residue of polynomial paths decomposes as a zeta term plus an explicit observer correction.</li>
+<li>Families of observers can be treated as resolution flows, producing event-level, density-level, and spectral-level representations of the same infinite path.</li>
+</ol>
+<p>This framing is deliberately conservative: the core theorems are standard-analysis consequences, while the terminology is meant to expose a common structure across summability, probability, and spectral methods.</p>
 <h2 id="2-computational-paths-and-stop-observers">2. Computational Paths and STOP Observers<a class="headerlink" href="#2-computational-paths-and-stop-observers" title="Permanent link">&para;</a></h2>
 <h3 id="definition-21-computational-path">Definition 2.1: Computational Path<a class="headerlink" href="#definition-21-computational-path" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(X\)</span> be a vector space, normed space, or topological state space. A <strong>computational path</strong> is a sequence</p>
@@ -1927,6 +1945,32 @@ S_\tau.
 <li>Which quantities survive all admissible observers?</li>
 </ol>
 <p>The rest of the paper develops the simplest exact instance of this picture: geometric stopping.</p>
+<h3 id="33-observer-invariance">3.3 Observer Invariance<a class="headerlink" href="#33-observer-invariance" title="Permanent link">&para;</a></h3>
+<p>The resolution-flow viewpoint adds a fifth filter to the usual stability questions. A structure should not only preserve identity, hierarchy, non-lattice behavior, and asymptotic stability. It should also preserve recognizable content under changes of observer.</p>
+<p>Call this condition <strong>observer invariance</strong>:</p>
+<div class="arithmatex">\[
+\boxed{
+\text{a structure is observer-invariant if its essential content survives all admissible observers.}
+}
+\]</div>
+<p>In this language, the deeper question is not simply:</p>
+<div class="arithmatex">\[
+\text{Which structures survive infinity?}
+\]</div>
+<p>but:</p>
+<div class="arithmatex">\[
+\boxed{
+\text{Which structures survive every fair observer of infinity?}
+}
+\]</div>
+<p>This is the point where primes become more than irreducible finite states. A prime can appear as a number, as an event in the prime indicator path, as a contribution to density, as an Euler factor, as a character phase, or as a STOP weight. Across these observer changes, the prime process remains recognizable.</p>
+<p>This motivates the fixed-object question:</p>
+<div class="arithmatex">\[
+\boxed{
+\text{What is the fixed structure of all fair observers?}
+}
+\]</div>
+<p>The phrase is deliberately analogous to fixed fields in Galois theory, but it is not yet a theorem. It names a research problem: classify the information that remains invariant when the observer is allowed to vary.</p>
 <h2 id="4-asymptotically-fair-stopping-laws">4. Asymptotically Fair Stopping Laws<a class="headerlink" href="#4-asymptotically-fair-stopping-laws" title="Permanent link">&para;</a></h2>
 <p>A stopping law should not be allowed to encode arbitrary bias. For example, a law that always stops at <span class="arithmatex">\(n=10\)</span> says almost nothing about the infinite tail. A law that always stops on even indices can falsely annihilate or amplify a periodic path.</p>
 <p>We therefore separate stopping laws that merely stop from stopping laws that fairly probe the tail.</p>
@@ -1947,6 +1991,44 @@ S_\tau.
 <p>A family <span class="arithmatex">\(\{\tau_\alpha\}\)</span> is an <strong>asymptotically fair STOP law</strong> if it satisfies tail exploration and an appropriate non-resonance condition for the class of paths under study.</p>
 <h3 id="remark-44-fairness-is-path-class-dependent">Remark 4.4: Fairness Is Path-Class Dependent<a class="headerlink" href="#remark-44-fairness-is-path-class-dependent" title="Permanent link">&para;</a></h3>
 <p>No single fairness condition can be universal without qualification. A condition that is sufficient for bounded periodic paths may be insufficient for Liouville-type near-resonant phases or adversarial arithmetic sequences. A journal version should state fairness relative to a specified function class.</p>
+<h3 id="theorem-45-regularity-for-bounded-convergent-paths">Theorem 4.5: Regularity for Bounded Convergent Paths<a class="headerlink" href="#theorem-45-regularity-for-bounded-convergent-paths" title="Permanent link">&para;</a></h3>
+<p>Let <span class="arithmatex">\(S_n\)</span> be a bounded real or Banach-valued path with</p>
+<div class="arithmatex">\[
+S_n\to L.
+\]</div>
+<p>Let <span class="arithmatex">\(\{\tau_\alpha\}\)</span> be a family of positive integer-valued stopping times satisfying tail exploration:</p>
+<div class="arithmatex">\[
+\Pr(\tau_\alpha&gt;M)\to 1
+\]</div>
+<p>for every fixed <span class="arithmatex">\(M\)</span>. Then</p>
+<div class="arithmatex">\[
+\mathbb{E}[S_{\tau_\alpha}]\to L.
+\]</div>
+<h3 id="lean-proof">Lean Proof<a class="headerlink" href="#lean-proof" title="Permanent link">&para;</a></h3>
+<p>Fix <span class="arithmatex">\(\epsilon&gt;0\)</span>. Choose <span class="arithmatex">\(M\)</span> such that <span class="arithmatex">\(\|S_n-L\|&lt;\epsilon\)</span> for all <span class="arithmatex">\(n&gt;M\)</span>. Since the path is bounded, let <span class="arithmatex">\(\|S_n-L\|\leq C\)</span> for all <span class="arithmatex">\(n\)</span>. Then</p>
+<div class="arithmatex">\[
+\|\mathbb{E}[S_{\tau_\alpha}]-L\|
+\leq
+\mathbb{E}\|S_{\tau_\alpha}-L\|.
+\]</div>
+<p>Split according to whether <span class="arithmatex">\(\tau_\alpha&gt;M\)</span>:</p>
+<div class="arithmatex">\[
+\mathbb{E}\|S_{\tau_\alpha}-L\|
+\leq
+\epsilon\Pr(\tau_\alpha&gt;M)
++
+C\Pr(\tau_\alpha\leq M).
+\]</div>
+<p>The second term tends to <span class="arithmatex">\(0\)</span> by tail exploration. Hence</p>
+<div class="arithmatex">\[
+\limsup_{\alpha\to\alpha_0}
+\|\mathbb{E}[S_{\tau_\alpha}]-L\|
+\leq
+\epsilon.
+\]</div>
+<p>Since <span class="arithmatex">\(\epsilon\)</span> was arbitrary, the claim follows. <span class="arithmatex">\(\square\)</span></p>
+<h3 id="remark-46-uniform-integrability-version">Remark 4.6: Uniform Integrability Version<a class="headerlink" href="#remark-46-uniform-integrability-version" title="Permanent link">&para;</a></h3>
+<p>The boundedness assumption can be weakened. It is enough to assume that the family <span class="arithmatex">\(\{S_{\tau_\alpha}\}\)</span> is uniformly integrable and that <span class="arithmatex">\(\tau_\alpha\to\infty\)</span> in probability. This is the natural probability-theoretic condition: tail exploration says the observer moves outward, while uniform integrability prevents rare early or large excursions from dominating the expectation.</p>
 <h2 id="5-the-geometric-stop-identity">5. The Geometric STOP Identity<a class="headerlink" href="#5-the-geometric-stop-identity" title="Permanent link">&para;</a></h2>
 <p>The basic example is memoryless stopping.</p>
 <p>Let</p>
@@ -1968,7 +2050,7 @@ S_n=\sum_{k=1}^{n}a_k
 =
 \sum_{k\geq 1}a_k(1-p)^{k-1}.
 \]</div>
-<h3 id="lean-proof">Lean Proof<a class="headerlink" href="#lean-proof" title="Permanent link">&para;</a></h3>
+<h3 id="lean-proof_1">Lean Proof<a class="headerlink" href="#lean-proof_1" title="Permanent link">&para;</a></h3>
 <p>The identity is just summation by survival probability:</p>
 <div class="arithmatex">\[
 \mathbb{E}[S_\tau]
@@ -2349,7 +2431,7 @@ F_m(t)=e^t\sum_{k\geq 1}k^m e^{-tk}.
 <div class="arithmatex">\[
 \operatorname{Li}_{-m}(e^{-t}).
 \]</div>
-<p>Equivalently, by Mellin transform,</p>
+<p>Equivalently, by the standard Mellin transform representation used in zeta and heat-kernel regularization,</p>
 <div class="arithmatex">\[
 \sum_{k\geq 1}k^m e^{-tk}
 =
@@ -2375,6 +2457,7 @@ m!t^{-(m+1)}\cdot \frac{t^{m+1}}{(m+1)!}
 \zeta(-m)+\frac{1}{m+1}.
 \]</div>
 <p><span class="arithmatex">\(\square\)</span></p>
+<p>This proof is intentionally short because the analytic input is classical: it is the same asymptotic extraction used in Mellin-transform proofs of zeta regularization and heat-kernel expansions. The STOP-specific point is the external factor <span class="arithmatex">\(e^t\)</span>, which is the observer survival shift and is responsible for the correction <span class="arithmatex">\(1/(m+1)\)</span>.</p>
 <h3 id="73-numerical-extraction-of-the-finite-part">7.3 Numerical Extraction of the Finite Part<a class="headerlink" href="#73-numerical-extraction-of-the-finite-part" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(m=0\)</span>,</p>
 <div class="arithmatex">\[
@@ -2524,9 +2607,45 @@ e^t\operatorname{Li}_{s-m}(e^{-t})
 \frac{H_m-\gamma}{m+1},
 \]</div>
 <p>where <span class="arithmatex">\(H_m\)</span> is the <span class="arithmatex">\(m\)</span>-th harmonic number and <span class="arithmatex">\(\gamma\)</span> is Euler's constant.</p>
-<p>This supports the general principle that STOP residues decompose into spectral data and observer anomalies.</p>
+<p>This follows by differentiating the polylogarithm expression with respect to the spectral parameter and extracting the constant term. In a submission version, this should either be proved as a proposition or cited to standard polylogarithm/Mellin asymptotics. Its role here is to show that the same spectral-plus-observer split persists beyond pure powers:</p>
+<div class="arithmatex">\[
+\text{power-log STOP residue}
+=
+\text{zeta-derivative term}
++
+\text{observer anomaly}.
+\]</div>
 <h2 id="9-arithmetic-stop-observers">9. Arithmetic STOP Observers<a class="headerlink" href="#9-arithmetic-stop-observers" title="Permanent link">&para;</a></h2>
 <p>The geometric observer uses only temporal survival. More refined observers may include arithmetic structure. These arithmetic observers are where the resolution-flow viewpoint becomes most visible: the same prime process can be observed as events, densities, or spectral modes.</p>
+<p>There are two different objects here, and they should not be conflated.</p>
+<ol>
+<li><strong>Probabilistic arithmetic STOP laws</strong> are genuine stopping distributions or hazard rates.</li>
+<li><strong>Signed arithmetic probe kernels</strong> are analytic weights used to reveal spectral structure.</li>
+</ol>
+<p>The first belongs directly to probability theory. The second belongs closer to analytic number theory and harmonic analysis.</p>
+<h3 id="91-probabilistic-arithmetic-stop-laws">9.1 Probabilistic Arithmetic STOP Laws<a class="headerlink" href="#91-probabilistic-arithmetic-stop-laws" title="Permanent link">&para;</a></h3>
+<p>A hazard-rate STOP law is specified by a function <span class="arithmatex">\(h(n)\in(0,1)\)</span>:</p>
+<div class="arithmatex">\[
+\Pr(\tau=n)
+=
+h(n)\prod_{k&lt;n}(1-h(k)).
+\]</div>
+<p>For example, a scale-dependent prime-density hazard may use</p>
+<div class="arithmatex">\[
+h_\alpha(n)=\frac{\alpha}{\log(n+2)}
+\]</div>
+<p>with <span class="arithmatex">\(\alpha\to0^+\)</span>. For each fixed <span class="arithmatex">\(M\)</span>, the probability of stopping before <span class="arithmatex">\(M\)</span> then tends to zero, so the observer moves outward. A prime-spike hazard may use different probabilities at prime and composite indices:</p>
+<div class="arithmatex">\[
+h_{\alpha,\beta}(n)=
+\begin{cases}
+\alpha, &amp; n\text{ prime},\\
+\beta, &amp; n\text{ composite},
+\end{cases}
+\qquad
+0&lt;\beta&lt;\alpha&lt;1.
+\]</div>
+<p>with <span class="arithmatex">\(\alpha,\beta\to0^+\)</span>. These laws define honest random stopping times. Their asymptotics can be studied using prime-counting estimates, and their fairness depends on the path class being observed.</p>
+<h3 id="92-signed-arithmetic-probe-kernels">9.2 Signed Arithmetic Probe Kernels<a class="headerlink" href="#92-signed-arithmetic-probe-kernels" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(W_t(n)\)</span> be a decay kernel, typically <span class="arithmatex">\(e^{-tn}\)</span>, and let <span class="arithmatex">\(\chi(n)\)</span> be an arithmetic weight. Define the arithmetic STOP transform</p>
 <div class="arithmatex">\[
 V_{W,\chi}(a;t)=
@@ -2575,7 +2694,7 @@ V_{W,\chi}(a;t)=
 </tbody>
 </table>
 <p>This table is not a claim that all rows are probability laws. It is a map of observer lenses. Some are genuine stopping distributions; others are signed or weighted spectral probes.</p>
-<h3 id="example-91-the-modulo-four-character">Example 9.1: The Modulo-Four Character<a class="headerlink" href="#example-91-the-modulo-four-character" title="Permanent link">&para;</a></h3>
+<h3 id="example-93-the-modulo-four-character">Example 9.3: The Modulo-Four Character<a class="headerlink" href="#example-93-the-modulo-four-character" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(\chi_4\)</span> be the nontrivial character modulo <span class="arithmatex">\(4\)</span>:</p>
 <div class="arithmatex">\[
 \chi_4(n)=
@@ -2643,7 +2762,7 @@ B(t)=\frac{1}{2}-\frac{t^2}{4}+O(t^4).
 L(s,\chi_4)=\beta(s).
 \]</div>
 <p>This suggests that arithmetic STOP observers should be studied as resolution probes for arithmetic spectra. The modulo-four observer does not merely smooth an alternating sequence; it selects a representation-theoretic component of the integers.</p>
-<h3 id="example-92-the-mangoldt-lens">Example 9.2: The Mangoldt Lens<a class="headerlink" href="#example-92-the-mangoldt-lens" title="Permanent link">&para;</a></h3>
+<h3 id="example-94-the-mangoldt-lens">Example 9.4: The Mangoldt Lens<a class="headerlink" href="#example-94-the-mangoldt-lens" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(\Lambda(n)\)</span> be the von Mangoldt function. The exponentially damped Mangoldt transform is</p>
 <div class="arithmatex">\[
 M(t)=\sum_{n\geq 1}\Lambda(n)e^{-tn}.
@@ -2655,7 +2774,7 @@ M(t)=\sum_{n\geq 1}\Lambda(n)e^{-tn}.
 -\frac{\zeta'(s)}{\zeta(s)}.
 \]</div>
 <p>Thus the observer lens <span class="arithmatex">\(\Lambda(n)\)</span> selects prime-power structure. In a journal version, this section should be developed separately from probabilistic STOP laws, because <span class="arithmatex">\(\Lambda(n)\)</span> is an arithmetic weight rather than a stopping distribution.</p>
-<h3 id="example-93-the-mobius-lens">Example 9.3: The Möbius Lens<a class="headerlink" href="#example-93-the-mobius-lens" title="Permanent link">&para;</a></h3>
+<h3 id="example-95-the-mobius-lens">Example 9.5: The Möbius Lens<a class="headerlink" href="#example-95-the-mobius-lens" title="Permanent link">&para;</a></h3>
 <p>Similarly, the Möbius transform</p>
 <div class="arithmatex">\[
 U(t)=\sum_{n\geq 1}\mu(n)e^{-tn}
@@ -2667,7 +2786,7 @@ U(t)=\sum_{n\geq 1}\mu(n)e^{-tn}
 \frac{1}{\zeta(s)}.
 \]</div>
 <p>This lens suppresses numbers with repeated prime factors and alternates according to the parity of the number of prime factors. Its role is not to produce a positive stopping time, but to act as an arithmetic debiasing kernel.</p>
-<h3 id="94-resolution-interpretation">9.4 Resolution Interpretation<a class="headerlink" href="#94-resolution-interpretation" title="Permanent link">&para;</a></h3>
+<h3 id="96-resolution-interpretation">9.6 Resolution Interpretation<a class="headerlink" href="#96-resolution-interpretation" title="Permanent link">&para;</a></h3>
 <p>The arithmetic examples suggest the following dictionary:</p>
 <div class="arithmatex">\[
 \boxed{
@@ -2732,7 +2851,15 @@ S_n=\sum_{k=0}^{n-1}T^kx.
 <li>Arithmetic weights become observer lenses revealing event, density, and spectral descriptions.</li>
 <li>Operator divergence becomes resolvent singularity.</li>
 </ol>
-<p>Relevant existing areas include:</p>
+<p>More specifically:</p>
+<ul>
+<li>The geometric identity is Abel summability in probabilistic form, and should be read against the classical theory of divergent series developed by Hardy and Knopp.</li>
+<li>The regularity theorem is a minimal Tauberian-style sanity check: ordinary limits are preserved under admissible tail-exploring observers, provided boundedness or uniform integrability prevents rare excursions from dominating.</li>
+<li>The finite-part extraction is parallel to zeta and heat-kernel regularization: the new feature is the observer shift <span class="arithmatex">\(e^t\)</span>, which contributes the explicit anomaly <span class="arithmatex">\(1/(m+1)\)</span>.</li>
+<li>The arithmetic probe kernels are standard analytic-number-theoretic objects: Dirichlet characters lead to <span class="arithmatex">\(L(s,\chi)\)</span>, <span class="arithmatex">\(\Lambda(n)\)</span> to <span class="arithmatex">\(-\zeta'/\zeta\)</span>, and <span class="arithmatex">\(\mu(n)\)</span> to <span class="arithmatex">\(1/\zeta\)</span>.</li>
+<li>The Banach-space construction is ordinary resolvent theory written in stopped-path language.</li>
+</ul>
+<p>Relevant existing areas therefore include:</p>
 <ul>
 <li>Abel, Cesaro, Borel, and Ramanujan summability.</li>
 <li>Tauberian theory.</li>
@@ -2743,14 +2870,39 @@ S_n=\sum_{k=0}^{n-1}T^kx.
 <li>Dirichlet series and arithmetic Fourier analysis.</li>
 <li>Resolvent theory on Banach spaces.</li>
 </ul>
-<h2 id="12-limitations-and-open-problems">12. Limitations and Open Problems<a class="headerlink" href="#12-limitations-and-open-problems" title="Permanent link">&para;</a></h2>
-<h3 id="121-fairness-must-be-formalized-by-path-class">12.1 Fairness Must Be Formalized by Path Class<a class="headerlink" href="#121-fairness-must-be-formalized-by-path-class" title="Permanent link">&para;</a></h3>
+<h2 id="12-potential-applications">12. Potential Applications<a class="headerlink" href="#12-potential-applications" title="Permanent link">&para;</a></h2>
+<p>The framework is not intended as a replacement for existing regularization methods. Its value is in making observer dependence explicit. Natural application areas include:</p>
+<ol>
+<li><strong>Numerical divergent-process diagnostics.</strong> STOP tables show how a computation behaves as the observer horizon is pushed outward. This can separate oscillatory divergence from monotone escape.</li>
+<li><strong>Regularization bookkeeping.</strong> In physics-style regularization, the observer correction term makes scheme dependence explicit rather than hiding it inside a chosen regulator.</li>
+<li><strong>Ergodic and operator averages.</strong> The resolvent identity connects STOP observation with Abel means and spectral boundary behavior of linear dynamics.</li>
+<li><strong>Arithmetic signal analysis.</strong> Signed probe kernels provide a language for switching between event-level arithmetic data, density profiles, and spectral transforms.</li>
+<li><strong>Algorithmic randomness and compression.</strong> The observer-orbit idea suggests a way to compare finite-state irreducibility, asymptotic compressibility, and spectral irreducibility.</li>
+</ol>
+<p>These are proposed directions. The core submission should stand on the STOP identity, regularity theorem, and polynomial residue theorem.</p>
+<h2 id="13-limitations-and-open-problems">13. Limitations and Open Problems<a class="headerlink" href="#13-limitations-and-open-problems" title="Permanent link">&para;</a></h2>
+<h3 id="131-fairness-must-be-formalized-by-path-class">13.1 Fairness Must Be Formalized by Path Class<a class="headerlink" href="#131-fairness-must-be-formalized-by-path-class" title="Permanent link">&para;</a></h3>
 <p>Tail exploration alone is not fairness. An observer can sample arbitrarily deep into a path while remaining phase-locked or arithmetically biased. A publishable version must state fairness relative to explicit classes of paths.</p>
-<h3 id="122-observer-dependence-is-a-feature-and-a-risk">12.2 Observer Dependence Is a Feature and a Risk<a class="headerlink" href="#122-observer-dependence-is-a-feature-and-a-risk" title="Permanent link">&para;</a></h3>
+<p>The core distinction is between <strong>spurious resonance</strong> and <strong>structural resonance</strong>. Liouville-type approximations can produce near-locking:</p>
+<div class="arithmatex">\[
+e^{2\pi i q\alpha}\approx 1
+\]</div>
+<p>without genuine periodic structure. Such near-locking can fool an observer into seeing structure created by the observation scheme. Wilson-type congruences point in the opposite direction:</p>
+<div class="arithmatex">\[
+(n-1)!\equiv -1 \pmod n
+\]</div>
+<p>for prime <span class="arithmatex">\(n\)</span>. This is exact arithmetic resonance, not an observer hallucination.</p>
+<p>A mature fairness theory should distinguish these cases:</p>
+<div class="arithmatex">\[
+\boxed{
+\text{fair observers suppress spurious resonance while preserving structural resonance.}
+}
+\]</div>
+<h3 id="132-observer-dependence-is-a-feature-and-a-risk">13.2 Observer Dependence Is a Feature and a Risk<a class="headerlink" href="#132-observer-dependence-is-a-feature-and-a-risk" title="Permanent link">&para;</a></h3>
 <p>STOP values or representations are not canonical unless an observer class is specified. The framework should avoid claims such as "the value of a divergent series is..." and instead state "under this observer, the observable is..." or "at this resolution, the representation is..."</p>
-<h3 id="123-arithmetic-observers-require-positivity-care">12.3 Arithmetic Observers Require Positivity Care<a class="headerlink" href="#123-arithmetic-observers-require-positivity-care" title="Permanent link">&para;</a></h3>
+<h3 id="133-arithmetic-observers-require-positivity-care">13.3 Arithmetic Observers Require Positivity Care<a class="headerlink" href="#133-arithmetic-observers-require-positivity-care" title="Permanent link">&para;</a></h3>
 <p>Weights such as <span class="arithmatex">\(\mu(n)\)</span>, <span class="arithmatex">\(\chi(n)\)</span>, and Ramanujan sums are signed or complex. They are not probability laws without additional normalization or interpretation. A rigorous theory must distinguish probabilistic STOP laws from signed spectral probe kernels.</p>
-<h3 id="124-needed-theorems">12.4 Needed Theorems<a class="headerlink" href="#124-needed-theorems" title="Permanent link">&para;</a></h3>
+<h3 id="134-needed-theorems">13.4 Needed Theorems<a class="headerlink" href="#134-needed-theorems" title="Permanent link">&para;</a></h3>
 <p>A mature version of this theory should prove:</p>
 <ol>
 <li>Regularity: fair observers recover classical limits for convergent paths.</li>
@@ -2759,8 +2911,9 @@ S_n=\sum_{k=0}^{n-1}T^kx.
 <li>Arithmetic correspondence: arithmetic observer kernels recover the expected <span class="arithmatex">\(L\)</span>-functions and logarithmic derivatives.</li>
 <li>Operator correspondence: STOP residues of linear systems correspond to finite parts of resolvents at spectral boundary points.</li>
 <li>Resolution equivalence: different observer families can be classified by the representations they preserve.</li>
+<li>Observer invariance: identify the fixed structures that survive all fair observers.</li>
 </ol>
-<h2 id="13-research-program">13. Research Program<a class="headerlink" href="#13-research-program" title="Permanent link">&para;</a></h2>
+<h2 id="14-research-program">14. Research Program<a class="headerlink" href="#14-research-program" title="Permanent link">&para;</a></h2>
 <p>The broader research direction is to treat infinite computation as path-first rather than state-first.</p>
 <p>Classical completion asks:</p>
 <div class="arithmatex">\[
@@ -2779,9 +2932,144 @@ S_n=\sum_{k=0}^{n-1}T^kx.
 <li><strong>Arithmetic resonance</strong>: distinction between spurious phase-locking and structural number-theoretic resonance.</li>
 <li><strong>Resolution class</strong>: the equivalence class of observers that expose the same representation of an infinite path.</li>
 <li><strong>Spectral shadow</strong>: the modes, poles, residues, or zeros that appear after coarse observation.</li>
+<li><strong>Observer fixed structure</strong>: the information that remains stable under all fair observers.</li>
 </ul>
-<h2 id="14-observer-orbits-and-irreducibility-at-infinity">14. Observer Orbits and Irreducibility at Infinity<a class="headerlink" href="#14-observer-orbits-and-irreducibility-at-infinity" title="Permanent link">&para;</a></h2>
-<p>The resolution-flow viewpoint suggests a further object that does not appear in ordinary state-based mathematics.</p>
+<p>The strongest version of the prime question is therefore not "do primes survive infinity?" but:</p>
+<div class="arithmatex">\[
+\boxed{
+\text{are primes part of the fixed structure of fair arithmetic observation?}
+}
+\]</div>
+<h2 id="15-main-open-problem-observer-invariants-on-infinite-arithmetic-paths">15. Main Open Problem: Observer Invariants on Infinite Arithmetic Paths<a class="headerlink" href="#15-main-open-problem-observer-invariants-on-infinite-arithmetic-paths" title="Permanent link">&para;</a></h2>
+<p>The following problem is deliberately ambitious. It is included to make the research program falsifiable: even partial progress on restricted observer classes would be meaningful.</p>
+<p>Let <span class="arithmatex">\(\mathcal{P}\)</span> be a class of asymptotically fair STOP observers on <span class="arithmatex">\(\mathbb{N}\)</span>. An element of <span class="arithmatex">\(\mathcal{P}\)</span> may be a family of probability measures <span class="arithmatex">\(\{\mu_\alpha\}\)</span>, or, in the spectral setting, a signed or complex-valued kernel. The intended axioms are:</p>
+<ol>
+<li><strong>Tail exploration.</strong> For every <span class="arithmatex">\(M\in\mathbb{N}\)</span>,</li>
+</ol>
+<div class="arithmatex">\[
+\lim_{\alpha\to\alpha_0}
+\mu_\alpha(\{n:n&gt;M\})=1.
+\]</div>
+<ol>
+<li><strong>Spectral non-resonance.</strong> The observer does not phase-lock with fixed periodic sequences. This may be quantified by total variation smoothing,</li>
+</ol>
+<div class="arithmatex">\[
+\sum_{n\geq1}
+|\mu_\alpha(n+1)-\mu_\alpha(n)|
+\to0,
+\]</div>
+<p>or by a Weyl-type equidistribution condition after lifting indices to the circle.</p>
+<ol>
+<li><strong>Arithmetic compatibility.</strong> In the strengthened setting, observers may include arithmetic weights such as Dirichlet characters <span class="arithmatex">\(\chi\)</span>, the von Mangoldt function <span class="arithmatex">\(\Lambda\)</span>, the Möbius function <span class="arithmatex">\(\mu\)</span>, or Ramanujan sums <span class="arithmatex">\(c_q(n)\)</span>, with the understanding that signed probes are not probability measures.</li>
+</ol>
+<p>For an arithmetic function <span class="arithmatex">\(f:\mathbb{N}\to\mathbb{C}\)</span>, define a stopped spectral transform</p>
+<div class="arithmatex">\[
+\mathcal{O}_\mu(f;t)
+=
+\sum_{n=1}^{\infty}
+f(n)W_t(n)\mu(n),
+\qquad
+W_t(n)=e^{-tn},
+\]</div>
+<p>or more generally with an admissible decay kernel <span class="arithmatex">\(W_t\)</span>. When the transform has an asymptotic expansion as <span class="arithmatex">\(t\to0^+\)</span>, let</p>
+<div class="arithmatex">\[
+\operatorname{FP}_{t=0}\mathcal{O}_\mu(f;t)
+\]</div>
+<p>denote its finite part.</p>
+<h3 id="problem-151-observer-invariant-arithmetic-structures">Problem 15.1: Observer-Invariant Arithmetic Structures<a class="headerlink" href="#problem-151-observer-invariant-arithmetic-structures" title="Permanent link">&para;</a></h3>
+<p>Characterize the subspaces, subalgebras, or sub-semigroups</p>
+<div class="arithmatex">\[
+V\subseteq \mathbb{C}^{\mathbb{N}}
+\]</div>
+<p>for which the STOP transforms of all <span class="arithmatex">\(f\in V\)</span> are canonically related across all fair observers <span class="arithmatex">\(\mu\in\mathcal{P}\)</span>.</p>
+<p>More precisely, determine when there exists a decomposition</p>
+<div class="arithmatex">\[
+\operatorname{FP}_{t=0}\mathcal{O}_\mu(f;t)
+=
+\mathsf{Spec}(f)
++
+\mathsf{Anom}_\mu(f),
+\]</div>
+<p>where:</p>
+<ol>
+<li><span class="arithmatex">\(\mathsf{Spec}(f)\)</span> is intrinsic and independent of the observer,</li>
+<li><span class="arithmatex">\(\mathsf{Anom}_\mu(f)\)</span> is explicit and computable from the observer,</li>
+<li>changing <span class="arithmatex">\(\mu\)</span> changes only the anomaly term, not the intrinsic spectral data.</li>
+</ol>
+<p>The polynomial residue theorem proves this pattern for <span class="arithmatex">\(f(n)=n^m\)</span> under the geometric observer:</p>
+<div class="arithmatex">\[
+\operatorname{FP}_{t=0}
+\sum_{n\geq1}n^m e^{-t(n-1)}
+=
+\zeta(-m)
++
+\frac{1}{m+1}.
+\]</div>
+<p>The open problem is to classify how far this decomposition extends.</p>
+<h3 id="problem-152-prime-invariance">Problem 15.2: Prime Invariance<a class="headerlink" href="#problem-152-prime-invariance" title="Permanent link">&para;</a></h3>
+<p>Prove or disprove that the multiplicative semigroup generated by primes, together with its Dirichlet-series and Euler-product structures,</p>
+<div class="arithmatex">\[
+\zeta(s)
+=
+\prod_p(1-p^{-s})^{-1},
+\]</div>
+<p>generates a maximal observer-invariant arithmetic structure.</p>
+<p>In operational terms: determine whether the prime/Euler-product structure is the largest multiplicative structure whose STOP residues remain stable under all fair arithmetic observers after removing explicit observer anomalies.</p>
+<h3 id="problem-153-observer-galois-correspondence">Problem 15.3: Observer Galois Correspondence<a class="headerlink" href="#problem-153-observer-galois-correspondence" title="Permanent link">&para;</a></h3>
+<p>Define the <strong>Observer Galois group</strong></p>
+<div class="arithmatex">\[
+G=\operatorname{Aut}(\mathcal{P}),
+\]</div>
+<p>the transformations of fair observers that preserve fairness and the admissible notion of observer equivalence.</p>
+<p>Establish, or disprove, a correspondence between:</p>
+<ol>
+<li>subgroups <span class="arithmatex">\(H\leq G\)</span>,</li>
+<li>fixed arithmetic substructures <span class="arithmatex">\(V^H\)</span>,</li>
+<li>invariants of STOP residues or associated <span class="arithmatex">\(L\)</span>-functions preserved under <span class="arithmatex">\(H\)</span>.</li>
+</ol>
+<p>The guiding analogy is the fixed-field correspondence in Galois theory:</p>
+<div class="arithmatex">\[
+\text{observer transformations}
+\longleftrightarrow
+\text{fixed arithmetic information}.
+\]</div>
+<p>This analogy is only meaningful once <span class="arithmatex">\(\mathcal{P}\)</span>, <span class="arithmatex">\(G\)</span>, and fixed substructures are defined precisely.</p>
+<h3 id="problem-154-concrete-test-case">Problem 15.4: Concrete Test Case<a class="headerlink" href="#problem-154-concrete-test-case" title="Permanent link">&para;</a></h3>
+<p>For the von Mangoldt function <span class="arithmatex">\(\Lambda\)</span>, Dirichlet characters <span class="arithmatex">\(\chi\)</span>, and admissible arithmetic weights <span class="arithmatex">\(w\)</span>, classify when the transforms</p>
+<div class="arithmatex">\[
+\sum_{n\geq1}
+\Lambda(n)w(n)e^{-tn},
+\qquad
+\sum_{n\geq1}
+\chi(n)w(n)e^{-tn}
+\]</div>
+<p>recover the same intrinsic invariants, such as zeros of <span class="arithmatex">\(\zeta\)</span> or <span class="arithmatex">\(L(s,\chi)\)</span>, up to universal observer corrections.</p>
+<p>This is the most concrete analytic number theory test. It asks whether observer changes preserve the spectral data of prime-power and character-weighted arithmetic.</p>
+<h3 id="conjecture-155-prime-invariance-conjecture">Conjecture 15.5: Prime Invariance Conjecture<a class="headerlink" href="#conjecture-155-prime-invariance-conjecture" title="Permanent link">&para;</a></h3>
+<p>The Euler product and its logarithmic derivatives form a maximal multiplicative observer-invariant structure. Equivalently, the prime-generated multiplicative semigroup is the largest arithmetic structure whose STOP residues are stable under all fair arithmetic observers, with all observer anomalies classifiable.</p>
+<h3 id="conjecture-156-resonance-separation">Conjecture 15.6: Resonance Separation<a class="headerlink" href="#conjecture-156-resonance-separation" title="Permanent link">&para;</a></h3>
+<p>There exists a sharp criterion distinguishing spurious observer resonance from intrinsic arithmetic resonance.</p>
+<p>Spurious resonance is represented by near-locking phenomena such as Liouville-type approximations:</p>
+<div class="arithmatex">\[
+e^{2\pi iq\alpha}\approx1.
+\]</div>
+<p>Intrinsic arithmetic resonance is represented by exact congruential or prime-power structure, such as Wilson-type congruences:</p>
+<div class="arithmatex">\[
+(n-1)!\equiv -1\pmod n.
+\]</div>
+<p>The conjectural criterion should identify intrinsic resonance by uniformity of STOP convergence rates across all fair observers, possibly using Diophantine approximation, Chowla-type cancellation, or arithmetic Fourier analysis.</p>
+<h3 id="problem-157-category-at-infinity-version">Problem 15.7: Category at Infinity Version<a class="headerlink" href="#problem-157-category-at-infinity-version" title="Permanent link">&para;</a></h3>
+<p>Formulate the same problem in a categorical setting where paths, rather than limits, are the primary objects.</p>
+<p>One possible target is an <span class="arithmatex">\(\infty\)</span>-category or topos in which:</p>
+<ol>
+<li>objects are infinite paths or filtered diagrams,</li>
+<li>STOP observers are natural transformations or functorial probes,</li>
+<li>observer-invariant structures are fixed objects under admissible observer actions,</li>
+<li>primes enter through the profinite completion, the arithmetic site, or the étale geometry of <span class="arithmatex">\(\operatorname{Spec}(\mathbb{Z})\)</span>.</li>
+</ol>
+<p>The speculative endpoint would be a categorical theorem explaining why prime-generated structures are terminal, initial, or otherwise distinguished among observer-invariant structures.</p>
+<h2 id="16-discussion-observer-orbits-and-irreducibility-at-infinity">16. Discussion: Observer Orbits and Irreducibility at Infinity<a class="headerlink" href="#16-discussion-observer-orbits-and-irreducibility-at-infinity" title="Permanent link">&para;</a></h2>
+<p>The resolution-flow viewpoint suggests a further object that does not appear in ordinary state-based mathematics. This section is speculative and should be treated as outlook rather than theorem.</p>
 <p>For a finite integer <span class="arithmatex">\(p\)</span>, classical arithmetic asks whether <span class="arithmatex">\(p\)</span> is prime:</p>
 <div class="arithmatex">\[
 p\neq ab
@@ -2803,7 +3091,7 @@ e^{-tp},
 \]</div>
 <p>These are not different primes. They are different observer projections of the same prime event.</p>
 <p>This motivates the following informal definition.</p>
-<h3 id="definition-141-observer-orbit">Definition 14.1: Observer Orbit<a class="headerlink" href="#definition-141-observer-orbit" title="Permanent link">&para;</a></h3>
+<h3 id="definition-161-observer-orbit">Definition 16.1: Observer Orbit<a class="headerlink" href="#definition-161-observer-orbit" title="Permanent link">&para;</a></h3>
 <p>Given an object <span class="arithmatex">\(x\)</span> and a class of admissible observers <span class="arithmatex">\(\mathcal{A}\)</span>, the <strong>observer orbit</strong> of <span class="arithmatex">\(x\)</span> is the family</p>
 <div class="arithmatex">\[
 \operatorname{Orb}_{\mathcal{A}}(x)
@@ -2829,7 +3117,7 @@ e^{-tp},\;
 \text{at infinity, an object is not only a state; it is a coherent family of observer appearances.}
 }
 \]</div>
-<h3 id="141-three-meanings-of-prime">14.1 Three Meanings of Prime<a class="headerlink" href="#141-three-meanings-of-prime" title="Permanent link">&para;</a></h3>
+<h3 id="161-three-meanings-of-prime">16.1 Three Meanings of Prime<a class="headerlink" href="#161-three-meanings-of-prime" title="Permanent link">&para;</a></h3>
 <p>This separates three meanings of primality.</p>
 <table>
 <thead>
@@ -2886,7 +3174,7 @@ K(x_{1:N})\sim N,
 \text{irreducible under observer flow}.
 }
 \]</div>
-<h3 id="142-large-primes-as-observer-shadows">14.2 Large Primes as Observer Shadows<a class="headerlink" href="#142-large-primes-as-observer-shadows" title="Permanent link">&para;</a></h3>
+<h3 id="162-large-primes-as-observer-shadows">16.2 Large Primes as Observer Shadows<a class="headerlink" href="#162-large-primes-as-observer-shadows" title="Permanent link">&para;</a></h3>
 <p>Consider the concrete prime</p>
 <div class="arithmatex">\[
 p=1,000,000,007.
@@ -2922,7 +3210,14 @@ e^{-tp}.
 }
 \]</div>
 <p>This section is not a theorem. It is a proposed direction: define irreducibility not only inside one algebra, but across a class of admissible observer projections.</p>
-<h2 id="15-conclusion">15. Conclusion<a class="headerlink" href="#15-conclusion" title="Permanent link">&para;</a></h2>
+<p>The corresponding fixed-structure problem is:</p>
+<div class="arithmatex">\[
+\boxed{
+\text{classify the structures fixed by all fair observers.}
+}
+\]</div>
+<p>If this analogy can be made precise, it would play a role similar to a fixed field in Galois theory: the invariant content left unchanged by a family of transformations. In STOP language, the transformations are observer changes; the fixed content is what the infinite path keeps revealing no matter how it is fairly observed.</p>
+<h2 id="17-conclusion">17. Conclusion<a class="headerlink" href="#17-conclusion" title="Permanent link">&para;</a></h2>
 <p>The STOP operator provides a model of observer-dependent resolution for infinite paths. Its elementary identity</p>
 <div class="arithmatex">\[
 \mathbb{E}[S_\tau]
@@ -2948,20 +3243,31 @@ e^{-tp}.
 +
 \text{observer structure}.
 \]</div>
-<p>That decomposition is the candidate contribution. The path to publication is to formalize admissible observer classes, define equivalence of observer scales, prove universality and anomaly theorems for controlled path families, and situate the framework precisely within existing summability, spectral, probability, and renormalization-adjacent mathematics.</p>
+<p>That decomposition is the candidate contribution. The deeper research question is:</p>
+<div class="arithmatex">\[
+\boxed{
+\text{what remains fixed when every fair observer is allowed to change?}
+}
+\]</div>
+<p>The path to publication is to formalize admissible observer classes, define equivalence of observer scales, prove universality and anomaly theorems for controlled path families, and situate the framework precisely within existing summability, spectral, probability, and renormalization-adjacent mathematics.</p>
 <h2 id="references-to-add">References to Add<a class="headerlink" href="#references-to-add" title="Permanent link">&para;</a></h2>
 <p>The following references should be added before external submission.</p>
 <ol>
 <li>G. H. Hardy, <em>Divergent Series</em>, Oxford University Press, 1949.</li>
-<li>E. C. Titchmarsh, <em>The Theory of the Riemann Zeta-Function</em>, Oxford University Press.</li>
+<li>K. Knopp, <em>Theory and Application of Infinite Series</em>, Dover.</li>
 <li>A. Korevaar, <em>Tauberian Theory: A Century of Developments</em>, Springer.</li>
-<li>K. Knopp, <em>Theory and Application of Infinite Series</em>.</li>
-<li>J. B. Conway, <em>A Course in Functional Analysis</em>.</li>
-<li>N. Dunford and J. T. Schwartz, <em>Linear Operators</em>.</li>
+<li>W. Feller, <em>An Introduction to Probability Theory and Its Applications</em>.</li>
+<li>J. L. Doob, <em>Stochastic Processes</em>, Wiley.</li>
+<li>E. C. Titchmarsh, <em>The Theory of the Riemann Zeta-Function</em>, Oxford University Press.</li>
+<li>H. Edwards, <em>Riemann's Zeta Function</em>, Academic Press.</li>
 <li>H. Montgomery and R. Vaughan, <em>Multiplicative Number Theory I: Classical Theory</em>.</li>
 <li>H. Iwaniec and E. Kowalski, <em>Analytic Number Theory</em>.</li>
+<li>J. B. Conway, <em>A Course in Functional Analysis</em>.</li>
+<li>N. Dunford and J. T. Schwartz, <em>Linear Operators</em>.</li>
 <li>B. Simon, <em>Trace Ideals and Their Applications</em>.</li>
-<li>W. Feller, <em>An Introduction to Probability Theory and Its Applications</em>.</li>
+<li>M. Reed and B. Simon, <em>Methods of Modern Mathematical Physics I: Functional Analysis</em>.</li>
+<li>C. Calude, <em>Information and Randomness: An Algorithmic Perspective</em>, Springer.</li>
+<li>G. Chaitin, <em>Algorithmic Information Theory</em>, Cambridge University Press.</li>
 </ol>
 <h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
 <ul>
