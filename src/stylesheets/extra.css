@@ -27,7 +27,7 @@
   --md-primary-fg-color--dark: #000000;
   --md-accent-fg-color: #ffcc00;
   --md-default-bg-color: #0a0a0a;
-  --md-default-fg-color: #e5e5e5;
+  --md-default-fg-color: #ffffff;
   --sb-bg: #050505;
   --sb-surface: #0f0f0f;
   --sb-surface-muted: #171717;
@@ -739,7 +739,7 @@ body {
 
 /* Table row hover */
 .md-typeset table:not([class]) tr:hover td {
-  background: rgb(var(--sb-accent-rgb) / 0.08);
+  background: rgb(var(--sb-accent-rgb) / 0.12);
 }
 
 /* Highlight on link hover */
