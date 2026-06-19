@@ -1,0 +1,1207 @@
+# STOP Operators as Resolution Flows on Infinite Computational Paths
+
+*Draft manuscript for journal development.*
+
+## Abstract
+
+Classical analysis usually studies an infinite process through the existence or failure of a terminal limit. This paper develops an alternative formulation in which an infinite process is treated as a path and observation is modeled as a finite-resolution operation. Given a sequence of partial states \(S_n\), a stopping law \(\tau\) induces the observable \(\mathbb{E}[S_\tau]\). We call this induced map the **STOP operator**.
+
+The central claim is that STOP is not merely a summability method. It is a **resolution flow**: a family of observer-dependent representations of the same infinite path. At microscopic scale, an observer may see individual events; at mesoscopic scale, densities; at spectral scale, poles, residues, and modes. Geometric stopping gives the first exact model of this principle by reproducing Abel summability: the survival probability of the observer becomes the Abel damping factor. For polynomial increment paths \(a_n=n^m\), the finite part of the stopped expectation is
+
+\[
+\operatorname{FP}_{t=0}\mathbb{E}[S_\tau]
+=
+\zeta(-m)+\frac{1}{m+1}.
+\]
+
+The first term is the classical zeta-regularized contribution; the second is an observer survival correction. We use this split to motivate a general event-density-spectrum ladder, with prime events, prime density, and zeta modes as the motivating arithmetic example. We also formulate asymptotic fairness conditions for stopping laws, outline arithmetic observer kernels, and indicate extensions to Banach-valued paths and resolvent theory.
+
+## Keywords
+
+stopping times; resolution flow; Abel summability; divergent series; zeta regularization; observer theory; arithmetic kernels; prime number theorem; Banach spaces; resolvent operators
+
+## 1. Introduction
+
+An infinite computation is usually evaluated by asking whether its sequence of partial states converges. If it does, the limit is declared to be the result. If it does not, classical analysis and computability theory usually treat the process as non-terminating or divergent.
+
+This binary distinction is too coarse for many infinite processes. A non-halting path can still possess stable statistical, spectral, or arithmetic structure. The relevant question is not only whether a terminal state exists, but which representation of the path becomes visible at a chosen observer scale.
+
+The central question of this paper is:
+
+> What structure becomes visible when an infinite path is observed at finite resolution?
+
+At one resolution, the observer sees individual events. At another, it sees densities or averages. At another, it sees spectral modes. The object has not changed; the observer has.
+
+The STOP operator is our model for this change of resolution. In its simplest probabilistic form, the observer stops a path at a random finite horizon and measures
+
+\[
+S_\bullet \longmapsto \mathbb{E}[S_\tau].
+\]
+
+This paper studies that map, and families of such maps, as mathematical objects.
+
+### 1.1 Main Idea
+
+Let
+
+\[
+S_n=\sum_{k=1}^n a_k
+\]
+
+be the partial state of a computation after \(n\) steps. Instead of asking for \(\lim_{n\to\infty}S_n\), choose a positive integer-valued random variable \(\tau\) and observe \(S_\tau\). The STOP observable is
+
+\[
+\mathcal{O}_\tau(S)=\mathbb{E}[S_\tau].
+\]
+
+For convergent paths and sufficiently fair stopping laws, this recovers the usual limit. For divergent paths, it produces observer-dependent but often stable representations.
+
+Thus the proposed object is not a single number attached to a divergent process. It is a scale-indexed family:
+
+\[
+\text{path}
+\xrightarrow{\text{observer scale}}
+\text{representation}.
+\]
+
+In this sense, STOP behaves like a resolution flow.
+
+### 1.2 Contributions
+
+This manuscript develops the following claims.
+
+1. STOP operators define observer-scale representations of infinite paths.
+2. Geometric STOP gives a probabilistic interpretation of Abel summability.
+3. Fair stopping laws can be axiomatized using tail exploration and non-resonance conditions.
+4. Polynomial divergent paths admit finite STOP residues whose constant terms split into spectral and observer contributions.
+5. Arithmetic observer kernels lead naturally to an event-density-spectrum ladder involving prime events, prime density, Dirichlet characters, Mangoldt weights, Möbius weights, and zeta or \(L\)-function spectra.
+6. Banach-valued STOP operators reduce geometric observation of linear dynamics to classical resolvent operators.
+
+### 1.3 Scope and Status
+
+The geometric STOP identity is elementary and rigorous. The polynomial residue theorem follows from standard Mellin-transform or polylogarithm asymptotics. The broader language of resolution flow, observer geometry, arithmetic STOP laws, and observer symmetry is proposed as a research program; those sections should be read as formal directions rather than completed classification theorems.
+
+## 2. Computational Paths and STOP Observers
+
+### Definition 2.1: Computational Path
+
+Let \(X\) be a vector space, normed space, or topological state space. A **computational path** is a sequence
+
+\[
+S_0,S_1,S_2,\ldots \in X.
+\]
+
+When \(X\) is linear, we often write
+
+\[
+S_n=\sum_{k=1}^n a_k,
+\]
+
+where \(a_k\in X\) is the \(k\)-th increment.
+
+### Definition 2.2: STOP Observer
+
+Let \(\tau\) be a positive integer-valued random variable. The **STOP observation** of the path \(S_\bullet\) is the random state
+
+\[
+S_\tau.
+\]
+
+When the expectation exists, the associated **STOP operator** is
+
+\[
+\mathcal{O}_\tau(S_\bullet)=\mathbb{E}[S_\tau].
+\]
+
+If \(\{\tau_\alpha\}\) is a family of stopping laws depending on a scale parameter \(\alpha\), then \(\mathcal{O}_{\tau_\alpha}\) is a family of observers.
+
+### Remark 2.3: Observation Is Not Completion
+
+The expression \(\mathbb{E}[S_\tau]\) does not assume access to an infinite terminal state. It only uses finite states \(S_n\), weighted by the probability that the observer stops at \(n\). Thus the STOP operator is defined even when \(\lim_{n\to\infty}S_n\) does not exist, provided the expectation is meaningful.
+
+## 3. STOP as a Resolution Flow
+
+The STOP operator should be read as a change-of-resolution operator. It does not merely assign a number to a path. It determines which representation of the path is visible under an observer.
+
+Schematically:
+
+\[
+\text{path}
+\xrightarrow{\text{observer scale}}
+\text{representation}.
+\]
+
+Different observer scales can expose different structures of the same object.
+
+| Observer scale | Typical representation | Example |
+|---|---|---|
+| Microscopic | individual events | primes \(2,3,5,7,\ldots\) |
+| Mesoscopic | density or averaged profile | \(\pi(x)\sim x/\log x\) |
+| Spectral | modes, poles, residues | zeta zeros, \(L\)-functions |
+| Invariant | structure stable across observers | observer-independent limits or symmetries |
+
+The object is not changing across these rows. The observer is.
+
+### 3.1 The Prime Ladder
+
+Prime numbers provide the motivating example.
+
+At microscopic scale, the prime indicator
+
+\[
+\mathbf{1}_{\mathrm{prime}}(n)
+\]
+
+is a sequence of discrete arithmetic events. It records whether each integer is prime.
+
+At mesoscopic scale, the individual events are replaced by their cumulative density:
+
+\[
+\pi(x)\sim \frac{x}{\log x}.
+\]
+
+At spectral scale, the explicit formula expresses prime-counting data through the zeros of the zeta function. Schematically,
+
+\[
+\pi(x)
+\approx
+\operatorname{Li}(x)
++
+\sum_\rho \text{oscillatory contribution from }\rho.
+\]
+
+Thus the same arithmetic object admits three representations:
+
+\[
+\boxed{
+\text{prime events}
+\longleftrightarrow
+\text{prime density}
+\longleftrightarrow
+\text{zeta spectrum}
+}
+\]
+
+The observer determines which representation is visible.
+
+### 3.2 Relation to Renormalization
+
+This viewpoint is analogous to a renormalization flow, but the flowing object is not a physical coupling. It is the representation of an infinite path under changing observer scale.
+
+For a family of observers \(\{\mathcal{O}_\alpha\}\), the resolution flow is
+
+\[
+\alpha \longmapsto \mathcal{O}_\alpha(S_\bullet).
+\]
+
+The mathematical questions are then:
+
+1. Which observer families are admissible?
+2. Which observer changes preserve the same representation?
+3. Which features disappear under coarse observation?
+4. Which features become spectral modes?
+5. Which quantities survive all admissible observers?
+
+The rest of the paper develops the simplest exact instance of this picture: geometric stopping.
+
+## 4. Asymptotically Fair Stopping Laws
+
+A stopping law should not be allowed to encode arbitrary bias. For example, a law that always stops at \(n=10\) says almost nothing about the infinite tail. A law that always stops on even indices can falsely annihilate or amplify a periodic path.
+
+We therefore separate stopping laws that merely stop from stopping laws that fairly probe the tail.
+
+### Definition 4.1: Tail Exploration
+
+A family of stopping laws \(\{\tau_\alpha\}\) satisfies **tail exploration** as \(\alpha\to\alpha_0\) if, for every fixed \(M\geq 1\),
+
+\[
+\lim_{\alpha\to\alpha_0}\Pr(\tau_\alpha>M)=1.
+\]
+
+This condition forces the observer to move arbitrarily far into the path.
+
+### Definition 4.2: Spectral Non-Resonance
+
+Let \(p_n(\alpha)=\Pr(\tau_\alpha=n)\). A sufficient non-resonance condition is
+
+\[
+\lim_{\alpha\to\alpha_0}
+\sum_{n\geq 1}|p_{n+1}(\alpha)-p_n(\alpha)|=0.
+\]
+
+This smoothness condition prevents the stopping distribution from locking onto a fixed periodic phase.
+
+### Definition 4.3: Asymptotically Fair STOP Law
+
+A family \(\{\tau_\alpha\}\) is an **asymptotically fair STOP law** if it satisfies tail exploration and an appropriate non-resonance condition for the class of paths under study.
+
+### Remark 4.4: Fairness Is Path-Class Dependent
+
+No single fairness condition can be universal without qualification. A condition that is sufficient for bounded periodic paths may be insufficient for Liouville-type near-resonant phases or adversarial arithmetic sequences. A journal version should state fairness relative to a specified function class.
+
+## 5. The Geometric STOP Identity
+
+The basic example is memoryless stopping.
+
+Let
+
+\[
+\Pr(\tau=n)=p(1-p)^{n-1},\qquad 0<p<1.
+\]
+
+Then the observer stops at each step with constant hazard \(p\), and its survival probability to step \(k\) is
+
+\[
+\Pr(\tau\geq k)=(1-p)^{k-1}.
+\]
+
+### Theorem 5.1: Geometric STOP Identity
+
+Let
+
+\[
+S_n=\sum_{k=1}^{n}a_k
+\]
+
+and let \(\tau\sim\operatorname{Geom}(p)\). Whenever the interchange of sums is justified,
+
+\[
+\mathbb{E}[S_\tau]
+=
+\sum_{k\geq 1}a_k(1-p)^{k-1}.
+\]
+
+### Lean Proof
+
+The identity is just summation by survival probability:
+
+\[
+\mathbb{E}[S_\tau]
+=
+\sum_{n\geq 1}p(1-p)^{n-1}S_n.
+\]
+
+Substitute \(S_n=\sum_{k\leq n}a_k\) and reverse the order of summation:
+
+\[
+\mathbb{E}[S_\tau]
+=
+\sum_{k\geq 1}a_k
+\sum_{n\geq k}p(1-p)^{n-1}.
+\]
+
+The inner sum is the survival probability
+
+\[
+\sum_{n\geq k}p(1-p)^{n-1}
+=(1-p)^{k-1}.
+\]
+
+Therefore
+
+\[
+\mathbb{E}[S_\tau]
+=
+\sum_{k\geq 1}a_k(1-p)^{k-1}.
+\]
+
+\(\square\)
+
+### Corollary 5.2: Abel Summability as Survival Weighting
+
+Set \(x=1-p\). Then
+
+\[
+\mathbb{E}[S_\tau]=\sum_{k\geq 1}a_kx^{k-1}.
+\]
+
+Thus geometric observation is Abel summation with the Abel parameter interpreted as observer survival probability.
+
+## 6. Examples
+
+This section keeps the main computations explicit. The point is not that every divergent path receives a canonical value. The point is that each observer produces a definite observable, and the dependence on the observer can be computed.
+
+### 6.1 Grandi Path
+
+Let
+
+\[
+a_k=(-1)^{k-1}.
+\]
+
+Then \(S_n\) alternates between \(1\) and \(0\). Under geometric stopping,
+
+\[
+\mathbb{E}[S_\tau]=\frac{1}{2-p}.
+\]
+
+Hence
+
+\[
+\lim_{p\to 0^+}\mathbb{E}[S_\tau]=\frac{1}{2}.
+\]
+
+The non-halting alternating path has a stable fair-observer value.
+
+Numerically:
+
+| \(p\) | \(\mathbb{E}[S_\tau]=1/(2-p)\) |
+|---:|---:|
+| 0.50 | 0.666667 |
+| 0.20 | 0.555556 |
+| 0.10 | 0.526316 |
+| 0.05 | 0.512821 |
+| \(0^+\) | 0.500000 |
+
+### 6.2 Alternating Linear Path
+
+Let
+
+\[
+a_k=(-1)^{k-1}k.
+\]
+
+Then
+
+\[
+\mathbb{E}[S_\tau]
+=
+\sum_{k\geq 1}(-1)^{k-1}k(1-p)^{k-1}
+=
+\frac{1}{(2-p)^2}.
+\]
+
+Therefore
+
+\[
+\lim_{p\to 0^+}\mathbb{E}[S_\tau]=\frac{1}{4}.
+\]
+
+This agrees with the Abel value of \(1-2+3-4+\cdots\).
+
+Numerically:
+
+| \(p\) | \(\mathbb{E}[S_\tau]=1/(2-p)^2\) |
+|---:|---:|
+| 0.50 | 0.444444 |
+| 0.20 | 0.308642 |
+| 0.10 | 0.277008 |
+| 0.05 | 0.262985 |
+| \(0^+\) | 0.250000 |
+
+### 6.3 Constant Positive Increments
+
+Let
+
+\[
+a_k=1.
+\]
+
+Then \(S_n=n\). The geometric STOP expectation is
+
+\[
+\mathbb{E}[S_\tau]
+=
+\sum_{k\geq 1}(1-p)^{k-1}
+=
+\frac{1}{p}.
+\]
+
+Unlike the oscillatory examples, this does not converge as \(p\to 0^+\). The STOP operator still gives a finite value for each finite observer horizon, but the infinite-horizon limit diverges.
+
+| \(p\) | \(\mathbb{E}[S_\tau]=1/p\) |
+|---:|---:|
+| 0.50 | 2 |
+| 0.20 | 5 |
+| 0.10 | 10 |
+| 0.05 | 20 |
+| \(0^+\) | diverges |
+
+This is the first point where a second operation is needed: finite-part extraction.
+
+### 6.4 Linear Positive Increments
+
+Let
+
+\[
+a_k=k.
+\]
+
+Then \(S_n=n(n+1)/2\), and geometric STOP gives
+
+\[
+\mathbb{E}[S_\tau]
+=
+\sum_{k\geq 1}k(1-p)^{k-1}
+=
+\frac{1}{p^2}.
+\]
+
+Numerically:
+
+| \(p\) | \(\mathbb{E}[S_\tau]=1/p^2\) |
+|---:|---:|
+| 0.50 | 4 |
+| 0.20 | 25 |
+| 0.10 | 100 |
+| 0.05 | 400 |
+| \(0^+\) | diverges |
+
+Again, the STOP expectation is meaningful at each finite observer scale but has no finite infinite-horizon limit.
+
+### 6.5 Quadratic Positive Increments
+
+Let
+
+\[
+a_k=k^2.
+\]
+
+Using
+
+\[
+\sum_{k\geq 1}k^2q^{k-1}=\frac{1+q}{(1-q)^3},
+\]
+
+with \(q=1-p\), we get
+
+\[
+\mathbb{E}[S_\tau]
+=
+\frac{2-p}{p^3}.
+\]
+
+| \(p\) | \(\mathbb{E}[S_\tau]=(2-p)/p^3\) |
+|---:|---:|
+| 0.50 | 12 |
+| 0.20 | 225 |
+| 0.10 | 1900 |
+| 0.05 | 15600 |
+| \(0^+\) | diverges |
+
+These monotone examples motivate the residue construction in the next section.
+
+## 7. STOP Residues
+
+Geometric STOP handles many oscillatory divergent paths directly. For monotone polynomial growth, the stopped expectation diverges as \(p\to 0^+\), but its Laurent expansion has a meaningful finite part.
+
+Use the continuous coordinate
+
+\[
+p=1-e^{-t},\qquad t\to 0^+.
+\]
+
+Then
+
+\[
+(1-p)^{k-1}=e^{-t(k-1)}.
+\]
+
+For \(a_k=k^m\), define
+
+\[
+F_m(t)=\sum_{k\geq 1}k^m e^{-t(k-1)}.
+\]
+
+### Definition 7.1: STOP Residue
+
+Suppose \(F(t)\) has an asymptotic expansion near \(t=0^+\) of the form
+
+\[
+F(t)\sim
+\sum_{j=-N}^{\infty}c_jt^j
++
+\sum_{\ell}d_\ell t^{r_\ell}\log t.
+\]
+
+The **STOP residue** or finite STOP part is
+
+\[
+\operatorname{FP}_{t=0}F(t)=c_0.
+\]
+
+### Theorem 7.2: Polynomial STOP Residue
+
+For every integer \(m\geq 0\),
+
+\[
+\operatorname{FP}_{t=0}
+\sum_{k\geq 1}k^m e^{-t(k-1)}
+=
+\zeta(-m)+\frac{1}{m+1}.
+\]
+
+The first few cases are:
+
+| \(m\) | increments \(a_k\) | stopped expectation \(F_m(t)\) | finite STOP part |
+|---:|---|---|---:|
+| 0 | \(1\) | \(\frac{1}{1-e^{-t}}\) | \(\frac{1}{2}\) |
+| 1 | \(k\) | \(\frac{1}{(1-e^{-t})^2}\) | \(\frac{5}{12}\) |
+| 2 | \(k^2\) | \(\frac{1+e^{-t}}{(1-e^{-t})^3}\) | \(\frac{1}{3}\) |
+| 3 | \(k^3\) | \(\frac{1+4e^{-t}+e^{-2t}}{(1-e^{-t})^4}\) | \(\frac{31}{120}\) |
+
+These constants agree with \(\zeta(-m)+1/(m+1)\):
+
+| \(m\) | \(\zeta(-m)\) | observer correction \(1/(m+1)\) | total |
+|---:|---:|---:|---:|
+| 0 | \(-1/2\) | \(1\) | \(1/2\) |
+| 1 | \(-1/12\) | \(1/2\) | \(5/12\) |
+| 2 | \(0\) | \(1/3\) | \(1/3\) |
+| 3 | \(1/120\) | \(1/4\) | \(31/120\) |
+
+### Lean Proof Sketch
+
+Write
+
+\[
+F_m(t)=e^t\sum_{k\geq 1}k^m e^{-tk}.
+\]
+
+The inner sum is
+
+\[
+\operatorname{Li}_{-m}(e^{-t}).
+\]
+
+Equivalently, by Mellin transform,
+
+\[
+\sum_{k\geq 1}k^m e^{-tk}
+=
+\frac{1}{2\pi i}
+\int \Gamma(s)\zeta(s-m)t^{-s}\,ds.
+\]
+
+Shifting the contour gives the expansion
+
+\[
+\sum_{k\geq 1}k^m e^{-tk}
+=
+m!t^{-(m+1)}+\zeta(-m)+O(t).
+\]
+
+Multiplication by \(e^t\) leaves \(\zeta(-m)\) as a constant contribution and adds a new constant from
+
+\[
+m!t^{-(m+1)}\cdot \frac{t^{m+1}}{(m+1)!}
+=
+\frac{1}{m+1}.
+\]
+
+Therefore
+
+\[
+\operatorname{FP}_{t=0}F_m(t)
+=
+\zeta(-m)+\frac{1}{m+1}.
+\]
+
+\(\square\)
+
+### 7.3 Numerical Extraction of the Finite Part
+
+For \(m=0\),
+
+\[
+F_0(t)=\frac{1}{1-e^{-t}}
+=
+\frac{1}{t}+\frac{1}{2}+O(t).
+\]
+
+Subtracting the divergent term \(1/t\) leaves a quantity tending to \(1/2\):
+
+| \(t\) | \(F_0(t)\) | \(F_0(t)-1/t\) |
+|---:|---:|---:|
+| 0.50 | 2.541494 | 0.541494 |
+| 0.20 | 5.516656 | 0.516656 |
+| 0.10 | 10.508332 | 0.508332 |
+| 0.05 | 20.504166 | 0.504166 |
+| 0.02 | 50.501667 | 0.501667 |
+| \(0^+\) | diverges | 0.500000 |
+
+For \(m=1\),
+
+\[
+F_1(t)=\frac{1}{(1-e^{-t})^2}
+=
+\frac{1}{t^2}+\frac{1}{t}+\frac{5}{12}+O(t).
+\]
+
+Subtracting the divergent terms leaves a quantity tending to \(5/12\):
+
+| \(t\) | \(F_1(t)\) | \(F_1(t)-1/t^2-1/t\) |
+|---:|---:|---:|
+| 0.50 | 6.459192 | 0.459192 |
+| 0.20 | 30.433489 | 0.433489 |
+| 0.10 | 110.425040 | 0.425040 |
+| 0.05 | 420.420844 | 0.420844 |
+| 0.02 | 2550.418335 | 0.418335 |
+| \(0^+\) | diverges | 0.416667 |
+
+These tables show the operational meaning of the residue: it is what remains after removing the observer-scale divergences.
+
+### 7.4 Interpretation
+
+The STOP residue is not identical to zeta regularization. It measures a different observable.
+
+Zeta regularization is attached to the increment stream \(a_n\). The STOP operator observes the accumulated state \(S_\tau\). The survival factor shifts the weighting by one discrete step and produces the correction term \(1/(m+1)\).
+
+Thus the correct decomposition is
+
+\[
+\text{STOP residue}
+=
+\text{spectral residue}
++
+\text{observer correction}.
+\]
+
+For example, when \(m=1\),
+
+\[
+\zeta(-1)+\frac{1}{2}
+=
+-\frac{1}{12}+\frac{1}{2}
+=
+\frac{5}{12}.
+\]
+
+The number \(5/12\) should not be presented as a replacement for \(-1/12\). The two values correspond to different observables.
+
+## 8. Power-Logarithmic Deformation
+
+The same method applies to increments of the form
+
+\[
+a_n=n^m\log n.
+\]
+
+Define
+
+\[
+F_{m,\log}(t)=
+\sum_{n\geq 1}n^m\log(n)e^{-t(n-1)}.
+\]
+
+Formally,
+
+\[
+F_{m,\log}(t)
+=
+-
+\left.
+\frac{\partial}{\partial s}
+\left(
+e^t\operatorname{Li}_{s-m}(e^{-t})
+\right)
+\right|_{s=0}.
+\]
+
+The expected finite part has the form
+
+\[
+\operatorname{FP}_{t=0}F_{m,\log}(t)
+=
+-\zeta'(-m)
++
+\frac{H_m-\gamma}{m+1},
+\]
+
+where \(H_m\) is the \(m\)-th harmonic number and \(\gamma\) is Euler's constant.
+
+This supports the general principle that STOP residues decompose into spectral data and observer anomalies.
+
+## 9. Arithmetic STOP Observers
+
+The geometric observer uses only temporal survival. More refined observers may include arithmetic structure. These arithmetic observers are where the resolution-flow viewpoint becomes most visible: the same prime process can be observed as events, densities, or spectral modes.
+
+Let \(W_t(n)\) be a decay kernel, typically \(e^{-tn}\), and let \(\chi(n)\) be an arithmetic weight. Define the arithmetic STOP transform
+
+\[
+V_{W,\chi}(a;t)=
+\sum_{n\geq 1}a_nW_t(n)\chi(n).
+\]
+
+Different arithmetic lenses select different spectral objects.
+
+| Resolution | Observer lens | Transform suggested |
+|---|---|---|
+| Event-level | \(\mathbf{1}_{\mathrm{prime}}(n)\) | prime point process |
+| Density-level | \(\pi(x)\), weighted prime counts | \(x/\log x\), \(\operatorname{Li}(x)\) |
+| Character-level | Dirichlet character \(\chi(n)\) | \(L(s,\chi)\) |
+| Prime-power level | von Mangoldt \(\Lambda(n)\) | \(-\zeta'(s)/\zeta(s)\) |
+| Squarefree/debias level | Möbius \(\mu(n)\) | \(1/\zeta(s)\) |
+| Modular-frequency level | Ramanujan sums \(c_q(n)\) | arithmetic Fourier/Ramanujan expansions |
+
+This table is not a claim that all rows are probability laws. It is a map of observer lenses. Some are genuine stopping distributions; others are signed or weighted spectral probes.
+
+### Example 9.1: The Modulo-Four Character
+
+Let \(\chi_4\) be the nontrivial character modulo \(4\):
+
+\[
+\chi_4(n)=
+\begin{cases}
+0, & n\text{ even},\\
+1, & n\equiv 1\pmod 4,\\
+-1, & n\equiv 3\pmod 4.
+\end{cases}
+\]
+
+Then
+
+\[
+B(t)=\sum_{n\geq 1}\chi_4(n)e^{-tn}
+=
+e^{-t}-e^{-3t}+e^{-5t}-e^{-7t}+\cdots.
+\]
+
+This sums exactly:
+
+\[
+B(t)=\frac{e^{-t}}{1+e^{-2t}}
+=
+\frac{1}{e^t+e^{-t}}
+=
+\frac{1}{2\cosh t}.
+\]
+
+Therefore
+
+\[
+B(t)=\frac{1}{2}-\frac{t^2}{4}+O(t^4).
+\]
+
+Numerically:
+
+| \(t\) | \(B(t)=1/(2\cosh t)\) |
+|---:|---:|
+| 1.00 | 0.324027 |
+| 0.50 | 0.443409 |
+| 0.20 | 0.490164 |
+| 0.10 | 0.497510 |
+| 0.05 | 0.499375 |
+| \(0^+\) | 0.500000 |
+
+The fair STOP limit is \(1/2\), now arising from an arithmetic character rather than ordinary alternating time. The associated Dirichlet series is the beta function
+
+\[
+L(s,\chi_4)=\beta(s).
+\]
+
+This suggests that arithmetic STOP observers should be studied as resolution probes for arithmetic spectra. The modulo-four observer does not merely smooth an alternating sequence; it selects a representation-theoretic component of the integers.
+
+### Example 9.2: The Mangoldt Lens
+
+Let \(\Lambda(n)\) be the von Mangoldt function. The exponentially damped Mangoldt transform is
+
+\[
+M(t)=\sum_{n\geq 1}\Lambda(n)e^{-tn}.
+\]
+
+This is not a probability law. It is a signed or weighted spectral probe. Its Dirichlet-series analogue is
+
+\[
+\sum_{n\geq 1}\frac{\Lambda(n)}{n^s}
+=
+-\frac{\zeta'(s)}{\zeta(s)}.
+\]
+
+Thus the observer lens \(\Lambda(n)\) selects prime-power structure. In a journal version, this section should be developed separately from probabilistic STOP laws, because \(\Lambda(n)\) is an arithmetic weight rather than a stopping distribution.
+
+### Example 9.3: The Möbius Lens
+
+Similarly, the Möbius transform
+
+\[
+U(t)=\sum_{n\geq 1}\mu(n)e^{-tn}
+\]
+
+corresponds formally to
+
+\[
+\sum_{n\geq 1}\frac{\mu(n)}{n^s}
+=
+\frac{1}{\zeta(s)}.
+\]
+
+This lens suppresses numbers with repeated prime factors and alternates according to the parity of the number of prime factors. Its role is not to produce a positive stopping time, but to act as an arithmetic debiasing kernel.
+
+### 9.4 Resolution Interpretation
+
+The arithmetic examples suggest the following dictionary:
+
+\[
+\boxed{
+\text{event process}
+\to
+\text{density profile}
+\to
+\text{spectral transform}
+}
+\]
+
+For primes, this becomes:
+
+\[
+\boxed{
+\mathbf{1}_{\mathrm{prime}}(n)
+\to
+\pi(x)\sim x/\log x
+\to
+\zeta(s),\rho,L(s,\chi)
+}
+\]
+
+This is the same pattern seen in the elementary STOP examples. A raw path is smoothed by an observer; the smoothed object may diverge; finite-part extraction or spectral transformation reveals a residue, pole, or mode. The observer does not create the structure from nothing. It selects the coordinate system in which that structure is visible.
+
+## 10. Banach-Valued and Operator STOP
+
+Let \(X\) be a Banach space and let
+
+\[
+S_n=\sum_{k=1}^n a_k,\qquad a_k\in X.
+\]
+
+If the Bochner expectation exists, define
+
+\[
+\mathcal{O}_\tau(S)=\mathbb{E}[S_\tau]\in X.
+\]
+
+For geometric stopping,
+
+\[
+\mathbb{E}[S_\tau]
+=
+\sum_{k\geq 1}a_k(1-p)^{k-1},
+\]
+
+with convergence in \(X\) whenever
+
+\[
+\sum_{k\geq 1}\|a_k\|(1-p)^{k-1}<\infty.
+\]
+
+### 10.1 Linear Dynamics
+
+Let \(T:X\to X\) be a bounded linear operator and consider the path
+
+\[
+S_n=\sum_{k=0}^{n-1}T^kx.
+\]
+
+Then geometric STOP gives
+
+\[
+\mathbb{E}[S_\tau]
+=
+\sum_{k\geq 0}(1-p)^kT^kx
+=
+(I-(1-p)T)^{-1}x,
+\]
+
+whenever the resolvent exists.
+
+Thus operator STOP is resolvent theory in probabilistic language. As \(p\to 0^+\), the observer probes the spectrum of \(T\) near \(1\).
+
+## 11. Relation to Existing Mathematics
+
+The STOP framework should not be positioned as replacing established summability theory, analytic number theory, or spectral theory. Its contribution is interpretive and structural: it organizes several known transformations as changes of observer resolution.
+
+1. Abel damping becomes survival probability.
+2. Regularization scheme dependence becomes observer dependence.
+3. Divergent paths become objects with scale-dependent representations.
+4. Arithmetic weights become observer lenses revealing event, density, and spectral descriptions.
+5. Operator divergence becomes resolvent singularity.
+
+Relevant existing areas include:
+
+- Abel, Cesaro, Borel, and Ramanujan summability.
+- Tauberian theory.
+- Analytic continuation and zeta regularization.
+- Heat-kernel regularization and spectral geometry.
+- Stopping times and martingale theory.
+- Ergodic averages and Abel means.
+- Dirichlet series and arithmetic Fourier analysis.
+- Resolvent theory on Banach spaces.
+
+## 12. Limitations and Open Problems
+
+### 12.1 Fairness Must Be Formalized by Path Class
+
+Tail exploration alone is not fairness. An observer can sample arbitrarily deep into a path while remaining phase-locked or arithmetically biased. A publishable version must state fairness relative to explicit classes of paths.
+
+### 12.2 Observer Dependence Is a Feature and a Risk
+
+STOP values or representations are not canonical unless an observer class is specified. The framework should avoid claims such as "the value of a divergent series is..." and instead state "under this observer, the observable is..." or "at this resolution, the representation is..."
+
+### 12.3 Arithmetic Observers Require Positivity Care
+
+Weights such as \(\mu(n)\), \(\chi(n)\), and Ramanujan sums are signed or complex. They are not probability laws without additional normalization or interpretation. A rigorous theory must distinguish probabilistic STOP laws from signed spectral probe kernels.
+
+### 12.4 Needed Theorems
+
+A mature version of this theory should prove:
+
+1. Regularity: fair observers recover classical limits for convergent paths.
+2. Universality: fair observers agree on suitable bounded non-resonant path classes.
+3. Anomaly classification: polynomial and logarithmic paths have finite-dimensional observer corrections.
+4. Arithmetic correspondence: arithmetic observer kernels recover the expected \(L\)-functions and logarithmic derivatives.
+5. Operator correspondence: STOP residues of linear systems correspond to finite parts of resolvents at spectral boundary points.
+6. Resolution equivalence: different observer families can be classified by the representations they preserve.
+
+## 13. Research Program
+
+The broader research direction is to treat infinite computation as path-first rather than state-first.
+
+Classical completion asks:
+
+\[
+\text{Does }S_n\text{ converge to a terminal state?}
+\]
+
+STOP theory asks:
+
+\[
+\text{Which representations of the path appear under finite-resolution observation?}
+\]
+
+This reframes divergence from a binary defect into a stratified phenomenon. The same path may appear as an event sequence, an averaged density, a residue, or a spectral object depending on the observer scale.
+
+Possible next invariants include:
+
+- **STOP depth**: the number of observer/projection layers required to extract a finite stable observable.
+- **Observer entropy**: the amount of path information lost under a STOP law.
+- **Observer symmetry**: transformations of observer kernels that leave an observable invariant.
+- **Arithmetic resonance**: distinction between spurious phase-locking and structural number-theoretic resonance.
+- **Resolution class**: the equivalence class of observers that expose the same representation of an infinite path.
+- **Spectral shadow**: the modes, poles, residues, or zeros that appear after coarse observation.
+
+## 14. Observer Orbits and Irreducibility at Infinity
+
+The resolution-flow viewpoint suggests a further object that does not appear in ordinary state-based mathematics.
+
+For a finite integer \(p\), classical arithmetic asks whether \(p\) is prime:
+
+\[
+p\neq ab
+\]
+
+except trivially. This is irreducibility under multiplication.
+
+But under STOP-style observation, a prime also has many coherent appearances:
+
+\[
+p,
+\qquad
+\mathbf{1}_{\mathrm{prime}}(p),
+\qquad
+\frac{1}{\log p},
+\qquad
+e^{-tp},
+\qquad
+(1-p^{-s})^{-1},
+\qquad
+\chi(p)e^{-tp}.
+\]
+
+These are not different primes. They are different observer projections of the same prime event.
+
+This motivates the following informal definition.
+
+### Definition 14.1: Observer Orbit
+
+Given an object \(x\) and a class of admissible observers \(\mathcal{A}\), the **observer orbit** of \(x\) is the family
+
+\[
+\operatorname{Orb}_{\mathcal{A}}(x)
+=
+\{\mathcal{O}(x):\mathcal{O}\in\mathcal{A}\}.
+\]
+
+For a prime \(p\), the observer orbit includes its state, event, density, STOP, character, and spectral appearances:
+
+\[
+\operatorname{Orb}(p)
+=
+\left(
+p,\;
+\mathbf{1}_{\mathrm{prime}}(p),\;
+\frac{1}{\log p},\;
+e^{-tp},\;
+(1-p^{-s})^{-1},\;
+\chi(p)e^{-tp},\ldots
+\right).
+\]
+
+The conceptual shift is:
+
+\[
+\boxed{
+\text{at infinity, an object is not only a state; it is a coherent family of observer appearances.}
+}
+\]
+
+### 14.1 Three Meanings of Prime
+
+This separates three meanings of primality.
+
+| Layer | Meaning of prime | Irreducible under |
+|---|---|---|
+| Finite arithmetic | ordinary prime number | multiplication |
+| Infinite sequence | algorithmically prime sequence | compression or generation |
+| Observer flow | spectral prime object | admissible observer decomposition |
+
+In the second row, an infinite digit sequence
+
+\[
+x=0.d_1d_2d_3\cdots
+\]
+
+is prime-like if its prefixes cannot be generated by a substantially shorter rule. In algorithmic information terms, this asks whether
+
+\[
+K(x_{1:N})\sim N,
+\]
+
+where \(K\) denotes Kolmogorov complexity. Rational numbers are reducible because their expansions are eventually periodic. Algebraic irrationals and constants such as \(\pi\) may have complicated digits but short generators. Chaitin-type \(\Omega\) numbers are the natural candidates for algorithmic irreducibility.
+
+Thus:
+
+\[
+\text{finite prime}
+=
+\text{irreducible under multiplication},
+\]
+
+while:
+
+\[
+\text{infinite prime}
+=
+\text{irreducible under compression}.
+\]
+
+The STOP framework suggests a third form:
+
+\[
+\boxed{
+\text{spectral prime}
+=
+\text{irreducible under observer flow}.
+}
+\]
+
+### 14.2 Large Primes as Observer Shadows
+
+Consider the concrete prime
+
+\[
+p=1,000,000,007.
+\]
+
+At state resolution, this is simply an integer that has no nontrivial factorization.
+
+At path resolution, it appears as a spike in the prime indicator sequence:
+
+\[
+a_n=\mathbf{1}_{\mathrm{prime}}(n),
+\qquad
+a_p=1.
+\]
+
+At density resolution, it is one element of a local prime cloud with approximate density
+
+\[
+\frac{1}{\log p}.
+\]
+
+At STOP resolution, it contributes the weight
+
+\[
+e^{-tp}.
+\]
+
+At spectral resolution, it contributes an Euler factor
+
+\[
+(1-p^{-s})^{-1}.
+\]
+
+At character resolution, it contributes
+
+\[
+\chi(p)e^{-tp}.
+\]
+
+As \(p\to\infty\), the prime recedes as a concrete state. But its density contribution, STOP weight, character phase, and Euler factor remain as structured shadows in observer space.
+
+This is the more general path/state lesson:
+
+\[
+\boxed{
+\text{large objects gradually disappear as states and persist as observer shadows.}
+}
+\]
+
+This section is not a theorem. It is a proposed direction: define irreducibility not only inside one algebra, but across a class of admissible observer projections.
+
+## 15. Conclusion
+
+The STOP operator provides a model of observer-dependent resolution for infinite paths. Its elementary identity
+
+\[
+\mathbb{E}[S_\tau]
+=
+\sum_{k\geq 1}a_k\Pr(\tau\geq k)
+\]
+
+shows that regularization factors can be interpreted as survival probabilities. For geometric stopping, this is exactly Abel summation. For polynomial divergent paths, the finite part splits into zeta data and an observer correction.
+
+The central message is not that STOP assigns a unique value to every divergent process. Rather, it makes observer scale explicit:
+
+\[
+\text{path}
+=
+\text{event-level representation}
+\to
+\text{density-level representation}
+\to
+\text{spectral representation}.
+\]
+
+Equivalently:
+
+\[
+\text{observable}
+=
+\text{path structure}
++
+\text{observer structure}.
+\]
+
+That decomposition is the candidate contribution. The path to publication is to formalize admissible observer classes, define equivalence of observer scales, prove universality and anomaly theorems for controlled path families, and situate the framework precisely within existing summability, spectral, probability, and renormalization-adjacent mathematics.
+
+## References to Add
+
+The following references should be added before external submission.
+
+1. G. H. Hardy, *Divergent Series*, Oxford University Press, 1949.
+2. E. C. Titchmarsh, *The Theory of the Riemann Zeta-Function*, Oxford University Press.
+3. A. Korevaar, *Tauberian Theory: A Century of Developments*, Springer.
+4. K. Knopp, *Theory and Application of Infinite Series*.
+5. J. B. Conway, *A Course in Functional Analysis*.
+6. N. Dunford and J. T. Schwartz, *Linear Operators*.
+7. H. Montgomery and R. Vaughan, *Multiplicative Number Theory I: Classical Theory*.
+8. H. Iwaniec and E. Kowalski, *Analytic Number Theory*.
+9. B. Simon, *Trace Ideals and Their Applications*.
+10. W. Feller, *An Introduction to Probability Theory and Its Applications*.
+
+## See Also
+
+- [Asymptotically Fair Stopping](asymptotically-fair-stopping.md)
+- [Riemann Hypothesis](riemann-hypothesis.md)
+- [Prime Weighting](prime-weighting.md)
+- [Partition Function](partition-function.md)
+- [Axiom Architecture](../axiom-architecture.md)
