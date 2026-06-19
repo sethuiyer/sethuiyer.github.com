@@ -1,0 +1,2156 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The Arithmetic Manifold - Physics-inspired optimization and constraint satisfaction">
+      
+      
+        <meta name="author" content="Sethurathienam Iyer">
+      
+      
+        <link rel="canonical" href="https://shunyabar.dev/design-philosophy/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>The Design Philosophy - ShunyaBar Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  <script async defer src="https://beampipe.io/js/tracker.js" data-beampipe-domain="sethuiyer.github.io"></script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#the-design-philosophy" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="ShunyaBar Labs" class="md-header__button md-logo" aria-label="ShunyaBar Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ShunyaBar Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              The Design Philosophy
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../research-report/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Research Report
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../core-vision/" class="md-tabs__link">
+          
+  
+  
+  Core Vision
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../projects/" class="md-tabs__link">
+          
+  
+  
+  Projects
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../marketing/" class="md-tabs__link">
+          
+  
+  
+  Marketing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../getting-started/quick-start/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../navokoj/" class="md-tabs__link">
+          
+  
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="ShunyaBar Labs" class="md-nav__button md-logo" aria-label="ShunyaBar Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ShunyaBar Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../research-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research Report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core Vision
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Core Vision
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core-vision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Arithmetic Manifold
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../axiom-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Axiom Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/partition-function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Partition Function
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/prime-weighting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prime Weighting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/multiplicative-vs-additive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiplicative vs Additive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/phase-transitions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phase Transitions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/riemann-hypothesis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Riemann Hypothesis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/baha/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BAHA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/nitrosat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NitroSAT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/navokoj/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Navokoj
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/multiplicative-pinn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiplicative PINN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/spectral-multiplicative/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spectral Multiplicative Framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/geometry-of-conditional-logic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Geometry of Conditional Logic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/casimir-sat-solver/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Casimir SAT Solver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/factor-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Factor Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/thermodynamic-number-line/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thermodynamic Number Line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/authorization-lattice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization Lattice
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Marketing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Marketing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../marketing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Why Navokoj
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../marketing/use-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Use Cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../marketing/pricing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pricing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../marketing/results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Results
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../marketing/competition/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Competition
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../marketing/bottleneck/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Bottleneck
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/lua-module/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lua Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Benchmarks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Resources
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navokoj/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Navokoj Developer Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../product-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../references/papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Papers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../references/related-work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Related Work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Limitations & Boundaries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TODO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap (Post-Funding)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="the-design-philosophy">The Design Philosophy<a class="headerlink" href="#the-design-philosophy" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>One-sentence version:</strong> <em>We don't have a brand color. We have a brand discipline — tune every surface to what its reader is there to do.</em></p>
+</blockquote>
+<p><strong>Author:</strong> Sethurathienam Iyer, Founder
+<strong>Date:</strong> 2026-06-19
+<strong>Status:</strong> Working document. Re-read quarterly.</p>
+<hr />
+<h2 id="executive-summary-90-second-read">Executive Summary (90-second read)<a class="headerlink" href="#executive-summary-90-second-read" title="Permanent link">&para;</a></h2>
+<p>ShunyaBar runs <strong>five public site surfaces</strong> and <strong>ten shipped projects</strong>, each with its own deployment. People notice. The honest answer to "why don't they all look the same?" is:</p>
+<blockquote>
+<p><strong>A customer evaluating a paid API and a scholar reading a 6,000-word essay do not have the same job. They should not get the same page.</strong></p>
+</blockquote>
+<p>This document is the deliberate read of what we believe, what we share, what we don't share, and where the philosophy breaks. It is not a brand guide. It is a <em>decision procedure</em> for the next surface.</p>
+<p>The five things we believe:</p>
+<ol>
+<li><strong>Restraint earns trust.</strong> Whitespace, generous line-height, no animated hero sections.</li>
+<li><strong>Specificity beats decoration.</strong> Real numbers, real names, real failure modes.</li>
+<li><strong>Different readers get different surfaces.</strong> A customer, a scholar, a curious visitor, and a recruiter each get the page that fits their task.</li>
+<li><strong>The palette is honest about the work.</strong> Navy and teal where the work is technical. Serif and paper where the work is reading. Warm where the work is human.</li>
+<li><strong>Typography is the brand.</strong> Everything else is decoration.</li>
+</ol>
+<p>What is shared is in <a href="https://github.com/sethuiyer/sethuiyer.github.com/blob/main/src/stylesheets/extra.css"><code>stylesheets/extra.css</code></a>: navy primary (<code>#183153</code>), teal accent (<code>#00796b</code>), the typographic system, the table treatment, the link behavior. What is <em>not</em> shared is everything else — every site chooses its own surface, layout, and reading rhythm.</p>
+<p>Where the philosophy breaks: the personal portfolio site is the outlier. It carries a retro social-media palette that does not match the rest. We will fix it. We have not yet fixed it. That is honest.</p>
+<hr />
+<h2 id="why-this-document-exists">Why this document exists<a class="headerlink" href="#why-this-document-exists" title="Permanent link">&para;</a></h2>
+<p>Two readers asked the same question, separately, in the last month:</p>
+<ul>
+<li>"Why does navokoj look like an enterprise API page but your personal site looks like a Geocities reunion?"</li>
+<li>"Why does your research site use a serif and your product site use a sans?"</li>
+</ul>
+<p>Both readers are correct that the surfaces diverge. Both readers deserve an answer that is not "I haven't gotten around to it." This document is that answer.</p>
+<p>The short answer: <strong>the divergence is deliberate.</strong> The surfaces diverge because the readers diverge. A customer evaluating a paid MaxSAT API is not making the same decision as a scholar reading an essay on prime weighting. Putting them on the same page would insult both of them.</p>
+<p>The longer answer is below.</p>
+<hr />
+<h2 id="the-single-principle">The single principle<a class="headerlink" href="#the-single-principle" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p><strong>Form follows reader, not form follows brand.</strong></p>
+</blockquote>
+<p>A brand is a recognizable visual signature across surfaces. We do not have one. We have a <em>discipline</em>: each surface answers one question before any other — <em>what is the reader here to do?</em> — and the design follows from that answer.</p>
+<p>This is not a new idea. It is what good technical writing has always done. A reference manual and a tutorial use different typography, different density, different examples, because they are solving different problems for different readers. We are applying the same logic to the surfaces themselves.</p>
+<p>The cost is brand recognizability. If you scroll past three of our sites quickly, you might not realize they come from the same company. We accept that cost. The benefit is that each surface does its actual job, instead of carrying the same shell across readers who are not the same.</p>
+<hr />
+<h2 id="what-we-actually-believe">What we actually believe<a class="headerlink" href="#what-we-actually-believe" title="Permanent link">&para;</a></h2>
+<p>Seven principles, in order of how often they come up in decisions.</p>
+<h3 id="1-restraint-earns-trust">1. Restraint earns trust<a class="headerlink" href="#1-restraint-earns-trust" title="Permanent link">&para;</a></h3>
+<p>The fastest signal that a page is a landing page is that it has too many things on it. Hero animation. Floating CTA. Stock illustration. Three-color gradient. A "trusted by" row of greyed-out logos we do not actually have permission to use.</p>
+<p>We do not do that.</p>
+<p>What restraint looks like in practice:</p>
+<ul>
+<li><strong>Line-height 1.72</strong> in body text. Generous because reading is the task.</li>
+<li><strong>No underline on links by default.</strong> Underline appears on hover, animated in. The page reads first; the links advertise second.</li>
+<li><strong>No hero images on product pages.</strong> The product description is the hero. If you need an image to explain what the API does, the copy is not done.</li>
+<li><strong>Sticky table headers</strong> but no other sticky anything.</li>
+<li><strong>Box-shadows that earn their place.</strong> A 1px shadow on a table is a depth cue. A drop-shadow on every card is decoration.</li>
+</ul>
+<p>Restraint is a forcing function. It says: <em>if you cannot defend this element against the reader's task, remove it.</em></p>
+<h3 id="2-specificity-beats-decoration">2. Specificity beats decoration<a class="headerlink" href="#2-specificity-beats-decoration" title="Permanent link">&para;</a></h3>
+<p>Every marketing page in our industry reaches for words like "powerful," "scalable," "next-generation," "AI-native." They mean nothing. They are the visual equivalent of stock photography.</p>
+<p>What specificity looks like:</p>
+<ul>
+<li><strong>Numbers, not adjectives.</strong> "100% solved in 73 seconds" beats "blazing-fast performance." "1.65M clauses in 278s" beats "enterprise scale."</li>
+<li><strong>Failure modes, not just wins.</strong> The <a href="../limitations/">limitations page</a> lists where the solver plateaus. That page exists because <em>trusting a vendor who hides their failure modes is a worse outcome than not using them.</em></li>
+<li><strong>Honest numbers, even ugly ones.</strong> "11% conversion from rate-limited to billed" appears in <a href="../marketing/bottleneck/">the bottleneck audit</a>. Hiding it would feel better for one quarter and worse for every quarter after.</li>
+<li><strong>Real names of real things.</strong> Engines are called <code>nano</code>, <code>mini</code>, <code>pro</code>, <code>qstate</code>, <code>ensemble</code>. Not "TurboSolve Pro™." Not "AI-MaxSAT-X." Names you can grep for. Names you can argue with.</li>
+</ul>
+<p>A reader who arrives at a page with specific numbers and acknowledged failure modes will trust specific claims. A reader who arrives at "industry-leading" will not.</p>
+<h3 id="3-different-readers-get-different-surfaces">3. Different readers get different surfaces<a class="headerlink" href="#3-different-readers-get-different-surfaces" title="Permanent link">&para;</a></h3>
+<p>The five surfaces are tuned to five different reader tasks:</p>
+<table>
+<thead>
+<tr>
+<th>Reader</th>
+<th>Task</th>
+<th>Surface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Customer evaluating a paid API</td>
+<td>"Should I trust this with my problem?"</td>
+<td><code>navokoj.shunyabar.foo</code></td>
+</tr>
+<tr>
+<td>Visitor asking "who is this company?"</td>
+<td>"Are these people serious?"</td>
+<td><code>shunyabar.foo</code></td>
+</tr>
+<tr>
+<td>Scholar reading a 6,000-word essay</td>
+<td>"Let me read this carefully."</td>
+<td><code>research.shunyabar.foo</code></td>
+</tr>
+<tr>
+<td>Curious reader / recruiter</td>
+<td>"Who is the person behind this?"</td>
+<td><code>sethuiyer.github.io</code></td>
+</tr>
+<tr>
+<td>Engineer wanting the technical artifact</td>
+<td>"Show me the code and the benchmarks."</td>
+<td>Per-project <code>sethuiyer.github.io/&lt;project&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>The mistake most one-person companies make is building one site and trying to serve all five readers with it. The result is a site that does nothing well. We chose five narrow sites that each do one thing well.</p>
+<h3 id="4-the-palette-is-honest-about-the-work">4. The palette is honest about the work<a class="headerlink" href="#4-the-palette-is-honest-about-the-work" title="Permanent link">&para;</a></h3>
+<p>Color is not decoration. Color tells the reader what kind of work is happening on the page.</p>
+<table>
+<thead>
+<tr>
+<th>Work type</th>
+<th>Palette</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Technical / engineering</td>
+<td>Deep navy <code>#183153</code>, teal accent <code>#00796b</code></td>
+<td>Reads as serious, technical, calm. Matches the engineering tone of the API docs.</td>
+</tr>
+<tr>
+<td>Long-form reading</td>
+<td>Warm paper-cream background, charcoal text</td>
+<td>Reads as scholarship, not product. The page is for sitting with.</td>
+</tr>
+<tr>
+<td>Personal / human</td>
+<td>Warmer, more saturated, more human-tone</td>
+<td>Reads as a person, not a company. Some risk of feeling "off-brand." We accept it.</td>
+</tr>
+<tr>
+<td>Scholarship / per-project</td>
+<td>Project-specific, often green/teal or amber</td>
+<td>Each project gets to feel like its own thing.</td>
+</tr>
+</tbody>
+</table>
+<p>The personal site is the deliberate exception. A founder's portfolio is allowed to look like a person, not a company. Trying to make it match the navy-and-teal of the product surfaces would make it feel like a marketing piece about a person, which is the worst of both.</p>
+<h3 id="5-typography-is-the-brand">5. Typography is the brand<a class="headerlink" href="#5-typography-is-the-brand" title="Permanent link">&para;</a></h3>
+<p>We do not have a logo worth speaking of. We do not have a brand mark. What we have is a typographic system:</p>
+<ul>
+<li><strong>System fonts</strong> on the documentation sites (fast, accessible, no FOUT).</li>
+<li><strong>A serif</strong> (Iowan, Charter, or similar fallback chain) on the long-form research essays, where the work is reading.</li>
+<li><strong>A sans</strong> (system default) on the product surfaces, where the work is scanning.</li>
+<li><strong>One accent color, used sparingly.</strong> Teal <code>#00796b</code> for links, code accents, and active nav state. Nowhere else.</li>
+<li><strong>Generous line-height.</strong> <code>1.72</code> on body. This is the single biggest readability lever, and we never compromise it.</li>
+<li><strong>Sticky table headers with a hover row-highlight.</strong> So tables are usable, not decorative.</li>
+</ul>
+<p>If you remember one thing about ShunyaBar's design after scrolling past three sites quickly, it should be: <em>the typography feels like someone who respects my time wrote this.</em></p>
+<h3 id="6-the-page-reads-first-the-links-advertise-second">6. The page reads first; the links advertise second<a class="headerlink" href="#6-the-page-reads-first-the-links-advertise-second" title="Permanent link">&para;</a></h3>
+<p>Underlines on links appear on hover, animated in over 200ms. By default, links are bold teal. This is a small choice with a large effect: the page reads as continuous prose, and the links reveal themselves when you need them.</p>
+<p>Most marketing pages do the opposite. They underline every link aggressively because the page is a navigation surface. We are writing documents, not building navigation. The reader came to read. The links are there when they want them. Until then, prose.</p>
+<h3 id="7-tables-are-first-class-content">7. Tables are first-class content<a class="headerlink" href="#7-tables-are-first-class-content" title="Permanent link">&para;</a></h3>
+<p>In a documentation-heavy site, tables are not decoration. They are the primary medium for comparison, for benchmark data, for pricing, for engine specs. We treat them accordingly:</p>
+<ul>
+<li><strong>Soft borders</strong> (<code>1px solid var(--sb-border)</code>) so the table reads as a single object.</li>
+<li><strong>Sticky headers</strong> so the column meaning stays visible as you scroll.</li>
+<li><strong>Hover row-highlight</strong> so the eye can track across rows.</li>
+<li><strong>Left accent border</strong> on code blocks and KaTeX panels, so they feel embedded rather than pasted in.</li>
+<li><strong>Responsive:</strong> tables become horizontally scrollable on small screens, with a fade gradient on the right edge so the reader knows there is more.</li>
+</ul>
+<p>Tables are where our work lives. They are designed like the work matters.</p>
+<hr />
+<h2 id="the-surfaces-and-what-each-one-is-for">The surfaces (and what each one is for)<a class="headerlink" href="#the-surfaces-and-what-each-one-is-for" title="Permanent link">&para;</a></h2>
+<h3 id="1-navokojshunyabarfoo-customer-evaluation">1. <code>navokoj.shunyabar.foo</code> — Customer evaluation<a class="headerlink" href="#1-navokojshunyabarfoo-customer-evaluation" title="Permanent link">&para;</a></h3>
+<p><strong>Reader's question:</strong> "Should I trust this MaxSAT API with my production problem?"</p>
+<p><strong>What we tune for:</strong></p>
+<ul>
+<li><strong>Specificity over fluff.</strong> Real benchmark numbers on the homepage. Real failure modes linked from the homepage.</li>
+<li><strong>Proof of competence.</strong> The "What customers run it on" section leads with academic benchmarks, then production data, then research breakthroughs. Provenance is explicit.</li>
+<li><strong>Honest limitations, prominently linked.</strong> Not buried in a footer. Linked from the H2 above the fold.</li>
+<li><strong>No stock imagery, no animated hero.</strong> A single product description is the hero.</li>
+</ul>
+<p><strong>Palette:</strong> Navy primary, teal accent, paper-near-white background. This is the canonical ShunyaBar surface.</p>
+<p><strong>What it is not:</strong> It is not a marketing brochure. It is a working document that earns the right to be called a product page.</p>
+<h3 id="2-shunyabarfoo-trust-and-authority">2. <code>shunyabar.foo</code> — Trust and authority<a class="headerlink" href="#2-shunyabarfoo-trust-and-authority" title="Permanent link">&para;</a></h3>
+<p><strong>Reader's question:</strong> "Who is ShunyaBar Labs, and what do they stand for?"</p>
+<p><strong>What we tune for:</strong></p>
+<ul>
+<li><strong>Calm, restrained, authoritative.</strong> The page is the front door of the company. Visitors arrive expecting clarity, not energy.</li>
+<li><strong>The company line.</strong> Mission, values, the five core projects surfaced, the team page if/when it exists.</li>
+<li><strong>No upsell.</strong> This is not where you go to sign up. This is where you go to learn what the company is.</li>
+</ul>
+<p><strong>Palette:</strong> Darker, more minimalist, more authority-coded. The light/dark mode toggle is tuned more carefully here because the reader may spend longer on this surface.</p>
+<h3 id="3-researchshunyyarfoo-long-form-reading">3. <code>research.shunyyar.foo</code> — Long-form reading<a class="headerlink" href="#3-researchshunyyarfoo-long-form-reading" title="Permanent link">&para;</a></h3>
+<p><strong>Reader's question:</strong> "Let me sit with this essay for twenty minutes."</p>
+<p><strong>What we tune for:</strong></p>
+<ul>
+<li><strong>Reading rhythm.</strong> Serif typography. Wider line measure. No aggressive chrome. The page is paper, not app.</li>
+<li><strong>Citation density.</strong> Footnotes, references, and bibliography styled like a journal article.</li>
+<li><strong>No popup, no sticky CTA, no exit intent.</strong> Reading is the task. Interruption is failure.</li>
+<li><strong>Print-friendly.</strong> If you print this, it should look like a typeset article.</li>
+</ul>
+<p><strong>Palette:</strong> Warm paper background (<code>#f7f9fc</code> or warmer), charcoal text, the teal accent used only for links. The site feels like a journal, not a tech company.</p>
+<h3 id="4-sethuiyergithubio-personal-human">4. <code>sethuiyer.github.io</code> — Personal / human<a class="headerlink" href="#4-sethuiyergithubio-personal-human" title="Permanent link">&para;</a></h3>
+<p><strong>Reader's question:</strong> "Who is this person? What have they shipped?"</p>
+<p><strong>What we tune for:</strong></p>
+<ul>
+<li><strong>Personal voice.</strong> First person, present tense, named projects with the dates they shipped.</li>
+<li><strong>Warmth over formality.</strong> This is allowed to feel like a person because it is a person.</li>
+<li><strong>The portfolio is a project list with receipts.</strong> Every claim links to a shipped artifact.</li>
+</ul>
+<p><strong>Palette:</strong> Warmer, more saturated, more human-tone. <em>This is the outlier and we know it.</em> It uses a retro social-media palette (deeper pinks, sunset oranges) that does not match the rest of the surfaces. We are keeping it deliberate but inconsistent, because making it match the navy-and-teal product surfaces would make it feel like a brochure about a person.</p>
+<p><strong>Where the philosophy breaks:</strong> right here. We have not yet reconciled the personal site with the company surfaces. We will. The honest version is: it's a known tension, not a finished decision.</p>
+<h3 id="5-per-project-github-pages-scholarship">5. Per-project GitHub Pages — Scholarship<a class="headerlink" href="#5-per-project-github-pages-scholarship" title="Permanent link">&para;</a></h3>
+<p><strong>Reader's question:</strong> "Show me the code and the benchmarks."</p>
+<p><strong>What we tune for:</strong></p>
+<ul>
+<li><strong>Code first.</strong> Repository link in the H1. README excerpt above the fold. Quick start within one scroll.</li>
+<li><strong>Benchmark table is the spine.</strong> Each per-project site has a "results" table that is the page.</li>
+<li><strong>A short essay, not a marketing page.</strong> 600–1,200 words explaining the project, then the artifact.</li>
+</ul>
+<p><strong>Palette:</strong> Project-specific. NitroSAT is amber-on-dark. Multiplicative-PINN is teal-on-paper. Authorization Lattice is graphite. Each project gets to feel like its own thing. This is not incoherence — it is the discipline applied: each project's reader task is different, so each project's surface is different.</p>
+<hr />
+<h2 id="the-shared-tokens-the-only-place-we-have-a-brand">The shared tokens (the only place we have a "brand")<a class="headerlink" href="#the-shared-tokens-the-only-place-we-have-a-brand" title="Permanent link">&para;</a></h2>
+<p>If you want to see what is actually shared across the surfaces, the answer is in one file: <a href="https://github.com/sethuiyer/sethuiyer.github.com/blob/main/src/stylesheets/extra.css"><code>stylesheets/extra.css</code></a>.</p>
+<p>What is shared:</p>
+<table>
+<thead>
+<tr>
+<th>Token</th>
+<th>Value</th>
+<th>Where it shows up</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Primary foreground (header)</td>
+<td><code>#183153</code> navy</td>
+<td>Header bar, active nav, footer</td>
+</tr>
+<tr>
+<td>Accent</td>
+<td><code>#00796b</code> teal</td>
+<td>Links, code left-border, active nav marker</td>
+</tr>
+<tr>
+<td>Background (light)</td>
+<td><code>#f7f9fc</code> paper-near-white</td>
+<td>All light-mode surfaces</td>
+</tr>
+<tr>
+<td>Heading color</td>
+<td><code>#10243f</code> deep navy</td>
+<td>All <code>h1</code>–<code>h4</code></td>
+</tr>
+<tr>
+<td>Link color</td>
+<td><code>#006d77</code> deep teal</td>
+<td>All body links</td>
+</tr>
+<tr>
+<td>Code background</td>
+<td><code>#eef3f7</code> soft grey-blue</td>
+<td>All inline code, code blocks</td>
+</tr>
+<tr>
+<td>Border</td>
+<td><code>#d8e2ea</code> soft blue-grey</td>
+<td>All table borders, code borders</td>
+</tr>
+<tr>
+<td>Type scale</td>
+<td>0.86rem body, 1.72 line-height</td>
+<td>All documentation surfaces</td>
+</tr>
+<tr>
+<td>Table style</td>
+<td>sticky header, hover row-highlight, soft border</td>
+<td>All benchmark/pricing/spec tables</td>
+</tr>
+<tr>
+<td>Link behavior</td>
+<td>no underline by default, animated underline on hover</td>
+<td>All surfaces</td>
+</tr>
+</tbody>
+</table>
+<p>What is <em>not</em> shared:</p>
+<ul>
+<li>The serif/sans choice (reading vs. scanning)</li>
+<li>The layout grid (one-column reading vs. multi-column dashboard)</li>
+<li>The dark-mode treatment (paper-on-ink vs. ink-on-paper)</li>
+<li>Imagery (zero across all surfaces, by policy)</li>
+<li>Animation (effectively zero — only the link underline transition)</li>
+</ul>
+<p>The shared tokens earn their place by being small. We are not exporting a 4,000-line design system. We are exporting twelve CSS variables and a typographic baseline. Anything beyond that should be defended per-surface.</p>
+<hr />
+<h2 id="where-the-philosophy-breaks">Where the philosophy breaks<a class="headerlink" href="#where-the-philosophy-breaks" title="Permanent link">&para;</a></h2>
+<p>A philosophy that does not name its failures is not a philosophy. It is a slogan. Here are the places the discipline is not yet winning.</p>
+<h3 id="1-the-personal-portfolio-site-is-the-outlier">1. The personal portfolio site is the outlier<a class="headerlink" href="#1-the-personal-portfolio-site-is-the-outlier" title="Permanent link">&para;</a></h3>
+<p>It uses a retro social-media palette (deeper pinks, sunset oranges, a different typographic system). It does not match the navy-and-teal of the product surfaces. We have decided to keep the difference for now — a founder's portfolio is allowed to feel like a person — but we have <em>not</em> yet reconciled the visual gap. The honest version: the portfolio site is allowed to be different because it serves a different reader, but it should still feel like the same <em>hand</em> wrote it. Right now it does not.</p>
+<p><strong>Action:</strong> Re-tokenize the portfolio's color system to share the navy-and-teal foundation with the company surfaces, while keeping its warmer typography and personal-voice layout. Target: Q3 2026.</p>
+<h3 id="2-the-product-surface-has-no-dashboard-yet">2. The product surface has no dashboard yet<a class="headerlink" href="#2-the-product-surface-has-no-dashboard-yet" title="Permanent link">&para;</a></h3>
+<p>The bottleneck audit showed that frontend users convert at 52% while API users convert at 11%. The site is a brochure, not a product surface. We do not yet have an in-page account dashboard, quota visualization, recent-solves table, or success-rate chart. The reader who arrives at navokoj.shunyabar.foo and clicks "Sign up" leaves the surface entirely and lands in Supabase. That is a conversion architecture problem, and it has a design consequence: <em>the product surface is not yet designed to retain the reader.</em> The bottleneck doc names the 90-day plan.</p>
+<p><strong>Action:</strong> Build the in-page account dashboard on navokoj.shunyabar.foo before the next check-in.</p>
+<h3 id="3-the-chat-is-broken-28-of-the-time">3. The chat is broken 28% of the time<a class="headerlink" href="#3-the-chat-is-broken-28-of-the-time" title="Permanent link">&para;</a></h3>
+<p>The chat widget has a 28% error rate in production. It is broken enough that it should not be on the page at all. Either it gets rebuilt against the actual <code>/v1/solve</code> API, or it gets removed. Half a broken feature is worse than no feature. This is a design failure <em>because</em> the design made a promise the engineering could not keep.</p>
+<p><strong>Action:</strong> Decide before Q3.</p>
+<h3 id="4-the-shared-tokens-are-not-documented-as-a-system">4. The shared tokens are not documented as a system<a class="headerlink" href="#4-the-shared-tokens-are-not-documented-as-a-system" title="Permanent link">&para;</a></h3>
+<p><code>extra.css</code> is the only shared design file, and it has no prose documentation. If a new contributor opened the file cold, they would not know which tokens are deliberate and which are accidents. The fact that this document exists is the first step. The next step is annotating <code>extra.css</code> itself with comments explaining the intent behind each token.</p>
+<p><strong>Action:</strong> Annotate <code>extra.css</code> with intent comments before adding the next surface.</p>
+<hr />
+<h2 id="what-this-is-not">What this is NOT<a class="headerlink" href="#what-this-is-not" title="Permanent link">&para;</a></h2>
+<p>To be unambiguous:</p>
+<ul>
+<li><strong>This is not a brand guide.</strong> We do not have a brand. We have a discipline.</li>
+<li><strong>This is not a design system.</strong> There is no Figma library, no Storybook, no token export pipeline. There is a 455-line CSS file.</li>
+<li><strong>This is not a marketing style guide.</strong> Marketing pages inherit the principles above, but each marketing surface is allowed to make its own decisions within them.</li>
+<li><strong>This is not a promise of consistency across all surfaces.</strong> It is a promise that <em>every surface answers the reader's question deliberately.</em> Sometimes the answer is "make this feel like the rest of the company." Sometimes the answer is "make this feel like its own thing." Both are allowed.</li>
+<li><strong>This is not a finished document.</strong> It is a working draft. We re-read it quarterly. If a principle stops earning its place, we remove it.</li>
+</ul>
+<hr />
+<h2 id="how-to-apply-this-when-adding-a-new-surface">How to apply this when adding a new surface<a class="headerlink" href="#how-to-apply-this-when-adding-a-new-surface" title="Permanent link">&para;</a></h2>
+<p>A decision procedure, in order:</p>
+<ol>
+<li><strong>Who is the reader?</strong> Name one reader, not a segment. "An ops engineer evaluating our hospital scheduling use case" beats "enterprise buyers."</li>
+<li><strong>What is the reader here to do?</strong> One sentence. "Read a 6,000-word essay and decide if the math holds up." "Compare three pricing tiers and pick one." "Sign up and run a test solve."</li>
+<li><strong>What does the reader need to see in the first scroll?</strong> Three things, no more. If you cannot defend a fourth, remove it.</li>
+<li><strong>Which existing surface is the closest cousin?</strong> Reuse its tokens and typographic decisions unless the reader's task is genuinely different.</li>
+<li><strong>What is the failure mode of this surface?</strong> Name it before you ship. "If the reader scrolls past the second paragraph, the page has failed." "If the reader leaves without finding the pricing table, the page has failed."</li>
+<li><strong>Will the design defend the reader's task?</strong> If an element does not defend the task, remove it.</li>
+<li><strong>Will the design make a promise the engineering cannot keep?</strong> If yes, do not ship it. The chat widget taught us this.</li>
+</ol>
+<p>If, after answering those questions, the surface looks like one of the existing five, that is fine. If it looks different, that is also fine. Either way, <em>the difference must be defensible against the reader's task, not against visual brand consistency.</em></p>
+<hr />
+<h2 id="change-log">Change log<a class="headerlink" href="#change-log" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-06-19</td>
+<td>First version. Seven named principles, five-surface map, shared tokens, named failure modes.</td>
+</tr>
+<tr>
+<td><em>next review</em></td>
+<td><em>Q3 2026. Re-read after the portfolio site re-tokenization and the in-page dashboard ship. Add or remove principles based on what the data and the surfaces show.</em></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Authored by Sethurathienam Iyer, Founder, ShunyaBar Labs</em>
+<em>Published 2026-06-19</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "content.code.copy", "content.code.annotate", "navigation.tabs", "navigation.sections", "toc.integrate", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../javascripts/katex.js"></script>
+      
+    
+  </body>
+</html>

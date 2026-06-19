@@ -111,6 +111,7 @@ We have detailed pages for the verticals where Navokoj is strongest:
 | Look up a term | [Glossary](glossary.md) |
 | Understand our limits | [Where the solver works (and where it doesn't)](limitations.md) |
 | See our roadmap and pricing strategy | [Product Strategy, H2 2026](product-strategy.md) · [Roadmap](TODO.md) |
+| Understand why our sites look different | [The Design Philosophy](design-philosophy.md) |
 
 ---
 
