@@ -129,3 +129,13 @@ We have detailed pages for the verticals where Navokoj is strongest:
 | **Factor Agent** | [sethuiyer.github.io/factor-agent](https://sethuiyer.github.io/factor-agent) |
 | **Thermodynamic Number Line** | [sethuiyer.github.io/thermodynamic-number-line](https://sethuiyer.github.io/thermodynamic-number-line) |
 | **Authorization Lattice** | [sethuiyer.github.io/authorization-lattice](https://sethuiyer.github.io/authorization-lattice) |
+
+---
+
+## See Also
+
+- [Concepts: Prime Weighting](concepts/prime-weighting.md) · [Partition Function](concepts/partition-function.md) · [Multiplicative vs Additive](concepts/multiplicative-vs-additive.md) · [Phase Transitions](concepts/phase-transitions.md) · [Riemann Hypothesis](concepts/riemann-hypothesis.md)
+- [Projects Overview](projects/index.md) — all 10 projects mapped
+- [Marketing: Why Navokoj](marketing/index.md) · [Use Cases](marketing/use-cases.md) · [Pricing](marketing/pricing.md) · [Results](marketing/results.md)
+- [Design Philosophy](design-philosophy.md) — why our surfaces look different
+- [Product Strategy](product-strategy.md) · [Roadmap](TODO.md) — H2 2026 plan

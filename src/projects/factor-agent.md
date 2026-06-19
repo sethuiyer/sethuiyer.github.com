@@ -55,3 +55,14 @@ Factor Agent extends the Arithmetic Manifold to **multi-agent systems**. Prime f
 - The same CRT-based repair mechanism as Geometry of Conditional Logic
 
 The "factorization" of authority mirrors the "factorization" of constraints in the multiplicative PINN framework — both use the Euler product structure to ensure compositional correctness.
+
+---
+
+## See Also
+
+- [All Projects](index.md) — project overview
+- [Geometry of Conditional Logic](geometry-of-conditional-logic.md) — same CRT repair mechanism
+- [Authorization Lattice](authorization-lattice.md) — capability composition via prime factorization
+- [Multiplicative PINN](multiplicative-pinn.md) — Euler product structure in constraint enforcement
+- [Prime Weighting](../concepts/prime-weighting.md) — how primes enable factor decomposition
+- [The Arithmetic Manifold](../core-vision.md) — the unified theory

@@ -193,3 +193,13 @@ Navokoj is **not** the right tool when:
 - Real-time control systems require sub-millisecond deterministic response (embedded systems)
 - All constraints are soft preferences (multi-objective evolutionary algorithms may suffice)
 - Problems have no discrete structure (pure simulation/Monte Carlo)
+
+---
+
+## See Also
+
+- [Marketing: Why Navokoj](index.md) — product overview
+- [Pricing](pricing.md) — tier selection by use case
+- [Results](results.md) — benchmarks by problem type
+- [Limitations](../limitations.md) — where Navokoj is not a fit
+- [Glossary](../glossary.md) — engine selection guide

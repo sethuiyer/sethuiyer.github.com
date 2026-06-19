@@ -112,3 +112,14 @@ curl -X POST https://api.navokoj.shunyabar.foo/v1/solve \
 - [Limitations](../limitations.md) — where we work and where we don't
 - [Glossary](../glossary.md) — every term defined
 - [Product strategy](../product-strategy.md) — H2 2026 roadmap
+
+---
+
+## See Also
+
+- [Use Cases](use-cases.md) — verticals where Navokoj excels
+- [Pricing](pricing.md) — tier comparison and engine guide
+- [Results](results.md) — verified benchmarks
+- [Competition](competition.md) — comparison with Gurobi, OR-Tools, CDCL
+- [The Bottleneck](bottleneck.md) — conversion funnel audit
+- [Limitations](../limitations.md) — where Navokoj plateaus

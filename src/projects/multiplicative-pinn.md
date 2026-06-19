@@ -57,3 +57,15 @@ The Multiplicative PINN is the **proof of concept** that multiplicative constrai
 - The Euler gate structure eliminates gradient conflicts
 - The Riemann zeta divergence creates a superconducting phase
 - The approach scales to real PDEs (Navier-Stokes)
+
+---
+
+## See Also
+
+- [All Projects](index.md) — project overview
+- [NitroSAT](nitrosat.md) — applies multiplicative principles to MaxSAT
+- [Spectral-Multiplicative](spectral-multiplicative.md) — multiplicative constraints in graph optimization
+- [Multiplicative vs Additive](../concepts/multiplicative-vs-additive.md) — the mathematical foundation
+- [Prime Weighting](../concepts/prime-weighting.md) — prime-weighted physics constraints
+- [Partition Function](../concepts/partition-function.md) — local partition function per constraint
+- [Benchmarks](../getting-started/benchmarks.md) — Navier-Stokes results comparison

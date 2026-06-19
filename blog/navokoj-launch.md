@@ -111,4 +111,11 @@ The math is open source at [github.com/sethuiyer/navokoj](https://github.com/set
 
 - [Navokoj API Docs](https://navokoj.shunyabar.foo)
 - [Open Source Core](https://github.com/sethuiyer/navokoj)
-- [ShunyaBar Labs](/)
+- [ShunyaBar Labs](https://shunyabar.foo)
+- [The Arithmetic Manifold](../src/core-vision.md) — the theory behind Navokoj
+- [Navokoj Project Page](../src/projects/navokoj.md) — project documentation
+- [NitroSAT Project Page](../src/projects/nitrosat.md) — the engine inside Navokoj
+- [Navokoj Developer Guide](../src/navokoj/index.md) — API reference
+- [Quick Start](../src/getting-started/quick-start.md) — get running in 5 minutes
+- [Pricing](../src/marketing/pricing.md) — tier comparison
+- [Limitations](../src/limitations.md) — where Navokoj plateaus

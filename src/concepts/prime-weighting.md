@@ -101,3 +101,18 @@ Graph partitioning constraints receive prime weights that maintain \(\rho \geq 0
 ## Key Insight
 
 Prime weighting is **causal, not decorative**. It's not a heuristic — it's a mathematical guarantee of uniqueness that emerges from the Fundamental Theorem of Arithmetic. Every other approach to constraint satisfaction has to deal with gradient collisions somehow; prime weighting eliminates them at the source.
+
+---
+
+## See Also
+
+- [Partition Function](partition-function.md) — how prime weights connect to the statistical mechanics of constraint satisfaction
+- [Multiplicative vs Additive](multiplicative-vs-additive.md) — why multiplicative enforcement preserves prime weight advantages
+- [Phase Transitions](phase-transitions.md) — how prime weighting enables earlier fracture detection
+- [Riemann Hypothesis](riemann-hypothesis.md) — the asymptotic stability condition for prime-weighted systems
+- [Asymptotically Fair Stopping](asymptotically-fair-stopping.md) — how prime density provides an intrinsic stopping law
+- [The Arithmetic Manifold](../core-vision.md) — the unified theory behind prime weighting
+- [BAHA](../projects/baha.md) — prime-weighted fracture detection in optimization
+- [NitroSAT](../projects/nitrosat.md) — prime weight ablation results (4× speedup)
+- [Multiplicative PINN](../projects/multiplicative-pinn.md) — prime-weighted physics constraints
+- [Benchmarks](../getting-started/benchmarks.md) — prime weighting ablation data

@@ -44,12 +44,13 @@ nav:
   - Core Vision:
     - The Arithmetic Manifold: core-vision.md
     - Axiom Architecture: axiom-architecture.md
-    - Concepts:
-      - Partition Function: concepts/partition-function.md
-      - Prime Weighting: concepts/prime-weighting.md
-      - Multiplicative vs Additive: concepts/multiplicative-vs-additive.md
-      - Phase Transitions: concepts/phase-transitions.md
-      - Riemann Hypothesis: concepts/riemann-hypothesis.md
+      - Concepts:
+        - Partition Function: concepts/partition-function.md
+        - Prime Weighting: concepts/prime-weighting.md
+        - Multiplicative vs Additive: concepts/multiplicative-vs-additive.md
+        - Phase Transitions: concepts/phase-transitions.md
+        - Riemann Hypothesis: concepts/riemann-hypothesis.md
+        - Asymptotically Fair Stopping: concepts/asymptotically-fair-stopping.md
   - Projects:
     - Projects Overview: projects/index.md
     - BAHA: projects/baha.md

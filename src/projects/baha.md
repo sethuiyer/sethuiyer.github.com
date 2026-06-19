@@ -58,3 +58,15 @@ BranchAwareOptimizer
 ## Connection to Core Vision
 
 BAHA is the **phase transition engine** of the Arithmetic Manifold. It detects when the landscape fractures (via \(\rho(\beta)\)) and provides the navigation mechanism (Lambert W branches) to escape. All other algorithms use BAHA or a BAHA-like detection when operating near criticality.
+
+---
+
+## See Also
+
+- [All Projects](index.md) — project overview
+- [NitroSAT](nitrosat.md) — uses BAHA-powered repair at criticality
+- [Navokoj](navokoj.md) — adiabatic quench with BAHA-style fracture awareness
+- [Partition Function](../concepts/partition-function.md) — fracture detection via \(\rho(\beta) = |d/d\beta \log Z|\)
+- [Phase Transitions](../concepts/phase-transitions.md) — Lambert W branch enumeration in detail
+- [Prime Weighting](../concepts/prime-weighting.md) — how primes enable fracture detection
+- [Lambert W](../glossary.md#lambert-w-function) — glossary definition

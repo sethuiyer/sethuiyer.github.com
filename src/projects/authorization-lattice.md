@@ -56,3 +56,13 @@ Authorization Lattice extends the Arithmetic Manifold to **security and permissi
 - Lattice structure ensures compositional correctness
 
 The p-adic numbers are already lurking in CRT — Authorization Lattice makes the connection explicit.
+
+---
+
+## See Also
+
+- [All Projects](index.md) — project overview
+- [Geometry of Conditional Logic](geometry-of-conditional-logic.md) — CRT and p-adic ultrametrics
+- [Factor Agent](factor-agent.md) — capability decomposition via prime factorization
+- [Prime Weighting](../concepts/prime-weighting.md) — how primes compose in capability systems
+- [The Arithmetic Manifold](../core-vision.md) — the unified theory

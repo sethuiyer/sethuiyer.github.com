@@ -106,3 +106,11 @@ crystal build --release src/spectral.cr
 - [Lua Module Reference](lua-module.md) — Full API for shunyabar.lua
 - [Benchmarks](benchmarks.md) — Performance comparison across algorithms
 - [Project Pages](../projects/index.md) — Deep dive into each algorithm
+
+---
+
+## See Also
+
+- [Navokoj API Reference](../navokoj/index.md) — full API docs and code examples
+- [Glossary](../glossary.md) — terminology reference
+- [The Arithmetic Manifold](../core-vision.md) — theory behind the solvers

@@ -119,3 +119,12 @@ Customers today use **mini** and **pro** almost exclusively. **nano** and **ense
 ---
 
 *If a term is missing, [open an issue](https://github.com/sethuiyer/shunyabar/issues) or email shunyabarlabs@zohomail.com.*
+
+---
+
+## See Also
+
+- [The Arithmetic Manifold](core-vision.md) — the unified theory behind the terms
+- [Concepts: Prime Weighting](concepts/prime-weighting.md) · [Partition Function](concepts/partition-function.md) · [Multiplicative vs Additive](concepts/multiplicative-vs-additive.md) · [Phase Transitions](concepts/phase-transitions.md) · [Riemann Hypothesis](concepts/riemann-hypothesis.md)
+- [All Projects](projects/index.md) — where these terms come to life
+- [Product Strategy](product-strategy.md) — business terminology

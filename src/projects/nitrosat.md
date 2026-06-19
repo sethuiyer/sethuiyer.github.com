@@ -376,3 +376,18 @@ If you use NitroSAT in research, please cite:
   url = {https://github.com/sethuiyer/NitroSAT}
 }
 ```
+
+---
+
+## See Also
+
+- [All Projects](index.md) — project overview
+- [BAHA](baha.md) — fracture detection integrated into NitroSAT
+- [Navokoj](navokoj.md) — the production API powered by NitroSAT
+- [Prime Weighting](../concepts/prime-weighting.md) — ablation results (4× speedup)
+- [Partition Function](../concepts/partition-function.md) — the free energy framework
+- [Phase Transitions](../concepts/phase-transitions.md) — critical \(\beta\) scaling
+- [Riemann Hypothesis](../concepts/riemann-hypothesis.md) — the asymptotic stability condition
+- [Limitations](../limitations.md) — where NitroSAT plateaus
+- [Benchmarks](../getting-started/benchmarks.md) — performance comparison
+- [Research Report](../research-report.md) — technical deep-dive

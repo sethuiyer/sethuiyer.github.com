@@ -120,3 +120,17 @@ Is the **continuous limit** of the multiplicative constraint factor. As \(s \to 
 ## Key Insight
 
 The shift from additive to multiplicative is not a tweak — it's a paradigm shift. Additive constraints are **penalties** that can be gamed. Multiplicative constraints are **invariants** that must hold. The Euler product structure guarantees compositional behavior that additive penalties cannot achieve.
+
+---
+
+## See Also
+
+- [Prime Weighting](prime-weighting.md) — how unique constraint weights enable multiplicative composition
+- [Partition Function](partition-function.md) — the statistical mechanics behind constraint satisfaction
+- [Phase Transitions](phase-transitions.md) — how multiplicative constraints change the phase transition landscape
+- [Riemann Hypothesis](riemann-hypothesis.md) — the Euler product and the superconducting phase
+- [Asymptotically Fair Stopping](asymptotically-fair-stopping.md) — divergent series tamed by multiplicative observers
+- [The Arithmetic Manifold](../core-vision.md) — the unified theory
+- [Multiplicative PINN](../projects/multiplicative-pinn.md) — direct implementation of multiplicative enforcement
+- [NitroSAT](../projects/nitrosat.md) — prime-weighted multiplicative loss in action
+- [Research Report](../research-report.md) — technical comparison of additive vs multiplicative approaches

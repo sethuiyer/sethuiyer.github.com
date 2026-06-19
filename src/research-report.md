@@ -226,3 +226,14 @@ Several limitations must be acknowledged to maintain scientific rigor:
 ### Conclusion
 
 ShunyaBar Labs has established a mathematically elegant and empirically performant toolkit. By mapping logic to continuous wave phase-angles, using Garner's algorithm for differentiable navigation, and enforcing local consistency via p-adic ultrametric balls, the framework offers a novel paradigm for real-time, resilient computing in production environments.
+
+---
+
+## See Also
+
+- [The Arithmetic Manifold](core-vision.md) — the unified theory in plain terms
+- [Axiom Architecture](axiom-architecture.md) — the rigorous mathematical foundation
+- [Prime Weighting](concepts/prime-weighting.md) · [Partition Function](concepts/partition-function.md) · [Multiplicative vs Additive](concepts/multiplicative-vs-additive.md) · [Phase Transitions](concepts/phase-transitions.md) · [Riemann Hypothesis](concepts/riemann-hypothesis.md)
+- [All Projects](projects/index.md) — per-project deep dives
+- [Limitations](limitations.md) — where the approach plateaus
+- [Product Strategy](product-strategy.md) — commercial outlook

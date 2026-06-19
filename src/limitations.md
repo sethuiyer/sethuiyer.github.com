@@ -113,3 +113,14 @@ On random unstructured SAT at the phase transition (α ≈ 4.27), CDCL solvers a
 | Real-time (< 100ms) | Supported via `nano` |
 
 Defining failure modes is not weakness — it's how real optimization systems earn trust. If your problem matches NitroSAT's strengths, you'll get fast, high-quality results. If it doesn't, you'll get an honest degradation, not a silent failure.
+
+---
+
+## See Also
+
+- [NitroSAT Production Ledger](projects/nitrosat.md) — real production data across 308 runs
+- [Marketing: Results](marketing/results.md) — benchmark data with honest limits
+- [Competition](marketing/competition.md) — comparison with CDCL and exact solvers
+- [Benchmarks](getting-started/benchmarks.md) — expander graph plateau data
+- [Glossary](glossary.md) — engine terminology
+- [Design Philosophy](design-philosophy.md) — why we publish failure modes openly

@@ -84,3 +84,14 @@ All projects use \(Z(\beta) = \sum e^{-\beta E(s)}\):
 | 2026 | BAHA | 10.5281/zenodo.18373732 |
 | 2026 | NitroSAT | 10.5281/zenodo.18753235 |
 | 2025 | Multiplicative PINN | 10.5281/zenodo.18214172 |
+
+---
+
+## See Also
+
+- [The Arithmetic Manifold](../core-vision.md) — the unified theory connecting all projects
+- [Prime Weighting](../concepts/prime-weighting.md) — how all projects use prime weights
+- [Partition Function](../concepts/partition-function.md) — the universal mathematical object
+- [Phase Transitions](../concepts/phase-transitions.md) — landscape fracture across projects
+- [Getting Started](../getting-started/quick-start.md) — run the projects yourself
+- [Benchmarks](../getting-started/benchmarks.md) — performance comparison across all projects

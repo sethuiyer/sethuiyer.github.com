@@ -203,3 +203,13 @@
 ---
 
 *Revenue first. LOIs before artifacts. Open-source verifier. Ship the vehicle, not just the engine.*
+
+---
+
+## See Also
+
+- [Product Strategy](product-strategy.md) — the strategic document behind this roadmap
+- [The Bottleneck](marketing/bottleneck.md) — funnel audit with 90-day targets
+- [Pricing](marketing/pricing.md) — current vs target pricing
+- [Marketing: Why Navokoj](marketing/index.md) · [Use Cases](marketing/use-cases.md) · [Results](marketing/results.md)
+- [Getting Started](getting-started/quick-start.md) — what's shippable today

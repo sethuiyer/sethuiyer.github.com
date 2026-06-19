@@ -131,3 +131,17 @@ This formula shows exactly how the zeros of \(\zeta(s)\) control the distributio
 The Riemann Hypothesis is not decorative in the Arithmetic Manifold — it is **load-bearing mathematics**. It determines the asymptotic stability of gradient flow on the constraint manifold. If RH is true, we have a theory of everything for constraint satisfaction. If RH is false, we have a theory that breaks at scale.
 
 The connection is not proven — it's an open problem at the intersection of computational complexity and number theory. But NitroSAT's empirical behavior is consistent with the hypothesis, making it a falsifiable prediction.
+
+---
+
+## See Also
+
+- [Prime Weighting](prime-weighting.md) — how prime distribution connects to the Riemann zeta function
+- [Partition Function](partition-function.md) — the Euler product connection to \(\zeta(s)\)
+- [Multiplicative vs Additive](multiplicative-vs-additive.md) — the superconducting phase at \(\beta = 1\)
+- [Phase Transitions](phase-transitions.md) — the Lambert W connection to stability
+- [Asymptotically Fair Stopping](asymptotically-fair-stopping.md) — the Prime STOP Law and RH-modulated convergence
+- [The Arithmetic Manifold](../core-vision.md) — the unified theory
+- [Axiom Architecture](../axiom-architecture.md) — the rigorous treatment of primes as convergence structure
+- [NitroSAT](../projects/nitrosat.md) — the solver that embeds RH as a phase boundary
+- [Thermodynamic Number Line](../projects/thermodynamic-number-line.md) — primes as thermodynamic fuel

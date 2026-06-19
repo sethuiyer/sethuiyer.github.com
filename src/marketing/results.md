@@ -236,3 +236,14 @@ Benchmark suite includes:
 - Hub-Tension Collapse
 - Chain Propagation
 - Dual-Hub Competition
+
+---
+
+## See Also
+
+- [Marketing: Why Navokoj](index.md) — product overview
+- [Pricing](pricing.md) — tier costs for production workloads
+- [Competition](competition.md) — performance comparison with other solvers
+- [Limitations](../limitations.md) — where results plateau
+- [Benchmarks](../getting-started/benchmarks.md) — algorithm-level comparison
+- [NitroSAT Production Ledger](../projects/nitrosat.md) — 308-run Supabase data

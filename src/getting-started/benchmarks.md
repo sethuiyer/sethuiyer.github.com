@@ -151,3 +151,14 @@ Across 5,000+ random CNF instances:
 | **Prime** | **4x** | **75% reduction** |
 
 Prime weighting is **causal**, not decorative — the 4x speedup and 75% complexity reduction are reproduced consistently.
+
+---
+
+## See Also
+
+- [All Projects](../projects/index.md) — per-project benchmark deep dives
+- [Prime Weighting](../concepts/prime-weighting.md) — ablation study details
+- [Limitations](../limitations.md) — where performance degrades
+- [Marketing: Results](../marketing/results.md) — production benchmark data
+- [Competition](../marketing/competition.md) — comparison with other solvers
+- [Research Report](../research-report.md) — empirical evaluation methodology

@@ -104,3 +104,13 @@ If you use ShunyaBar Labs algorithms in your research, please cite:
 ```
 
 For specific projects, use the DOIs from the [Papers](papers.md) page.
+
+---
+
+## See Also
+
+- [Papers](papers.md) — ShunyaBar publications and DOIs
+- [All Projects](../projects/index.md) — project deep dives
+- [Research Report](../research-report.md) — technical assessment
+- [Limitations](../limitations.md) — honest comparison boundaries
+- [Glossary](../glossary.md) — terminology

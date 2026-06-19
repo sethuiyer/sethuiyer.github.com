@@ -51,3 +51,15 @@ The Casimir SAT Solver is the **conceptual bridge** between physics and constrai
 - A narrative framework for understanding the Arithmetic Manifold
 
 The "attractive force" between satisfying assignments is the physical manifestation of the multiplicative constraint factor — constraints pull solutions toward satisfaction.
+
+---
+
+## See Also
+
+- [All Projects](index.md) — project overview
+- [Spectral-Multiplicative](spectral-multiplicative.md) — Casimir force diagnostics in graph optimization
+- [NitroSAT](nitrosat.md) — Langevin dynamics in practice
+- [Partition Function](../concepts/partition-function.md) — the equilibrium distribution \(P(s) \propto e^{-\beta E(s)}\)
+- [Phase Transitions](../concepts/phase-transitions.md) — Langevin crystallization at critical density
+- [The Arithmetic Manifold](../core-vision.md) — the unified theory
+- [Papers](../references/papers.md) — Zenodo publication DOI

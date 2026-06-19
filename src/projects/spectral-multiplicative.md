@@ -62,3 +62,15 @@ The Spectral-Multiplicative Framework is the **enterprise-scale proof** that the
 - Heat kernel trace is computable in O(nnz) for sparse graphs
 - Multiplicative constraints maintain correlation with spectral method
 - The approach handles real-world optimization (cloud infrastructure)
+
+---
+
+## See Also
+
+- [All Projects](index.md) — project overview
+- [Multiplicative PINN](multiplicative-pinn.md) — multiplicative constraints in neural networks
+- [Casimir SAT](casimir-sat-solver.md) — Casimir force analogy in SAT solving
+- [Partition Function](../concepts/partition-function.md) — heat kernel trace as partition function
+- [Phase Transitions](../concepts/phase-transitions.md) — heat kernel smoothing near transitions
+- [Prime Weighting](../concepts/prime-weighting.md) — graph constraint weighting
+- [Benchmarks](../getting-started/benchmarks.md) — cloud infrastructure optimization results

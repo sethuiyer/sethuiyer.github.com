@@ -85,3 +85,12 @@
 
 - [Zenodo ShunyaBar Labs Community](https://zenodo.org/communities/shunyabar)
 - [GitHub Organization](https://github.com/shunyabar)
+
+---
+
+## See Also
+
+- [Related Work](related-work.md) — comparison with prior approaches
+- [All Projects](../projects/index.md) — project-specific DOIs and references
+- [Research Report](../research-report.md) — technical assessment of each project
+- [Glossary](../glossary.md) — terminology reference

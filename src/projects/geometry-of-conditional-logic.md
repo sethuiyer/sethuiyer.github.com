@@ -60,3 +60,15 @@ The CRT "safe corridor" is geometrically identical to BAHA's branch enumeration:
 - CRT: Navigate between solutions via modular corridors
 
 Both are instances of the same principle: **there's always a path between solutions that doesn't cross barrier regions**.
+
+---
+
+## See Also
+
+- [All Projects](index.md) — project overview
+- [Factor Agent](factor-agent.md) — same CRT repair mechanism in multi-agent systems
+- [Authorization Lattice](authorization-lattice.md) — p-adic ultrametric structure for permissions
+- [BAHA](baha.md) — branch enumeration as the continuous analog of CRT corridors
+- [Prime Weighting](../concepts/prime-weighting.md) — how primes enable the CRT encoding
+- [The Arithmetic Manifold](../core-vision.md) — the unified theory
+- [Benchmarks](../getting-started/benchmarks.md) — incremental repair speedup comparison

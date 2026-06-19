@@ -320,3 +320,12 @@ If, after answering those questions, the surface looks like one of the existing 
 
 *Authored by Sethurathienam Iyer, Founder, ShunyaBar Labs*
 *Published 2026-06-19*
+
+---
+
+## See Also
+
+- [Limitations](limitations.md) — honest failure modes (a principle we extend to design)
+- [The Bottleneck](marketing/bottleneck.md) — funnel audit showing where design meets conversion
+- [Glossary](glossary.md) — terms referenced across surfaces
+- [The Arithmetic Manifold](core-vision.md) — what we're building

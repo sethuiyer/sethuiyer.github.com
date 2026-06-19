@@ -116,3 +116,18 @@ Standard simulated annealing ignores phase transitions — it just cools down an
 ## Key Insight
 
 The phase transition is not a bug — it's a feature. The Arithmetic Manifold treats phase transitions as **landmarks** to be detected and navigated, not obstacles to be avoided. The Lambert W function provides the exact geometry of the fracture, giving BAHA a precise map of the solution space topology.
+
+---
+
+## See Also
+
+- [Prime Weighting](prime-weighting.md) — how prime weights enable phase transition detection
+- [Partition Function](partition-function.md) — fracture detection via \(\rho(\beta) = |d/d\beta \log Z|\)
+- [Multiplicative vs Additive](multiplicative-vs-additive.md) — how multiplicative constraints affect phase behavior
+- [Riemann Hypothesis](riemann-hypothesis.md) — the asymptotic connection to phase stability
+- [Asymptotically Fair Stopping](asymptotically-fair-stopping.md) — how STOP observers detect phase transitions in infinite paths
+- [The Arithmetic Manifold](../core-vision.md) — the unified theory
+- [BAHA](../projects/baha.md) — Lambert W branch enumeration for escaping fractured landscapes
+- [NitroSAT](../projects/nitrosat.md) — critical \(\beta\) scaling at phase transitions
+- [Navokoj](../projects/navokoj.md) — adiabatic quench through the phase transition
+- [Spectral-Multiplicative](../projects/spectral-multiplicative.md) — heat kernel smoothing near phase transitions

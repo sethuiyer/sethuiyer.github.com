@@ -332,4 +332,14 @@ export NAVOKOJ_KEY="your_key_here"
 curl -X POST https://api.navokoj.shunyabar.foo/v1/diagnose \
   -H "Authorization: Bearer $NAVOKOJ_KEY" \
   -d '{"num_vars": 100, "clauses": [[1,2,3],[-1,4]]}'
+
+---
+
+## See Also
+
+- [Navokoj Project Page](../projects/navokoj.md) — the theory behind the API
+- [NitroSAT Project Page](../projects/nitrosat.md) — the engine inside Navokoj
+- [Quick Start](../getting-started/quick-start.md) — get running in 5 minutes
+- [Glossary](../glossary.md) — terminology reference
+- [Pricing](../marketing/pricing.md) — tier comparison
 ```

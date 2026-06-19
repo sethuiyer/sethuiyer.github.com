@@ -88,3 +88,19 @@ The partition function is not just a calculational tool — it is the **fundamen
 1. Results transfer between domains
 2. Phase transitions detected in one context warn of trouble in another
 3. The Riemann Hypothesis connection (via the Euler product) applies universally
+
+---
+
+## See Also
+
+- [Prime Weighting](prime-weighting.md) — how constraint weights shape the partition function
+- [Multiplicative vs Additive](multiplicative-vs-additive.md) — how multiplicative constraints create a superconducting phase
+- [Phase Transitions](phase-transitions.md) — fracture detection via the partition function derivative
+- [Riemann Hypothesis](riemann-hypothesis.md) — the Euler product and asymptotic stability
+- [Asymptotically Fair Stopping](asymptotically-fair-stopping.md) — path expectations as the computational analogue
+- [The Arithmetic Manifold](../core-vision.md) — the unified theory
+- [BAHA](../projects/baha.md) — fracture detection via \(\rho(\beta) = |d/d\beta \log Z|\)
+- [Navokoj](../projects/navokoj.md) — energy defined through the partition function
+- [Multiplicative PINN](../projects/multiplicative-pinn.md) — local partition function per constraint
+- [Casimir SAT](../projects/casimir-sat-solver.md) — Langevin sampling from \(P(s) \propto e^{-\beta E(s)}\)
+- [Spectral-Multiplicative](../projects/spectral-multiplicative.md) — heat kernel trace as partition function

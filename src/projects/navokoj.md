@@ -51,3 +51,17 @@ Navokoj is the **pure theory implementation** — it's explicitly described as "
 - Prime-weighted operators provide unique gradient identity
 - Geometric flow on the manifold is superior to discrete search
 - The adiabatic quench successfully navigates phase transitions
+
+---
+
+## See Also
+
+- [All Projects](index.md) — project overview
+- [NitroSAT](nitrosat.md) — the high-performance engine inside Navokoj
+- [BAHA](baha.md) — fracture detection for Navokoj's quench schedule
+- [Developer Guide](../navokoj/index.md) — API reference and code examples
+- [Prime Weighting](../concepts/prime-weighting.md) — operator identity in the Arithmetic Sector
+- [Partition Function](../concepts/partition-function.md) — energy definition for geometric flow
+- [Phase Transitions](../concepts/phase-transitions.md) — adiabatic quench through critical density
+- [The Arithmetic Manifold](../core-vision.md) — the theory Navokoj implements
+- [Quick Start](../getting-started/quick-start.md) — run Navokoj locally

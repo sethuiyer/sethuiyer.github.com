@@ -563,3 +563,14 @@ And that is the difference between a system that drifts and a system that endure
 ---
 
 *This essay was composed with the clarity of Donald Knuth and the exploratory spirit of Stephen Wolfram. It synthesizes the Axiom Synergy Curvature framework with the insight that primes are the sole survivors of the infinite computational abyss.*
+
+---
+
+## See Also
+
+- [The Arithmetic Manifold](core-vision.md) — the business-facing overview
+- [Research Report](research-report.md) — practical implementation of the theory
+- [Prime Weighting](concepts/prime-weighting.md) · [Partition Function](concepts/partition-function.md) · [Multiplicative vs Additive](concepts/multiplicative-vs-additive.md) · [Phase Transitions](concepts/phase-transitions.md) · [Riemann Hypothesis](concepts/riemann-hypothesis.md)
+- [Asymptotically Fair Stopping](concepts/asymptotically-fair-stopping.md) — expands §4.3 (STOP as Convergence, Not Halting) into a full theorem
+- [Thermodynamic Number Line](projects/thermodynamic-number-line.md) — primes as thermodynamic fuel
+- [All Projects](projects/index.md) — finite computable shadows of the infinite structure

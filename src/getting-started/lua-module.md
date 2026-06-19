@@ -155,3 +155,12 @@ print(bench.summary)
 - Source: `shunyabar.lua/src/shunyabar.lua`
 - AGENTS.md: `shunyabar.lua/AGENTS.md`
 - BENCHMARKS.md: `shunyabar.lua/BENCHMARKS.md`
+
+---
+
+## See Also
+
+- [Quick Start](quick-start.md) — get running in 5 minutes
+- [Benchmarks](benchmarks.md) — performance comparison across algorithms
+- [All Projects](../projects/index.md) — deep dives into each algorithm
+- [Navokoj API](../navokoj/index.md) — HTTP API for production use

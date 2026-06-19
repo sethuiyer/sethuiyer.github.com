@@ -166,3 +166,13 @@ Navokoj: **Always returns the best partial assignment.**
 | Simple VRP | OR-Tools |
 
 **Start free at [navokoj.shunyabar.foo](https://navokoj.shunyabar.foo)**
+
+---
+
+## See Also
+
+- [Marketing: Why Navokoj](index.md) — product overview
+- [Results](results.md) — verified performance data
+- [Pricing](pricing.md) — cost comparison
+- [Limitations](../limitations.md) — where competitors have advantages
+- [Benchmarks](../getting-started/benchmarks.md) — algorithm-level comparison

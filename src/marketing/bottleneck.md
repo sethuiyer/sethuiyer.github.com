@@ -225,3 +225,13 @@ If they do move, the bottleneck is what we said it is, and this is the document 
 
 *Authored by Sethurathienam Iyer, Founder, ShunyaBar Labs*
 *Published 2026-06-19*
+
+---
+
+## See Also
+
+- [Product Strategy](../product-strategy.md) — the strategy this audit informs
+- [Roadmap (TODO)](../TODO.md) — Q3 2026 targets from this audit
+- [Pricing](pricing.md) — pricing strategy and tiers
+- [Glossary](../glossary.md) — terms used in this document
+- [Design Philosophy](../design-philosophy.md) — why we publish internal audits openly

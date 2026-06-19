@@ -421,3 +421,14 @@ For a full glossary of all company terms, see [glossary.md](glossary.md).
 ---
 
 *Assumptions: 1 founder + 4 hires by Q4, $300K seed extension in Q3, runway through Q2 2027.*
+
+---
+
+## See Also
+
+- [Roadmap (TODO)](TODO.md) — phased execution plan
+- [The Bottleneck](marketing/bottleneck.md) — funnel audit driving the strategy
+- [Pricing](marketing/pricing.md) — tier details behind the strategy
+- [Glossary](glossary.md) — internal terms defined
+- [Limitations](limitations.md) — honest assessment of engine capabilities
+- [Design Philosophy](design-philosophy.md) — how the strategy informs product surfaces
