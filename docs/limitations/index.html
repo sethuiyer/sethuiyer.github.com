@@ -87,7 +87,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#limitations-boundaries" class="md-skip">
+        <a href="#where-navokoj-works-and-where-it-doesnt" class="md-skip">
           Skip to content
         </a>
       
@@ -1319,6 +1319,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../marketing/bottleneck/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Bottleneck
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1948,8 +1976,11 @@
 
 
 
-<h1 id="limitations-boundaries">Limitations &amp; Boundaries<a class="headerlink" href="#limitations-boundaries" title="Permanent link">&para;</a></h1>
-<p>NitroSAT is an anytime MaxSAT approximator. Knowing where it works and where it doesn't is essential for productive use.</p>
+<h1 id="where-navokoj-works-and-where-it-doesnt">Where Navokoj Works (and Where It Doesn't)<a class="headerlink" href="#where-navokoj-works-and-where-it-doesnt" title="Permanent link">&para;</a></h1>
+<p>NitroSAT (the engine inside Navokoj) is an anytime MaxSAT approximator. Knowing where it works and where it doesn't is essential for productive use.</p>
+<blockquote>
+<p><strong>How to read this page:</strong> If your problem is structured (schedules, grids, hardware verification, large graph partitioning), this engine is a strong fit. If your problem is random or unstructured SAT at the phase transition, use Z3 or Kissat instead. We benchmark against certified optimal solutions and report the gaps honestly.</p>
+</blockquote>
 <hr />
 <h2 id="where-it-works-well">Where It Works Well<a class="headerlink" href="#where-it-works-well" title="Permanent link">&para;</a></h2>
 <h3 id="structured-industrial-problems">Structured Industrial Problems<a class="headerlink" href="#structured-industrial-problems" title="Permanent link">&para;</a></h3>
@@ -2052,6 +2083,9 @@
 <p><strong>Mitigation</strong>: Use the <code>mini</code> engine for high-stakes optimization where every fraction of cost matters.</p>
 <h3 id="dense-random-3-sat-10">Dense Random 3-SAT (α &gt; 10)<a class="headerlink" href="#dense-random-3-sat-10" title="Permanent link">&para;</a></h3>
 <p>At very high density (clauses-per-variable &gt; 10), the constraint landscape becomes globally frustrated. NitroSAT achieves ~92-95% satisfaction on these instances. The gap from 100% is the energy cost of the clustering barrier — consistent with spin glass theory.</p>
+<blockquote>
+<p><strong>Production reality check (2026-04-04 → 2026-06-19):</strong> Across 308 real customer runs, the median satisfaction is <strong>exactly 1.0</strong> and <strong>54% of runs are perfect</strong>. This includes high-density instances with clause-to-variable ratios of 49×, 80×, 123×, and 165× — all of which solved perfectly in production. The "92-95% on dense random 3-SAT" claim above describes <em>unstructured random</em> density; structured dense workloads behave differently. See the <a href="../projects/nitrosat/#production-performance--supabase-ledger-2026-04-04--2026-06-19">NitroSAT production ledger</a> for the full data.</p>
+</blockquote>
 <h3 id="deep-sequential-arithmetic-chains">Deep Sequential Arithmetic Chains<a class="headerlink" href="#deep-sequential-arithmetic-chains" title="Permanent link">&para;</a></h3>
 <p>Long chains of dependent arithmetic constraints (e.g., ripple-carry adders with &gt;64 bits) can exceed the topological repair's recovery capacity. The continuous relaxation approaches the solution but may not fully converge.</p>
 <hr />

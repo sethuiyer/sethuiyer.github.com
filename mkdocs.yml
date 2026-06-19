@@ -68,6 +68,7 @@ nav:
     - Pricing: marketing/pricing.md
     - Results: marketing/results.md
     - Competition: marketing/competition.md
+    - The Bottleneck: marketing/bottleneck.md
   - Getting Started:
     - Quick Start: getting-started/quick-start.md
     - Lua Module: getting-started/lua-module.md

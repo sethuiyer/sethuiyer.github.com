@@ -608,6 +608,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#what-youll-get-from-this-essay-read-this-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you'll get from this essay (read this first)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#introduction-the-watchmakers-illusion" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -681,17 +692,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#21-the-definition" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.1 The Definition
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#22-a-worked-example-modus-ponens" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -731,17 +731,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#31-the-shapley-value-fair-credit" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.1 The Shapley Value (Fair Credit)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#32-the-owen-index-pair-credit" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -779,17 +768,6 @@
   
     <nav class="md-nav" aria-label="Part IV: The Infinite Abyss">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#41-scaling-to-countable-infinity" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4.1 Scaling to Countable Infinity
-      
-    </span>
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#42-the-path-becomes-primary" class="md-nav__link">
@@ -840,17 +818,6 @@
   
     <nav class="md-nav" aria-label="Part V: The Prime Survival">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#51-the-four-filters" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5.1 The Four Filters
-      
-    </span>
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#52-the-prime-numbers" class="md-nav__link">
@@ -1729,6 +1696,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../marketing/bottleneck/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Bottleneck
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2132,6 +2127,14 @@
 <p><em>It turns out that the way axioms interact is not a secondary feature. It is the primary structure. And when we push this structure to the edge of infinity, we discover that the only system that doesn't break is the one we already know best: the primes.</em></p>
 </blockquote>
 <hr />
+<h2 id="what-youll-get-from-this-essay-read-this-first">What you'll get from this essay (read this first)<a class="headerlink" href="#what-youll-get-from-this-essay-read-this-first" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p><strong>Who this is for:</strong> Researchers, PhD students, and mathematically-inclined engineers who want to understand the deepest layer of why our solver works. This is the rigorous version. For the business-facing overview, see <a href="../core-vision/">The Arithmetic Manifold</a>.</p>
+<p><strong>Time commitment:</strong> 45–60 minutes for the full essay, or skim the section signposts below to find what you need.</p>
+<p><strong>The argument in 200 words:</strong> We treat any set of axioms as a Boolean lattice and measure how "productive" each subset is. The interesting quantity is the <strong>curvature</strong> — how much an axiom's value depends on what other axioms are already present. This curvature is the unique obstruction to path-independence: if two ways of building the same theory give different answers, curvature is non-zero. We extend this geometry to infinite axiom sets and discover that Möbius inversion (the algebraic machinery that names pure interactions) breaks down. To rescue it, we need an algebra. We test common computational structures against four filters (Identity, Hierarchy, Non-Lattice, Asymptotic Stability) and find that <strong>only the prime numbers pass all four</strong>. The Euler Product gives us the convergent infinite Möbius inversion. The Riemann Hypothesis gives us asymptotic stability. The conclusion: the natural object of study is not just the geometry <code>(ν, δ)</code> — it is the geometry <em>plus</em> the prime algebra, written <code>(ν, δ, ℙ)</code>.</p>
+<p><strong>What this means for our products:</strong> Every solver we build is a finite, computable shadow of this infinite structure. The reason prime-weighted constraints outperform uniform weights, and the reason our solver stays stable as problem size grows, both trace back to this essay.</p>
+</blockquote>
+<hr />
 <h2 id="introduction-the-watchmakers-illusion">Introduction: The Watchmaker's Illusion<a class="headerlink" href="#introduction-the-watchmakers-illusion" title="Permanent link">&para;</a></h2>
 <p>Imagine a master watchmaker. She has a table full of gears. Each gear is beautifully crafted—perfectly round, precisely measured. If you ask her what makes the watch tick, she will point to the individual gears.</p>
 <p>But she is wrong.</p>
@@ -2143,6 +2146,9 @@
 <p>This is the story of how we discovered that prime numbers are not just the atoms of multiplication. They are the only structure that survives the infinite.</p>
 <hr />
 <h2 id="part-i-the-geometry-of-axiom-assembly">Part I: The Geometry of Axiom Assembly<a class="headerlink" href="#part-i-the-geometry-of-axiom-assembly" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p><strong>In plain terms:</strong> We build a geometry on top of any set of axioms. We measure how productive each subset is. The interesting quantity is how much an axiom's value depends on what else is already there.</p>
+</blockquote>
 <h3 id="11-states-and-paths">1.1 States and Paths<a class="headerlink" href="#11-states-and-paths" title="Permanent link">&para;</a></h3>
 <p>Let us start with a finite set of axioms. Call it <span class="arithmatex">\( C_{\text{set}} = \{C_1, C_2, \dots, C_n\} \)</span>.</p>
 <p>In classical logic, we care about the <strong>deductive closure</strong>—the set of all theorems you can prove from <span class="arithmatex">\( C_{\text{set}} \)</span>. But we are going to take a step back. We are going to look at all possible <strong>subsets</strong> of <span class="arithmatex">\( C_{\text{set}} \)</span>.</p>
@@ -2215,7 +2221,9 @@ Which expands to:
 <p>The difference between the two marginal gains is exactly the <strong>second finite difference</strong>.</p>
 <hr />
 <h2 id="part-ii-the-curvature-kappa">Part II: The Curvature <span class="arithmatex">\( \kappa \)</span><a class="headerlink" href="#part-ii-the-curvature-kappa" title="Permanent link">&para;</a></h2>
-<h3 id="21-the-definition">2.1 The Definition<a class="headerlink" href="#21-the-definition" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>In plain terms:</strong> Curvature measures whether adding one axiom helps or hurts another. Positive curvature = synergy. Negative = redundancy. Zero = independence. Curvature is the unique obstruction to "order doesn't matter."</p>
+</blockquote>
 <p>Define the <strong>axiom synergy curvature</strong> (or simply curvature) at base <span class="arithmatex">\( A \)</span> in directions <span class="arithmatex">\( x \)</span> and <span class="arithmatex">\( y \)</span>:
 [
 \kappa(A; x, y) = \nu(A \cup {x, y}) - \nu(A \cup {x}) - \nu(A \cup {y}) + \nu(A)
@@ -2290,7 +2298,9 @@ If <span class="arithmatex">\( \kappa \equiv 0 \)</span>, then <span class="arit
 <p>This is the <strong>path/state gap</strong>.</p>
 <hr />
 <h2 id="part-iii-the-game-theory-bridge">Part III: The Game Theory Bridge<a class="headerlink" href="#part-iii-the-game-theory-bridge" title="Permanent link">&para;</a></h2>
-<h3 id="31-the-shapley-value-fair-credit">3.1 The Shapley Value (Fair Credit)<a class="headerlink" href="#31-the-shapley-value-fair-credit" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>In plain terms:</strong> Curvature, the Shapley value, and the Owen index are not three different things — they are the same mathematical object viewed from three angles: geometry, fair credit assignment, and pair interactions.</p>
+</blockquote>
 <p>When a set of axioms produces a theorem, how do we fairly assign credit to each axiom?</p>
 <p>In cooperative game theory, the <strong>Shapley value</strong> does exactly this. It is the average marginal contribution of a player (axiom) over all possible orders of building the coalition (theory).</p>
 <p>For axiom <span class="arithmatex">\( i \)</span>:
@@ -2351,7 +2361,9 @@ m(T) = \sum_{S \subseteq T} (-1)^{|T| - |S|} \nu(S)
 <p>This leakage is the key to the infinite problem.</p>
 <hr />
 <h2 id="part-iv-the-infinite-abyss">Part IV: The Infinite Abyss<a class="headerlink" href="#part-iv-the-infinite-abyss" title="Permanent link">&para;</a></h2>
-<h3 id="41-scaling-to-countable-infinity">4.1 Scaling to Countable Infinity<a class="headerlink" href="#41-scaling-to-countable-infinity" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>In plain terms:</strong> Push the same geometry to infinitely many axioms and the algebra breaks. The pure interaction of an infinite set is undefined without an additional structure to make it converge.</p>
+</blockquote>
 <p>Now, let <span class="arithmatex">\( C_{\text{set}} = \{c_1, c_2, c_3, \dots\} \)</span> be a <strong>countably infinite</strong> set of axioms.</p>
 <p>The Boolean lattice <span class="arithmatex">\( \mathcal{P}(C_{\text{set}}) \)</span> is now uncountable (it has cardinality <span class="arithmatex">\( 2^{\aleph_0} \)</span>).</p>
 <p>The product of Möbius inversion breaks down:
@@ -2409,7 +2421,9 @@ is an uncountable sum. Without convergence guarantees, it is meaningless.</p>
 </ol>
 <hr />
 <h2 id="part-v-the-prime-survival">Part V: The Prime Survival<a class="headerlink" href="#part-v-the-prime-survival" title="Permanent link">&para;</a></h2>
-<h3 id="51-the-four-filters">5.1 The Four Filters<a class="headerlink" href="#51-the-four-filters" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>In plain terms:</strong> Of every common computational structure (floating point, hash tables, neural nets, lattices), only the prime numbers pass all four filters for surviving infinity. The Euler Product is the convergent Möbius inversion; the Riemann Hypothesis is the asymptotic stability condition.</p>
+</blockquote>
 <p>Let us test common computational structures against these four filters.</p>
 <p><strong>Floating Point</strong>: Fails Identity (0.1 + 0.2 != 0.3). Fails Asymptotic Stability (Patriot missile error accumulates).</p>
 <p><strong>Hash Tables</strong>: Fail Identity by design (collisions).</p>

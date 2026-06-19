@@ -1,63 +1,114 @@
-# Why Navokoj
+# Navokoj — Verifiable MaxSAT for Hard Planning Problems
 
-## The $64 Billion Problem Nobody Talks About
+**The shortest description:** Navokoj is a constraint-solving API that returns the best possible answer **plus a proof you can verify offline**.
 
-Every enterprise solves constraint satisfaction problems daily:
-- Scheduling shifts for 10,000 nurses
-- Routing 5,000 delivery vehicles
-- Placing VMs on GPU clusters
-- Allocating spectrum in auctions worth billions
+---
 
-**The problem?** Existing solvers are either:
+## What Navokoj Solves
 
-| Approach | Problem |
-|----------|---------|
-| **Classical (Gurobi, CPLEX)** | Fast but black-box. No insight into *why* problems are hard. |
-| **Heuristics** | Fast but unreliable. No guarantees. |
-| **CDCL SAT Solvers** | Great for boolean logic but choking on million-variable industrial problems. |
-| **Homegrown** | Expensive to maintain, impossible to scale. |
+Every enterprise solves constraint-satisfaction problems under time pressure. Navokoj handles the ones where:
 
-## The Pain Is Real
+- The problem is **structured** (regular schedules, grids, hardware circuits, large graph partitions — not random SAT)
+- **Speed matters** (real-time decisions, batch re-runs, what-if analysis)
+- **Verifiability matters** (regulated industries, audit trails, security-sensitive workflows)
+- **Disruptions happen** (a nurse calls in sick, a truck breaks down, a GPU fails) and you need to repair without restarting
 
-> *"We threw 100 GPU-hours at a routing problem and it still didn't converge. We had no idea if we were 10% done or 90% done."*
-> — Logistics engineering lead, Fortune 500 retailer
+If that sounds like your problem, [read the use cases](use-cases.md).
 
-> *"Our scheduling team spends 40% of their time manually fixing solver outputs. That's not optimization—that's babysitting."*
-> — Hospital operations director
+---
 
-## What Enterprises Actually Need
+## The Three Things That Make Us Different
 
-1. **Visibility** — Know how hard a problem is *before* you solve it
-2. **Speed** — Milliseconds matter in real-time applications
-3. **Scale** — Million-variable problems are now routine
-4. **Resilience** — Always return a best-effort result, never a dead-end
+### 1. Proofs, not promises
 
-## The Gap in the Market
+Every Pro+ response includes a structured **proof artifact** — assignment + UNSAT cores + derivation graph. Our verifier is [open source](../glossary.md#verification--trust). You don't trust us. You download our verifier, run it against our response, and confirm offline. That is the trust model.
 
-| What Exists | What's Missing |
-|-------------|----------------|
-| Powerful solvers (Gurobi, OR-Tools) | Real-time hardness observability |
-| Academic benchmarks | Production-grade "difficulty APIs" |
-| Expensive consulting | Self-serve optimization intelligence |
-| Black-box outputs | Explainable constraint diagnostics |
+For comparison: classical solvers (Gurobi, CPLEX, OR-Tools) give you an answer and ask you to take it on faith. CDCL SAT solvers (Z3, Kissat, CaDiCaL) give you proof artifacts but choke on million-variable industrial problems. We do both.
 
-## Why Now
+### 2. Lock-preserving repair
 
-1. **GPU costs are exploding** — Efficient constraint solving directly impacts cloud margins
-2. **Real-time decisioning** — Batch optimization is no longer acceptable for dynamic workloads
-3. **Competition intensifying** — Logistics, healthcare, fintech all fighting on margins
-4. **Developer-first tools** — The market wants APIs, not consultants
+When the world changes, we don't restart from scratch. We preserve the parts of your schedule that already work and adjust only what changed. **847×–12,495× faster than recomputation**, with 95%+ of prior decisions untouched.
 
-## The Result
+This is the wedge for [hospital scheduling](use-cases.md#2-healthcare-workforce-scheduling), [fleet routing](use-cases.md#1-logistics--transportation), and [GPU cluster allocation](use-cases.md#3-cloud-infrastructure--devops).
 
-Navokoj was built for a world where:
+### 3. Honest numbers, everywhere
 
-- **"Unsatisfiable" isn't an answer** — Always return the best possible solution
-- **Hardness is observable** — DEFEKT tells you difficulty before solving
-- **Scale is native** — 1M variables without architectural changes
-- **Speed is predictable** — Milliseconds for real-time, minutes for deep optimization
+We benchmark against certified optimal solutions and report the gaps. Our [`mini` engine](../limitations.md) hits 99.77% satisfaction; we tell you that's not 100%. We tell you where our solver plateaus (expander graphs, ~90% wall) and where it doesn't apply (random unstructured SAT). [Read the limitations page](../limitations.md).
 
+---
+
+## What Customers Run It On
+
+### Academic benchmarks (peer-reviewed test suites)
+
+| Use case | Example scale | Result |
+|---|---|---|
+| **University timetabling** | 147K variables, 80M clauses | 100% solved in 73 seconds |
+| **Hardware verification** | 512×512 multiplier, 788K variables | 100% in 5.9 seconds |
+| **Graph coloring (planted)** | 105K variables, 232K clauses | 100% in 13.78 seconds |
+| **Grid / lattice** | 1000×1000 coloring | 100% in 475 seconds |
+| **Spin glass (frustrated)** | 64 spins | 99.47% in 4.3 seconds |
+| **Fluid simulation** | 2D Navier-Stokes | 99.64% residual reduction, 100,000× faster than CFD |
+
+### Production performance (live API, 2026-04-04 → 2026-06-19)
+
+> **308 production runs. 3.98M clauses processed. Median satisfaction 1.0. Median solve time 65.5 ms.**
+
+| Production instance | Scale | Result |
+|---|---|---|
+| **Largest clause-density ever recorded** | 10K vars / 1.65M clauses (165× ratio) | 100% in 278 seconds |
+| **Sub-second structural monster** | 2.5K vars / 122K clauses (49× ratio) | **100% in 0.296 seconds** |
+| **Massive variable count** | 49K vars / 73.5K clauses | 100% in 0.291 seconds |
+| **Quality at scale** | 308 production runs | 79.87% at ≥99% satisfaction; 54.22% perfect |
+
+These are not benchmark suite numbers. They are what real customers ran through the Navokoj API over 77 days. Full ledger with all 13 monster runs and the three-modes analysis: [NitroSAT production data →](../projects/nitrosat.md#production-performance--supabase-ledger-2026-04-04--2026-06-19)
+
+[Detailed benchmark methodology →](../research-report.md)
+
+---
+
+## What It Is Not
+
+- **Not a general SAT solver.** If your problem is random Boolean SAT at the phase transition, use Z3 or Kissat. We win on weighted, structured MaxSAT.
+- **Not a ZK proving system.** Zero-knowledge is a 2027+ wedge that builds on top of our solver. The proof artifact today is a derivation graph, not a SNARK.
+- **Not a real-time control system.** Our fastest engine hits ~94% satisfaction in milliseconds. If you need <10ms deterministic response for embedded control, look elsewhere.
+- **Not a generic constraint solver for continuous problems.** If your objective is differentiable, use gradient descent. We specialize in discrete commitment allocation.
+
+---
+
+## Pricing
+
+| Tier | Price | What you get |
+|---|---|---|
+| **Free** | $0 | 1K vars, 5K clauses, 500 req/hr |
+| **Dev** | $99/mo | 10K vars, 50K clauses, 5K req/hr |
+| **Pro** | $499/mo | 100K vars, 500K clauses, 50K req/hr, **proof artifacts included** |
+| **Enterprise** | Custom ($5K+/mo) | Unlimited, on-prem optional, SOC2 in flight |
+
+[Full pricing details →](pricing.md)
+
+---
+
+## Get Started
+
+```bash
+# Free tier — no credit card
+curl -X POST https://api.navokoj.shunyabar.foo/v1/solve \
+  -H "Authorization: Bearer YOUR_KEY" \
+  -d '{"num_vars": 1000, "clauses": [[1,2,3],[-1,4]], "engine": "mini"}'
 ```
-Actionable failures. Best-effort success.
-When perfect is impossible, we return the closest possible solution with precise diagnostics.
-```
+
+- **Free tier**: Sign up at [navokoj.shunyabar.foo](https://navokoj.shunyabar.foo)
+- **Design partner pilots ($5K–$20K)**: Email shunyabarlabs@zohomail.com
+- **Press / partnership**: Same address
+
+---
+
+## For the technical reader
+
+- [The Arithmetic Manifold (theory)](../core-vision.md) — the unified mathematical framework
+- [Axiom Architecture essay](../axiom-architecture.md) — the rigorous deep-dive
+- [Research report](../research-report.md) — per-project technical assessment
+- [Limitations](../limitations.md) — where we work and where we don't
+- [Glossary](../glossary.md) — every term defined
+- [Product strategy](../product-strategy.md) — H2 2026 roadmap

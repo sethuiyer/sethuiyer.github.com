@@ -1,6 +1,8 @@
-# Limitations & Boundaries
+# Where Navokoj Works (and Where It Doesn't)
 
-NitroSAT is an anytime MaxSAT approximator. Knowing where it works and where it doesn't is essential for productive use.
+NitroSAT (the engine inside Navokoj) is an anytime MaxSAT approximator. Knowing where it works and where it doesn't is essential for productive use.
+
+> **How to read this page:** If your problem is structured (schedules, grids, hardware verification, large graph partitioning), this engine is a strong fit. If your problem is random or unstructured SAT at the phase transition, use Z3 or Kissat instead. We benchmark against certified optimal solutions and report the gaps honestly.
 
 ---
 
@@ -56,6 +58,8 @@ On instances with extreme weight ratios (one clause weight = 10⁶, others = 1),
 ### Dense Random 3-SAT (α > 10)
 
 At very high density (clauses-per-variable > 10), the constraint landscape becomes globally frustrated. NitroSAT achieves ~92-95% satisfaction on these instances. The gap from 100% is the energy cost of the clustering barrier — consistent with spin glass theory.
+
+> **Production reality check (2026-04-04 → 2026-06-19):** Across 308 real customer runs, the median satisfaction is **exactly 1.0** and **54% of runs are perfect**. This includes high-density instances with clause-to-variable ratios of 49×, 80×, 123×, and 165× — all of which solved perfectly in production. The "92-95% on dense random 3-SAT" claim above describes *unstructured random* density; structured dense workloads behave differently. See the [NitroSAT production ledger](projects/nitrosat.md#production-performance--supabase-ledger-2026-04-04--2026-06-19) for the full data.
 
 ### Deep Sequential Arithmetic Chains
 

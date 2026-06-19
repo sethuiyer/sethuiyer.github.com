@@ -1,6 +1,18 @@
 # ShunyaBar Labs Research: Unified Mathematical Systems Report
 *Comprehensive Workspace Assessment — June 2026*
 
+> **Audience marker:** This is a technical document for engineers and researchers. For the business-facing version, see the [product strategy](product-strategy.md) and [homepage](index.md). For deep mathematical foundations, see the [Axiom Architecture essay](axiom-architecture.md).
+
+---
+
+## Plain-English Summary
+
+> **In one paragraph:** We have built eight production solvers and frameworks — NitroSAT, BAHA, Navokoj, Multiplicative PINN, Geometry of Conditional Logic, Casimir SAT, Factor Agent, and the Spectral-Multiplicative Framework — that share one underlying mathematical theory. All of them map discrete logical constraints onto continuous energy landscapes, weight each constraint with a unique prime, and use multiplicative dynamics to preserve gradient flow. The result is a toolchain that solves hard combinatorial problems 100×–100,000× faster than classical methods on structured workloads.
+>
+> **What this document is:** A technical deep-dive into each project, the shared mathematical foundation, the systems engineering choices, and an honest assessment of commercial viability.
+>
+> **What this document is not:** Marketing copy. Some results are research-stage; some projects are not yet productized.
+
 ---
 
 ## Executive Summary

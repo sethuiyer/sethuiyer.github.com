@@ -7,6 +7,27 @@
 
 ---
 
+## Plain-English Summary (read this first)
+
+> **One sentence:** We sell a verifiable MaxSAT API. Zero-knowledge (ZK) cryptography is the trust layer behind our proof certificates — not the front door of our marketing.
+>
+> **The hard truth this document confronts:** We have a working product (Navokoj API, live, stable, four engines) and 13 real users who have run 1,576 solves. We have billed $141.66 in 6 months. The bottleneck is not the engine — it is the conversion architecture between the product and the payment.
+>
+> **What we are betting on:**
+> 1. **Wedge A** — Verifiable MaxSAT API as the primary product, targeting scheduling and decision optimization. Target: $300K ARR by end of 2027.
+> 2. **Wedge B** — ZK pre-processor as a sidecar business, integrated with snarkjs/gnark. Target: $150K ARR.
+> 3. **Kill** — Hybrid AI inference routing. Latency requirements we can't meet today.
+>
+> **What we are explicitly NOT doing:**
+> - Leading with "ZK" on the homepage until we have a paying ZK customer
+> - Building a ZK DSL (Circom, gnark, Noir own this)
+> - Competing in generic SAT (Z3, Kissat, CaDiCaL dominate)
+> - Hiring a ZK engineer in Q3 (premature)
+>
+> **The single most important thing:** Get 3 signed design partner LOIs by end of Q3. Revenue feedback is the only signal that validates our wedges.
+
+---
+
 ## 1. State of the Union (What We Actually Know)
 
 ### What Works Today
@@ -28,15 +49,15 @@
 
 ## 2. The Honest Product Read
 
-We're not a ZK company. We're a local-search MaxSAT engine company with a ZK-shaped marketing layer.
+We're a local-search MaxSAT engine company that **leads with MaxSAT, not ZK**. ZK is not a marketing layer — it is the long-term trust and settlement layer that makes "verifiable" defensible.
 
-The engine is real and interesting — hybrid systematic+local-search is genuinely a research contribution. But the ZK framing is aspirational, not operational. Three reasons:
+The engine is real and interesting — hybrid systematic+local-search is genuinely a research contribution. But ZK as a headline product is aspirational, not operational. Three reasons:
 
 1. **Tier math doesn't work.** Real ZK needs 10⁶–10⁸ Boolean ops per proof. Our free tier is 5×10³ clauses. That's 5 orders of magnitude off.
 2. **Latency math doesn't work.** Real ZK proofs need <1s. Our pro engine hits 7s on small chains. mini takes 40s+.
 3. **Soundness UX doesn't work.** The 99.4% accuracy on single-shot means ~0.6% of proofs are wrong. For ZK that's catastrophic. mini gets to 99.77% but at 40s — still wrong 0.23% of the time, and 40s is unusable for proving.
 
-The ZK story isn't dead — it's a **2027+ bet**, contingent on getting to 100% with a verifiable certificate (which nitro+local-search can't give).
+The ZK story isn't dead — and ZK isn't optional. **ZK should stop being the front door. It should become the vault door** (i.e., ZK should be hidden behind the proof artifact and product strategy copy, not the headline of the homepage). It is in the stack from day one as the trust layer; the 2027+ bet is on whether ZK earns a separate product line, not on whether ZK is in the company. The 100% verifiable certificate path requires it.
 
 ---
 
@@ -244,13 +265,15 @@ Putting proof generation in the closed layer is structurally weak. UNSAT core ex
 
 ### Q2 2027
 
-**Decision gate** — requires ALL three:
+**ZK product-line decision gate** — requires ALL three:
 - [ ] 100% verifiable solver (mini audit: 40-60% there today)
 - [ ] <1s p99 latency on depth-4-equivalent
 - [ ] At least one paying ZK customer in production
 
+> **Note:** This gate validates whether ZK earns a separate product line. It does **not** validate whether ZK is in the company. ZK is in the stack from day one as the trust and settlement layer for the proof artifact. Failing this gate means we defer the spin-out, not delete the moat.
+
 **If yes:** Spin out "Shunyabar ZK" as separate product line
-**If no:** Stay MaxSAT; revisit ZK in 2028
+**If no:** Stay MaxSAT-only; revisit spin-out in 2028. ZK remains in the verification layer regardless.
 
 - [ ] **ARR target:** $500K cumulative
 
@@ -304,8 +327,19 @@ Things we explicitly **are NOT** doing in the next 12 months:
 | General SAT market | Z3, Kissat, CaDiCaL dominate. We're MaxSAT, not SAT. |
 | Mobile / edge deployment | Engine footprint too big |
 | Custom hardware (GPUs) | Research play, not 2027 product |
-| ZK homepage framing | Until we have a paying ZK customer |
+| Lead-with-ZK homepage headline | Until we have a paying ZK customer |
 | Wedge C (Agent Guardrails) | CENTS test failed. Kill it. |
+
+### Do NOT kill (Preserve)
+
+Things we are explicitly **preserving** even when short-term data tempts us to cut:
+
+| ✅ Preserve | Why |
+|---|---|
+| ZK in the company thesis and verification roadmap | ZK is the long-term moat. Cutting it turns a proof-oriented solver into a generic solver API competing against Z3, MaxHS, RC2, CaDiCaL. |
+| ZK as the trust layer in the proof artifact | What makes "verifiable MaxSAT" defensible. Without it, the proof artifact is a claim, not a property. |
+| Wedge B (ZK Pre-Processor) | Validated as the 2027+ enterprise audit sidecar and ZK entry point. |
+| ZK product-line decision gate in Q2 2027 | Validates whether ZK earns a separate product line, not whether ZK is in the company. |
 
 ---
 
@@ -356,11 +390,33 @@ Not the other way around.
 
 ## 13. Honest Verdicts
 
-1. **The ZK framing is hurting us.** Cut it from the homepage in Q3.
+1. **ZK should stop being the front door. It should become the vault door.** Cut lead-with-ZK framing from the homepage in Q3, but keep ZK in the stack as the long-term trust and auditability layer. Killing ZK from the company thesis would turn a differentiated proof-oriented solver into a generic solver API competing against Z3 and MaxHS.
 2. **The engine is real but undersold.** The hybrid local-search + systematic architecture is novel. Open-source verifier + core in Q4 to drive adoption.
 3. **We're not a ZK company yet.** 2028+ if the verifiable proofs land. MaxSAT is now.
 4. **First hire is Solutions Engineer.** Not DevRel, not ZK engineer. Revenue requires someone who can sell.
 5. **The depth-4 Merkle result is research, not product.** Valuable IP. But nobody's paying for it yet.
+
+---
+
+## Glossary of Internal Terms Used in This Document
+
+| Term | Meaning |
+|---|---|
+| **Wedge** | A go-to-market positioning. We pick one primary, one secondary, and explicitly kill the rest. |
+| **Wedge A** | "The Verifiable MaxSAT API" — our primary product positioning. |
+| **Wedge B** | "ZK Pre-Processor" — a sidecar business integrated with snarkjs/gnark. |
+| **Wedge C** | "Hybrid AI Inference Routing" — explicitly killed. |
+| **Vault Door Principle** | Keep ZK in the technical stack as the trust and auditability layer, but don't lead with it on the homepage. |
+| **Front door** | The first thing a customer reads on our marketing surface. Should be the primary wedge, not a future product. |
+| **CENTS Test** | A 5-axis evaluation framework: **C**ontrol (how much say we have over pricing/positioning), **E**ntry (barrier to customer adoption), **N**eed (intensity of customer pain), **T**ime Leverage (does the value compound), **S**cale (does the market grow). |
+| **LOI** | Letter of Intent. A signed but non-binding agreement to enter a paid engagement. |
+| **Design partner** | A pilot customer (typically <5) who gives product feedback in exchange for early access and preferred pricing. |
+| **Proof artifact** | The structured JSON object returned by Navokoj containing the assignment, UNSAT cores, and derivation graph. The customer can verify this offline with our open-source verifier. |
+| **Depth-4 Merkle** | A specific zero-knowledge circuit pattern. Our research result showed it doesn't fit current tier limits; classified as research IP, not product. |
+| **UNSAT core** | A minimal subset of clauses that is unsatisfiable on its own. Used to prove a problem has no solution. |
+| **MSE 2022** | MaxSAT Evaluation 2022 — the standard benchmark suite with certified optimal solutions. |
+
+For a full glossary of all company terms, see [glossary.md](glossary.md).
 
 ---
 

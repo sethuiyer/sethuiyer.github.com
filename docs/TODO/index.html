@@ -1317,6 +1317,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../marketing/bottleneck/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Bottleneck
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1731,6 +1759,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#executive-snapshot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive Snapshot
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#critical-fixes-schema-bugs" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1925,22 +1964,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#phase-4-q2-2027-decision-gate" class="md-nav__link">
+  <a href="#phase-4-q2-2027-zk-product-line-decision-gate" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Phase 4: Q2 2027 — Decision Gate
+        Phase 4: Q2 2027 — ZK Product-Line Decision Gate
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Phase 4: Q2 2027 — Decision Gate">
+    <nav class="md-nav" aria-label="Phase 4: Q2 2027 — ZK Product-Line Decision Gate">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#zk-re-entry-requires-all-of" class="md-nav__link">
+  <a href="#zk-spin-out-decision-requires-all-of" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ZK Re-Entry (Requires ALL of):
+        ZK Spin-Out Decision (Requires ALL of):
       
     </span>
   </a>
@@ -1971,6 +2010,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Kill List (12 months)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#do-not-kill-preserve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Do NOT kill (Preserve)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2032,7 +2088,51 @@
 <h1 id="roadmap-shunyabar-labs-h2-2026">Roadmap: ShunyaBar Labs, H2 2026<a class="headerlink" href="#roadmap-shunyabar-labs-h2-2026" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p>Based on CPO Product Strategy v2 (June 2026). Primary: Wedge A (Verifiable MaxSAT API). Secondary: Wedge B (ZK Pre-Processor). Kill: Wedge C.</p>
+<p><strong>Vault Door Principle:</strong> ZK should stop being the front door. It should become the vault door. ZK stays in the long-term moat. We demote lead-with-ZK framing on the homepage, not ZK itself. Cutting ZK from the company thesis would turn a differentiated proof-oriented solver into a generic solver API competing against Z3 and MaxHS.</p>
 </blockquote>
+<hr />
+<h2 id="executive-snapshot">Executive Snapshot<a class="headerlink" href="#executive-snapshot" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p><strong>For a reader with 60 seconds:</strong> This is what we ship, in what order, against what targets.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Quarter</th>
+<th>What we ship</th>
+<th>Revenue target</th>
+<th>First-time hires</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Q3 2026</strong></td>
+<td>MaxSAT-first homepage; fixed API schema (integer weights, derivation graphs, infeasibility case); Dev $99 / Pro $499 pricing locked</td>
+<td>$20K</td>
+<td>Solutions Engineer (week 1)</td>
+</tr>
+<tr>
+<td><strong>Q4 2026</strong></td>
+<td>ZK pre-processor sidecar; proof-of-optimality artifacts in API; open-source verifier (Apache 2.0)</td>
+<td>$80K cumulative</td>
+<td>DevRel, Backend Engineer</td>
+</tr>
+<tr>
+<td><strong>Q1 2027</strong></td>
+<td>Enterprise tier (on-prem, SOC2 in flight); open-source engine core; first paid ZK audit pilot (~$25K)</td>
+<td>$250K cumulative</td>
+<td>ZK Engineer (only if wedge validated)</td>
+</tr>
+<tr>
+<td><strong>Q2 2027</strong></td>
+<td><strong>ZK product-line decision gate</strong> — 100% verifiable solver + &lt;1s p99 + one paying ZK customer required</td>
+<td>$500K cumulative</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The single thing that matters this quarter:</strong> 3 signed design partner LOIs by Sept 30. Without these, the rest is feature roadmap.</p>
+<p><strong>What we are NOT doing:</strong> ZK DSL, generic SAT, mobile/edge, custom hardware, Wedge C (agent guardrails).</p>
 <hr />
 <h2 id="critical-fixes-schema-bugs">Critical Fixes (Schema Bugs)<a class="headerlink" href="#critical-fixes-schema-bugs" title="Permanent link">&para;</a></h2>
 <ul>
@@ -2054,7 +2154,7 @@
 </ul>
 <h3 id="marketing-positioning">Marketing &amp; Positioning<a class="headerlink" href="#marketing-positioning" title="Permanent link">&para;</a></h3>
 <ul>
-<li>[ ] <strong>Drop "ZK" from homepage</strong> — MaxSAT-first</li>
+<li>[ ] <strong>Demote ZK on homepage (vault door, not front door)</strong> — MaxSAT-first positioning. ZK moves to proof layer and product-strategy copy, not the headline. Don't amputate the moat.</li>
 <li>[ ] Rewrite homepage copy: "Verifiable MaxSAT API" not "constraint intelligence"</li>
 <li>[ ] Create Wedge A landing page (Verifiable MaxSAT)</li>
 <li>[ ] Wedge B teaser page ("ZK Pre-Processor — coming Q4")</li>
@@ -2124,15 +2224,18 @@
 </ul>
 <p><strong>ARR target: $250K cumulative by Mar 2027</strong></p>
 <hr />
-<h2 id="phase-4-q2-2027-decision-gate">Phase 4: Q2 2027 — Decision Gate<a class="headerlink" href="#phase-4-q2-2027-decision-gate" title="Permanent link">&para;</a></h2>
-<h3 id="zk-re-entry-requires-all-of">ZK Re-Entry (Requires ALL of):<a class="headerlink" href="#zk-re-entry-requires-all-of" title="Permanent link">&para;</a></h3>
+<h2 id="phase-4-q2-2027-zk-product-line-decision-gate">Phase 4: Q2 2027 — ZK Product-Line Decision Gate<a class="headerlink" href="#phase-4-q2-2027-zk-product-line-decision-gate" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p><strong>ZK is in the stack from day one as the long-term trust and settlement layer.</strong> This gate validates whether ZK earns a separate product line, not whether ZK is in the company.</p>
+</blockquote>
+<h3 id="zk-spin-out-decision-requires-all-of">ZK Spin-Out Decision (Requires ALL of):<a class="headerlink" href="#zk-spin-out-decision-requires-all-of" title="Permanent link">&para;</a></h3>
 <ul>
 <li>[ ] 100% verifiable solver (mini audit: 40-60% there today)</li>
 <li>[ ] &lt;1s p99 latency on depth-4-equivalent</li>
 <li>[ ] At least one paying ZK customer in production</li>
 </ul>
 <p><strong>If yes:</strong> Spin out "Shunyabar ZK" as separate product line
-<strong>If no:</strong> Stay MaxSAT; revisit ZK in 2028</p>
+<strong>If no:</strong> Stay MaxSAT-only; revisit spin-out in 2028. ZK remains in the verification layer regardless.</p>
 <h3 id="hiring-full-team">Hiring (Full Team)<a class="headerlink" href="#hiring-full-team" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Solutions Engineer (Q3 — first hire)</li>
@@ -2172,7 +2275,7 @@
 <td>Research play, not 2027 product</td>
 </tr>
 <tr>
-<td>ZK homepage framing</td>
+<td>Lead-with-ZK framing on homepage</td>
 <td>Until paying ZK customer exists</td>
 </tr>
 <tr>
@@ -2182,6 +2285,33 @@
 <tr>
 <td>Hire ZK engineer in Q3</td>
 <td>Premature — ZK wedge not validated</td>
+</tr>
+</tbody>
+</table>
+<h3 id="do-not-kill-preserve">Do NOT kill (Preserve)<a class="headerlink" href="#do-not-kill-preserve" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>✅ Preserve</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ZK in the company thesis and verification roadmap</td>
+<td>Long-term moat. Cutting it turns a proof-oriented solver into a generic solver API.</td>
+</tr>
+<tr>
+<td>ZK as the trust layer in the proof artifact</td>
+<td>What makes "verifiable MaxSAT" defensible.</td>
+</tr>
+<tr>
+<td>Wedge B (ZK Pre-Processor)</td>
+<td>Validated as the 2027+ enterprise audit sidecar.</td>
+</tr>
+<tr>
+<td>ZK product-line decision gate in Q2 2027</td>
+<td>Validates whether ZK earns a product line, not whether ZK is in the company.</td>
 </tr>
 </tbody>
 </table>

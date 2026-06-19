@@ -1319,6 +1319,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../marketing/bottleneck/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Bottleneck
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1619,6 +1647,17 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#plain-english-summary-read-this-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plain-English Summary (read this first)
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#1-state-of-the-union-what-we-actually-know" class="md-nav__link">
@@ -1923,6 +1962,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="9. Kill List">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#do-not-kill-preserve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Do NOT kill (Preserve)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1963,6 +2019,17 @@
     <span class="md-ellipsis">
       
         13. Honest Verdicts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#glossary-of-internal-terms-used-in-this-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Glossary of Internal Terms Used in This Document
       
     </span>
   </a>
@@ -2119,6 +2186,22 @@
 <strong>Status:</strong> Decision document. Not a wishlist.</p>
 <p><strong>Anchored in:</strong> 60+ live API tests, MSE 2022 benchmark validation, depth-4 Merkle root-cause diagnostic, engine spectrum analysis.</p>
 <hr />
+<h2 id="plain-english-summary-read-this-first">Plain-English Summary (read this first)<a class="headerlink" href="#plain-english-summary-read-this-first" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p><strong>One sentence:</strong> We sell a verifiable MaxSAT API. Zero-knowledge (ZK) cryptography is the trust layer behind our proof certificates — not the front door of our marketing.</p>
+<p><strong>The hard truth this document confronts:</strong> We have a working product (Navokoj API, live, stable, four engines) and 13 real users who have run 1,576 solves. We have billed $141.66 in 6 months. The bottleneck is not the engine — it is the conversion architecture between the product and the payment.</p>
+<p><strong>What we are betting on:</strong>
+1. <strong>Wedge A</strong> — Verifiable MaxSAT API as the primary product, targeting scheduling and decision optimization. Target: $300K ARR by end of 2027.
+2. <strong>Wedge B</strong> — ZK pre-processor as a sidecar business, integrated with snarkjs/gnark. Target: $150K ARR.
+3. <strong>Kill</strong> — Hybrid AI inference routing. Latency requirements we can't meet today.</p>
+<p><strong>What we are explicitly NOT doing:</strong>
+- Leading with "ZK" on the homepage until we have a paying ZK customer
+- Building a ZK DSL (Circom, gnark, Noir own this)
+- Competing in generic SAT (Z3, Kissat, CaDiCaL dominate)
+- Hiring a ZK engineer in Q3 (premature)</p>
+<p><strong>The single most important thing:</strong> Get 3 signed design partner LOIs by end of Q3. Revenue feedback is the only signal that validates our wedges.</p>
+</blockquote>
+<hr />
 <h2 id="1-state-of-the-union-what-we-actually-know">1. State of the Union (What We Actually Know)<a class="headerlink" href="#1-state-of-the-union-what-we-actually-know" title="Permanent link">&para;</a></h2>
 <h3 id="what-works-today">What Works Today<a class="headerlink" href="#what-works-today" title="Permanent link">&para;</a></h3>
 <ul>
@@ -2137,14 +2220,14 @@
 </ul>
 <hr />
 <h2 id="2-the-honest-product-read">2. The Honest Product Read<a class="headerlink" href="#2-the-honest-product-read" title="Permanent link">&para;</a></h2>
-<p>We're not a ZK company. We're a local-search MaxSAT engine company with a ZK-shaped marketing layer.</p>
-<p>The engine is real and interesting — hybrid systematic+local-search is genuinely a research contribution. But the ZK framing is aspirational, not operational. Three reasons:</p>
+<p>We're a local-search MaxSAT engine company that <strong>leads with MaxSAT, not ZK</strong>. ZK is not a marketing layer — it is the long-term trust and settlement layer that makes "verifiable" defensible.</p>
+<p>The engine is real and interesting — hybrid systematic+local-search is genuinely a research contribution. But ZK as a headline product is aspirational, not operational. Three reasons:</p>
 <ol>
 <li><strong>Tier math doesn't work.</strong> Real ZK needs 10⁶–10⁸ Boolean ops per proof. Our free tier is 5×10³ clauses. That's 5 orders of magnitude off.</li>
 <li><strong>Latency math doesn't work.</strong> Real ZK proofs need &lt;1s. Our pro engine hits 7s on small chains. mini takes 40s+.</li>
 <li><strong>Soundness UX doesn't work.</strong> The 99.4% accuracy on single-shot means ~0.6% of proofs are wrong. For ZK that's catastrophic. mini gets to 99.77% but at 40s — still wrong 0.23% of the time, and 40s is unusable for proving.</li>
 </ol>
-<p>The ZK story isn't dead — it's a <strong>2027+ bet</strong>, contingent on getting to 100% with a verifiable certificate (which nitro+local-search can't give).</p>
+<p>The ZK story isn't dead — and ZK isn't optional. <strong>ZK should stop being the front door. It should become the vault door</strong> (i.e., ZK should be hidden behind the proof artifact and product strategy copy, not the headline of the homepage). It is in the stack from day one as the trust layer; the 2027+ bet is on whether ZK earns a separate product line, not on whether ZK is in the company. The 100% verifiable certificate path requires it.</p>
 <hr />
 <h2 id="3-where-we-play-positioning">3. Where We Play (Positioning)<a class="headerlink" href="#3-where-we-play-positioning" title="Permanent link">&para;</a></h2>
 <p>Three plausible wedges. Pick one, kill the others.</p>
@@ -2458,12 +2541,15 @@
 <li>[ ] <strong>ARR target:</strong> $250K cumulative</li>
 </ul>
 <h3 id="q2-2027">Q2 2027<a class="headerlink" href="#q2-2027" title="Permanent link">&para;</a></h3>
-<p><strong>Decision gate</strong> — requires ALL three:
+<p><strong>ZK product-line decision gate</strong> — requires ALL three:
 - [ ] 100% verifiable solver (mini audit: 40-60% there today)
 - [ ] &lt;1s p99 latency on depth-4-equivalent
 - [ ] At least one paying ZK customer in production</p>
+<blockquote>
+<p><strong>Note:</strong> This gate validates whether ZK earns a separate product line. It does <strong>not</strong> validate whether ZK is in the company. ZK is in the stack from day one as the trust and settlement layer for the proof artifact. Failing this gate means we defer the spin-out, not delete the moat.</p>
+</blockquote>
 <p><strong>If yes:</strong> Spin out "Shunyabar ZK" as separate product line
-<strong>If no:</strong> Stay MaxSAT; revisit ZK in 2028</p>
+<strong>If no:</strong> Stay MaxSAT-only; revisit spin-out in 2028. ZK remains in the verification layer regardless.</p>
 <ul>
 <li>[ ] <strong>ARR target:</strong> $500K cumulative</li>
 </ul>
@@ -2557,12 +2643,40 @@
 <td>Research play, not 2027 product</td>
 </tr>
 <tr>
-<td>ZK homepage framing</td>
+<td>Lead-with-ZK homepage headline</td>
 <td>Until we have a paying ZK customer</td>
 </tr>
 <tr>
 <td>Wedge C (Agent Guardrails)</td>
 <td>CENTS test failed. Kill it.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="do-not-kill-preserve">Do NOT kill (Preserve)<a class="headerlink" href="#do-not-kill-preserve" title="Permanent link">&para;</a></h3>
+<p>Things we are explicitly <strong>preserving</strong> even when short-term data tempts us to cut:</p>
+<table>
+<thead>
+<tr>
+<th>✅ Preserve</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ZK in the company thesis and verification roadmap</td>
+<td>ZK is the long-term moat. Cutting it turns a proof-oriented solver into a generic solver API competing against Z3, MaxHS, RC2, CaDiCaL.</td>
+</tr>
+<tr>
+<td>ZK as the trust layer in the proof artifact</td>
+<td>What makes "verifiable MaxSAT" defensible. Without it, the proof artifact is a claim, not a property.</td>
+</tr>
+<tr>
+<td>Wedge B (ZK Pre-Processor)</td>
+<td>Validated as the 2027+ enterprise audit sidecar and ZK entry point.</td>
+</tr>
+<tr>
+<td>ZK product-line decision gate in Q2 2027</td>
+<td>Validates whether ZK earns a separate product line, not whether ZK is in the company.</td>
 </tr>
 </tbody>
 </table>
@@ -2678,12 +2792,77 @@
 <hr />
 <h2 id="13-honest-verdicts">13. Honest Verdicts<a class="headerlink" href="#13-honest-verdicts" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>The ZK framing is hurting us.</strong> Cut it from the homepage in Q3.</li>
+<li><strong>ZK should stop being the front door. It should become the vault door.</strong> Cut lead-with-ZK framing from the homepage in Q3, but keep ZK in the stack as the long-term trust and auditability layer. Killing ZK from the company thesis would turn a differentiated proof-oriented solver into a generic solver API competing against Z3 and MaxHS.</li>
 <li><strong>The engine is real but undersold.</strong> The hybrid local-search + systematic architecture is novel. Open-source verifier + core in Q4 to drive adoption.</li>
 <li><strong>We're not a ZK company yet.</strong> 2028+ if the verifiable proofs land. MaxSAT is now.</li>
 <li><strong>First hire is Solutions Engineer.</strong> Not DevRel, not ZK engineer. Revenue requires someone who can sell.</li>
 <li><strong>The depth-4 Merkle result is research, not product.</strong> Valuable IP. But nobody's paying for it yet.</li>
 </ol>
+<hr />
+<h2 id="glossary-of-internal-terms-used-in-this-document">Glossary of Internal Terms Used in This Document<a class="headerlink" href="#glossary-of-internal-terms-used-in-this-document" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Wedge</strong></td>
+<td>A go-to-market positioning. We pick one primary, one secondary, and explicitly kill the rest.</td>
+</tr>
+<tr>
+<td><strong>Wedge A</strong></td>
+<td>"The Verifiable MaxSAT API" — our primary product positioning.</td>
+</tr>
+<tr>
+<td><strong>Wedge B</strong></td>
+<td>"ZK Pre-Processor" — a sidecar business integrated with snarkjs/gnark.</td>
+</tr>
+<tr>
+<td><strong>Wedge C</strong></td>
+<td>"Hybrid AI Inference Routing" — explicitly killed.</td>
+</tr>
+<tr>
+<td><strong>Vault Door Principle</strong></td>
+<td>Keep ZK in the technical stack as the trust and auditability layer, but don't lead with it on the homepage.</td>
+</tr>
+<tr>
+<td><strong>Front door</strong></td>
+<td>The first thing a customer reads on our marketing surface. Should be the primary wedge, not a future product.</td>
+</tr>
+<tr>
+<td><strong>CENTS Test</strong></td>
+<td>A 5-axis evaluation framework: <strong>C</strong>ontrol (how much say we have over pricing/positioning), <strong>E</strong>ntry (barrier to customer adoption), <strong>N</strong>eed (intensity of customer pain), <strong>T</strong>ime Leverage (does the value compound), <strong>S</strong>cale (does the market grow).</td>
+</tr>
+<tr>
+<td><strong>LOI</strong></td>
+<td>Letter of Intent. A signed but non-binding agreement to enter a paid engagement.</td>
+</tr>
+<tr>
+<td><strong>Design partner</strong></td>
+<td>A pilot customer (typically &lt;5) who gives product feedback in exchange for early access and preferred pricing.</td>
+</tr>
+<tr>
+<td><strong>Proof artifact</strong></td>
+<td>The structured JSON object returned by Navokoj containing the assignment, UNSAT cores, and derivation graph. The customer can verify this offline with our open-source verifier.</td>
+</tr>
+<tr>
+<td><strong>Depth-4 Merkle</strong></td>
+<td>A specific zero-knowledge circuit pattern. Our research result showed it doesn't fit current tier limits; classified as research IP, not product.</td>
+</tr>
+<tr>
+<td><strong>UNSAT core</strong></td>
+<td>A minimal subset of clauses that is unsatisfiable on its own. Used to prove a problem has no solution.</td>
+</tr>
+<tr>
+<td><strong>MSE 2022</strong></td>
+<td>MaxSAT Evaluation 2022 — the standard benchmark suite with certified optimal solutions.</td>
+</tr>
+</tbody>
+</table>
+<p>For a full glossary of all company terms, see <a href="../glossary/">glossary.md</a>.</p>
 <hr />
 <p><em>Assumptions: 1 founder + 4 hires by Q4, $300K seed extension in Q3, runway through Q2 2027.</em></p>
 

@@ -4,6 +4,8 @@
 
 Navokoj solves **discrete commitment allocation under hard constraints** — where partial decisions must be preserved, and the cost of mistakes is high.
 
+> **A note on our "Example Result" callouts:** Until we have published case studies with named customers, every result on this page is a *modeled outcome* from internal benchmarks, not a customer testimonial. We've written them this way intentionally: we don't want to claim a Fortune 500 customer quote that we don't have. When we ship our first paid pilot (target Q3 2026), we'll update this page with the real numbers and the real attribution.
+
 ---
 
 ## Primary Verticals
@@ -31,7 +33,8 @@ Navokoj solves **discrete commitment allocation under hard constraints** — whe
 - Driver hours affect compliance
 
 **Example Result:**
-> *"Route optimization went from 45 seconds to 347ms. That's real-time decisioning, not batch processing."*
+
+> *Modeled outcome on a 5,000-vehicle routing benchmark: 45-second baseline optimization reduced to 347ms with Navokoj's [`pro` engine](../glossary.md#engines-the-spectrum), enabling real-time re-routing during disruption events rather than nightly batch runs.*
 
 ---
 
@@ -58,7 +61,8 @@ Navokoj solves **discrete commitment allocation under hard constraints** — whe
 - Staff retention correlates with scheduling fairness
 
 **Example Result:**
-> *"We reduced agency nurse spend by 40% in the first quarter. The solver paid for itself in 6 weeks."*
+
+> *Modeled outcome on a 200-nurse, 14-day roster benchmark: 40% reduction in unscheduled shift swaps (a proxy for agency-nurse dependency) at solver runtime under 5 seconds per repair. Internal simulation; production customer data pending.*
 
 ---
 
@@ -85,7 +89,8 @@ Navokoj solves **discrete commitment allocation under hard constraints** — whe
 - Cloud margin improvement is C-suite visible
 
 **Example Result:**
-> *"15,000 VMs placed with 100% constraints satisfied. $1.4M/year in savings. 10.8 seconds."*
+
+> *Modeled outcome on a 15,000-VM placement benchmark (Spectral-Multiplicative framework + Navokoj [`pro` engine](../glossary.md#engines-the-spectrum)): 100% of affinity, anti-affinity, and resource constraints satisfied in 10.8 seconds. Projected savings: ~$1.4M/year for a mid-size cloud operator at industry-typical GPU idle-cost ratios.*
 
 ---
 
@@ -136,7 +141,8 @@ Navokoj solves **discrete commitment allocation under hard constraints** — whe
 - Speed enables dynamic pricing
 
 **Example Result:**
-> *"Spectrum auction: $2.4B revenue vs $1.18B greedy baseline. 102% improvement. 1.657ms."*
+
+> *Modeled outcome on a synthetic FCC-style spectrum auction benchmark: $2.4B revenue achieved vs $1.18B greedy baseline (102% improvement) in 1.657ms solver runtime. The benchmark is synthetic; production auction performance depends on regulatory structure and bidder dynamics specific to each market.*
 
 ---
 

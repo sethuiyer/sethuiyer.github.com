@@ -2,6 +2,25 @@
 
 > Based on CPO Product Strategy v2 (June 2026). Primary: Wedge A (Verifiable MaxSAT API). Secondary: Wedge B (ZK Pre-Processor). Kill: Wedge C.
 
+> **Vault Door Principle:** ZK should stop being the front door. It should become the vault door. ZK stays in the long-term moat. We demote lead-with-ZK framing on the homepage, not ZK itself. Cutting ZK from the company thesis would turn a differentiated proof-oriented solver into a generic solver API competing against Z3 and MaxHS.
+
+---
+
+## Executive Snapshot
+
+> **For a reader with 60 seconds:** This is what we ship, in what order, against what targets.
+
+| Quarter | What we ship | Revenue target | First-time hires |
+|---|---|---|---|
+| **Q3 2026** | MaxSAT-first homepage; fixed API schema (integer weights, derivation graphs, infeasibility case); Dev $99 / Pro $499 pricing locked | $20K | Solutions Engineer (week 1) |
+| **Q4 2026** | ZK pre-processor sidecar; proof-of-optimality artifacts in API; open-source verifier (Apache 2.0) | $80K cumulative | DevRel, Backend Engineer |
+| **Q1 2027** | Enterprise tier (on-prem, SOC2 in flight); open-source engine core; first paid ZK audit pilot (~$25K) | $250K cumulative | ZK Engineer (only if wedge validated) |
+| **Q2 2027** | **ZK product-line decision gate** — 100% verifiable solver + <1s p99 + one paying ZK customer required | $500K cumulative | — |
+
+**The single thing that matters this quarter:** 3 signed design partner LOIs by Sept 30. Without these, the rest is feature roadmap.
+
+**What we are NOT doing:** ZK DSL, generic SAT, mobile/edge, custom hardware, Wedge C (agent guardrails).
+
 ---
 
 ## Critical Fixes (Schema Bugs)
@@ -26,7 +45,7 @@
 
 ### Marketing & Positioning
 
-- [ ] **Drop "ZK" from homepage** — MaxSAT-first
+- [ ] **Demote ZK on homepage (vault door, not front door)** — MaxSAT-first positioning. ZK moves to proof layer and product-strategy copy, not the headline. Don't amputate the moat.
 - [ ] Rewrite homepage copy: "Verifiable MaxSAT API" not "constraint intelligence"
 - [ ] Create Wedge A landing page (Verifiable MaxSAT)
 - [ ] Wedge B teaser page ("ZK Pre-Processor — coming Q4")
@@ -104,16 +123,18 @@
 
 ---
 
-## Phase 4: Q2 2027 — Decision Gate
+## Phase 4: Q2 2027 — ZK Product-Line Decision Gate
 
-### ZK Re-Entry (Requires ALL of):
+> **ZK is in the stack from day one as the long-term trust and settlement layer.** This gate validates whether ZK earns a separate product line, not whether ZK is in the company.
+
+### ZK Spin-Out Decision (Requires ALL of):
 
 - [ ] 100% verifiable solver (mini audit: 40-60% there today)
 - [ ] <1s p99 latency on depth-4-equivalent
 - [ ] At least one paying ZK customer in production
 
 **If yes:** Spin out "Shunyabar ZK" as separate product line
-**If no:** Stay MaxSAT; revisit ZK in 2028
+**If no:** Stay MaxSAT-only; revisit spin-out in 2028. ZK remains in the verification layer regardless.
 
 ### Hiring (Full Team)
 
@@ -135,9 +156,18 @@
 | General SAT market | Z3/Kissat/CaDiCaL dominate |
 | Mobile / edge deployment | Engine footprint too big |
 | Custom hardware (GPUs) | Research play, not 2027 product |
-| ZK homepage framing | Until paying ZK customer exists |
+| Lead-with-ZK framing on homepage | Until paying ZK customer exists |
 | Wedge C (Agent Guardrails) | CENTS test failed — kill it |
 | Hire ZK engineer in Q3 | Premature — ZK wedge not validated |
+
+### Do NOT kill (Preserve)
+
+| ✅ Preserve | Why |
+|---|---|
+| ZK in the company thesis and verification roadmap | Long-term moat. Cutting it turns a proof-oriented solver into a generic solver API. |
+| ZK as the trust layer in the proof artifact | What makes "verifiable MaxSAT" defensible. |
+| Wedge B (ZK Pre-Processor) | Validated as the 2027+ enterprise audit sidecar. |
+| ZK product-line decision gate in Q2 2027 | Validates whether ZK earns a product line, not whether ZK is in the company. |
 
 ---
 

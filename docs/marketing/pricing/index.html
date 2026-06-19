@@ -1307,17 +1307,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#simple-usage-based-pricing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Simple, Usage-Based Pricing
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#tier-comparison" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1329,10 +1318,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-costs" class="md-nav__link">
+  <a href="#whats-a-proof-artifact" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example Costs
+        What's a "proof artifact"?
       
     </span>
   </a>
@@ -1340,10 +1329,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#engines" class="md-nav__link">
+  <a href="#sample-monthly-bills" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Engines
+        Sample monthly bills
       
     </span>
   </a>
@@ -1351,21 +1340,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#search-space-at-included-limits" class="md-nav__link">
+  <a href="#engine-guide" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Search Space at Included Limits
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enterprise-pricing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Enterprise Pricing
+        Engine guide
       
     </span>
   </a>
@@ -1376,7 +1354,7 @@
   <a href="#why-pay-for-navokoj" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why Pay for Navokoj?
+        Why pay for Navokoj?
       
     </span>
   </a>
@@ -1384,10 +1362,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#getting-started" class="md-nav__link">
+  <a href="#get-started" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Getting Started
+        Get started
       
     </span>
   </a>
@@ -1398,7 +1376,18 @@
   <a href="#service-guarantees" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Service Guarantees
+        Service guarantees
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frequently-asked-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frequently asked questions
       
     </span>
   </a>
@@ -1457,6 +1446,34 @@
     
   
     Competition
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bottleneck/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Bottleneck
   
 
     
@@ -1865,309 +1882,265 @@
 
 
 <h1 id="pricing">Pricing<a class="headerlink" href="#pricing" title="Permanent link">&para;</a></h1>
-<h2 id="simple-usage-based-pricing">Simple, Usage-Based Pricing<a class="headerlink" href="#simple-usage-based-pricing" title="Permanent link">&para;</a></h2>
-<p>Pay for what you use. No subscriptions. No lock-in. Scale as you grow.</p>
+<p><strong>Start free. Pay when you scale. No per-minute metering. No surprise bills.</strong></p>
+<p>Navokoj is sold as a monthly subscription. Every paid tier includes unlimited API calls within the tier's variable and clause limits. If you exceed your tier, the request returns a <code>402</code> with a clear upgrade prompt — no silent overage charges.</p>
 <hr />
 <h2 id="tier-comparison">Tier Comparison<a class="headerlink" href="#tier-comparison" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Feature</th>
+<th></th>
 <th>Free</th>
-<th>L4 GPU</th>
-<th>H100 GPU</th>
+<th>Dev</th>
+<th>Pro</th>
+<th>Enterprise</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>Price</strong></td>
-<td>$0*</td>
-<td>$0.25 + $0.10/min</td>
-<td>$1.50 + $1.00/min</td>
+<td>$0</td>
+<td><strong>$99/mo</strong></td>
+<td><strong>$499/mo</strong></td>
+<td>Custom (typically <strong>$5K+/mo</strong>)</td>
 </tr>
 <tr>
-<td><strong>Variables</strong></td>
-<td>5,000</td>
-<td>100,000</td>
-<td>1,000,000</td>
-</tr>
-<tr>
-<td><strong>Clauses</strong></td>
-<td>35,000</td>
-<td>300,000</td>
-<td>8,000,000</td>
-</tr>
-<tr>
-<td><strong>XOR Variables</strong></td>
+<td><strong>Variables per request</strong></td>
 <td>1,000</td>
 <td>10,000</td>
 <td>100,000</td>
+<td>Unlimited</td>
 </tr>
 <tr>
-<td><strong>Q-SAT Nodes</strong></td>
+<td><strong>Clauses per request</strong></td>
+<td>5,000</td>
+<td>50,000</td>
+<td>500,000</td>
+<td>Unlimited</td>
+</tr>
+<tr>
+<td><strong>API requests / hour</strong></td>
 <td>500</td>
-<td>15,000</td>
-<td>100,000</td>
+<td>5,000</td>
+<td>50,000</td>
+<td>Custom</td>
 </tr>
 <tr>
-<td><strong>Scheduling Resources</strong></td>
-<td>20</td>
-<td>200</td>
-<td>1,000</td>
+<td><strong>Engines available</strong></td>
+<td>mini</td>
+<td>nano, mini, pro</td>
+<td>All</td>
+<td>All + dedicated instances</td>
 </tr>
 <tr>
-<td><strong>Concurrency</strong></td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
+<td><strong>Proof artifacts</strong></td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅ + infeasibility proof</td>
 </tr>
 <tr>
-<td><strong>Engines</strong></td>
-<td>Nano, Mini</td>
-<td>Nano, Mini, Pro</td>
-<td>All engines</td>
+<td><strong>Open-source verifier access</strong></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>SLA</strong></td>
+<td>Best-effort</td>
+<td>Best-effort</td>
+<td>99.5% target</td>
+<td>Custom contract</td>
+</tr>
+<tr>
+<td><strong>Support</strong></td>
+<td>Community</td>
+<td>Community + email</td>
+<td>Email, 24h response</td>
+<td>Dedicated CSM</td>
+</tr>
+<tr>
+<td><strong>On-prem deployment</strong></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>SOC2</strong></td>
+<td>—</td>
+<td>—</td>
+<td>In flight</td>
+<td>Required</td>
 </tr>
 </tbody>
 </table>
-<p><em>*Free until June 2026, then $0.01 + $0.01/min</em></p>
 <hr />
-<h2 id="example-costs">Example Costs<a class="headerlink" href="#example-costs" title="Permanent link">&para;</a></h2>
+<h2 id="whats-a-proof-artifact">What's a "proof artifact"?<a class="headerlink" href="#whats-a-proof-artifact" title="Permanent link">&para;</a></h2>
+<p>On the Pro tier and above, every <code>/v1/solve</code> response includes a structured <code>proof_artifact</code> object: the assignment, UNSAT cores (if any), and the derivation graph that proves optimality. You can verify it offline using our <a href="../../glossary/#verification--trust">open-source verifier</a> without trusting our servers.</p>
+<p>This is what makes Navokoj a <em>verifiable</em> MaxSAT API rather than a black-box optimizer. For audit-sensitive workloads (security, compliance, financial reporting), this is the differentiator.</p>
+<hr />
+<h2 id="sample-monthly-bills">Sample monthly bills<a class="headerlink" href="#sample-monthly-bills" title="Permanent link">&para;</a></h2>
+<p>These are typical bills for production-shaped workloads:</p>
 <table>
 <thead>
 <tr>
-<th>Problem</th>
-<th>Engine</th>
-<th>Solve Time</th>
-<th>Cost</th>
+<th>Use case</th>
+<th>Tier</th>
+<th>Typical monthly volume</th>
+<th>Monthly cost</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Quick validation (100 vars)</td>
-<td>Nano</td>
-<td>5ms</td>
-<td>~$0.00</td>
+<td><strong>Indie developer, CI testing</strong></td>
+<td>Free</td>
+<td>&lt; 500 req/hr</td>
+<td>$0</td>
 </tr>
 <tr>
-<td>Medium scheduling (10k vars)</td>
-<td>Mini</td>
-<td>200ms</td>
-<td>~$0.01</td>
+<td><strong>Small SaaS, internal scheduling</strong></td>
+<td>Dev</td>
+<td>5K req/hr × 200 hrs</td>
+<td>$99</td>
 </tr>
 <tr>
-<td>Complex optimization (100k vars)</td>
+<td><strong>Hospital scheduling, 30K variables</strong></td>
 <td>Pro</td>
-<td>10s</td>
-<td>~$0.17</td>
+<td>50K req/hr × 200 hrs</td>
+<td>$499</td>
 </tr>
 <tr>
-<td>Industrial scale (1M vars)</td>
-<td>Pro H100</td>
-<td>2min</td>
-<td>~$3.50</td>
+<td><strong>Logistics company, 100K-var routing</strong></td>
+<td>Pro + burst</td>
+<td>50K req/hr × 400 hrs</td>
+<td>$499 + overage on request</td>
 </tr>
 <tr>
-<td>PSPACE problem</td>
-<td>Pro H100</td>
-<td>30min</td>
-<td>~$31.50</td>
+<td><strong>Multi-tenant platform, 1M+ variables</strong></td>
+<td>Enterprise</td>
+<td>Custom</td>
+<td><span class="arithmatex">\(5K–\)</span>25K</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Estimation:</strong> A 10-minute industrial solve costs approximately <strong>$1.25</strong> on H100.</p>
+<p>For workloads that genuinely exceed Pro tier limits, contact us for an Enterprise quote — we typically price on committed monthly clauses, not per-request.</p>
 <hr />
-<h2 id="engines">Engines<a class="headerlink" href="#engines" title="Permanent link">&para;</a></h2>
+<h2 id="engine-guide">Engine guide<a class="headerlink" href="#engine-guide" title="Permanent link">&para;</a></h2>
+<p>Pick the right engine for the job. Most production traffic uses <strong>mini</strong> and <strong>pro</strong>.</p>
 <table>
 <thead>
 <tr>
 <th>Engine</th>
-<th>Best For</th>
-<th>Satisfaction Rate</th>
+<th>Best for</th>
 <th>Speed</th>
+<th>Quality</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Nano</strong></td>
-<td>Real-time APIs, quick checks</td>
-<td>3.24%</td>
-<td>Ultra-fast</td>
+<td><strong>nano</strong></td>
+<td>Real-time APIs (&lt;100ms), quick checks</td>
+<td>Fastest (~870ms typical)</td>
+<td>~94% satisfaction</td>
 </tr>
 <tr>
-<td><strong>Mini</strong></td>
-<td>Balanced optimization</td>
-<td>31.37%</td>
-<td>10.64/sec</td>
+<td><strong>mini</strong></td>
+<td>Balanced production work</td>
+<td>Slow (40s+, but high quality)</td>
+<td>~99.77% satisfaction</td>
 </tr>
 <tr>
-<td><strong>Pro</strong></td>
-<td>Mission-critical, 100% needed</td>
-<td>92.57%</td>
-<td>7.90/sec</td>
+<td><strong>pro</strong></td>
+<td>Mission-critical work, multi-constraint chains</td>
+<td>Medium (0.1–7s)</td>
+<td>~99.4% satisfaction</td>
 </tr>
 <tr>
-<td><strong>Nitro</strong></td>
-<td>High-performance MaxSAT</td>
-<td>Best for PSPACE</td>
-<td>Fast</td>
-</tr>
-<tr>
-<td><strong>QState</strong></td>
-<td>N-ary scheduling, graph coloring</td>
-<td>100% when feasible</td>
+<td><strong>qstate</strong></td>
+<td>N-ary problems (graph coloring, Sudoku, resource allocation)</td>
 <td>Variable</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="search-space-at-included-limits">Search Space at Included Limits<a class="headerlink" href="#search-space-at-included-limits" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Model</th>
-<th>Standard (CPU)</th>
-<th>L4 GPU</th>
-<th>H100 GPU</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Boolean SAT</td>
-<td>2^5000 ≈ 10^1505</td>
-<td>2^100000 ≈ 10^30103</td>
-<td>2^1000000 ≈ 10^301030</td>
+<td>~95–100% when feasible</td>
 </tr>
 <tr>
-<td>XOR-SAT</td>
-<td>2^1000 ≈ 10^301</td>
-<td>2^10000 ≈ 10^3010</td>
-<td>2^100000 ≈ 10^30103</td>
-</tr>
-<tr>
-<td>Q-SAT (k-ary)</td>
-<td>5^500 ≈ 10^349</td>
-<td>20^15000 ≈ 10^19415</td>
-<td>50^100000 ≈ 10^169897</td>
+<td><strong>ensemble</strong></td>
+<td>Deep reasoning on hardest instances</td>
+<td>Slowest</td>
+<td>Highest available</td>
 </tr>
 </tbody>
 </table>
 <blockquote>
-<p>These numbers illustrate the size of the full assignment space. Real difficulty depends on structure, not just size.</p>
+<p><strong>What "satisfaction rate" means:</strong> the percentage of hard constraints the engine successfully satisfies on structured industrial benchmarks (MSE 2022, NIST, internal). It is not a measure of speed or cost. For real-world deployment, the right metric is <em>does it solve my specific problem</em>. We recommend running our <a href="../../limitations/">benchmarks on your own data</a> before committing.</p>
 </blockquote>
 <hr />
-<h2 id="enterprise-pricing">Enterprise Pricing<a class="headerlink" href="#enterprise-pricing" title="Permanent link">&para;</a></h2>
-<p>For larger workloads or custom requirements:</p>
+<h2 id="why-pay-for-navokoj">Why pay for Navokoj?<a class="headerlink" href="#why-pay-for-navokoj" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Component</th>
-<th>Price</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Base fee</strong></td>
-<td>$100/month</td>
-</tr>
-<tr>
-<td><strong>Compute</strong></td>
-<td>$10/hour (dedicated H100)</td>
-</tr>
-<tr>
-<td><strong>Custom engines</strong></td>
-<td>Quote-based</td>
-</tr>
-<tr>
-<td><strong>On-prem deployment</strong></td>
-<td>Quote-based</td>
-</tr>
-<tr>
-<td><strong>SLA</strong></td>
-<td>Custom contracts available</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Contact:</strong> shunyabarlabs@zohomail.com</p>
-<hr />
-<h2 id="why-pay-for-navokoj">Why Pay for Navokoj?<a class="headerlink" href="#why-pay-for-navokoj" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Free Alternatives</th>
+<th>Free or cheap alternatives</th>
 <th>Navokoj</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Hours to solve</td>
-<td>Milliseconds</td>
+<td>Generic SAT solvers (Z3, Kissat, CaDiCaL) — strong on random Boolean, choke on million-variable industrial</td>
+<td>Tuned for weighted, structured MaxSAT at scale</td>
 </tr>
 <tr>
-<td>Black-box output</td>
-<td>DEFEKT diagnostics</td>
+<td>Black-box answers — trust the solver</td>
+<td>Proof artifacts you can verify offline</td>
 </tr>
 <tr>
-<td>Guess if satisfiable</td>
-<td>Pre-solve hardness prediction</td>
+<td>10K–100K variable ceiling</td>
+<td>100K (Pro) to unlimited (Enterprise)</td>
 </tr>
 <tr>
-<td>10k variable cap</td>
-<td>1M variable native</td>
+<td>Compute-heavy exact solvers</td>
+<td>Lock-preserving repair, 847×–12,495× faster than recomputation</td>
 </tr>
 <tr>
-<td>No support</td>
-<td>Community + paid support</td>
+<td>No SLA, no support</td>
+<td>Email support on Pro, dedicated CSM on Enterprise</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Free tier - no credit card required</span>
+<h2 id="get-started">Get started<a class="headerlink" href="#get-started" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Free tier — no credit card required</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>https://api.navokoj.shunyabar.foo/v1/solve<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer YOUR_KEY&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;num_vars&quot;: 1000, &quot;clauses&quot;: [[1,2,3],[-1,4]], &quot;engine&quot;: &quot;nano&quot;}&#39;</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># L4 GPU - $0.25 setup + per-minute</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>https://api.navokoj.shunyabar.foo/v1/solve<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer YOUR_KEY&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;num_vars&quot;: 50000, &quot;clauses&quot;: [...], &quot;engine&quot;: &quot;pro&quot;, &quot;hardware&quot;: &quot;l4&quot;}&#39;</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># H100 GPU - $1.50 setup + per-minute</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>https://api.navokoj.shunyabar.foo/v1/solve<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer YOUR_KEY&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;num_vars&quot;: 500000, &quot;clauses&quot;: [...], &quot;engine&quot;: &quot;pro-deepthink&quot;, &quot;hardware&quot;: &quot;h100&quot;}&#39;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;num_vars&quot;: 1000, &quot;clauses&quot;: [[1,2,3],[-1,4]], &quot;engine&quot;: &quot;mini&quot;}&#39;</span>
 </code></pre></div>
+<ul>
+<li><strong>Free &amp; Dev</strong>: Sign up at <a href="https://navokoj.shunyabar.foo">navokoj.shunyabar.foo</a></li>
+<li><strong>Pro</strong>: Upgrade from your dashboard</li>
+<li><strong>Enterprise / pilots (<span class="arithmatex">\(5K–\)</span>20K)</strong>: Email shunyabarlabs@zohomail.com</li>
+</ul>
 <hr />
-<h2 id="service-guarantees">Service Guarantees<a class="headerlink" href="#service-guarantees" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Guarantee</th>
-<th>Details</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Timeout handling</strong></td>
-<td>All solves have 30-min hard timeout. Best partial result always returned.</td>
-</tr>
-<tr>
-<td><strong>Billing</strong></td>
-<td>Per-second billing, no rounding.</td>
-</tr>
-<tr>
-<td><strong>Partial results</strong></td>
-<td>Never returns empty error. Always returns best effort.</td>
-</tr>
-<tr>
-<td><strong>Availability</strong></td>
-<td>Alpha tier: best-effort. Enterprise: custom SLA.</td>
-</tr>
-</tbody>
-</table>
+<h2 id="service-guarantees">Service guarantees<a class="headerlink" href="#service-guarantees" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>30-minute hard timeout</strong> on every solve. Best partial result is always returned.</li>
+<li><strong>Per-request billing</strong> on Enterprise tier (Pro tier is flat monthly).</li>
+<li><strong>Never an empty error.</strong> If we can't solve, you get the best assignment found plus diagnostics.</li>
+<li><strong>Availability</strong>: Best-effort during alpha on self-serve tiers. Enterprise contracts include custom SLA.</li>
+</ul>
 <blockquote>
-<p><strong>Note:</strong> Self-serve tiers operate best-effort during alpha. Contact us for contractual uptime guarantees.</p>
+<p><strong>Alpha status note:</strong> Until SOC2 is complete (Q1 2027 target), self-serve tiers operate best-effort. Enterprise customers negotiate their own SLA. We disclose this honestly rather than over-promise.</p>
 </blockquote>
+<hr />
+<h2 id="frequently-asked-questions">Frequently asked questions<a class="headerlink" href="#frequently-asked-questions" title="Permanent link">&para;</a></h2>
+<p><strong>Can I switch tiers mid-month?</strong>
+Yes. Upgrades take effect immediately; downgrades take effect at the next billing cycle.</p>
+<p><strong>What happens if I exceed my tier's variable limit?</strong>
+The request returns <code>402 Payment Required</code> with an upgrade prompt. We do not silently bill overages on self-serve tiers.</p>
+<p><strong>Do you offer annual contracts?</strong>
+Yes — Enterprise tier is annual by default. Self-serve tiers are monthly; annual discounts (2 months free) available on Pro.</p>
+<p><strong>Is there a free trial of Pro?</strong>
+Yes — 14 days, no credit card. Trigger from your dashboard.</p>
+<p><strong>What if my problem doesn't fit any of these tiers?</strong>
+Email shunyabarlabs@zohomail.com. We have a custom-design process for unusual workloads.</p>
 
 
 

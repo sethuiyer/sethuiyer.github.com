@@ -87,7 +87,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#why-navokoj" class="md-skip">
+        <a href="#navokoj-verifiable-maxsat-for-hard-planning-problems" class="md-skip">
           Skip to content
         </a>
       
@@ -1251,10 +1251,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-64-billion-problem-nobody-talks-about" class="md-nav__link">
+  <a href="#what-navokoj-solves" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The $64 Billion Problem Nobody Talks About
+        What Navokoj Solves
       
     </span>
   </a>
@@ -1262,10 +1262,99 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-pain-is-real" class="md-nav__link">
+  <a href="#the-three-things-that-make-us-different" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The Pain Is Real
+        The Three Things That Make Us Different
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Three Things That Make Us Different">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-proofs-not-promises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Proofs, not promises
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-lock-preserving-repair" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Lock-preserving repair
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-honest-numbers-everywhere" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Honest numbers, everywhere
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-customers-run-it-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Customers Run It On
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What Customers Run It On">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#academic-benchmarks-peer-reviewed-test-suites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Academic benchmarks (peer-reviewed test suites)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production-performance-live-api-2026-04-04-2026-06-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Production performance (live API, 2026-04-04 → 2026-06-19)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-it-is-not" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What It Is Not
       
     </span>
   </a>
@@ -1273,10 +1362,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-enterprises-actually-need" class="md-nav__link">
+  <a href="#pricing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What Enterprises Actually Need
+        Pricing
       
     </span>
   </a>
@@ -1284,10 +1373,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-gap-in-the-market" class="md-nav__link">
+  <a href="#get-started" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The Gap in the Market
+        Get Started
       
     </span>
   </a>
@@ -1295,21 +1384,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-now" class="md-nav__link">
+  <a href="#for-the-technical-reader" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why Now
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-result" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The Result
+        For the technical reader
       
     </span>
   </a>
@@ -1424,6 +1502,34 @@
     
   
     Competition
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bottleneck/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Bottleneck
   
 
     
@@ -1831,99 +1937,173 @@
 
 
 
-<h1 id="why-navokoj">Why Navokoj<a class="headerlink" href="#why-navokoj" title="Permanent link">&para;</a></h1>
-<h2 id="the-64-billion-problem-nobody-talks-about">The $64 Billion Problem Nobody Talks About<a class="headerlink" href="#the-64-billion-problem-nobody-talks-about" title="Permanent link">&para;</a></h2>
-<p>Every enterprise solves constraint satisfaction problems daily:
-- Scheduling shifts for 10,000 nurses
-- Routing 5,000 delivery vehicles
-- Placing VMs on GPU clusters
-- Allocating spectrum in auctions worth billions</p>
-<p><strong>The problem?</strong> Existing solvers are either:</p>
-<table>
-<thead>
-<tr>
-<th>Approach</th>
-<th>Problem</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Classical (Gurobi, CPLEX)</strong></td>
-<td>Fast but black-box. No insight into <em>why</em> problems are hard.</td>
-</tr>
-<tr>
-<td><strong>Heuristics</strong></td>
-<td>Fast but unreliable. No guarantees.</td>
-</tr>
-<tr>
-<td><strong>CDCL SAT Solvers</strong></td>
-<td>Great for boolean logic but choking on million-variable industrial problems.</td>
-</tr>
-<tr>
-<td><strong>Homegrown</strong></td>
-<td>Expensive to maintain, impossible to scale.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="the-pain-is-real">The Pain Is Real<a class="headerlink" href="#the-pain-is-real" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p><em>"We threw 100 GPU-hours at a routing problem and it still didn't converge. We had no idea if we were 10% done or 90% done."</em>
-— Logistics engineering lead, Fortune 500 retailer</p>
-<p><em>"Our scheduling team spends 40% of their time manually fixing solver outputs. That's not optimization—that's babysitting."</em>
-— Hospital operations director</p>
-</blockquote>
-<h2 id="what-enterprises-actually-need">What Enterprises Actually Need<a class="headerlink" href="#what-enterprises-actually-need" title="Permanent link">&para;</a></h2>
-<ol>
-<li><strong>Visibility</strong> — Know how hard a problem is <em>before</em> you solve it</li>
-<li><strong>Speed</strong> — Milliseconds matter in real-time applications</li>
-<li><strong>Scale</strong> — Million-variable problems are now routine</li>
-<li><strong>Resilience</strong> — Always return a best-effort result, never a dead-end</li>
-</ol>
-<h2 id="the-gap-in-the-market">The Gap in the Market<a class="headerlink" href="#the-gap-in-the-market" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>What Exists</th>
-<th>What's Missing</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Powerful solvers (Gurobi, OR-Tools)</td>
-<td>Real-time hardness observability</td>
-</tr>
-<tr>
-<td>Academic benchmarks</td>
-<td>Production-grade "difficulty APIs"</td>
-</tr>
-<tr>
-<td>Expensive consulting</td>
-<td>Self-serve optimization intelligence</td>
-</tr>
-<tr>
-<td>Black-box outputs</td>
-<td>Explainable constraint diagnostics</td>
-</tr>
-</tbody>
-</table>
-<h2 id="why-now">Why Now<a class="headerlink" href="#why-now" title="Permanent link">&para;</a></h2>
-<ol>
-<li><strong>GPU costs are exploding</strong> — Efficient constraint solving directly impacts cloud margins</li>
-<li><strong>Real-time decisioning</strong> — Batch optimization is no longer acceptable for dynamic workloads</li>
-<li><strong>Competition intensifying</strong> — Logistics, healthcare, fintech all fighting on margins</li>
-<li><strong>Developer-first tools</strong> — The market wants APIs, not consultants</li>
-</ol>
-<h2 id="the-result">The Result<a class="headerlink" href="#the-result" title="Permanent link">&para;</a></h2>
-<p>Navokoj was built for a world where:</p>
+<h1 id="navokoj-verifiable-maxsat-for-hard-planning-problems">Navokoj — Verifiable MaxSAT for Hard Planning Problems<a class="headerlink" href="#navokoj-verifiable-maxsat-for-hard-planning-problems" title="Permanent link">&para;</a></h1>
+<p><strong>The shortest description:</strong> Navokoj is a constraint-solving API that returns the best possible answer <strong>plus a proof you can verify offline</strong>.</p>
+<hr />
+<h2 id="what-navokoj-solves">What Navokoj Solves<a class="headerlink" href="#what-navokoj-solves" title="Permanent link">&para;</a></h2>
+<p>Every enterprise solves constraint-satisfaction problems under time pressure. Navokoj handles the ones where:</p>
 <ul>
-<li><strong>"Unsatisfiable" isn't an answer</strong> — Always return the best possible solution</li>
-<li><strong>Hardness is observable</strong> — DEFEKT tells you difficulty before solving</li>
-<li><strong>Scale is native</strong> — 1M variables without architectural changes</li>
-<li><strong>Speed is predictable</strong> — Milliseconds for real-time, minutes for deep optimization</li>
+<li>The problem is <strong>structured</strong> (regular schedules, grids, hardware circuits, large graph partitions — not random SAT)</li>
+<li><strong>Speed matters</strong> (real-time decisions, batch re-runs, what-if analysis)</li>
+<li><strong>Verifiability matters</strong> (regulated industries, audit trails, security-sensitive workflows)</li>
+<li><strong>Disruptions happen</strong> (a nurse calls in sick, a truck breaks down, a GPU fails) and you need to repair without restarting</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Actionable failures. Best-effort success.
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>When perfect is impossible, we return the closest possible solution with precise diagnostics.
+<p>If that sounds like your problem, <a href="use-cases/">read the use cases</a>.</p>
+<hr />
+<h2 id="the-three-things-that-make-us-different">The Three Things That Make Us Different<a class="headerlink" href="#the-three-things-that-make-us-different" title="Permanent link">&para;</a></h2>
+<h3 id="1-proofs-not-promises">1. Proofs, not promises<a class="headerlink" href="#1-proofs-not-promises" title="Permanent link">&para;</a></h3>
+<p>Every Pro+ response includes a structured <strong>proof artifact</strong> — assignment + UNSAT cores + derivation graph. Our verifier is <a href="../glossary/#verification--trust">open source</a>. You don't trust us. You download our verifier, run it against our response, and confirm offline. That is the trust model.</p>
+<p>For comparison: classical solvers (Gurobi, CPLEX, OR-Tools) give you an answer and ask you to take it on faith. CDCL SAT solvers (Z3, Kissat, CaDiCaL) give you proof artifacts but choke on million-variable industrial problems. We do both.</p>
+<h3 id="2-lock-preserving-repair">2. Lock-preserving repair<a class="headerlink" href="#2-lock-preserving-repair" title="Permanent link">&para;</a></h3>
+<p>When the world changes, we don't restart from scratch. We preserve the parts of your schedule that already work and adjust only what changed. <strong>847×–12,495× faster than recomputation</strong>, with 95%+ of prior decisions untouched.</p>
+<p>This is the wedge for <a href="use-cases/#2-healthcare-workforce-scheduling">hospital scheduling</a>, <a href="use-cases/#1-logistics--transportation">fleet routing</a>, and <a href="use-cases/#3-cloud-infrastructure--devops">GPU cluster allocation</a>.</p>
+<h3 id="3-honest-numbers-everywhere">3. Honest numbers, everywhere<a class="headerlink" href="#3-honest-numbers-everywhere" title="Permanent link">&para;</a></h3>
+<p>We benchmark against certified optimal solutions and report the gaps. Our <a href="../limitations/"><code>mini</code> engine</a> hits 99.77% satisfaction; we tell you that's not 100%. We tell you where our solver plateaus (expander graphs, ~90% wall) and where it doesn't apply (random unstructured SAT). <a href="../limitations/">Read the limitations page</a>.</p>
+<hr />
+<h2 id="what-customers-run-it-on">What Customers Run It On<a class="headerlink" href="#what-customers-run-it-on" title="Permanent link">&para;</a></h2>
+<h3 id="academic-benchmarks-peer-reviewed-test-suites">Academic benchmarks (peer-reviewed test suites)<a class="headerlink" href="#academic-benchmarks-peer-reviewed-test-suites" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Use case</th>
+<th>Example scale</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>University timetabling</strong></td>
+<td>147K variables, 80M clauses</td>
+<td>100% solved in 73 seconds</td>
+</tr>
+<tr>
+<td><strong>Hardware verification</strong></td>
+<td>512×512 multiplier, 788K variables</td>
+<td>100% in 5.9 seconds</td>
+</tr>
+<tr>
+<td><strong>Graph coloring (planted)</strong></td>
+<td>105K variables, 232K clauses</td>
+<td>100% in 13.78 seconds</td>
+</tr>
+<tr>
+<td><strong>Grid / lattice</strong></td>
+<td>1000×1000 coloring</td>
+<td>100% in 475 seconds</td>
+</tr>
+<tr>
+<td><strong>Spin glass (frustrated)</strong></td>
+<td>64 spins</td>
+<td>99.47% in 4.3 seconds</td>
+</tr>
+<tr>
+<td><strong>Fluid simulation</strong></td>
+<td>2D Navier-Stokes</td>
+<td>99.64% residual reduction, 100,000× faster than CFD</td>
+</tr>
+</tbody>
+</table>
+<h3 id="production-performance-live-api-2026-04-04-2026-06-19">Production performance (live API, 2026-04-04 → 2026-06-19)<a class="headerlink" href="#production-performance-live-api-2026-04-04-2026-06-19" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>308 production runs. 3.98M clauses processed. Median satisfaction 1.0. Median solve time 65.5 ms.</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Production instance</th>
+<th>Scale</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Largest clause-density ever recorded</strong></td>
+<td>10K vars / 1.65M clauses (165× ratio)</td>
+<td>100% in 278 seconds</td>
+</tr>
+<tr>
+<td><strong>Sub-second structural monster</strong></td>
+<td>2.5K vars / 122K clauses (49× ratio)</td>
+<td><strong>100% in 0.296 seconds</strong></td>
+</tr>
+<tr>
+<td><strong>Massive variable count</strong></td>
+<td>49K vars / 73.5K clauses</td>
+<td>100% in 0.291 seconds</td>
+</tr>
+<tr>
+<td><strong>Quality at scale</strong></td>
+<td>308 production runs</td>
+<td>79.87% at ≥99% satisfaction; 54.22% perfect</td>
+</tr>
+</tbody>
+</table>
+<p>These are not benchmark suite numbers. They are what real customers ran through the Navokoj API over 77 days. Full ledger with all 13 monster runs and the three-modes analysis: <a href="../projects/nitrosat/#production-performance--supabase-ledger-2026-04-04--2026-06-19">NitroSAT production data →</a></p>
+<p><a href="../research-report/">Detailed benchmark methodology →</a></p>
+<hr />
+<h2 id="what-it-is-not">What It Is Not<a class="headerlink" href="#what-it-is-not" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Not a general SAT solver.</strong> If your problem is random Boolean SAT at the phase transition, use Z3 or Kissat. We win on weighted, structured MaxSAT.</li>
+<li><strong>Not a ZK proving system.</strong> Zero-knowledge is a 2027+ wedge that builds on top of our solver. The proof artifact today is a derivation graph, not a SNARK.</li>
+<li><strong>Not a real-time control system.</strong> Our fastest engine hits ~94% satisfaction in milliseconds. If you need &lt;10ms deterministic response for embedded control, look elsewhere.</li>
+<li><strong>Not a generic constraint solver for continuous problems.</strong> If your objective is differentiable, use gradient descent. We specialize in discrete commitment allocation.</li>
+</ul>
+<hr />
+<h2 id="pricing">Pricing<a class="headerlink" href="#pricing" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Price</th>
+<th>What you get</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Free</strong></td>
+<td>$0</td>
+<td>1K vars, 5K clauses, 500 req/hr</td>
+</tr>
+<tr>
+<td><strong>Dev</strong></td>
+<td>$99/mo</td>
+<td>10K vars, 50K clauses, 5K req/hr</td>
+</tr>
+<tr>
+<td><strong>Pro</strong></td>
+<td>$499/mo</td>
+<td>100K vars, 500K clauses, 50K req/hr, <strong>proof artifacts included</strong></td>
+</tr>
+<tr>
+<td><strong>Enterprise</strong></td>
+<td>Custom ($5K+/mo)</td>
+<td>Unlimited, on-prem optional, SOC2 in flight</td>
+</tr>
+</tbody>
+</table>
+<p><a href="pricing/">Full pricing details →</a></p>
+<hr />
+<h2 id="get-started">Get Started<a class="headerlink" href="#get-started" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Free tier — no credit card</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>https://api.navokoj.shunyabar.foo/v1/solve<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer YOUR_KEY&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;num_vars&quot;: 1000, &quot;clauses&quot;: [[1,2,3],[-1,4]], &quot;engine&quot;: &quot;mini&quot;}&#39;</span>
 </code></pre></div>
+<ul>
+<li><strong>Free tier</strong>: Sign up at <a href="https://navokoj.shunyabar.foo">navokoj.shunyabar.foo</a></li>
+<li><strong>Design partner pilots (<span class="arithmatex">\(5K–\)</span>20K)</strong>: Email shunyabarlabs@zohomail.com</li>
+<li><strong>Press / partnership</strong>: Same address</li>
+</ul>
+<hr />
+<h2 id="for-the-technical-reader">For the technical reader<a class="headerlink" href="#for-the-technical-reader" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../core-vision/">The Arithmetic Manifold (theory)</a> — the unified mathematical framework</li>
+<li><a href="../axiom-architecture/">Axiom Architecture essay</a> — the rigorous deep-dive</li>
+<li><a href="../research-report/">Research report</a> — per-project technical assessment</li>
+<li><a href="../limitations/">Limitations</a> — where we work and where we don't</li>
+<li><a href="../glossary/">Glossary</a> — every term defined</li>
+<li><a href="../product-strategy/">Product strategy</a> — H2 2026 roadmap</li>
+</ul>
 
 
 

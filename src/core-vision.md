@@ -1,5 +1,15 @@
 # The Arithmetic Manifold
 
+## Executive Summary (read this first)
+
+> **One sentence:** The Arithmetic Manifold is the theory that explains why our solver is faster — and it connects hard combinatorial problems to the deepest patterns in number theory.
+>
+> **Who should read this:** A technical reader (CTO, staff engineer, research collaborator) who wants to understand *why* the engine works, not just *that* it works. If you're evaluating Navokoj for a business problem, [the homepage](index.md) is the better starting point.
+>
+> **What you'll get from this page:** The five core mechanisms that make the solver work, explained with their mathematical justification, but with a plain-English gloss before each technical block.
+
+---
+
 ## The Manifesto
 
 The Arithmetic Manifold is a research program that treats constraint satisfaction, optimization, and physical simulation as different projections of the same underlying geometric structure.
@@ -12,7 +22,9 @@ The central thesis:
 
 ## The Five Proof Points
 
-### 1. Primes Provide Identity
+### 1. Why primes?
+
+**In plain terms:** Every constraint in your problem gets a unique "fingerprint" derived from a prime number. Two constraints never produce the same fingerprint, so they never compete for the same gradient signal. This is what keeps the solver from getting stuck.
 
 Each constraint in a problem gets a unique prime weight:
 
@@ -28,7 +40,9 @@ Each constraint in a problem gets a unique prime weight:
 
 ---
 
-### 2. Multiplicative > Additive
+### 2. Why multiplicative instead of additive?
+
+**In plain terms:** Traditional solvers combine constraints by adding them up (`L = A + B`), which creates gradient conflicts — one constraint pulling against another. We combine them by multiplying (`L = A × B`), which preserves the gradient signal and lets the solver find a valid solution without thrashing.
 
 Traditional optimization:
 ```
@@ -48,7 +62,9 @@ This creates a "superconducting" optimization landscape where gradients flow wit
 
 ---
 
-### 3. Phase Transitions Are Detectable and Navigable
+### 3. Why do hard problems have a "phase transition"?
+
+**In plain terms:** Hard problems don't get hard gradually — they crack suddenly at a specific density or size. Most solvers don't see this coming and fail. We monitor the energy landscape and detect the crack before it happens, then navigate around it.
 
 Hard problems "crack" at phase transitions. When the landscape fractures (thermodynamic fracture), standard gradient descent fails.
 
@@ -66,7 +82,9 @@ This ln K / ln ln K scaling is a **fingerprint of the prime weight function** �
 
 ---
 
-### 4. The Partition Function Is Universal
+### 4. What is the "partition function" and why does it appear everywhere?
+
+**In plain terms:** The partition function is a single quantity from statistical mechanics that summarizes the entire energy landscape of a problem. It turns out to be the right lens for every project we ship — SAT, scheduling, neural networks, even physical simulation. One tool, many domains.
 
 Every project begins with the **partition function**:
 
@@ -84,7 +102,9 @@ where \(\mathcal{S}\) is the state space, \(E(s)\) is the energy of state s, and
 
 ---
 
-### 5. The Riemann Hypothesis Is a Stability Condition
+### 5. Why does the Riemann Hypothesis show up in a solver?
+
+**In plain terms:** The Riemann Hypothesis — the deepest unsolved problem in number theory — turns out to be exactly the stability condition our solver needs. If the prime distribution is well-behaved (the RH case), our solver stays stable as problems scale. If primes misbehave (a counterexample to RH), our solver would eventually destabilize too. We don't solve the Riemann Hypothesis. We embed it as the boundary we engineer against.
 
 As clause count K grows, two forces compete:
 
@@ -129,6 +149,18 @@ The Arithmetic Manifold provides:
 3. **Theoretical grounding** — The connection to the Riemann Hypothesis isn't decorative — it's a stability condition with measurable consequences
 
 4. **A path to scale** — As problems grow, the RH connection tells us when our algorithms will remain stable and when they'll collapse
+
+---
+
+## What this is NOT
+
+To help you place this work in context, here is what the Arithmetic Manifold is not:
+
+- **Not a general SAT competitor.** We are not trying to replace Z3, Kissat, or CaDiCaL on generic Boolean SAT. Our wins are on weighted, structured MaxSAT.
+- **Not a ZK rollup or proving system.** Zero-knowledge cryptography is a future wedge (2027+) that builds on top of our solver. It is not the product today.
+- **Not a neural network.** We borrow ideas from statistical mechanics and number theory. The Multiplicative PINN project uses neural networks, but the core solver does not.
+- **Not a proof of the Riemann Hypothesis.** We embed RH as a stability condition. If RH is ever disproven, our solver's stability guarantee weakens — but we do not claim to have settled the conjecture.
+- **Not a replacement for exact solvers.** When you need a certified optimality certificate, use MaxHS, Pacose, or RC2. Our [`mini` engine](limitations.md) gets close but is not 100% certified.
 
 ---
 

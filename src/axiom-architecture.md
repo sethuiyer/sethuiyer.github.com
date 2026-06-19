@@ -12,6 +12,18 @@
 
 ---
 
+## What you'll get from this essay (read this first)
+
+> **Who this is for:** Researchers, PhD students, and mathematically-inclined engineers who want to understand the deepest layer of why our solver works. This is the rigorous version. For the business-facing overview, see [The Arithmetic Manifold](core-vision.md).
+>
+> **Time commitment:** 45–60 minutes for the full essay, or skim the section signposts below to find what you need.
+>
+> **The argument in 200 words:** We treat any set of axioms as a Boolean lattice and measure how "productive" each subset is. The interesting quantity is the **curvature** — how much an axiom's value depends on what other axioms are already present. This curvature is the unique obstruction to path-independence: if two ways of building the same theory give different answers, curvature is non-zero. We extend this geometry to infinite axiom sets and discover that Möbius inversion (the algebraic machinery that names pure interactions) breaks down. To rescue it, we need an algebra. We test common computational structures against four filters (Identity, Hierarchy, Non-Lattice, Asymptotic Stability) and find that **only the prime numbers pass all four**. The Euler Product gives us the convergent infinite Möbius inversion. The Riemann Hypothesis gives us asymptotic stability. The conclusion: the natural object of study is not just the geometry `(ν, δ)` — it is the geometry *plus* the prime algebra, written `(ν, δ, ℙ)`.
+>
+> **What this means for our products:** Every solver we build is a finite, computable shadow of this infinite structure. The reason prime-weighted constraints outperform uniform weights, and the reason our solver stays stable as problem size grows, both trace back to this essay.
+
+---
+
 ## Introduction: The Watchmaker's Illusion
 
 Imagine a master watchmaker. She has a table full of gears. Each gear is beautifully crafted—perfectly round, precisely measured. If you ask her what makes the watch tick, she will point to the individual gears.
@@ -33,6 +45,8 @@ This is the story of how we discovered that prime numbers are not just the atoms
 ---
 
 ## Part I: The Geometry of Axiom Assembly
+
+> **In plain terms:** We build a geometry on top of any set of axioms. We measure how productive each subset is. The interesting quantity is how much an axiom's value depends on what else is already there.
 
 ### 1.1 States and Paths
 
@@ -137,7 +151,7 @@ The difference between the two marginal gains is exactly the **second finite dif
 
 ## Part II: The Curvature \( \kappa \)
 
-### 2.1 The Definition
+> **In plain terms:** Curvature measures whether adding one axiom helps or hurts another. Positive curvature = synergy. Negative = redundancy. Zero = independence. Curvature is the unique obstruction to "order doesn't matter."
 
 Define the **axiom synergy curvature** (or simply curvature) at base \( A \) in directions \( x \) and \( y \):
 \[
@@ -237,7 +251,7 @@ This is the **path/state gap**.
 
 ## Part III: The Game Theory Bridge
 
-### 3.1 The Shapley Value (Fair Credit)
+> **In plain terms:** Curvature, the Shapley value, and the Owen index are not three different things — they are the same mathematical object viewed from three angles: geometry, fair credit assignment, and pair interactions.
 
 When a set of axioms produces a theorem, how do we fairly assign credit to each axiom?
 
@@ -321,7 +335,7 @@ This leakage is the key to the infinite problem.
 
 ## Part IV: The Infinite Abyss
 
-### 4.1 Scaling to Countable Infinity
+> **In plain terms:** Push the same geometry to infinitely many axioms and the algebra breaks. The pure interaction of an infinite set is undefined without an additional structure to make it converge.
 
 Now, let \( C_{\text{set}} = \{c_1, c_2, c_3, \dots\} \) be a **countably infinite** set of axioms.
 
@@ -404,7 +418,7 @@ We need a structure that satisfies four constraints to survive infinity:
 
 ## Part V: The Prime Survival
 
-### 5.1 The Four Filters
+> **In plain terms:** Of every common computational structure (floating point, hash tables, neural nets, lattices), only the prime numbers pass all four filters for surviving infinity. The Euler Product is the convergent Möbius inversion; the Riemann Hypothesis is the asymptotic stability condition.
 
 Let us test common computational structures against these four filters.
 
