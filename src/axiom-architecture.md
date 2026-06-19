@@ -572,5 +572,7 @@ And that is the difference between a system that drifts and a system that endure
 - [Research Report](research-report.md) — practical implementation of the theory
 - [Prime Weighting](concepts/prime-weighting.md) · [Partition Function](concepts/partition-function.md) · [Multiplicative vs Additive](concepts/multiplicative-vs-additive.md) · [Phase Transitions](concepts/phase-transitions.md) · [Riemann Hypothesis](concepts/riemann-hypothesis.md)
 - [Asymptotically Fair Stopping](concepts/asymptotically-fair-stopping.md) — expands §4.3 (STOP as Convergence, Not Halting) into a full theorem
+- [STOP Operators as Resolution Flows](concepts/stop-operator-manuscript.md) — the observer-theoretic extension that derives STOP from first principles (Mellin spectral frame, arithmetic kernels)
+- [Prime Euler Activations and ZetaDrop](concepts/prime-euler-activations.md) — activation-level Euler gates as the practical realization of arithmetic observer kernels
 - [Thermodynamic Number Line](projects/thermodynamic-number-line.md) — primes as thermodynamic fuel
 - [All Projects](projects/index.md) — finite computable shadows of the infinite structure

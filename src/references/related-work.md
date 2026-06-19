@@ -85,7 +85,7 @@ The ShunyaBar Labs research intersects several communities:
 
 ### vs. Traditional ACLs
 - **ACL**: String-based or hierarchical, implicit composition
-- **Authorization Lattice**: Algebraically precise, guaranteed invariants
+- **[Authorization Lattice](../projects/authorization-lattice.md)**: Algebraically precise, guaranteed invariants
 
 ---
 

@@ -69,4 +69,4 @@ BAHA is the **phase transition engine** of the Arithmetic Manifold. It detects w
 - [Partition Function](../concepts/partition-function.md) — fracture detection via \(\rho(\beta) = |d/d\beta \log Z|\)
 - [Phase Transitions](../concepts/phase-transitions.md) — Lambert W branch enumeration in detail
 - [Prime Weighting](../concepts/prime-weighting.md) — how primes enable fracture detection
-- [Lambert W](../glossary.md#lambert-w-function) — glossary definition
+- [Lambert W](../glossary.md) — glossary definition

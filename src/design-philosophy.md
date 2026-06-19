@@ -216,7 +216,7 @@ Tables are where our work lives. They are designed like the work matters.
 - **Benchmark table is the spine.** Each per-project site has a "results" table that is the page.
 - **A short essay, not a marketing page.** 600–1,200 words explaining the project, then the artifact.
 
-**Palette:** Project-specific. NitroSAT is amber-on-dark. Multiplicative-PINN is teal-on-paper. Authorization Lattice is graphite. Each project gets to feel like its own thing. This is not incoherence — it is the discipline applied: each project's reader task is different, so each project's surface is different.
+**Palette:** Project-specific. NitroSAT is amber-on-dark. Multiplicative-PINN is teal-on-paper. [Authorization Lattice](projects/authorization-lattice.md) is graphite. Each project gets to feel like its own thing. This is not incoherence — it is the discipline applied: each project's reader task is different, so each project's surface is different.
 
 ---
 

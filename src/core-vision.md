@@ -68,7 +68,7 @@ This creates a "superconducting" optimization landscape where gradients flow wit
 
 Hard problems "crack" at phase transitions. When the landscape fractures (thermodynamic fracture), standard gradient descent fails.
 
-BAHA detects fractures via:
+[BAHA](projects/baha.md) detects fractures via:
 
 \[
 \rho(\beta) = \left| \frac{d}{d\beta} \log Z(\beta) \right|
@@ -94,11 +94,11 @@ where \(\mathcal{S}\) is the state space, \(E(s)\) is the energy of state s, and
 
 | Project | Role of Z(β) |
 |---------|--------------|
-| BAHA | Monitors ρ = |d/dβ log Z| to detect landscape fractures |
-| Navokoj | Defines energy E = -w·log P(clause satisfied) for geometric flow |
-| Multiplicative PINN | Constraint factor C(v) ~ e^{γv} is a local partition function |
-| Casimir SAT | Langevin dynamics samples from P(s) ∝ e^{-βE(s)} |
-| Spectral-Multiplicative | Heat kernel trace Tr(e^{-tL}) ≈ Z(β) on graph Laplacian |
+| [BAHA](projects/baha.md) | Monitors ρ = |d/dβ log Z| to detect landscape fractures |
+| [Navokoj](projects/navokoj.md) | Defines energy E = -w·log P(clause satisfied) for geometric flow |
+| [Multiplicative PINN](projects/multiplicative-pinn.md) | Constraint factor C(v) ~ e^{γv} is a local partition function |
+| [Casimir SAT](projects/casimir-sat-solver.md) | Langevin dynamics samples from P(s) ∝ e^{-βE(s)} |
+| [Spectral-Multiplicative](projects/spectral-multiplicative.md) | Heat kernel trace Tr(e^{-tL}) ≈ Z(β) on graph Laplacian |
 
 ---
 
@@ -158,7 +158,7 @@ To help you place this work in context, here is what the Arithmetic Manifold is 
 
 - **Not a general SAT competitor.** We are not trying to replace Z3, Kissat, or CaDiCaL on generic Boolean SAT. Our wins are on weighted, structured MaxSAT.
 - **Not a ZK rollup or proving system.** Zero-knowledge cryptography is a future wedge (2027+) that builds on top of our solver. It is not the product today.
-- **Not a neural network.** We borrow ideas from statistical mechanics and number theory. The Multiplicative PINN project uses neural networks, but the core solver does not.
+- **Not a neural network.** We borrow ideas from statistical mechanics and number theory. The [Multiplicative PINN](projects/multiplicative-pinn.md) project uses neural networks, but the core solver does not.
 - **Not a proof of the Riemann Hypothesis.** We embed RH as a stability condition. If RH is ever disproven, our solver's stability guarantee weakens — but we do not claim to have settled the conjecture.
 - **Not a replacement for exact solvers.** When you need a certified optimality certificate, use MaxHS, Pacose, or RC2. Our [`mini` engine](limitations.md) gets close but is not 100% certified.
 
@@ -182,3 +182,4 @@ To help you place this work in context, here is what the Arithmetic Manifold is 
 - [All Projects](projects/index.md) — implementations of the Arithmetic Manifold
 - [Limitations](limitations.md) — what the theory does not guarantee
 - [Glossary](glossary.md) — terminology reference
+- [STOP Operators as Resolution Flows](concepts/stop-operator-manuscript.md) — the observer-theoretic frame being developed to make the manifold rigorous

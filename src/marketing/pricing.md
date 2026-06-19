@@ -26,7 +26,7 @@ Navokoj is sold as a monthly subscription. Every paid tier includes unlimited AP
 
 ## What's a "proof artifact"?
 
-On the Pro tier and above, every `/v1/solve` response includes a structured `proof_artifact` object: the assignment, UNSAT cores (if any), and the derivation graph that proves optimality. You can verify it offline using our [open-source verifier](../glossary.md#verification--trust) without trusting our servers.
+On the Pro tier and above, every `/v1/solve` response includes a structured `proof_artifact` object: the assignment, UNSAT cores (if any), and the derivation graph that proves optimality. You can verify it offline using our [open-source verifier](../glossary.md#verification-trust) without trusting our servers.
 
 This is what makes Navokoj a *verifiable* MaxSAT API rather than a black-box optimizer. For audit-sensitive workloads (security, compliance, financial reporting), this is the differentiator.
 

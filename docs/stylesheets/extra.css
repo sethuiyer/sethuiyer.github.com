@@ -789,6 +789,29 @@ body {
 }
 
 /* ========================================
+   Mermaid Diagrams
+   ======================================== */
+
+.md-typeset .mermaid {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--sb-surface);
+  border: 1px solid var(--sb-border);
+  border-left: 3px solid var(--sb-accent);
+  border-radius: 6px;
+  box-shadow: var(--sb-shadow-sm);
+  overflow-x: auto;
+  text-align: center;
+}
+
+.md-typeset .mermaid svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* ========================================
    Sidebar Navigation
    ======================================== */
 

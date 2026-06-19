@@ -59,6 +59,7 @@ nav:
       - Phase Transitions: concepts/phase-transitions.md
       - Riemann Hypothesis: concepts/riemann-hypothesis.md
       - Asymptotically Fair Stopping: concepts/asymptotically-fair-stopping.md
+      - STOP Operators as Resolution Flows: concepts/stop-operator-manuscript.md
   - Projects:
     - Projects Overview: projects/index.md
     - BAHA: projects/baha.md

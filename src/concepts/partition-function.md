@@ -83,7 +83,7 @@ This \(\ln K / \ln \ln K\) scaling is the fingerprint of prime-weighted systems.
 
 ## Key Insight
 
-The partition function is not just a calculational tool — it is the **fundamental invariant** that makes the Arithmetic Manifold coherent. All five algorithms (BAHA, Navokoj, Multiplicative PINN, Casimir SAT, Spectral-Multiplicative) use the same mathematical object, which means:
+The partition function is not just a calculational tool — it is the **fundamental invariant** that makes the Arithmetic Manifold coherent. All five algorithms ([BAHA](../projects/baha.md), [Navokoj](../projects/navokoj.md), [Multiplicative PINN](../projects/multiplicative-pinn.md), [Casimir SAT](../projects/casimir-sat-solver.md), [Spectral-Multiplicative](../projects/spectral-multiplicative.md)) use the same mathematical object, which means:
 
 1. Results transfer between domains
 2. Phase transitions detected in one context warn of trouble in another

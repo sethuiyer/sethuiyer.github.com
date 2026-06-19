@@ -590,3 +590,13 @@ ZetaDrop is the sparsity version:
 }
 \]
 
+---
+
+## See Also
+
+- [Multiplicative PINN](../projects/multiplicative-pinn.md) — the loss-level Euler gate that this concept extends into activations
+- [Prime Weighting](prime-weighting.md) — the foundational prime-weighting mechanism
+- [STOP Operators as Resolution Flows](stop-operator-manuscript.md) — the observer-theoretic justification for arithmetic gating
+- [Partition Function](partition-function.md) — the broader free-energy object this activation structure lives inside
+- [The Arithmetic Manifold](../core-vision.md) — the unified theory
+

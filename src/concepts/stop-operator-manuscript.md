@@ -1900,4 +1900,5 @@ The following references should be added before external submission.
 - [Prime Weighting](prime-weighting.md)
 - [Partition Function](partition-function.md)
 - [Multiplicative PINN](../projects/multiplicative-pinn.md)
+- [Prime Euler Activations and ZetaDrop](prime-euler-activations.md) — activation-level Euler gates as the practical realization of arithmetic observer kernels
 - [Axiom Architecture](../axiom-architecture.md)
