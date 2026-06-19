@@ -48,8 +48,8 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+4:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Source Serif 4";--md-code-font:"JetBrains Mono"}</style>
       
     
     
@@ -76,7 +76,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="amber">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -85,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#verifiable-maxsat-for-hard-planning-problems" class="md-skip">
+        <a href="#key-results" class="md-skip">
           Skip to content
         </a>
       
@@ -132,7 +132,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -142,7 +142,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -402,8 +402,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -446,8 +444,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -456,10 +452,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-we-solve" class="md-nav__link">
+  <a href="#key-results" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What we solve
+        Key Results
       
     </span>
   </a>
@@ -467,71 +463,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-us" class="md-nav__link">
+  <a href="#projects" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why us
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#results" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Results
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Results">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#academic-benchmarks-peer-reviewed-academic-test-suites" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Academic benchmarks (peer-reviewed, academic test suites)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#production-performance-live-api-2026-04-04-2026-06-19" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Production performance (live API, 2026-04-04 → 2026-06-19)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#research-breakthroughs-github-repo-janapr-2026" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Research breakthroughs (GitHub repo, Jan–Apr 2026)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-it-works-in-one-paragraph" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How it works (in one paragraph)
+        Projects
       
     </span>
   </a>
@@ -550,32 +485,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-cases" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Use cases
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#for-the-technical-reader" class="md-nav__link">
     <span class="md-ellipsis">
       
-        For the technical reader
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#each-project-has-its-own-live-site" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Each project has its own live site
+        For the Technical Reader
       
     </span>
   </a>
@@ -915,6 +828,34 @@
     
   
     Riemann Hypothesis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="concepts/asymptotically-fair-stopping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Asymptotically Fair Stopping
   
 
     
@@ -1924,321 +1865,193 @@
 
 
 
-<h1 id="verifiable-maxsat-for-hard-planning-problems">Verifiable MaxSAT for Hard Planning Problems<a class="headerlink" href="#verifiable-maxsat-for-hard-planning-problems" title="Permanent link">&para;</a></h1>
-<p>ShunyaBar Labs builds <strong>constraint-solving tools that come with proof</strong>. Our flagship product, <a href="https://navokoj.shunyabar.foo">Navokoj</a>, is a MaxSAT API that returns the best possible answer — and the mathematical evidence to back it up.</p>
+<div class="sb-thesis-title">
+<h1>ShunyaBar Labs</h1>
+<p class="sb-subtitle">The Arithmetic Manifold</p>
+<p class="sb-tagline">Constraint is the engine.</p>
+</div>
+
+<div class="sb-abstract">
+
+We build constraint-solving tools that come with proof. Our work unifies ideas from analytic number theory, statistical mechanics, and category theory into a single framework — the **Arithmetic Manifold** — and ships them as production [MaxSAT](glossary.md) solvers. Every constraint gets a unique prime-derived weight; every solver is a physical instrument whose stability threshold coincides with the Riemann critical line.
+
+</div>
+
 <hr />
-<h2 id="what-we-solve">What we solve<a class="headerlink" href="#what-we-solve" title="Permanent link">&para;</a></h2>
-<p>Every day, enterprises solve constraint-satisfaction problems under hard time pressure:</p>
+<h2 id="key-results">Key Results<a class="headerlink" href="#key-results" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Problem</th>
-<th>Why it's hard</th>
-<th>What we do</th>
+<th>Area</th>
+<th>Result</th>
+<th>What it means</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Scheduling 10,000 nurses across three shifts</strong></td>
-<td>Contract rules, fairness constraints, last-minute sick calls</td>
-<td>Lock the parts that already work, repair only what changed — in milliseconds</td>
+<td><strong>Prime Weighting</strong></td>
+<td>3.4–4× speedup; topological cycles 79 → 20</td>
+<td>No two constraints compete for the same gradient signal</td>
 </tr>
 <tr>
-<td><strong>Routing 5,000 vehicles with delivery windows</strong></td>
-<td>Time windows, vehicle capacity, traffic disruption</td>
-<td>Preserve promised delivery slots, adjust only affected routes</td>
+<td><strong>Enterprise Timetabling</strong></td>
+<td>80M clauses, 100% in 73 seconds</td>
+<td>250× faster than v1 (5.2 hours → 73s, same laptop)</td>
 </tr>
 <tr>
-<td><strong>Placing 100,000 VMs on a GPU cluster</strong></td>
-<td>Affinity rules, hardware fit, live-migration cost</td>
-<td>Find a feasible placement in seconds with a certificate you can audit</td>
-</tr>
-</tbody>
-</table>
-<p>These are all <a href="glossary/">MaxSAT</a> problems. Classical solvers find good answers; we return the best answer <strong>with proof you can verify offline</strong>.</p>
-<hr />
-<h2 id="why-us">Why us<a class="headerlink" href="#why-us" title="Permanent link">&para;</a></h2>
-<ol>
-<li>
-<p><strong>Verifiable, not just fast.</strong> Every Pro+ response includes a structured proof artifact. Our verifier is <a href="glossary/#verification--trust">open source</a>. You don't trust us — you check.</p>
-</li>
-<li>
-<p><strong>Lock-preserving repair.</strong> When the world changes (a truck breaks down, a nurse calls in sick), we don't restart from scratch. We preserve the parts that already work and repair only what changed. <strong>847× faster than full recomputation.</strong></p>
-</li>
-<li>
-<p><strong>Honest numbers.</strong> Where our solver works, we tell you. Where it doesn't, <a href="limitations/">we tell you that too</a>. We benchmark against certified optimal solutions and report the gaps.</p>
-</li>
-</ol>
-<hr />
-<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
-<h3 id="academic-benchmarks-peer-reviewed-academic-test-suites">Academic benchmarks (peer-reviewed, academic test suites)<a class="headerlink" href="#academic-benchmarks-peer-reviewed-academic-test-suites" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>What we solve</th>
-<th>Real-world test</th>
-<th>What that means for you</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Scheduling</strong></td>
-<td>University timetabling — 147K variables, 80M clauses</td>
-<td>100% solved in 73 seconds. Schedules a full university in under two minutes.</td>
+<td><strong>Production MaxSAT</strong></td>
+<td>3.98M clauses, 308 runs, median 65.5ms</td>
+<td>54% perfect solves, 80% at ≥99% satisfaction</td>
 </tr>
 <tr>
-<td><strong>Hardware verification</strong></td>
-<td>512×512 multiplier circuit — 788K variables</td>
-<td>100% correct in 5.9 seconds. Replaces hours of formal-verification work.</td>
-</tr>
-<tr>
-<td><strong>Combinatorial search</strong></td>
-<td>R(5,5,5) Ramsey problem — N=52</td>
-<td>Solved with zero errors in 5.6 seconds. A benchmark most SAT solvers can't crack.</td>
-</tr>
-<tr>
-<td><strong>Fluid simulation</strong></td>
-<td>2D Navier-Stokes equations</td>
-<td>99.64% residual reduction, <strong>100,000× faster than traditional CFD</strong>.</td>
-</tr>
-<tr>
-<td><strong>Incremental repair</strong></td>
-<td>CPU task scheduling under disruption</td>
-<td>847×–12,495× faster than recomputing from scratch, with 95%+ of prior decisions preserved.</td>
-</tr>
-<tr>
-<td><strong>Local search</strong></td>
-<td>64-spin frustrated spin glass</td>
-<td>4,169% better than standard simulated annealing on hard energy landscapes.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="production-performance-live-api-2026-04-04-2026-06-19">Production performance (live API, 2026-04-04 → 2026-06-19)<a class="headerlink" href="#production-performance-live-api-2026-04-04-2026-06-19" title="Permanent link">&para;</a></h3>
-<blockquote>
-<p><strong>The headline:</strong> Across <strong>308 production runs</strong>, NitroSAT processed <strong>3.98M clauses</strong> with <strong>median satisfaction 1.0</strong> and <strong>median solve time 65.5 ms</strong>.</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>What we solve</th>
-<th>Production test</th>
-<th>What that means for you</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Massive clause-density problems</strong></td>
-<td>10K vars / <strong>1.65M clauses</strong> / clause-var ratio 165×</td>
-<td>100% perfect satisfaction in 278 seconds. The largest clause-density instance ever recorded in production.</td>
-</tr>
-<tr>
-<td><strong>Sub-second structural solves</strong></td>
-<td>2.5K vars / 122K clauses / clause-var ratio 49×</td>
-<td><strong>0.296 seconds</strong>, perfect satisfaction. The "excuse-me-what" datapoint.</td>
-</tr>
-<tr>
-<td><strong>Massive variable count</strong></td>
-<td>49K vars / 73.5K clauses</td>
-<td>100% perfect satisfaction in 0.291 seconds. Production workloads at 49K-variable scale.</td>
-</tr>
-<tr>
-<td><strong>Quality at scale</strong></td>
-<td>308 runs, 79.87% at ≥99% satisfaction</td>
-<td>Almost 4 out of 5 production calls reach 99%+ satisfaction.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="research-breakthroughs-github-repo-janapr-2026">Research breakthroughs (GitHub repo, Jan–Apr 2026)<a class="headerlink" href="#research-breakthroughs-github-repo-janapr-2026" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>What we solve</th>
-<th>Research test</th>
-<th>What that means for you</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Edwards-Anderson 3D spin glass</strong></td>
-<td>40×40×40 lattice — 64,000 fully-coupled frustrated spins</td>
-<td><strong>99.47% satisfaction in 4.3 seconds.</strong> First gradient-based solver to crack EA-3D at this scale.</td>
-</tr>
-<tr>
-<td><strong>v1 → v2 generational leap</strong></td>
-<td>80M-clause enterprise timetabling</td>
-<td><strong>5.2 hours → 73 seconds (250× speedup)</strong> from algorithmic changes alone, on the same laptop.</td>
+<td><strong>Edwards-Anderson 3D</strong></td>
+<td>64K frustrated spins, 99.47% in 4.3s</td>
+<td>First gradient-based solver at this scale</td>
 </tr>
 <tr>
 <td><strong>Titan Ramsey R(5,5)</strong></td>
-<td>780 vars, 1.32M clauses, density α=1,687</td>
-<td>99.995% satisfaction in 3,403s. Each variable appears in ~1,687 clauses.</td>
+<td>780 vars, 1.32M clauses, α=1687</td>
+<td>99.995% satisfaction — each variable in ~1687 clauses</td>
 </tr>
 <tr>
-<td><strong>CDCL adversarial trap</strong></td>
-<td>pit.cnf — 2,950 vars, 1.05M clauses</td>
-<td>100% perfect in ~400s. Solves a formula engineered to break CDCL.</td>
-</tr>
-<tr>
-<td><strong>Prime weighting ablation</strong></td>
-<td>clique_4_20 (structured geometry)</td>
-<td>3.4× faster than uniform weighting; topological cycles drop from 79 to 20.</td>
+<td><strong>CDCL Trap (pit.cnf)</strong></td>
+<td>2,950 vars, 1.05M clauses</td>
+<td>100% perfect — solves formulas engineered to break CDCL</td>
 </tr>
 </tbody>
 </table>
-<p>Full benchmark methodology: <a href="research-report/">research report</a> · <a href="projects/nitrosat/">NitroSAT production ledger</a> · <a href="https://github.com/sethuiyer/NitroSAT/blob/main/benchmarks/README.md">GitHub benchmark heritage</a> · <a href="limitations/">Limitations</a></p>
+<p>Full methodology: <a href="research-report/">research report</a> · <a href="projects/nitrosat/">production ledger</a> · <a href="limitations/">limitations</a></p>
 <hr />
-<h2 id="how-it-works-in-one-paragraph">How it works (in one paragraph)<a class="headerlink" href="#how-it-works-in-one-paragraph" title="Permanent link">&para;</a></h2>
-<p>Every constraint in your problem gets a unique weight derived from a prime number. No two constraints compete for the same gradient signal, so the solver can navigate hard landscapes without getting stuck. The same five ideas — prime weighting, multiplicative loss, phase-transition detection, partition functions, and a stability condition rooted in the Riemann Hypothesis — show up across every project we ship. For the full theory, see <a href="core-vision/">The Arithmetic Manifold</a>.</p>
+<h2 id="projects">Projects<a class="headerlink" href="#projects" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="projects/nitrosat/"><strong>NitroSAT</strong></a></td>
+<td>Physics-informed continuous-relaxation MaxSAT solver</td>
+</tr>
+<tr>
+<td><a href="projects/navokoj/"><strong>Navokoj</strong></a></td>
+<td>Production MaxSAT API with proof artifacts</td>
+</tr>
+<tr>
+<td><a href="projects/baha/"><strong>BAHA</strong></a></td>
+<td>Fracture detection via Lambert W / thermal signal analysis</td>
+</tr>
+<tr>
+<td><a href="projects/multiplicative-pinn/"><strong>Multiplicative PINN</strong></a></td>
+<td>PINNs with prime-weighted multiplicative loss</td>
+</tr>
+<tr>
+<td><a href="projects/spectral-multiplicative/"><strong>Spectral-Multiplicative</strong></a></td>
+<td>Spectral graph methods + multiplicative optimization</td>
+</tr>
+<tr>
+<td><a href="projects/geometry-of-conditional-logic/"><strong>Geometry of Conditional Logic</strong></a></td>
+<td>Spatial embeddings of logical conditionals</td>
+</tr>
+<tr>
+<td><a href="projects/casimir-sat-solver/"><strong>Casimir SAT Solver</strong></a></td>
+<td>SAT solving via vacuum energy analogy</td>
+</tr>
+<tr>
+<td><a href="projects/factor-agent/"><strong>Factor Agent</strong></a></td>
+<td>LLM agent with certified tool-use via MaxSAT</td>
+</tr>
+<tr>
+<td><a href="projects/thermodynamic-number-line/"><strong>Thermodynamic Number Line</strong></a></td>
+<td>Primes as thermodynamic fuel</td>
+</tr>
+<tr>
+<td><a href="projects/authorization-lattice/"><strong>Authorization Lattice</strong></a></td>
+<td>Lattice-based access control with MaxSAT verification</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h2 id="pricing">Pricing<a class="headerlink" href="#pricing" title="Permanent link">&para;</a></h2>
-<p>Start free. Pay when you scale.</p>
 <table>
 <thead>
 <tr>
 <th>Tier</th>
 <th>Price</th>
-<th>What you get</th>
+<th>Limits</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>Free</strong></td>
 <td>$0</td>
-<td>1K vars, 5K clauses, 500 req/hr — hobbyists and CI</td>
+<td>1K vars, 5K clauses, 500 req/hr</td>
 </tr>
 <tr>
 <td><strong>Dev</strong></td>
 <td>$99/mo</td>
-<td>10K vars, 50K clauses, 5K req/hr — indie devs</td>
+<td>10K vars, 50K clauses, 5K req/hr</td>
 </tr>
 <tr>
 <td><strong>Pro</strong></td>
 <td>$499/mo</td>
-<td>100K vars, 500K clauses, 50K req/hr, <strong>proof artifacts included</strong></td>
+<td>100K vars, 500K clauses, 50K req/hr, proof artifacts</td>
 </tr>
 <tr>
 <td><strong>Enterprise</strong></td>
 <td>Custom ($5K+/mo)</td>
-<td>Unlimited, on-prem optional, SOC2 in flight</td>
+<td>Unlimited, on-prem, SOC2 in flight</td>
 </tr>
 </tbody>
 </table>
-<p>Full pricing details: <a href="marketing/pricing/">pricing.md</a></p>
+<p>Details: <a href="marketing/pricing/">pricing</a> · <a href="marketing/use-cases/">use cases</a> · <a href="getting-started/benchmarks/">benchmarks</a></p>
 <hr />
-<h2 id="use-cases">Use cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h2>
-<p>We have detailed pages for the verticals where Navokoj is strongest:</p>
-<ul>
-<li><a href="marketing/use-cases/#1-logistics--transportation">Logistics &amp; transportation</a></li>
-<li><a href="marketing/use-cases/#2-healthcare-workforce-scheduling">Healthcare workforce scheduling</a></li>
-<li><a href="marketing/use-cases/#3-cloud-infrastructure--devops">Cloud infrastructure &amp; DevOps</a></li>
-<li><a href="marketing/use-cases/#4-financial-services">Financial services</a></li>
-<li><a href="marketing/use-cases/#5-telecom--spectrum">Telecom &amp; spectrum</a></li>
-<li><a href="marketing/use-cases/#6-manufacturing--supply-chain">Manufacturing &amp; supply chain</a></li>
-</ul>
-<hr />
-<h2 id="for-the-technical-reader">For the technical reader<a class="headerlink" href="#for-the-technical-reader" title="Permanent link">&para;</a></h2>
+<h2 id="for-the-technical-reader">For the Technical Reader<a class="headerlink" href="#for-the-technical-reader" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
 <th>If you want to…</th>
-<th>Read this</th>
+<th>Start here</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Understand the math behind the engine</td>
+<td>Understand the math</td>
 <td><a href="core-vision/">Core Vision: The Arithmetic Manifold</a></td>
 </tr>
 <tr>
-<td>Read the rigorous research paper</td>
+<td>Read the rigorous paper</td>
 <td><a href="axiom-architecture/">Axiom Architecture essay</a></td>
 </tr>
 <tr>
-<td>See the unified systems report</td>
+<td>See the unified report</td>
 <td><a href="research-report/">Research report</a></td>
 </tr>
 <tr>
 <td>Call the API</td>
-<td><a href="getting-started/quick-start/">Quick Start Guide</a> · <a href="getting-started/lua-module/">Lua Module Reference</a></td>
-</tr>
-<tr>
-<td>Look up a term</td>
-<td><a href="glossary/">Glossary</a></td>
+<td><a href="getting-started/quick-start/">Quick Start Guide</a></td>
 </tr>
 <tr>
 <td>Understand our limits</td>
-<td><a href="limitations/">Where the solver works (and where it doesn't)</a></td>
+<td><a href="limitations/">Where it works (and where it doesn't)</a></td>
 </tr>
 <tr>
-<td>See our roadmap and pricing strategy</td>
-<td><a href="product-strategy/">Product Strategy, H2 2026</a> · <a href="TODO/">Roadmap</a></td>
+<td>See the roadmap</td>
+<td><a href="product-strategy/">Product Strategy</a> · <a href="TODO/">TODO</a></td>
 </tr>
 <tr>
-<td>Understand why our sites look different</td>
+<td>Why our surfaces look different</td>
 <td><a href="design-philosophy/">The Design Philosophy</a></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="each-project-has-its-own-live-site">Each project has its own live site<a class="headerlink" href="#each-project-has-its-own-live-site" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Project</th>
-<th>URL</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Navokoj</strong> (Production API)</td>
-<td><a href="https://navokoj.shunyabar.foo">navokoj.shunyabar.foo</a></td>
-</tr>
-<tr>
-<td><strong>BAHA</strong></td>
-<td><a href="https://sethuiyer.github.io/baha">sethuiyer.github.io/baha</a></td>
-</tr>
-<tr>
-<td><strong>NitroSAT</strong></td>
-<td><a href="https://sethuiyer.github.io/NitroSAT">sethuiyer.github.io/NitroSAT</a></td>
-</tr>
-<tr>
-<td><strong>Multiplicative PINN</strong></td>
-<td><a href="https://sethuiyer.github.io/multiplicative-pinn-framework">sethuiyer.github.io/multiplicative-pinn-framework</a></td>
-</tr>
-<tr>
-<td><strong>Spectral-Multiplicative</strong></td>
-<td><a href="https://sethuiyer.github.io/spectral-multiplicative-framework">sethuiyer.github.io/spectral-multiplicative-framework</a></td>
-</tr>
-<tr>
-<td><strong>Geometry of Conditional Logic</strong></td>
-<td><a href="https://sethuiyer.github.io/geometry-of-conditional-logic">sethuiyer.github.io/geometry-of-conditional-logic</a></td>
-</tr>
-<tr>
-<td><strong>Casimir SAT Solver</strong></td>
-<td><a href="https://sethuiyer.github.io/casimir-sat-solver">sethuiyer.github.io/casimir-sat-solver</a></td>
-</tr>
-<tr>
-<td><strong>Factor Agent</strong></td>
-<td><a href="https://sethuiyer.github.io/factor-agent">sethuiyer.github.io/factor-agent</a></td>
-</tr>
-<tr>
-<td><strong>Thermodynamic Number Line</strong></td>
-<td><a href="https://sethuiyer.github.io/thermodynamic-number-line">sethuiyer.github.io/thermodynamic-number-line</a></td>
-</tr>
-<tr>
-<td><strong>Authorization Lattice</strong></td>
-<td><a href="https://sethuiyer.github.io/authorization-lattice">sethuiyer.github.io/authorization-lattice</a></td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="concepts/prime-weighting/">Concepts: Prime Weighting</a> · <a href="concepts/partition-function/">Partition Function</a> · <a href="concepts/multiplicative-vs-additive/">Multiplicative vs Additive</a> · <a href="concepts/phase-transitions/">Phase Transitions</a> · <a href="concepts/riemann-hypothesis/">Riemann Hypothesis</a></li>
-<li><a href="projects/">Projects Overview</a> — all 10 projects mapped</li>
-<li><a href="marketing/">Marketing: Why Navokoj</a> · <a href="marketing/use-cases/">Use Cases</a> · <a href="marketing/pricing/">Pricing</a> · <a href="marketing/results/">Results</a></li>
-<li><a href="design-philosophy/">Design Philosophy</a> — why our surfaces look different</li>
-<li><a href="product-strategy/">Product Strategy</a> · <a href="TODO/">Roadmap</a> — H2 2026 plan</li>
+<li><a href="concepts/prime-weighting/">Prime Weighting</a> · <a href="concepts/partition-function/">Partition Function</a> · <a href="concepts/multiplicative-vs-additive/">Multiplicative vs Additive</a> · <a href="concepts/phase-transitions/">Phase Transitions</a> · <a href="concepts/riemann-hypothesis/">Riemann Hypothesis</a> · <a href="concepts/asymptotically-fair-stopping/">Asymptotically Fair Stopping</a></li>
+<li><a href="projects/">All Projects</a> · <a href="marketing/">Why Navokoj</a> · <a href="glossary/">Glossary</a></li>
 </ul>
 
 

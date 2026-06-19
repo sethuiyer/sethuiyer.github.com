@@ -9,20 +9,20 @@ theme:
   name: material
   custom_dir: overrides
   font:
-    text: Inter
+    text: Source Serif 4
     code: JetBrains Mono
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo
-      accent: teal
+      primary: black
+      accent: amber
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: indigo
-      accent: teal
+      primary: amber
+      accent: amber
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
@@ -44,13 +44,13 @@ nav:
   - Core Vision:
     - The Arithmetic Manifold: core-vision.md
     - Axiom Architecture: axiom-architecture.md
-      - Concepts:
-        - Partition Function: concepts/partition-function.md
-        - Prime Weighting: concepts/prime-weighting.md
-        - Multiplicative vs Additive: concepts/multiplicative-vs-additive.md
-        - Phase Transitions: concepts/phase-transitions.md
-        - Riemann Hypothesis: concepts/riemann-hypothesis.md
-        - Asymptotically Fair Stopping: concepts/asymptotically-fair-stopping.md
+    - Concepts:
+      - Partition Function: concepts/partition-function.md
+      - Prime Weighting: concepts/prime-weighting.md
+      - Multiplicative vs Additive: concepts/multiplicative-vs-additive.md
+      - Phase Transitions: concepts/phase-transitions.md
+      - Riemann Hypothesis: concepts/riemann-hypothesis.md
+      - Asymptotically Fair Stopping: concepts/asymptotically-fair-stopping.md
   - Projects:
     - Projects Overview: projects/index.md
     - BAHA: projects/baha.md
