@@ -2,6 +2,15 @@
 
 *Draft manuscript for journal development.*
 
+<div class="video-embed" markdown="1">
+<iframe
+  src="https://www.youtube-nocookie.com/embed/3NmgkLSyP_8"
+  title="The Hidden Math of Infinite Loops: Taming the Spinning Beach Ball of Death"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen>
+</iframe>
+</div>
+
 ## Abstract
 
 Classical analysis usually studies an infinite process through the existence or failure of a terminal limit. This paper develops an alternative formulation in which an infinite process is treated as a path and observation is modeled as a finite-resolution operation. Given a sequence of partial states \(S_n\), a stopping law \(\tau\) induces the observable \(\mathbb{E}[S_\tau]\). We call this induced map the **STOP operator**.
@@ -1020,7 +1029,269 @@ For primes, this becomes:
 
 This is the same pattern seen in the elementary STOP examples. A raw path is smoothed by an observer; the smoothed object may diverge; finite-part extraction or spectral transformation reveals a residue, pole, or mode. The observer does not create the structure from nothing. It selects the coordinate system in which that structure is visible.
 
-## 10. Banach-Valued and Operator STOP
+## 10. Mellin-Compatible STOP Observers
+
+The preceding sections used geometric damping and arithmetic probe kernels. For number-theoretic paths, the cleanest general framework is Mellin-compatible observation.
+
+This section corrects a tempting but wrong approach. Expanding \(e^{-tn}\) directly gives mixed moments
+
+\[
+M_k(f;\mu)=\sum_{n\geq1}f(n)n^k\mu(n),
+\]
+
+not separate observer moments independent of \(f\). Therefore the invariant data is not coefficient support and not raw moments of the observer. The correct invariant lives in the Dirichlet-Mellin singular spectrum.
+
+### 10.1 Mellin STOP Decomposition
+
+Let \(\varphi\in C_c^\infty(0,\infty)\), or more generally let \(\varphi\) be smooth and rapidly decaying on \((0,\infty)\). Define a scale observer
+
+\[
+\mathcal{O}_{\varphi,\varepsilon}(f)
+=
+\sum_{n\geq1}f(n)\varphi(\varepsilon n),
+\qquad
+\varepsilon\to0^+.
+\]
+
+The observer samples the path at scale \(n\sim\varepsilon^{-1}\), so it is a genuine observer at infinity. Let
+
+\[
+F(s)=\sum_{n\geq1}f(n)n^{-s}
+\]
+
+be the Dirichlet series of \(f\), initially convergent in a right half-plane, and let
+
+\[
+\widehat{\varphi}(s)
+=
+\int_0^\infty \varphi(x)x^{s-1}\,dx
+\]
+
+be the Mellin transform of the observer window.
+
+By Mellin inversion,
+
+\[
+\varphi(x)
+=
+\frac{1}{2\pi i}
+\int_{(c)}
+\widehat{\varphi}(s)x^{-s}\,ds.
+\]
+
+Hence
+
+\[
+\boxed{
+\mathcal{O}_{\varphi,\varepsilon}(f)
+=
+\frac{1}{2\pi i}
+\int_{(c)}
+F(s)\widehat{\varphi}(s)\varepsilon^{-s}\,ds.
+}
+\]
+
+This is the correct STOP spectral decomposition. Observer dependence enters through the Mellin multiplier \(\widehat{\varphi}(s)\).
+
+### Theorem 10.2: Intrinsic Singular-Spectrum Invariance
+
+Suppose \(F(s)\) admits meromorphic continuation to a region \(\Omega\), has at most polynomial growth on vertical lines, and \(\widehat{\varphi}(s)\) is holomorphic and nonzero at the relevant poles of \(F\). Then, after contour shift,
+
+\[
+\mathcal{O}_{\varphi,\varepsilon}(f)
+\sim
+\sum_{\omega\in\operatorname{Poles}(F)\cap\Omega}
+\operatorname{Res}_{s=\omega}
+\left(
+F(s)\widehat{\varphi}(s)\varepsilon^{-s}
+\right)
++
+\text{smaller contour contribution}.
+\]
+
+Each pole \(\omega\) contributes
+
+\[
+\boxed{
+\widehat{\varphi}(\omega)
+\operatorname{Res}_{s=\omega}F(s)
+\varepsilon^{-\omega}.
+}
+\]
+
+Thus the observer changes amplitudes by the computable factor \(\widehat{\varphi}(\omega)\), but it does not change the intrinsic pole location \(\omega\). After dividing by \(\widehat{\varphi}(\omega)\), one recovers the observer-independent residue of \(F\).
+
+The corrected invariant is therefore:
+
+\[
+\boxed{
+\text{STOP observers preserve Dirichlet-Mellin singular data, not raw coefficients.}
+}
+\]
+
+### 10.3 Prime Spectral Rigidity
+
+For the von Mangoldt function,
+
+\[
+F_\Lambda(s)
+=
+\sum_{n\geq1}\frac{\Lambda(n)}{n^s}
+=
+-\frac{\zeta'(s)}{\zeta(s)}.
+\]
+
+The poles of \(-\zeta'/\zeta\) occur at:
+
+1. the pole \(s=1\) of \(\zeta\),
+2. the nontrivial zeros of \(\zeta\),
+3. the trivial zeros of \(\zeta\),
+4. possible normalization-dependent terms near \(s=0\).
+
+Therefore
+
+\[
+\mathcal{O}_{\varphi,\varepsilon}(\Lambda)
+=
+\sum_{n\geq1}\Lambda(n)\varphi(\varepsilon n)
+\]
+
+has asymptotic terms of the form
+
+\[
+\widehat{\varphi}(1)\varepsilon^{-1}
+-
+\sum_{\zeta(\rho)=0}
+\widehat{\varphi}(\rho)\varepsilon^{-\rho}
++
+\text{trivial-zero and lower-order terms},
+\]
+
+up to the usual sign and multiplicity conventions for logarithmic derivatives.
+
+This is the rigorous form of prime observer invariance:
+
+\[
+\boxed{
+\Lambda \text{ is observer-rigid because } -\zeta'/\zeta
+\text{ exposes the zeta singular spectrum.}
+}
+\]
+
+Primes are not invariant merely as raw points or supports. They are invariant as Euler-product atoms whose logarithmic derivative exposes a stable singular spectrum.
+
+### Theorem 10.4: STOP Weight Equivalence for \(\Lambda\)
+
+Let \(w:\mathbb{N}\to\mathbb{C}\), and define
+
+\[
+F_w(s)
+=
+\sum_{n\geq1}
+\frac{\Lambda(n)w(n)}{n^s}.
+\]
+
+In a meromorphic region \(\Omega\), \(w\) preserves the intrinsic prime STOP spectrum iff
+
+\[
+H_w(s)
+=
+\sum_{n\geq1}
+\frac{\Lambda(n)(w(n)-1)}{n^s}
+\]
+
+extends holomorphically to \(\Omega\). Equivalently,
+
+\[
+F_w(s)
+=
+-\frac{\zeta'(s)}{\zeta(s)}
++
+H_w(s),
+\]
+
+with \(H_w\) holomorphic. Then \(F_w\) and \(-\zeta'/\zeta\) have the same pole spectrum in \(\Omega\), so Mellin STOP observers recover the same intrinsic singular data up to explicit observer factors.
+
+### 10.5 Multiplicative Weights
+
+If \(w\) is completely multiplicative on prime powers, define
+
+\[
+L_w(s)
+=
+\prod_p(1-w(p)p^{-s})^{-1}.
+\]
+
+Then
+
+\[
+-\frac{L_w'(s)}{L_w(s)}
+=
+\sum_{n\geq1}
+\frac{\Lambda(n)w(n)}{n^s}.
+\]
+
+Thus \(w\) preserves the prime STOP spectrum in \(\Omega\) iff
+
+\[
+\boxed{
+\frac{L_w(s)}{\zeta(s)}
+\text{ is holomorphic and zero-free in }\Omega.
+}
+\]
+
+Equivalently, \(L_w\) differs from \(\zeta\) only by a holomorphic zero-free factor in the region of interest.
+
+### 10.6 Dirichlet Character Version
+
+For a primitive Dirichlet character \(\chi\), the zero-revealing object is not merely \(\sum\chi(n)n^{-s}\), but the logarithmic derivative:
+
+\[
+\sum_{n\geq1}
+\frac{\Lambda(n)\chi(n)}{n^s}
+=
+-\frac{L'(s,\chi)}{L(s,\chi)}.
+\]
+
+For a weight \(w\), define
+
+\[
+F_{\chi,w}(s)
+=
+\sum_{n\geq1}
+\frac{\Lambda(n)\chi(n)w(n)}{n^s}.
+\]
+
+Then \(w\) preserves the \(L(s,\chi)\)-spectrum in \(\Omega\) iff
+
+\[
+F_{\chi,w}(s)
++
+\frac{L'(s,\chi)}{L(s,\chi)}
+\]
+
+is holomorphic in \(\Omega\).
+
+If \(w\) is multiplicative and
+
+\[
+L_{\chi,w}(s)
+=
+\prod_p(1-\chi(p)w(p)p^{-s})^{-1},
+\]
+
+then the equivalent condition is
+
+\[
+\boxed{
+\frac{L_{\chi,w}(s)}{L(s,\chi)}
+\text{ is holomorphic and zero-free in }\Omega.
+}
+\]
+
+This is the corrected classification theorem: observer-invariant arithmetic data is singular spectrum, and weight equivalence is holomorphic zero-free equivalence of the associated \(L\)-functions.
+
+## 11. Banach-Valued and Operator STOP
 
 Let \(X\) be a Banach space and let
 
@@ -1048,7 +1319,7 @@ with convergence in \(X\) whenever
 \sum_{k\geq 1}\|a_k\|(1-p)^{k-1}<\infty.
 \]
 
-### 10.1 Linear Dynamics
+### 11.1 Linear Dynamics
 
 Let \(T:X\to X\) be a bounded linear operator and consider the path
 
@@ -1070,7 +1341,7 @@ whenever the resolvent exists.
 
 Thus operator STOP is resolvent theory in probabilistic language. As \(p\to 0^+\), the observer probes the spectrum of \(T\) near \(1\).
 
-## 11. Relation to Existing Mathematics
+## 12. Relation to Existing Mathematics
 
 The STOP framework should not be positioned as replacing established summability theory, analytic number theory, or spectral theory. Its contribution is interpretive and structural: it organizes several known transformations as changes of observer resolution.
 
@@ -1086,6 +1357,7 @@ More specifically:
 - The regularity theorem is a minimal Tauberian-style sanity check: ordinary limits are preserved under admissible tail-exploring observers, provided boundedness or uniform integrability prevents rare excursions from dominating.
 - The finite-part extraction is parallel to zeta and heat-kernel regularization: the new feature is the observer shift \(e^t\), which contributes the explicit anomaly \(1/(m+1)\).
 - The arithmetic probe kernels are standard analytic-number-theoretic objects: Dirichlet characters lead to \(L(s,\chi)\), \(\Lambda(n)\) to \(-\zeta'/\zeta\), and \(\mu(n)\) to \(1/\zeta\).
+- The Mellin-compatible observer theorem is the same contour-shift mechanism behind explicit formulas and smoothed prime-counting estimates; the STOP contribution is to interpret the Mellin test function as an observer and its transform \(\widehat{\varphi}\) as the computable observer anomaly.
 - The Banach-space construction is ordinary resolvent theory written in stopped-path language.
 
 Relevant existing areas therefore include:
@@ -1099,7 +1371,7 @@ Relevant existing areas therefore include:
 - Dirichlet series and arithmetic Fourier analysis.
 - Resolvent theory on Banach spaces.
 
-## 12. Potential Applications
+## 13. Potential Applications
 
 The framework is not intended as a replacement for existing regularization methods. Its value is in making observer dependence explicit. Natural application areas include:
 
@@ -1108,12 +1380,13 @@ The framework is not intended as a replacement for existing regularization metho
 3. **Ergodic and operator averages.** The resolvent identity connects STOP observation with Abel means and spectral boundary behavior of linear dynamics.
 4. **Arithmetic signal analysis.** Signed probe kernels provide a language for switching between event-level arithmetic data, density profiles, and spectral transforms.
 5. **Algorithmic randomness and compression.** The observer-orbit idea suggests a way to compare finite-state irreducibility, asymptotic compressibility, and spectral irreducibility.
+6. **Multiplicative constraint learning.** Euler-product gates in multiplicative PINNs can be read as finite observer kernels over violation space. Their log-gradients produce truncated von Mangoldt, or prime-power, spectral correction fields.
 
 These are proposed directions. The core submission should stand on the STOP identity, regularity theorem, and polynomial residue theorem.
 
-## 13. Limitations and Open Problems
+## 14. Limitations and Open Problems
 
-### 13.1 Fairness Must Be Formalized by Path Class
+### 14.1 Fairness Must Be Formalized by Path Class
 
 Tail exploration alone is not fairness. An observer can sample arbitrarily deep into a path while remaining phase-locked or arithmetically biased. A publishable version must state fairness relative to explicit classes of paths.
 
@@ -1139,15 +1412,15 @@ A mature fairness theory should distinguish these cases:
 }
 \]
 
-### 13.2 Observer Dependence Is a Feature and a Risk
+### 14.2 Observer Dependence Is a Feature and a Risk
 
 STOP values or representations are not canonical unless an observer class is specified. The framework should avoid claims such as "the value of a divergent series is..." and instead state "under this observer, the observable is..." or "at this resolution, the representation is..."
 
-### 13.3 Arithmetic Observers Require Positivity Care
+### 14.3 Arithmetic Observers Require Positivity Care
 
 Weights such as \(\mu(n)\), \(\chi(n)\), and Ramanujan sums are signed or complex. They are not probability laws without additional normalization or interpretation. A rigorous theory must distinguish probabilistic STOP laws from signed spectral probe kernels.
 
-### 13.4 Needed Theorems
+### 14.4 Needed Theorems
 
 A mature version of this theory should prove:
 
@@ -1159,7 +1432,7 @@ A mature version of this theory should prove:
 6. Resolution equivalence: different observer families can be classified by the representations they preserve.
 7. Observer invariance: identify the fixed structures that survive all fair observers.
 
-## 14. Research Program
+## 15. Research Program
 
 The broader research direction is to treat infinite computation as path-first rather than state-first.
 
@@ -1195,7 +1468,7 @@ The strongest version of the prime question is therefore not "do primes survive 
 }
 \]
 
-## 15. Main Open Problem: Observer Invariants on Infinite Arithmetic Paths
+## 16. Main Open Problem: Observer Invariants on Infinite Arithmetic Paths
 
 The following problem is deliberately ambitious. It is included to make the research program falsifiable: even partial progress on restricted observer classes would be meaningful.
 
@@ -1239,7 +1512,7 @@ or more generally with an admissible decay kernel \(W_t\). When the transform ha
 
 denote its finite part.
 
-### Problem 15.1: Observer-Invariant Arithmetic Structures
+### Problem 16.1: Observer-Invariant Arithmetic Structures
 
 Characterize the subspaces, subalgebras, or sub-semigroups
 
@@ -1278,7 +1551,15 @@ The polynomial residue theorem proves this pattern for \(f(n)=n^m\) under the ge
 
 The open problem is to classify how far this decomposition extends.
 
-### Problem 15.2: Prime Invariance
+In light of the Mellin-compatible theorem, the expected invariant is not coefficient support. It is the singular spectrum of the Dirichlet generating object:
+
+\[
+F(s)=\sum_{n\geq1}f(n)n^{-s}.
+\]
+
+Thus a candidate \(V\) should be tested by whether observer changes preserve the pole locations and intrinsic residues of \(F\), after dividing out the known Mellin observer factors.
+
+### Problem 16.2: Prime Invariance
 
 Prove or disprove that the multiplicative semigroup generated by primes, together with its Dirichlet-series and Euler-product structures,
 
@@ -1292,7 +1573,7 @@ generates a maximal observer-invariant arithmetic structure.
 
 In operational terms: determine whether the prime/Euler-product structure is the largest multiplicative structure whose STOP residues remain stable under all fair arithmetic observers after removing explicit observer anomalies.
 
-### Problem 15.3: Observer Galois Correspondence
+### Problem 16.3: Observer Galois Correspondence
 
 Define the **Observer Galois group**
 
@@ -1318,7 +1599,7 @@ The guiding analogy is the fixed-field correspondence in Galois theory:
 
 This analogy is only meaningful once \(\mathcal{P}\), \(G\), and fixed substructures are defined precisely.
 
-### Problem 15.4: Concrete Test Case
+### Problem 16.4: Concrete Test Case
 
 For the von Mangoldt function \(\Lambda\), Dirichlet characters \(\chi\), and admissible arithmetic weights \(w\), classify when the transforms
 
@@ -1334,11 +1615,11 @@ recover the same intrinsic invariants, such as zeros of \(\zeta\) or \(L(s,\chi)
 
 This is the most concrete analytic number theory test. It asks whether observer changes preserve the spectral data of prime-power and character-weighted arithmetic.
 
-### Conjecture 15.5: Prime Invariance Conjecture
+### Conjecture 16.5: Prime Invariance Conjecture
 
 The Euler product and its logarithmic derivatives form a maximal multiplicative observer-invariant structure. Equivalently, the prime-generated multiplicative semigroup is the largest arithmetic structure whose STOP residues are stable under all fair arithmetic observers, with all observer anomalies classifiable.
 
-### Conjecture 15.6: Resonance Separation
+### Conjecture 16.6: Resonance Separation
 
 There exists a sharp criterion distinguishing spurious observer resonance from intrinsic arithmetic resonance.
 
@@ -1356,7 +1637,7 @@ Intrinsic arithmetic resonance is represented by exact congruential or prime-pow
 
 The conjectural criterion should identify intrinsic resonance by uniformity of STOP convergence rates across all fair observers, possibly using Diophantine approximation, Chowla-type cancellation, or arithmetic Fourier analysis.
 
-### Problem 15.7: Category at Infinity Version
+### Problem 16.7: Category at Infinity Version
 
 Formulate the same problem in a categorical setting where paths, rather than limits, are the primary objects.
 
@@ -1369,7 +1650,7 @@ One possible target is an \(\infty\)-category or topos in which:
 
 The speculative endpoint would be a categorical theorem explaining why prime-generated structures are terminal, initial, or otherwise distinguished among observer-invariant structures.
 
-## 16. Discussion: Observer Orbits and Irreducibility at Infinity
+## 17. Discussion: Observer Orbits and Irreducibility at Infinity
 
 The resolution-flow viewpoint suggests a further object that does not appear in ordinary state-based mathematics. This section is speculative and should be treated as outlook rather than theorem.
 
@@ -1401,7 +1682,7 @@ These are not different primes. They are different observer projections of the s
 
 This motivates the following informal definition.
 
-### Definition 16.1: Observer Orbit
+### Definition 17.1: Observer Orbit
 
 Given an object \(x\) and a class of admissible observers \(\mathcal{A}\), the **observer orbit** of \(x\) is the family
 
@@ -1434,7 +1715,7 @@ The conceptual shift is:
 }
 \]
 
-### 16.1 Three Meanings of Prime
+### 17.1 Three Meanings of Prime
 
 This separates three meanings of primality.
 
@@ -1484,7 +1765,7 @@ The STOP framework suggests a third form:
 }
 \]
 
-### 16.2 Large Primes as Observer Shadows
+### 17.2 Large Primes as Observer Shadows
 
 Consider the concrete prime
 
@@ -1548,7 +1829,7 @@ The corresponding fixed-structure problem is:
 
 If this analogy can be made precise, it would play a role similar to a fixed field in Galois theory: the invariant content left unchanged by a family of transformations. In STOP language, the transformations are observer changes; the fixed content is what the infinite path keeps revealing no matter how it is fairly observed.
 
-## 17. Conclusion
+## 18. Conclusion
 
 The STOP operator provides a model of observer-dependent resolution for infinite paths. Its elementary identity
 
@@ -1618,4 +1899,5 @@ The following references should be added before external submission.
 - [Riemann Hypothesis](riemann-hypothesis.md)
 - [Prime Weighting](prime-weighting.md)
 - [Partition Function](partition-function.md)
+- [Multiplicative PINN](../projects/multiplicative-pinn.md)
 - [Axiom Architecture](../axiom-architecture.md)

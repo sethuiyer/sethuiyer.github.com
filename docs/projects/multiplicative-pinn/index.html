@@ -144,7 +144,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -1058,6 +1058,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#stopmellin-interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STOP/Mellin Interpretation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#superconducting-phase" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1942,6 +1953,123 @@
 <p>Combined: <span class="arithmatex">\(C(\mathbf{v}) = G(\mathbf{v}) \times B(\mathbf{v})\)</span></p>
 <h3 id="why-it-works">Why It Works<a class="headerlink" href="#why-it-works" title="Permanent link">&para;</a></h3>
 <p>When constraints are satisfied, <span class="arithmatex">\(G(\mathbf{v}) \to 1\)</span> and <span class="arithmatex">\(B(\mathbf{v}) \approx 1\)</span>. When violated, <span class="arithmatex">\(G(\mathbf{v}) \to 0\)</span> and <span class="arithmatex">\(B(\mathbf{v}) \to \infty\)</span>. The product <strong>zeroes out</strong> any solution that violates a constraint.</p>
+<p>The deeper reason is that multiplicative enforcement changes the geometry of constraint learning.</p>
+<p>Standard PINNs use additive penalties:</p>
+<div class="arithmatex">\[
+L_{\text{add}}
+=
+L_{\text{data}}
++\lambda_1L_{\text{physics},1}
++\lambda_2L_{\text{physics},2}
++\cdots.
+\]</div>
+<p>The optimizer therefore sees a vector sum of gradients. If the data gradient and physics gradients point against each other, they can cancel, oscillate, or distort the loss landscape.</p>
+<p>The multiplicative loss instead uses</p>
+<div class="arithmatex">\[
+L_{\text{mult}}=L_{\text{data}}\cdot C(v),
+\]</div>
+<p>so</p>
+<div class="arithmatex">\[
+\nabla_\theta L_{\text{mult}}
+=
+C(v)\nabla_\theta L_{\text{data}}
++
+L_{\text{data}}\nabla_\theta C(v).
+\]</div>
+<p>The first term preserves the data-gradient direction and rescales it. The second term adds a structured correction toward constraint satisfaction. This is the main geometric shift: constraints are not added as competing forces; they become an observer kernel over the gradient flow.</p>
+<p>In the reported experiments, this structure enforced multiple constraints simultaneously, including monotonicity, Lipschitzness, positivity, and convexity. The showcased monotonicity experiment reached <span class="arithmatex">\(0.00\%\)</span> violations. For Navier-Stokes, the residual improved from approximately <span class="arithmatex">\(2.8\times10^{-3}\)</span> to <span class="arithmatex">\(10^{-5}\)</span>, a <span class="arithmatex">\(99.64\%\)</span> reduction.</p>
+<p>The incompressibility result is partly architectural. Using a streamfunction</p>
+<div class="arithmatex">\[
+u=\frac{\partial\psi}{\partial y},
+\qquad
+v=-\frac{\partial\psi}{\partial x},
+\]</div>
+<p>gives</p>
+<div class="arithmatex">\[
+\nabla\cdot u
+=
+\frac{\partial^2\psi}{\partial x\partial y}
+-
+\frac{\partial^2\psi}{\partial y\partial x}
+=0
+\]</div>
+<p>up to numerical precision, because mixed partials cancel. Thus incompressibility is not merely learned; it is built into the representation.</p>
+<p>The performance claim should be read as a benchmark result rather than a universal theorem: the implementation reports about <span class="arithmatex">\(1{,}000{,}908\)</span> physics-informed states per second and <span class="arithmatex">\(8000\)</span> time steps in roughly <span class="arithmatex">\(8\)</span> ms. The mathematical point is independent of the exact benchmark number: multiplicative PINNs preserve the main descent direction while using constraint violations to reshape the measure of the loss landscape.</p>
+<h3 id="stopmellin-interpretation">STOP/Mellin Interpretation<a class="headerlink" href="#stopmellin-interpretation" title="Permanent link">&para;</a></h3>
+<p>The Euler gate is not only a prime-weighted penalty. It is a finite reciprocal Euler product.</p>
+<p>For a finite set of primes <span class="arithmatex">\(P\)</span>, define</p>
+<div class="arithmatex">\[
+\zeta_P(s)=\prod_{p\in P}(1-p^{-s})^{-1}.
+\]</div>
+<p>Then the gate</p>
+<div class="arithmatex">\[
+G(v)=\prod_{p\in P}(1-p^{-\tau v})
+\]</div>
+<p>is</p>
+<div class="arithmatex">\[
+G(v)=\frac{1}{\zeta_P(\tau v)}.
+\]</div>
+<p>So the optimizer does not see the violation coordinate <span class="arithmatex">\(v\)</span> linearly. It sees it through the Euler-product coordinate</p>
+<div class="arithmatex">\[
+s=\tau v.
+\]</div>
+<p>The log-gradient of the gate is</p>
+<div class="arithmatex">\[
+\frac{d}{dv}\log G(v)
+=
+\tau
+\sum_{p\in P}
+\frac{\log p \, p^{-\tau v}}{1-p^{-\tau v}}.
+\]</div>
+<p>Expanding each geometric factor,</p>
+<div class="arithmatex">\[
+\frac{p^{-\tau v}}{1-p^{-\tau v}}
+=
+\sum_{k\ge1}p^{-k\tau v},
+\]</div>
+<p>gives</p>
+<div class="arithmatex">\[
+\frac{d}{dv}\log G(v)
+=
+\tau
+\sum_{p\in P}
+\sum_{k\ge1}
+(\log p)p^{-k\tau v}.
+\]</div>
+<p>This is the finite-prime analogue of</p>
+<div class="arithmatex">\[
+-\frac{\zeta'(s)}{\zeta(s)}
+=
+\sum_{p,k\ge1}
+\frac{\log p}{p^{ks}}
+=
+\sum_{n\ge1}
+\frac{\Lambda(n)}{n^s}.
+\]</div>
+<p>Thus the gradient correction from the Euler gate is a truncated von Mangoldt, or prime-power, spectral signal.</p>
+<p>In STOP/Mellin language:</p>
+<div class="arithmatex">\[
+\text{constraint violation }v
+\longmapsto
+\text{Euler observer coordinate }s=\tau v
+\longmapsto
+\text{prime-power spectral response}.
+\]</div>
+<p>This gives a precise mathematical role to the prime gate:</p>
+<div class="arithmatex">\[
+\boxed{
+\text{Euler products define multiplicative observer kernels, and their log-gradients generate prime-power spectral correction fields.}
+}
+\]</div>
+<p>The exponential barrier plays a complementary role. The Euler gate is spectral/arithmetic:</p>
+<div class="arithmatex">\[
+G(v)=1/\zeta_P(\tau v),
+\]</div>
+<p>while the barrier is geometric/convex:</p>
+<div class="arithmatex">\[
+B(v)=e^{\gamma v}.
+\]</div>
+<p>The gate supplies structured phase-space filtering near the constraint manifold. The barrier supplies survival pressure when violations are large. Clamping the gate near <span class="arithmatex">\(v=0\)</span> acts as a renormalization floor: it prevents the finite Euler product from annihilating the gradient at the satisfied-constraint boundary.</p>
 <h3 id="superconducting-phase">Superconducting Phase<a class="headerlink" href="#superconducting-phase" title="Permanent link">&para;</a></h3>
 <p>At critical <span class="arithmatex">\(\beta = 1\)</span>, the Riemann zeta function diverges:
 <span class="arithmatex">\(\zeta(1) = \infty\)</span></p>
@@ -1995,6 +2123,7 @@
 <li><a href="../../concepts/multiplicative-vs-additive/">Multiplicative vs Additive</a> — the mathematical foundation</li>
 <li><a href="../../concepts/prime-weighting/">Prime Weighting</a> — prime-weighted physics constraints</li>
 <li><a href="../../concepts/partition-function/">Partition Function</a> — local partition function per constraint</li>
+<li><a href="../../concepts/stop-operator-manuscript/">STOP Operators as Resolution Flows</a> — Mellin observer view of Euler-product gates</li>
 <li><a href="../../getting-started/benchmarks/">Benchmarks</a> — Navier-Stokes results comparison</li>
 </ul>
 

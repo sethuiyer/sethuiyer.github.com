@@ -140,7 +140,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -1765,6 +1765,10 @@
 
 <h1 id="stop-operators-as-resolution-flows-on-infinite-computational-paths">STOP Operators as Resolution Flows on Infinite Computational Paths<a class="headerlink" href="#stop-operators-as-resolution-flows-on-infinite-computational-paths" title="Permanent link">&para;</a></h1>
 <p><em>Draft manuscript for journal development.</em></p>
+<div class="video-embed">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" src="https://www.youtube-nocookie.com/embed/3NmgkLSyP_8" title="The Hidden Math of Infinite Loops: Taming the Spinning Beach Ball of Death">
+</iframe>
+</div>
 <h2 id="abstract">Abstract<a class="headerlink" href="#abstract" title="Permanent link">&para;</a></h2>
 <p>Classical analysis usually studies an infinite process through the existence or failure of a terminal limit. This paper develops an alternative formulation in which an infinite process is treated as a path and observation is modeled as a finite-resolution operation. Given a sequence of partial states <span class="arithmatex">\(S_n\)</span>, a stopping law <span class="arithmatex">\(\tau\)</span> induces the observable <span class="arithmatex">\(\mathbb{E}[S_\tau]\)</span>. We call this induced map the <strong>STOP operator</strong>.</p>
 <p>The central claim is that STOP is not merely a summability method. It is a <strong>resolution flow</strong>: a family of observer-dependent representations of the same infinite path. At microscopic scale, an observer may see individual events; at mesoscopic scale, densities; at spectral scale, poles, residues, and modes. Geometric stopping gives the first exact model of this principle by reproducing Abel summability: the survival probability of the observer becomes the Abel damping factor. We prove a regularity theorem showing that tail-exploring observers recover ordinary limits under boundedness hypotheses, and we compute the finite parts of polynomial divergent paths. For increments <span class="arithmatex">\(a_n=n^m\)</span>, the geometric STOP residue is</p>
@@ -2808,7 +2812,203 @@ U(t)=\sum_{n\geq 1}\mu(n)e^{-tn}
 }
 \]</div>
 <p>This is the same pattern seen in the elementary STOP examples. A raw path is smoothed by an observer; the smoothed object may diverge; finite-part extraction or spectral transformation reveals a residue, pole, or mode. The observer does not create the structure from nothing. It selects the coordinate system in which that structure is visible.</p>
-<h2 id="10-banach-valued-and-operator-stop">10. Banach-Valued and Operator STOP<a class="headerlink" href="#10-banach-valued-and-operator-stop" title="Permanent link">&para;</a></h2>
+<h2 id="10-mellin-compatible-stop-observers">10. Mellin-Compatible STOP Observers<a class="headerlink" href="#10-mellin-compatible-stop-observers" title="Permanent link">&para;</a></h2>
+<p>The preceding sections used geometric damping and arithmetic probe kernels. For number-theoretic paths, the cleanest general framework is Mellin-compatible observation.</p>
+<p>This section corrects a tempting but wrong approach. Expanding <span class="arithmatex">\(e^{-tn}\)</span> directly gives mixed moments</p>
+<div class="arithmatex">\[
+M_k(f;\mu)=\sum_{n\geq1}f(n)n^k\mu(n),
+\]</div>
+<p>not separate observer moments independent of <span class="arithmatex">\(f\)</span>. Therefore the invariant data is not coefficient support and not raw moments of the observer. The correct invariant lives in the Dirichlet-Mellin singular spectrum.</p>
+<h3 id="101-mellin-stop-decomposition">10.1 Mellin STOP Decomposition<a class="headerlink" href="#101-mellin-stop-decomposition" title="Permanent link">&para;</a></h3>
+<p>Let <span class="arithmatex">\(\varphi\in C_c^\infty(0,\infty)\)</span>, or more generally let <span class="arithmatex">\(\varphi\)</span> be smooth and rapidly decaying on <span class="arithmatex">\((0,\infty)\)</span>. Define a scale observer</p>
+<div class="arithmatex">\[
+\mathcal{O}_{\varphi,\varepsilon}(f)
+=
+\sum_{n\geq1}f(n)\varphi(\varepsilon n),
+\qquad
+\varepsilon\to0^+.
+\]</div>
+<p>The observer samples the path at scale <span class="arithmatex">\(n\sim\varepsilon^{-1}\)</span>, so it is a genuine observer at infinity. Let</p>
+<div class="arithmatex">\[
+F(s)=\sum_{n\geq1}f(n)n^{-s}
+\]</div>
+<p>be the Dirichlet series of <span class="arithmatex">\(f\)</span>, initially convergent in a right half-plane, and let</p>
+<div class="arithmatex">\[
+\widehat{\varphi}(s)
+=
+\int_0^\infty \varphi(x)x^{s-1}\,dx
+\]</div>
+<p>be the Mellin transform of the observer window.</p>
+<p>By Mellin inversion,</p>
+<div class="arithmatex">\[
+\varphi(x)
+=
+\frac{1}{2\pi i}
+\int_{(c)}
+\widehat{\varphi}(s)x^{-s}\,ds.
+\]</div>
+<p>Hence</p>
+<div class="arithmatex">\[
+\boxed{
+\mathcal{O}_{\varphi,\varepsilon}(f)
+=
+\frac{1}{2\pi i}
+\int_{(c)}
+F(s)\widehat{\varphi}(s)\varepsilon^{-s}\,ds.
+}
+\]</div>
+<p>This is the correct STOP spectral decomposition. Observer dependence enters through the Mellin multiplier <span class="arithmatex">\(\widehat{\varphi}(s)\)</span>.</p>
+<h3 id="theorem-102-intrinsic-singular-spectrum-invariance">Theorem 10.2: Intrinsic Singular-Spectrum Invariance<a class="headerlink" href="#theorem-102-intrinsic-singular-spectrum-invariance" title="Permanent link">&para;</a></h3>
+<p>Suppose <span class="arithmatex">\(F(s)\)</span> admits meromorphic continuation to a region <span class="arithmatex">\(\Omega\)</span>, has at most polynomial growth on vertical lines, and <span class="arithmatex">\(\widehat{\varphi}(s)\)</span> is holomorphic and nonzero at the relevant poles of <span class="arithmatex">\(F\)</span>. Then, after contour shift,</p>
+<div class="arithmatex">\[
+\mathcal{O}_{\varphi,\varepsilon}(f)
+\sim
+\sum_{\omega\in\operatorname{Poles}(F)\cap\Omega}
+\operatorname{Res}_{s=\omega}
+\left(
+F(s)\widehat{\varphi}(s)\varepsilon^{-s}
+\right)
++
+\text{smaller contour contribution}.
+\]</div>
+<p>Each pole <span class="arithmatex">\(\omega\)</span> contributes</p>
+<div class="arithmatex">\[
+\boxed{
+\widehat{\varphi}(\omega)
+\operatorname{Res}_{s=\omega}F(s)
+\varepsilon^{-\omega}.
+}
+\]</div>
+<p>Thus the observer changes amplitudes by the computable factor <span class="arithmatex">\(\widehat{\varphi}(\omega)\)</span>, but it does not change the intrinsic pole location <span class="arithmatex">\(\omega\)</span>. After dividing by <span class="arithmatex">\(\widehat{\varphi}(\omega)\)</span>, one recovers the observer-independent residue of <span class="arithmatex">\(F\)</span>.</p>
+<p>The corrected invariant is therefore:</p>
+<div class="arithmatex">\[
+\boxed{
+\text{STOP observers preserve Dirichlet-Mellin singular data, not raw coefficients.}
+}
+\]</div>
+<h3 id="103-prime-spectral-rigidity">10.3 Prime Spectral Rigidity<a class="headerlink" href="#103-prime-spectral-rigidity" title="Permanent link">&para;</a></h3>
+<p>For the von Mangoldt function,</p>
+<div class="arithmatex">\[
+F_\Lambda(s)
+=
+\sum_{n\geq1}\frac{\Lambda(n)}{n^s}
+=
+-\frac{\zeta'(s)}{\zeta(s)}.
+\]</div>
+<p>The poles of <span class="arithmatex">\(-\zeta'/\zeta\)</span> occur at:</p>
+<ol>
+<li>the pole <span class="arithmatex">\(s=1\)</span> of <span class="arithmatex">\(\zeta\)</span>,</li>
+<li>the nontrivial zeros of <span class="arithmatex">\(\zeta\)</span>,</li>
+<li>the trivial zeros of <span class="arithmatex">\(\zeta\)</span>,</li>
+<li>possible normalization-dependent terms near <span class="arithmatex">\(s=0\)</span>.</li>
+</ol>
+<p>Therefore</p>
+<div class="arithmatex">\[
+\mathcal{O}_{\varphi,\varepsilon}(\Lambda)
+=
+\sum_{n\geq1}\Lambda(n)\varphi(\varepsilon n)
+\]</div>
+<p>has asymptotic terms of the form</p>
+<div class="arithmatex">\[
+\widehat{\varphi}(1)\varepsilon^{-1}
+-
+\sum_{\zeta(\rho)=0}
+\widehat{\varphi}(\rho)\varepsilon^{-\rho}
++
+\text{trivial-zero and lower-order terms},
+\]</div>
+<p>up to the usual sign and multiplicity conventions for logarithmic derivatives.</p>
+<p>This is the rigorous form of prime observer invariance:</p>
+<div class="arithmatex">\[
+\boxed{
+\Lambda \text{ is observer-rigid because } -\zeta'/\zeta
+\text{ exposes the zeta singular spectrum.}
+}
+\]</div>
+<p>Primes are not invariant merely as raw points or supports. They are invariant as Euler-product atoms whose logarithmic derivative exposes a stable singular spectrum.</p>
+<h3 id="theorem-104-stop-weight-equivalence-for-lambda">Theorem 10.4: STOP Weight Equivalence for <span class="arithmatex">\(\Lambda\)</span><a class="headerlink" href="#theorem-104-stop-weight-equivalence-for-lambda" title="Permanent link">&para;</a></h3>
+<p>Let <span class="arithmatex">\(w:\mathbb{N}\to\mathbb{C}\)</span>, and define</p>
+<div class="arithmatex">\[
+F_w(s)
+=
+\sum_{n\geq1}
+\frac{\Lambda(n)w(n)}{n^s}.
+\]</div>
+<p>In a meromorphic region <span class="arithmatex">\(\Omega\)</span>, <span class="arithmatex">\(w\)</span> preserves the intrinsic prime STOP spectrum iff</p>
+<div class="arithmatex">\[
+H_w(s)
+=
+\sum_{n\geq1}
+\frac{\Lambda(n)(w(n)-1)}{n^s}
+\]</div>
+<p>extends holomorphically to <span class="arithmatex">\(\Omega\)</span>. Equivalently,</p>
+<div class="arithmatex">\[
+F_w(s)
+=
+-\frac{\zeta'(s)}{\zeta(s)}
++
+H_w(s),
+\]</div>
+<p>with <span class="arithmatex">\(H_w\)</span> holomorphic. Then <span class="arithmatex">\(F_w\)</span> and <span class="arithmatex">\(-\zeta'/\zeta\)</span> have the same pole spectrum in <span class="arithmatex">\(\Omega\)</span>, so Mellin STOP observers recover the same intrinsic singular data up to explicit observer factors.</p>
+<h3 id="105-multiplicative-weights">10.5 Multiplicative Weights<a class="headerlink" href="#105-multiplicative-weights" title="Permanent link">&para;</a></h3>
+<p>If <span class="arithmatex">\(w\)</span> is completely multiplicative on prime powers, define</p>
+<div class="arithmatex">\[
+L_w(s)
+=
+\prod_p(1-w(p)p^{-s})^{-1}.
+\]</div>
+<p>Then</p>
+<div class="arithmatex">\[
+-\frac{L_w'(s)}{L_w(s)}
+=
+\sum_{n\geq1}
+\frac{\Lambda(n)w(n)}{n^s}.
+\]</div>
+<p>Thus <span class="arithmatex">\(w\)</span> preserves the prime STOP spectrum in <span class="arithmatex">\(\Omega\)</span> iff</p>
+<div class="arithmatex">\[
+\boxed{
+\frac{L_w(s)}{\zeta(s)}
+\text{ is holomorphic and zero-free in }\Omega.
+}
+\]</div>
+<p>Equivalently, <span class="arithmatex">\(L_w\)</span> differs from <span class="arithmatex">\(\zeta\)</span> only by a holomorphic zero-free factor in the region of interest.</p>
+<h3 id="106-dirichlet-character-version">10.6 Dirichlet Character Version<a class="headerlink" href="#106-dirichlet-character-version" title="Permanent link">&para;</a></h3>
+<p>For a primitive Dirichlet character <span class="arithmatex">\(\chi\)</span>, the zero-revealing object is not merely <span class="arithmatex">\(\sum\chi(n)n^{-s}\)</span>, but the logarithmic derivative:</p>
+<div class="arithmatex">\[
+\sum_{n\geq1}
+\frac{\Lambda(n)\chi(n)}{n^s}
+=
+-\frac{L'(s,\chi)}{L(s,\chi)}.
+\]</div>
+<p>For a weight <span class="arithmatex">\(w\)</span>, define</p>
+<div class="arithmatex">\[
+F_{\chi,w}(s)
+=
+\sum_{n\geq1}
+\frac{\Lambda(n)\chi(n)w(n)}{n^s}.
+\]</div>
+<p>Then <span class="arithmatex">\(w\)</span> preserves the <span class="arithmatex">\(L(s,\chi)\)</span>-spectrum in <span class="arithmatex">\(\Omega\)</span> iff</p>
+<div class="arithmatex">\[
+F_{\chi,w}(s)
++
+\frac{L'(s,\chi)}{L(s,\chi)}
+\]</div>
+<p>is holomorphic in <span class="arithmatex">\(\Omega\)</span>.</p>
+<p>If <span class="arithmatex">\(w\)</span> is multiplicative and</p>
+<div class="arithmatex">\[
+L_{\chi,w}(s)
+=
+\prod_p(1-\chi(p)w(p)p^{-s})^{-1},
+\]</div>
+<p>then the equivalent condition is</p>
+<div class="arithmatex">\[
+\boxed{
+\frac{L_{\chi,w}(s)}{L(s,\chi)}
+\text{ is holomorphic and zero-free in }\Omega.
+}
+\]</div>
+<p>This is the corrected classification theorem: observer-invariant arithmetic data is singular spectrum, and weight equivalence is holomorphic zero-free equivalence of the associated <span class="arithmatex">\(L\)</span>-functions.</p>
+<h2 id="11-banach-valued-and-operator-stop">11. Banach-Valued and Operator STOP<a class="headerlink" href="#11-banach-valued-and-operator-stop" title="Permanent link">&para;</a></h2>
 <p>Let <span class="arithmatex">\(X\)</span> be a Banach space and let</p>
 <div class="arithmatex">\[
 S_n=\sum_{k=1}^n a_k,\qquad a_k\in X.
@@ -2827,7 +3027,7 @@ S_n=\sum_{k=1}^n a_k,\qquad a_k\in X.
 <div class="arithmatex">\[
 \sum_{k\geq 1}\|a_k\|(1-p)^{k-1}&lt;\infty.
 \]</div>
-<h3 id="101-linear-dynamics">10.1 Linear Dynamics<a class="headerlink" href="#101-linear-dynamics" title="Permanent link">&para;</a></h3>
+<h3 id="111-linear-dynamics">11.1 Linear Dynamics<a class="headerlink" href="#111-linear-dynamics" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(T:X\to X\)</span> be a bounded linear operator and consider the path</p>
 <div class="arithmatex">\[
 S_n=\sum_{k=0}^{n-1}T^kx.
@@ -2842,7 +3042,7 @@ S_n=\sum_{k=0}^{n-1}T^kx.
 \]</div>
 <p>whenever the resolvent exists.</p>
 <p>Thus operator STOP is resolvent theory in probabilistic language. As <span class="arithmatex">\(p\to 0^+\)</span>, the observer probes the spectrum of <span class="arithmatex">\(T\)</span> near <span class="arithmatex">\(1\)</span>.</p>
-<h2 id="11-relation-to-existing-mathematics">11. Relation to Existing Mathematics<a class="headerlink" href="#11-relation-to-existing-mathematics" title="Permanent link">&para;</a></h2>
+<h2 id="12-relation-to-existing-mathematics">12. Relation to Existing Mathematics<a class="headerlink" href="#12-relation-to-existing-mathematics" title="Permanent link">&para;</a></h2>
 <p>The STOP framework should not be positioned as replacing established summability theory, analytic number theory, or spectral theory. Its contribution is interpretive and structural: it organizes several known transformations as changes of observer resolution.</p>
 <ol>
 <li>Abel damping becomes survival probability.</li>
@@ -2857,6 +3057,7 @@ S_n=\sum_{k=0}^{n-1}T^kx.
 <li>The regularity theorem is a minimal Tauberian-style sanity check: ordinary limits are preserved under admissible tail-exploring observers, provided boundedness or uniform integrability prevents rare excursions from dominating.</li>
 <li>The finite-part extraction is parallel to zeta and heat-kernel regularization: the new feature is the observer shift <span class="arithmatex">\(e^t\)</span>, which contributes the explicit anomaly <span class="arithmatex">\(1/(m+1)\)</span>.</li>
 <li>The arithmetic probe kernels are standard analytic-number-theoretic objects: Dirichlet characters lead to <span class="arithmatex">\(L(s,\chi)\)</span>, <span class="arithmatex">\(\Lambda(n)\)</span> to <span class="arithmatex">\(-\zeta'/\zeta\)</span>, and <span class="arithmatex">\(\mu(n)\)</span> to <span class="arithmatex">\(1/\zeta\)</span>.</li>
+<li>The Mellin-compatible observer theorem is the same contour-shift mechanism behind explicit formulas and smoothed prime-counting estimates; the STOP contribution is to interpret the Mellin test function as an observer and its transform <span class="arithmatex">\(\widehat{\varphi}\)</span> as the computable observer anomaly.</li>
 <li>The Banach-space construction is ordinary resolvent theory written in stopped-path language.</li>
 </ul>
 <p>Relevant existing areas therefore include:</p>
@@ -2870,7 +3071,7 @@ S_n=\sum_{k=0}^{n-1}T^kx.
 <li>Dirichlet series and arithmetic Fourier analysis.</li>
 <li>Resolvent theory on Banach spaces.</li>
 </ul>
-<h2 id="12-potential-applications">12. Potential Applications<a class="headerlink" href="#12-potential-applications" title="Permanent link">&para;</a></h2>
+<h2 id="13-potential-applications">13. Potential Applications<a class="headerlink" href="#13-potential-applications" title="Permanent link">&para;</a></h2>
 <p>The framework is not intended as a replacement for existing regularization methods. Its value is in making observer dependence explicit. Natural application areas include:</p>
 <ol>
 <li><strong>Numerical divergent-process diagnostics.</strong> STOP tables show how a computation behaves as the observer horizon is pushed outward. This can separate oscillatory divergence from monotone escape.</li>
@@ -2878,10 +3079,11 @@ S_n=\sum_{k=0}^{n-1}T^kx.
 <li><strong>Ergodic and operator averages.</strong> The resolvent identity connects STOP observation with Abel means and spectral boundary behavior of linear dynamics.</li>
 <li><strong>Arithmetic signal analysis.</strong> Signed probe kernels provide a language for switching between event-level arithmetic data, density profiles, and spectral transforms.</li>
 <li><strong>Algorithmic randomness and compression.</strong> The observer-orbit idea suggests a way to compare finite-state irreducibility, asymptotic compressibility, and spectral irreducibility.</li>
+<li><strong>Multiplicative constraint learning.</strong> Euler-product gates in multiplicative PINNs can be read as finite observer kernels over violation space. Their log-gradients produce truncated von Mangoldt, or prime-power, spectral correction fields.</li>
 </ol>
 <p>These are proposed directions. The core submission should stand on the STOP identity, regularity theorem, and polynomial residue theorem.</p>
-<h2 id="13-limitations-and-open-problems">13. Limitations and Open Problems<a class="headerlink" href="#13-limitations-and-open-problems" title="Permanent link">&para;</a></h2>
-<h3 id="131-fairness-must-be-formalized-by-path-class">13.1 Fairness Must Be Formalized by Path Class<a class="headerlink" href="#131-fairness-must-be-formalized-by-path-class" title="Permanent link">&para;</a></h3>
+<h2 id="14-limitations-and-open-problems">14. Limitations and Open Problems<a class="headerlink" href="#14-limitations-and-open-problems" title="Permanent link">&para;</a></h2>
+<h3 id="141-fairness-must-be-formalized-by-path-class">14.1 Fairness Must Be Formalized by Path Class<a class="headerlink" href="#141-fairness-must-be-formalized-by-path-class" title="Permanent link">&para;</a></h3>
 <p>Tail exploration alone is not fairness. An observer can sample arbitrarily deep into a path while remaining phase-locked or arithmetically biased. A publishable version must state fairness relative to explicit classes of paths.</p>
 <p>The core distinction is between <strong>spurious resonance</strong> and <strong>structural resonance</strong>. Liouville-type approximations can produce near-locking:</p>
 <div class="arithmatex">\[
@@ -2898,11 +3100,11 @@ e^{2\pi i q\alpha}\approx 1
 \text{fair observers suppress spurious resonance while preserving structural resonance.}
 }
 \]</div>
-<h3 id="132-observer-dependence-is-a-feature-and-a-risk">13.2 Observer Dependence Is a Feature and a Risk<a class="headerlink" href="#132-observer-dependence-is-a-feature-and-a-risk" title="Permanent link">&para;</a></h3>
+<h3 id="142-observer-dependence-is-a-feature-and-a-risk">14.2 Observer Dependence Is a Feature and a Risk<a class="headerlink" href="#142-observer-dependence-is-a-feature-and-a-risk" title="Permanent link">&para;</a></h3>
 <p>STOP values or representations are not canonical unless an observer class is specified. The framework should avoid claims such as "the value of a divergent series is..." and instead state "under this observer, the observable is..." or "at this resolution, the representation is..."</p>
-<h3 id="133-arithmetic-observers-require-positivity-care">13.3 Arithmetic Observers Require Positivity Care<a class="headerlink" href="#133-arithmetic-observers-require-positivity-care" title="Permanent link">&para;</a></h3>
+<h3 id="143-arithmetic-observers-require-positivity-care">14.3 Arithmetic Observers Require Positivity Care<a class="headerlink" href="#143-arithmetic-observers-require-positivity-care" title="Permanent link">&para;</a></h3>
 <p>Weights such as <span class="arithmatex">\(\mu(n)\)</span>, <span class="arithmatex">\(\chi(n)\)</span>, and Ramanujan sums are signed or complex. They are not probability laws without additional normalization or interpretation. A rigorous theory must distinguish probabilistic STOP laws from signed spectral probe kernels.</p>
-<h3 id="134-needed-theorems">13.4 Needed Theorems<a class="headerlink" href="#134-needed-theorems" title="Permanent link">&para;</a></h3>
+<h3 id="144-needed-theorems">14.4 Needed Theorems<a class="headerlink" href="#144-needed-theorems" title="Permanent link">&para;</a></h3>
 <p>A mature version of this theory should prove:</p>
 <ol>
 <li>Regularity: fair observers recover classical limits for convergent paths.</li>
@@ -2913,7 +3115,7 @@ e^{2\pi i q\alpha}\approx 1
 <li>Resolution equivalence: different observer families can be classified by the representations they preserve.</li>
 <li>Observer invariance: identify the fixed structures that survive all fair observers.</li>
 </ol>
-<h2 id="14-research-program">14. Research Program<a class="headerlink" href="#14-research-program" title="Permanent link">&para;</a></h2>
+<h2 id="15-research-program">15. Research Program<a class="headerlink" href="#15-research-program" title="Permanent link">&para;</a></h2>
 <p>The broader research direction is to treat infinite computation as path-first rather than state-first.</p>
 <p>Classical completion asks:</p>
 <div class="arithmatex">\[
@@ -2940,7 +3142,7 @@ e^{2\pi i q\alpha}\approx 1
 \text{are primes part of the fixed structure of fair arithmetic observation?}
 }
 \]</div>
-<h2 id="15-main-open-problem-observer-invariants-on-infinite-arithmetic-paths">15. Main Open Problem: Observer Invariants on Infinite Arithmetic Paths<a class="headerlink" href="#15-main-open-problem-observer-invariants-on-infinite-arithmetic-paths" title="Permanent link">&para;</a></h2>
+<h2 id="16-main-open-problem-observer-invariants-on-infinite-arithmetic-paths">16. Main Open Problem: Observer Invariants on Infinite Arithmetic Paths<a class="headerlink" href="#16-main-open-problem-observer-invariants-on-infinite-arithmetic-paths" title="Permanent link">&para;</a></h2>
 <p>The following problem is deliberately ambitious. It is included to make the research program falsifiable: even partial progress on restricted observer classes would be meaningful.</p>
 <p>Let <span class="arithmatex">\(\mathcal{P}\)</span> be a class of asymptotically fair STOP observers on <span class="arithmatex">\(\mathbb{N}\)</span>. An element of <span class="arithmatex">\(\mathcal{P}\)</span> may be a family of probability measures <span class="arithmatex">\(\{\mu_\alpha\}\)</span>, or, in the spectral setting, a signed or complex-valued kernel. The intended axioms are:</p>
 <ol>
@@ -2976,7 +3178,7 @@ W_t(n)=e^{-tn},
 \operatorname{FP}_{t=0}\mathcal{O}_\mu(f;t)
 \]</div>
 <p>denote its finite part.</p>
-<h3 id="problem-151-observer-invariant-arithmetic-structures">Problem 15.1: Observer-Invariant Arithmetic Structures<a class="headerlink" href="#problem-151-observer-invariant-arithmetic-structures" title="Permanent link">&para;</a></h3>
+<h3 id="problem-161-observer-invariant-arithmetic-structures">Problem 16.1: Observer-Invariant Arithmetic Structures<a class="headerlink" href="#problem-161-observer-invariant-arithmetic-structures" title="Permanent link">&para;</a></h3>
 <p>Characterize the subspaces, subalgebras, or sub-semigroups</p>
 <div class="arithmatex">\[
 V\subseteq \mathbb{C}^{\mathbb{N}}
@@ -3006,7 +3208,12 @@ V\subseteq \mathbb{C}^{\mathbb{N}}
 \frac{1}{m+1}.
 \]</div>
 <p>The open problem is to classify how far this decomposition extends.</p>
-<h3 id="problem-152-prime-invariance">Problem 15.2: Prime Invariance<a class="headerlink" href="#problem-152-prime-invariance" title="Permanent link">&para;</a></h3>
+<p>In light of the Mellin-compatible theorem, the expected invariant is not coefficient support. It is the singular spectrum of the Dirichlet generating object:</p>
+<div class="arithmatex">\[
+F(s)=\sum_{n\geq1}f(n)n^{-s}.
+\]</div>
+<p>Thus a candidate <span class="arithmatex">\(V\)</span> should be tested by whether observer changes preserve the pole locations and intrinsic residues of <span class="arithmatex">\(F\)</span>, after dividing out the known Mellin observer factors.</p>
+<h3 id="problem-162-prime-invariance">Problem 16.2: Prime Invariance<a class="headerlink" href="#problem-162-prime-invariance" title="Permanent link">&para;</a></h3>
 <p>Prove or disprove that the multiplicative semigroup generated by primes, together with its Dirichlet-series and Euler-product structures,</p>
 <div class="arithmatex">\[
 \zeta(s)
@@ -3015,7 +3222,7 @@ V\subseteq \mathbb{C}^{\mathbb{N}}
 \]</div>
 <p>generates a maximal observer-invariant arithmetic structure.</p>
 <p>In operational terms: determine whether the prime/Euler-product structure is the largest multiplicative structure whose STOP residues remain stable under all fair arithmetic observers after removing explicit observer anomalies.</p>
-<h3 id="problem-153-observer-galois-correspondence">Problem 15.3: Observer Galois Correspondence<a class="headerlink" href="#problem-153-observer-galois-correspondence" title="Permanent link">&para;</a></h3>
+<h3 id="problem-163-observer-galois-correspondence">Problem 16.3: Observer Galois Correspondence<a class="headerlink" href="#problem-163-observer-galois-correspondence" title="Permanent link">&para;</a></h3>
 <p>Define the <strong>Observer Galois group</strong></p>
 <div class="arithmatex">\[
 G=\operatorname{Aut}(\mathcal{P}),
@@ -3034,7 +3241,7 @@ G=\operatorname{Aut}(\mathcal{P}),
 \text{fixed arithmetic information}.
 \]</div>
 <p>This analogy is only meaningful once <span class="arithmatex">\(\mathcal{P}\)</span>, <span class="arithmatex">\(G\)</span>, and fixed substructures are defined precisely.</p>
-<h3 id="problem-154-concrete-test-case">Problem 15.4: Concrete Test Case<a class="headerlink" href="#problem-154-concrete-test-case" title="Permanent link">&para;</a></h3>
+<h3 id="problem-164-concrete-test-case">Problem 16.4: Concrete Test Case<a class="headerlink" href="#problem-164-concrete-test-case" title="Permanent link">&para;</a></h3>
 <p>For the von Mangoldt function <span class="arithmatex">\(\Lambda\)</span>, Dirichlet characters <span class="arithmatex">\(\chi\)</span>, and admissible arithmetic weights <span class="arithmatex">\(w\)</span>, classify when the transforms</p>
 <div class="arithmatex">\[
 \sum_{n\geq1}
@@ -3045,9 +3252,9 @@ G=\operatorname{Aut}(\mathcal{P}),
 \]</div>
 <p>recover the same intrinsic invariants, such as zeros of <span class="arithmatex">\(\zeta\)</span> or <span class="arithmatex">\(L(s,\chi)\)</span>, up to universal observer corrections.</p>
 <p>This is the most concrete analytic number theory test. It asks whether observer changes preserve the spectral data of prime-power and character-weighted arithmetic.</p>
-<h3 id="conjecture-155-prime-invariance-conjecture">Conjecture 15.5: Prime Invariance Conjecture<a class="headerlink" href="#conjecture-155-prime-invariance-conjecture" title="Permanent link">&para;</a></h3>
+<h3 id="conjecture-165-prime-invariance-conjecture">Conjecture 16.5: Prime Invariance Conjecture<a class="headerlink" href="#conjecture-165-prime-invariance-conjecture" title="Permanent link">&para;</a></h3>
 <p>The Euler product and its logarithmic derivatives form a maximal multiplicative observer-invariant structure. Equivalently, the prime-generated multiplicative semigroup is the largest arithmetic structure whose STOP residues are stable under all fair arithmetic observers, with all observer anomalies classifiable.</p>
-<h3 id="conjecture-156-resonance-separation">Conjecture 15.6: Resonance Separation<a class="headerlink" href="#conjecture-156-resonance-separation" title="Permanent link">&para;</a></h3>
+<h3 id="conjecture-166-resonance-separation">Conjecture 16.6: Resonance Separation<a class="headerlink" href="#conjecture-166-resonance-separation" title="Permanent link">&para;</a></h3>
 <p>There exists a sharp criterion distinguishing spurious observer resonance from intrinsic arithmetic resonance.</p>
 <p>Spurious resonance is represented by near-locking phenomena such as Liouville-type approximations:</p>
 <div class="arithmatex">\[
@@ -3058,7 +3265,7 @@ e^{2\pi iq\alpha}\approx1.
 (n-1)!\equiv -1\pmod n.
 \]</div>
 <p>The conjectural criterion should identify intrinsic resonance by uniformity of STOP convergence rates across all fair observers, possibly using Diophantine approximation, Chowla-type cancellation, or arithmetic Fourier analysis.</p>
-<h3 id="problem-157-category-at-infinity-version">Problem 15.7: Category at Infinity Version<a class="headerlink" href="#problem-157-category-at-infinity-version" title="Permanent link">&para;</a></h3>
+<h3 id="problem-167-category-at-infinity-version">Problem 16.7: Category at Infinity Version<a class="headerlink" href="#problem-167-category-at-infinity-version" title="Permanent link">&para;</a></h3>
 <p>Formulate the same problem in a categorical setting where paths, rather than limits, are the primary objects.</p>
 <p>One possible target is an <span class="arithmatex">\(\infty\)</span>-category or topos in which:</p>
 <ol>
@@ -3068,7 +3275,7 @@ e^{2\pi iq\alpha}\approx1.
 <li>primes enter through the profinite completion, the arithmetic site, or the étale geometry of <span class="arithmatex">\(\operatorname{Spec}(\mathbb{Z})\)</span>.</li>
 </ol>
 <p>The speculative endpoint would be a categorical theorem explaining why prime-generated structures are terminal, initial, or otherwise distinguished among observer-invariant structures.</p>
-<h2 id="16-discussion-observer-orbits-and-irreducibility-at-infinity">16. Discussion: Observer Orbits and Irreducibility at Infinity<a class="headerlink" href="#16-discussion-observer-orbits-and-irreducibility-at-infinity" title="Permanent link">&para;</a></h2>
+<h2 id="17-discussion-observer-orbits-and-irreducibility-at-infinity">17. Discussion: Observer Orbits and Irreducibility at Infinity<a class="headerlink" href="#17-discussion-observer-orbits-and-irreducibility-at-infinity" title="Permanent link">&para;</a></h2>
 <p>The resolution-flow viewpoint suggests a further object that does not appear in ordinary state-based mathematics. This section is speculative and should be treated as outlook rather than theorem.</p>
 <p>For a finite integer <span class="arithmatex">\(p\)</span>, classical arithmetic asks whether <span class="arithmatex">\(p\)</span> is prime:</p>
 <div class="arithmatex">\[
@@ -3091,7 +3298,7 @@ e^{-tp},
 \]</div>
 <p>These are not different primes. They are different observer projections of the same prime event.</p>
 <p>This motivates the following informal definition.</p>
-<h3 id="definition-161-observer-orbit">Definition 16.1: Observer Orbit<a class="headerlink" href="#definition-161-observer-orbit" title="Permanent link">&para;</a></h3>
+<h3 id="definition-171-observer-orbit">Definition 17.1: Observer Orbit<a class="headerlink" href="#definition-171-observer-orbit" title="Permanent link">&para;</a></h3>
 <p>Given an object <span class="arithmatex">\(x\)</span> and a class of admissible observers <span class="arithmatex">\(\mathcal{A}\)</span>, the <strong>observer orbit</strong> of <span class="arithmatex">\(x\)</span> is the family</p>
 <div class="arithmatex">\[
 \operatorname{Orb}_{\mathcal{A}}(x)
@@ -3117,7 +3324,7 @@ e^{-tp},\;
 \text{at infinity, an object is not only a state; it is a coherent family of observer appearances.}
 }
 \]</div>
-<h3 id="161-three-meanings-of-prime">16.1 Three Meanings of Prime<a class="headerlink" href="#161-three-meanings-of-prime" title="Permanent link">&para;</a></h3>
+<h3 id="171-three-meanings-of-prime">17.1 Three Meanings of Prime<a class="headerlink" href="#171-three-meanings-of-prime" title="Permanent link">&para;</a></h3>
 <p>This separates three meanings of primality.</p>
 <table>
 <thead>
@@ -3174,7 +3381,7 @@ K(x_{1:N})\sim N,
 \text{irreducible under observer flow}.
 }
 \]</div>
-<h3 id="162-large-primes-as-observer-shadows">16.2 Large Primes as Observer Shadows<a class="headerlink" href="#162-large-primes-as-observer-shadows" title="Permanent link">&para;</a></h3>
+<h3 id="172-large-primes-as-observer-shadows">17.2 Large Primes as Observer Shadows<a class="headerlink" href="#172-large-primes-as-observer-shadows" title="Permanent link">&para;</a></h3>
 <p>Consider the concrete prime</p>
 <div class="arithmatex">\[
 p=1,000,000,007.
@@ -3217,7 +3424,7 @@ e^{-tp}.
 }
 \]</div>
 <p>If this analogy can be made precise, it would play a role similar to a fixed field in Galois theory: the invariant content left unchanged by a family of transformations. In STOP language, the transformations are observer changes; the fixed content is what the infinite path keeps revealing no matter how it is fairly observed.</p>
-<h2 id="17-conclusion">17. Conclusion<a class="headerlink" href="#17-conclusion" title="Permanent link">&para;</a></h2>
+<h2 id="18-conclusion">18. Conclusion<a class="headerlink" href="#18-conclusion" title="Permanent link">&para;</a></h2>
 <p>The STOP operator provides a model of observer-dependent resolution for infinite paths. Its elementary identity</p>
 <div class="arithmatex">\[
 \mathbb{E}[S_\tau]
@@ -3275,6 +3482,7 @@ e^{-tp}.
 <li><a href="../riemann-hypothesis/">Riemann Hypothesis</a></li>
 <li><a href="../prime-weighting/">Prime Weighting</a></li>
 <li><a href="../partition-function/">Partition Function</a></li>
+<li><a href="../../projects/multiplicative-pinn/">Multiplicative PINN</a></li>
 <li><a href="../../axiom-architecture/">Axiom Architecture</a></li>
 </ul>
 
