@@ -95,6 +95,7 @@ graph TD
 * **Role**: Fault-tolerant distributed agent runtime.
 * **Mechanism**: Inspired by Erlang/OTP, it models agents as isolated processes with explicit, lattice-based capability algebra and local supervision trees. Rather than restarting an entire agent workflow upon failure, it applies the local repair calculus (adjusting only the desynchronized sub-module while preserving invariant parent states).
 * **Key Metrics**: Governs state transitions mathematically, preventing retry storms, infinite delegation loops, and capability leaks.
+* **Architecture**: The detailed systems design is described in [Agentic AI as a Distributed System](concepts/agentic-ai-distributed-systems.md), including OTP process trees, Horde recovery, ScyllaDB temporal state, lag-aware probes, and FactorAgent governance.
 
 ### 1.8 Spectral-Multiplicative Framework
 * **Role**: Solvability prediction and neural weight adaptation.

@@ -57,6 +57,8 @@ Authorization Lattice extends the Arithmetic Manifold to **security and permissi
 
 The p-adic numbers are already lurking in CRT — Authorization Lattice makes the connection explicit.
 
+In the Factor Agent runtime, this permission algebra becomes an operational rule: retrieval is filtered before model context construction, and tool calls are checked as capability requests. See [Agentic AI as a Distributed System](../concepts/agentic-ai-distributed-systems.md) for the full runtime architecture.
+
 ---
 
 ## See Also
@@ -64,5 +66,6 @@ The p-adic numbers are already lurking in CRT — Authorization Lattice makes th
 - [All Projects](index.md) — project overview
 - [Geometry of Conditional Logic](geometry-of-conditional-logic.md) — CRT and p-adic ultrametrics
 - [Factor Agent](factor-agent.md) — capability decomposition via prime factorization
+- [Agentic AI as a Distributed System](../concepts/agentic-ai-distributed-systems.md) — runtime governance for capability-filtered agents
 - [Prime Weighting](../concepts/prime-weighting.md) — how primes compose in capability systems
 - [The Arithmetic Manifold](../core-vision.md) — the unified theory

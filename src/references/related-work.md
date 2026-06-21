@@ -87,6 +87,10 @@ The ShunyaBar Labs research intersects several communities:
 - **ACL**: String-based or hierarchical, implicit composition
 - **[Authorization Lattice](../projects/authorization-lattice.md)**: Algebraically precise, guaranteed invariants
 
+### vs. Prompt-Pipeline Agents
+- **Prompt pipeline**: Retrieval, tool use, and timing are collapsed into a single model call
+- **[Agentic AI as a Distributed System](../concepts/agentic-ai-distributed-systems.md)**: Agents are supervised temporal processes with durable state, lag-aware retrieval, capability-filtered tool use, and event-sourced belief lineage
+
 ---
 
 ## How to Cite

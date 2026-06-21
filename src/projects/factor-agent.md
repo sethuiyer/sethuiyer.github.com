@@ -43,6 +43,8 @@ Agent Primitives
 └── pₙ: Custom capabilities
 ```
 
+For the full distributed runtime architecture, including Elixir/OTP process trees, Horde recovery, ScyllaDB temporal state, lag-aware probes, and FactorAgent governance, see [Agentic AI as a Distributed System](../concepts/agentic-ai-distributed-systems.md).
+
 ## Website
 
 **Live:** [sethuiyer.github.io/factor-agent](https://sethuiyer.github.io/factor-agent)
@@ -61,6 +63,7 @@ The "factorization" of authority mirrors the "factorization" of constraints in t
 ## See Also
 
 - [All Projects](index.md) — project overview
+- [Agentic AI as a Distributed System](../concepts/agentic-ai-distributed-systems.md) — full Factor Agent runtime architecture
 - [Geometry of Conditional Logic](geometry-of-conditional-logic.md) — same CRT repair mechanism
 - [Authorization Lattice](authorization-lattice.md) — capability composition via prime factorization
 - [Multiplicative PINN](multiplicative-pinn.md) — Euler product structure in constraint enforcement

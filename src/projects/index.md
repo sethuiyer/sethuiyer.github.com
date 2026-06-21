@@ -22,6 +22,7 @@ THE ARITHMETIC MANIFOLD
 │   ├── Geometry of Conditional Logic ─ CRT incremental solver
 │   ├── Casimir SAT Solver ─────────── Quantum vacuum dynamics blog
 │   └── Factor Agent ───────────────── Multi-agent architecture
+│       └── Agentic AI Runtime ─────── Distributed systems architecture
 │
 ├── Foundational
 │   ├── Thermodynamic Number Line ──── Primes + Riemann zeta theory
@@ -92,6 +93,7 @@ All projects use \(Z(\beta) = \sum e^{-\beta E(s)}\):
 
 - [The Arithmetic Manifold](../core-vision.md) — the unified theory connecting all projects
 - [Prime Weighting](../concepts/prime-weighting.md) — how all projects use prime weights
+- [Agentic AI as a Distributed System](../concepts/agentic-ai-distributed-systems.md) — Factor Agent runtime architecture
 - [Partition Function](../concepts/partition-function.md) — the universal mathematical object
 - [Phase Transitions](../concepts/phase-transitions.md) — landscape fracture across projects
 - [Getting Started](../getting-started/quick-start.md) — run the projects yourself

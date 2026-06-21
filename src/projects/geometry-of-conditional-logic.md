@@ -61,12 +61,15 @@ The CRT "safe corridor" is geometrically identical to BAHA's branch enumeration:
 
 Both are instances of the same principle: **there's always a path between solutions that doesn't cross barrier regions**.
 
+The same repair idea reappears in Factor Agent as supervised local recovery: failed probes, desynchronized tools, and stale observations are repaired locally instead of restarting the whole investigation. See [Agentic AI as a Distributed System](../concepts/agentic-ai-distributed-systems.md) for the runtime version of this idea.
+
 ---
 
 ## See Also
 
 - [All Projects](index.md) — project overview
 - [Factor Agent](factor-agent.md) — same CRT repair mechanism in multi-agent systems
+- [Agentic AI as a Distributed System](../concepts/agentic-ai-distributed-systems.md) — distributed runtime version of local repair
 - [Authorization Lattice](authorization-lattice.md) — p-adic ultrametric structure for permissions
 - [BAHA](baha.md) — branch enumeration as the continuous analog of CRT corridors
 - [Prime Weighting](../concepts/prime-weighting.md) — how primes enable the CRT encoding

@@ -14,7 +14,7 @@ A plain-English reference for every term used across ShunyaBar Labs documentatio
 | **BAHA** | Branch-Aware Holonomy Annealing. The "escape mechanism" used when the solver gets stuck in a hard region. |
 | **Multiplicative PINN** | Physics-Informed Neural Network that uses multiplication instead of addition to combine constraints. |
 | **Casimir SAT Solver** | A quantum-inspired solver that uses Casimir-force analogies to navigate hard SAT instances. |
-| **Factor Agent** | A fault-tolerant agent runtime modeled on Erlang/OTP, with lock-preserving local repair. |
+| **Factor Agent** | A fault-tolerant agent runtime modeled on Erlang/OTP, with lock-preserving local repair. See [Agentic AI as a Distributed System](concepts/agentic-ai-distributed-systems.md). |
 | **Authorization Lattice** | A capability system that treats permissions as p-adic numbers. |
 | **Spectral-Multiplicative Framework** | A solvability predictor written in Crystal. Tells you how hard a problem is *before* you try to solve it. |
 | **Arithmetic Manifold** | The unifying theory behind all of the above. Treats constraints, optimization, and physical simulation as different views of one geometric structure. |
