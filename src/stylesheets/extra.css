@@ -1,24 +1,43 @@
 :root {
-  --md-primary-fg-color: #1a1a2e;
-  --md-primary-fg-color--light: #2d2d4a;
-  --md-primary-fg-color--dark: #0f0f1a;
-  --md-accent-fg-color: #c9a84c;
-  --md-default-bg-color: #faf6ef;
-  --md-default-fg-color: #2d2d2d;
-  --sb-bg: #f5f0e8;
-  --sb-surface: #faf6ef;
-  --sb-surface-muted: #efe9df;
-  --sb-border: #d4c9b8;
-  --sb-border-strong: #b8a88a;
-  --sb-text-muted: #7a6e5e;
-  --sb-heading: #1a1a2e;
-  --sb-link: #8b7536;
-  --sb-link-hover: #6b5d2e;
-  --sb-code-bg: #efe9df;
-  --sb-shadow-sm: 0 1px 2px rgb(26 26 46 / 0.08);
-  --sb-shadow-md: 0 12px 30px rgb(26 26 46 / 0.08);
-  --sb-accent: #c9a84c;
-  --sb-accent-rgb: 201 168 76;
+  --md-primary-fg-color: #111827;
+  --md-primary-fg-color--light: #374151;
+  --md-primary-fg-color--dark: #0b1220;
+  --md-accent-fg-color: #6d4aed;
+  --md-default-bg-color: #f7f8fa;
+  --md-default-fg-color: #1f2937;
+
+  --page-bg: #f7f8fa;
+  --surface: #ffffff;
+  --surface-muted: #f2f4f7;
+  --surface-blue: #eaf6ff;
+  --surface-purple: #eee9ff;
+  --surface-mint: #dcefe8;
+  --border: #e5e7eb;
+  --border-strong: #d1d5db;
+  --text: #1f2937;
+  --text-muted: #6b7280;
+  --heading: #111827;
+  --link: #3b82f6;
+  --link-hover: #2563eb;
+  --accent-blue: #35a2f8;
+  --accent-purple: #6d4aed;
+  --accent-purple-soft: #af9fde;
+  --accent-mint: #b7d8cc;
+
+  --sb-bg: var(--page-bg);
+  --sb-surface: var(--surface);
+  --sb-surface-muted: var(--surface-muted);
+  --sb-border: var(--border);
+  --sb-border-strong: var(--border-strong);
+  --sb-text-muted: var(--text-muted);
+  --sb-heading: var(--heading);
+  --sb-link: var(--link);
+  --sb-link-hover: var(--link-hover);
+  --sb-code-bg: var(--surface-muted);
+  --sb-shadow-sm: 0 1px 2px rgb(17 24 39 / 0.06);
+  --sb-shadow-md: 0 16px 40px rgb(17 24 39 / 0.09);
+  --sb-accent: var(--accent-purple);
+  --sb-accent-rgb: 109 74 237;
 }
 
 [data-md-color-scheme="slate"] {
@@ -148,6 +167,20 @@ body {
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+.md-typeset .audio-section {
+  margin: 1rem 0 1.25rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--sb-border);
+  border-radius: 0.5rem;
+  background: var(--sb-surface-muted);
+}
+
+.md-typeset .audio-section audio {
+  display: block;
+  width: 100%;
+  margin-top: 0.65rem;
 }
 
 /* ========================================
@@ -746,7 +779,7 @@ body {
 }
 
 .md-typeset .admonition.warning {
-  border-left: 3px solid #c9a84c;
+  border-left: 3px solid var(--accent-purple-soft);
 }
 
 .md-typeset .admonition.danger {

@@ -1,5 +1,18 @@
 # Beyond Prompt Engineering: Agentic AI as a Distributed System
 
+<div class="audio-section" markdown="1">
+**Listen:** Distributed Belief Engines Fix AI
+
+<audio controls preload="metadata">
+  <source src="https://cdn8.cloud.shunyabar.foo/Podcast/How_Distributed_Belief_Engines_Fix_AI.m4a" type="audio/mp4">
+  Your browser does not support the audio element.
+</audio>
+</div>
+
+**Tags:** `agentic-ai` `distributed-systems` `belief-engines` `factor-agent` `elixir-otp` `horde` `scylladb` `temporal-state` `lag-aware-retrieval` `capability-governance` `belief-lineage`
+
+**Related:** [Factor Agent](../projects/factor-agent.md) · [Authorization Lattice](../projects/authorization-lattice.md) · [Geometry of Conditional Logic](../projects/geometry-of-conditional-logic.md) · [Asymptotically Fair Stopping](asymptotically-fair-stopping.md) · [The Arithmetic Manifold](../core-vision.md) · [Related Work](../references/related-work.md)
+
 ## Thesis
 
 Agentic AI is usually framed as a prompt-engineering problem. That is the wrong abstraction for enterprise systems.
@@ -1039,3 +1052,14 @@ The core move is the same across ShunyaBar:
 \]
 
 For Factor Agent, that structure is the distributed runtime itself.
+
+---
+
+## See Also
+
+- [Factor Agent](../projects/factor-agent.md) — multi-agent runtime architecture using factorized capability identity
+- [Authorization Lattice](../projects/authorization-lattice.md) — capability composition and ACL-first retrieval
+- [Geometry of Conditional Logic](../projects/geometry-of-conditional-logic.md) — local repair and invariant-preserving recovery
+- [Asymptotically Fair Stopping](asymptotically-fair-stopping.md) — temporal observation of non-final computational paths
+- [The Arithmetic Manifold](../core-vision.md) — the broader typed, compositional structure behind ShunyaBar
+- [Related Work](../references/related-work.md) — context for agents, distributed systems, and governed retrieval
