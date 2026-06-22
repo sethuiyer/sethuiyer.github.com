@@ -1,14 +1,17 @@
 # Papers & Citations
 
+All publications are authored by **Sethurathienam Iyer** — [ORCID: 0009-0008-5446-2856](https://orcid.org/0009-0008-5446-2856).
+
 ## ShunyaBar Publications
 
 | Year | Project | Article |
 |------|---------|---------|
 | 2025 | Casimir SAT | [Solving SAT with Quantum Vacuum Dynamics](https://doi.org/10.5281/zenodo.17394165) |
 | 2025 | Spectral-Multiplicative | [Spectral-Multiplicative Optimization Framework](https://doi.org/10.5281/zenodo.17596089) |
-| 2025 | ShunyaBar | [ShunyaBar: Spectral-Arithmetic Phase Transitions](https://doi.org/10.5281/zenodo.18096758) |
+| 2025 | ShunyaBar | [ShunyaBar: Spectral-Arithmetic Phase Transitions](https://doi.org/10.5281/zenodo.18214172) |
 | 2026 | BAHA | [Multiplicative Calculus for Hardness Detection](https://doi.org/10.5281/zenodo.18373732) |
 | 2026 | NitroSAT | [NitroSAT: A Physics-Informed MaxSAT Solver](https://doi.org/10.5281/zenodo.18753235) |
+| 2026 | Emergent Stochasticity | [Emergent Stochasticity from Serialized Concurrency](https://doi.org/10.5281/zenodo.19571762) |
 | 2025 | Multiplicative PINN | [Multiplicative PINN Framework](https://doi.org/10.5281/zenodo.18214172) |
 
 ---

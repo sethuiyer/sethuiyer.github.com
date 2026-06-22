@@ -1,59 +1,134 @@
 <div class="sb-thesis-title">
 <h1>ShunyaBar Labs</h1>
-<p class="sb-subtitle">The Arithmetic Manifold</p>
-<p class="sb-tagline">Constraint is the engine.</p>
+<div class="sb-subtitle">Physics-informed constraint intelligence &amp; proof-aware optimization</div>
+<div class="sb-tagline">Logic should be a utility.</div>
 </div>
 
 <div class="sb-abstract">
 
-ShunyaBar Labs builds proof-oriented constraint solvers and research tools around the <strong>Arithmetic Manifold</strong>: a framework connecting prime-weighted optimization, statistical mechanics, and logic.
-
-This site is a map of the work. Start with the launch note for product context, the core vision for the mathematical frame, or the research report for the technical record.
+ShunyaBar Labs builds **Navokoj** — an industrial SAT / MaxSAT engine that replaces combinatorial search with **continuous phase transitions** grounded in non-commutative geometry. Our [spectral-arithmetic framework](projects/spectral-multiplicative.md) handles million-clause industrial instances in seconds, with **downloadable proof artifacts** so you can verify every assignment offline. We are a research lab and a product company: open preprints on [Zenodo](zenodo/index.md), a production API at `navokoj.shunyabar.foo`, and six shipped projects — all unified by one theory, the **Arithmetic Manifold**.
 
 </div>
 
 ---
 
-## Start Here
+## By the numbers
 
-- [Navokoj Launch](blog/navokoj-launch.md) — how the solver work maps into the public product.
-- [Core Vision: The Arithmetic Manifold](core-vision.md) — the central mathematical idea.
-- [Research Report](research-report.md) — methods, results, and boundaries in one place.
-- [Quick Start Guide](getting-started/quick-start.md) — first steps for using the tools.
+| 92.57% | $1.4M/yr | 6 DOIs | ρ ≥ 0.99 |
+|:---:|:---:|:---:|:---:|
+| SAT 2024 perfect-solve rate (PRO engine, 4,199 industrial instances) | Projected cloud savings on a 15,000-node benchmark | Citable Zenodo artifacts, CERN-backed | Spectral-vs-multiplicative correlation guard, sustained |
 
-## Main Paths
+---
 
-- [Projects](projects/index.md) — NitroSAT, Navokoj, BAHA, Factor Agent, and related work.
-- [Why Navokoj](marketing/index.md) — the product framing and use cases.
-- [Navokoj Developer Guide](navokoj/index.md) — API-facing notes and integration guidance.
-- [Glossary](glossary.md) — short definitions for recurring terms.
+## Start here
 
-## Current Focus
+| Path | Read this if… |
+|---|---|
+| [**Navokoj Launch**](blog/navokoj-launch.md) | You want product context first — what the solver does, how it performs. |
+| [**The Arithmetic Manifold**](core-vision.md) | You want the math — how prime weighting, phase transitions, and Bost-Connes truncation compose into one theory. |
+| [**Quick Start**](getting-started/quick-start.md) | You want to send a problem to the API in the next ten minutes. |
 
-- [Agentic AI as Distributed Systems](concepts/agentic-ai-distributed-systems.md)
+---
+
+## NitroSAT — open-source benchmarks
+
+[**NitroSAT**](projects/nitrosat.md) is the open-source solver (Apache 2.0) that backs Navokoj's [`pro` engine](glossary.md#engines-the-spectrum). The full benchmark suite — **358 instances across 19 problem types, every result reproducible from the attached code** — ships inside the [NitroSAT Zenodo record](zenodo/nitrosat-physics-informed-maxsat.md).
+
+| 358 | 19 | 99.58% | 354,890 | 0.0000% |
+|:---:|:---:|:---:|:---:|:---:|
+| benchmark instances | problem types (graph coloring, Ramsey, scheduling, N-Queens, XOR-SAT, mutilated chessboard, …) | average clause satisfaction | clauses solved at 100% on `cliquecol` | std-dev across 20 variable renumberings (perfectly permutation-invariant) |
+
+Verified instances include `129sat_n200` (1M clauses, 100%), `pyth_n5000` (100%), `ramsey_n52` (100%), `3sat_100k` (94.9%). Independent verification: `python3 verify_reproducibility.py`.
+
+---
+
+## Latest 6
+
+| # | Record | DOI | Type |
+|:---:|---|---|---|
+| 1 | [Spectral-Multiplicative Optimization Framework](zenodo/spectral-multiplicative-framework.md) | [10.5281/zenodo.17596089](https://doi.org/10.5281/zenodo.17596089) | Thesis · Software |
+| 2 | [ShunyaBar: Spectral–Arithmetic Phase Transitions](zenodo/shunyabar-spectral-arithmetic-phase-transitions.md) | [10.5281/zenodo.18214172](https://doi.org/10.5281/zenodo.18214172) | Preprint · Paper + Software |
+| 3 | [Multiplicative Calculus / BAHA](zenodo/multiplicative-calculus-hardness-detection.md) | [10.5281/zenodo.18373732](https://doi.org/10.5281/zenodo.18373732) | Working paper · Code |
+| 4 | [NitroSAT: A Physics-Informed MaxSAT Solver](zenodo/nitrosat-physics-informed-maxsat.md) | [10.5281/zenodo.18753235](https://doi.org/10.5281/zenodo.18753235) | Software · Paper + 358-instance benchmark |
+| 5 | [Emergent Stochasticity from Serialized Concurrency](zenodo/emergent-stochasticity-serialized-concurrency.md) | [10.5281/zenodo.19571762](https://doi.org/10.5281/zenodo.19571762) | Thesis · Paper + Code |
+| 6 | [Solving SAT with Quantum Vacuum Dynamics](zenodo/solving-sat-quantum-vacuum-dynamics.md) | [10.5281/zenodo.17394165](https://doi.org/10.5281/zenodo.17394165) | Proposal · Paper + Site |
+
+[All Zenodo records →](zenodo/index.md)
+
+---
+
+## From the blog
+
+- [The Road to Enterprise — June 2026 Milestone](blog/navokoj-road-to-enterprise.md)
+- [The Seven Seals of Navokoj](blog/seven-seals-navokoj.md) — security architecture
+- [The Six Research Tribes of ShunyaBar](blog/six-research-tribes.md) — internal pipeline
+
+---
+
+## Projects
+
+- [NitroSAT](projects/nitrosat.md) — Lua solver, 358-instance benchmark, 99.58% average satisfaction
+- [BAHA](projects/baha.md) — branch-aware annealer, the engine behind the proof
+- [Multiplicative PINN](projects/multiplicative-pinn.md) — physics-informed learning
+- [All projects →](projects/index.md)
+
+---
+
+## Three reader lanes
+
+### For builders — *ship a feature this week*
+
+- [Quick Start](getting-started/quick-start.md)
+- [Navokoj Developer Guide](navokoj/index.md)
+- [Lua Module](getting-started/lua-module.md)
+- [Pricing](marketing/pricing.md)
+
+### For integrators — *build a vertical SaaS*
+
+- [Pragmatist's Guide to Monetizing ShunyaBar](marketing/monetization-guide.md)
+- [Customer Monetization Enablement](marketing/customer-monetization.md)
+- [Use Cases](marketing/use-cases.md)
+- [Results](marketing/results.md)
+
+### For researchers — *read the math*
+
+- [The Arithmetic Manifold](core-vision.md)
 - [Axiom Architecture](axiom-architecture.md)
-- [Limitations & Boundaries](limitations.md)
+- [Partition Function](concepts/partition-function.md) · [Prime Weighting](concepts/prime-weighting.md) · [Phase Transitions](concepts/phase-transitions.md)
+- [Research Report](research-report.md)
+- [Glossary](glossary.md) · [Design Philosophy](design-philosophy.md)
 
-## Also on Medium
+---
 
-- [Solving SAT with Quantum Vacuum Dynamics](https://medium.com/@sethuiyer/solving-sat-with-quantum-vacuum-dynamics-fa07b9cbcc5e)
-- [The Arithmetic Manifold: Why the Next AGI Will Think in Geometric Operators, Not Tokens](https://medium.com/@sethuiyer/the-arithmetic-manifold-why-the-next-agi-will-think-in-geometric-operators-not-tokens-a2798c556b7b)
-- [Why Physicists Think Math's Toughest Problem Is About Stability, Not Numbers](https://medium.com/@sethuiyer/why-physicists-think-maths-toughest-problem-is-about-stability-not-numbers-ce175f6ccd34)
-- [The Machine That Knows the Primes](https://medium.com/@sethuiyer/the-machine-that-knows-the-primes-cd08ad355ef7)
-- [The Art of Applying Physics in Computation](https://medium.com/@sethuiyer/the-art-of-applying-physics-in-computation-8e897f09e715)
-- [Open Sourcing NitroSAT: The Physics-Informed MaxSAT Engine](https://medium.com/@sethuiyer/open-sourcing-nitrosat-the-physics-informed-maxsat-engine-6d0176264065)
-- [Primes Are the Only Structure That Survives Infinity](https://medium.com/@sethuiyer/primes-are-the-only-structure-that-survives-infinity-6dc6fa666107)
-- [A Beginner-Friendly Deep Dive into How Authorization Really Works](https://medium.com/@sethuiyer/a-beginner-friendly-deep-dive-into-how-authorization-really-works-641f1ccc3137)
+## Companion sites
 
-## Also on YouTube
+The docs you are reading are the **product and engineering surface**. The longer-form scholarship lives elsewhere.
 
-[Sethu Iyer on YouTube](https://www.youtube.com/@SethuIyer95/videos) covers space, time, mathematics, computer science, physics, games, love, life, and art.
+### [research.shunyabar.foo](https://research.shunyabar.foo/) — long-form essays
 
-- The Physics of Divergent Computation
-- ShunyaBar Labs: Solving NP-Hard Chaos with Physics-Informed Constraint Intelligence
-- Beyond Boolean: The Shape of an If-Statement
-- Extreme Computation | Arithmetic Rigidity Explained
-- Introducing NitroSAT: Powerful linear-time MaxSAT approximation engine
-- Navokoj: Deterministic, Time-Bounded Constraint Solving at Scale
-- Solving SAT with Quantum Vacuum Dynamics
-- Primes as Curvature Defects: A Topological Perspective on Number Theory
+| Section | Representative essays |
+|---|---|
+| **Core Theory & Foundations** | The Proximity-Identity Functional · Convergence Frontiers · Exponential Functions in Complex Systems |
+| **Number Theory & Arithmetic Physics** | The Dynamic Prime Cantor Set · The Prime Walk · Quantum Rhythm Hypothesis · Majorana Topological Superconductors |
+| **Optimization & Control Systems** | The Hidden Manifold · Mathematical Mechanism of the Self-Stabilizing Optimizer · TSP on the Self-Stabilizing Optimizer · Hidden Laws of Imbalance |
+| **Machine Learning & Computation** | Fock Space Computation · The Multiplicative Axis (constraint enforcement · Navier-Stokes with prime gates) |
+
+### [navokoj.shunyabar.foo](https://navokoj.shunyabar.foo/) — production API
+
+The customer-facing product. `/v1/solve`, `/v1/schedule`, `/v1/audit`, pricing tiers, account dashboard.
+
+### [shunyabar.foo](https://shunyabar.foo/) — company
+
+Front door. Mission, team, contact.
+
+---
+
+## Outside the docs
+
+- [Sethu Iyer on Medium](https://medium.com/@sethuiyer) — selected essays on SAT, AGI geometry, and the Riemann Hypothesis.
+- [Sethu Iyer on YouTube](https://www.youtube.com/@SethuIyer95/videos) — talks on divergent computation, primes as curvature, and NitroSAT.
+
+---
+
+*Authored by [Sethurathienam Iyer](https://orcid.org/0009-0008-5446-2856), Founder, ShunyaBar Labs.*
+*Commercial contact: `shunyabarlabs@zohomail.com`*
