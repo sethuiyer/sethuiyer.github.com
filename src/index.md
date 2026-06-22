@@ -6,75 +6,54 @@
 
 <div class="sb-abstract">
 
-We build constraint-solving tools that come with proof. Our work unifies ideas from analytic number theory, statistical mechanics, and category theory into a single framework — the **Arithmetic Manifold** — and ships them as production [MaxSAT](glossary.md) solvers. Every constraint gets a unique prime-derived weight; every solver is a physical instrument whose stability threshold coincides with the Riemann critical line.
+ShunyaBar Labs builds proof-oriented constraint solvers and research tools around the <strong>Arithmetic Manifold</strong>: a framework connecting prime-weighted optimization, statistical mechanics, and logic.
+
+This site is a map of the work. Start with the launch note for product context, the core vision for the mathematical frame, or the research report for the technical record.
 
 </div>
 
 ---
 
-## Key Results
+## Start Here
 
-| Area | Result | What it means |
-|---|---|---|
-| **Prime Weighting** | 3.4–4× speedup; topological cycles 79 → 20 | No two constraints compete for the same gradient signal |
-| **Enterprise Timetabling** | 80M clauses, 100% in 73 seconds | 250× faster than v1 (5.2 hours → 73s, same laptop) |
-| **Production MaxSAT** | 3.98M clauses, 308 runs, median 65.5ms | 54% perfect solves, 80% at ≥99% satisfaction |
-| **Edwards-Anderson 3D** | 64K frustrated spins, 99.47% in 4.3s | First gradient-based solver at this scale |
-| **Titan Ramsey R(5,5)** | 780 vars, 1.32M clauses, α=1687 | 99.995% satisfaction — each variable in ~1687 clauses |
-| **CDCL Trap (pit.cnf)** | 2,950 vars, 1.05M clauses | 100% perfect — solves formulas engineered to break CDCL |
+- [Navokoj Launch](blog/navokoj-launch.md) — how the solver work maps into the public product.
+- [Core Vision: The Arithmetic Manifold](core-vision.md) — the central mathematical idea.
+- [Research Report](research-report.md) — methods, results, and boundaries in one place.
+- [Quick Start Guide](getting-started/quick-start.md) — first steps for using the tools.
 
-Full methodology: [research report](research-report.md) · [production ledger](projects/nitrosat.md) · [limitations](limitations.md)
+## Main Paths
 
-Launch context: [Navokoj in production](blog/navokoj-launch.md) explains how the Arithmetic Manifold maps into the public API and solver tiers.
+- [Projects](projects/index.md) — NitroSAT, Navokoj, BAHA, Factor Agent, and related work.
+- [Why Navokoj](marketing/index.md) — the product framing and use cases.
+- [Navokoj Developer Guide](navokoj/index.md) — API-facing notes and integration guidance.
+- [Glossary](glossary.md) — short definitions for recurring terms.
 
----
+## Current Focus
 
-## Projects
+- [Agentic AI as Distributed Systems](concepts/agentic-ai-distributed-systems.md)
+- [Axiom Architecture](axiom-architecture.md)
+- [Limitations & Boundaries](limitations.md)
 
-| Project | Description |
-|---|---|
-| [**NitroSAT**](projects/nitrosat.md) | Physics-informed continuous-relaxation MaxSAT solver |
-| [**Navokoj**](projects/navokoj.md) | Production MaxSAT API with proof artifacts |
-| [**BAHA**](projects/baha.md) | Fracture detection via Lambert W / thermal signal analysis |
-| [**Multiplicative PINN**](projects/multiplicative-pinn.md) | PINNs with prime-weighted multiplicative loss |
-| [**Spectral-Multiplicative**](projects/spectral-multiplicative.md) | Spectral graph methods + multiplicative optimization |
-| [**Geometry of Conditional Logic**](projects/geometry-of-conditional-logic.md) | Spatial embeddings of logical conditionals |
-| [**Casimir SAT Solver**](projects/casimir-sat-solver.md) | SAT solving via vacuum energy analogy |
-| [**Factor Agent**](projects/factor-agent.md) | LLM agent with certified tool-use via MaxSAT |
-| [**Thermodynamic Number Line**](projects/thermodynamic-number-line.md) | Primes as thermodynamic fuel |
-| [**Authorization Lattice**](projects/authorization-lattice.md) | Lattice-based access control with MaxSAT verification |
+## Also on Medium
 
----
+- [Solving SAT with Quantum Vacuum Dynamics](https://medium.com/@sethuiyer/solving-sat-with-quantum-vacuum-dynamics-fa07b9cbcc5e)
+- [The Arithmetic Manifold: Why the Next AGI Will Think in Geometric Operators, Not Tokens](https://medium.com/@sethuiyer/the-arithmetic-manifold-why-the-next-agi-will-think-in-geometric-operators-not-tokens-a2798c556b7b)
+- [Why Physicists Think Math's Toughest Problem Is About Stability, Not Numbers](https://medium.com/@sethuiyer/why-physicists-think-maths-toughest-problem-is-about-stability-not-numbers-ce175f6ccd34)
+- [The Machine That Knows the Primes](https://medium.com/@sethuiyer/the-machine-that-knows-the-primes-cd08ad355ef7)
+- [The Art of Applying Physics in Computation](https://medium.com/@sethuiyer/the-art-of-applying-physics-in-computation-8e897f09e715)
+- [Open Sourcing NitroSAT: The Physics-Informed MaxSAT Engine](https://medium.com/@sethuiyer/open-sourcing-nitrosat-the-physics-informed-maxsat-engine-6d0176264065)
+- [Primes Are the Only Structure That Survives Infinity](https://medium.com/@sethuiyer/primes-are-the-only-structure-that-survives-infinity-6dc6fa666107)
+- [A Beginner-Friendly Deep Dive into How Authorization Really Works](https://medium.com/@sethuiyer/a-beginner-friendly-deep-dive-into-how-authorization-really-works-641f1ccc3137)
 
-## Pricing
+## Also on YouTube
 
-| Tier | Price | Limits |
-|---|---|---|
-| **Free** | $0 | 1K vars, 5K clauses, 500 req/hr |
-| **Dev** | $99/mo | 10K vars, 50K clauses, 5K req/hr |
-| **Pro** | $499/mo | 100K vars, 500K clauses, 50K req/hr, proof artifacts |
-| **Enterprise** | Custom ($5K+/mo) | Unlimited, on-prem, SOC2 in flight |
+[Sethu Iyer on YouTube](https://www.youtube.com/@SethuIyer95/videos) covers space, time, mathematics, computer science, physics, games, love, life, and art.
 
-Details: [pricing](marketing/pricing.md) · [use cases](marketing/use-cases.md) · [benchmarks](getting-started/benchmarks.md)
-
----
-
-## For the Technical Reader
-
-| If you want to… | Start here |
-|---|---|
-| Understand the math | [Core Vision: The Arithmetic Manifold](core-vision.md) |
-| Read the rigorous paper | [Axiom Architecture essay](axiom-architecture.md) |
-| See the unified report | [Research report](research-report.md) |
-| Call the API | [Quick Start Guide](getting-started/quick-start.md) |
-| Understand our limits | [Where it works (and where it doesn't)](limitations.md) |
-| See the roadmap | [Product Strategy](product-strategy.md) · [TODO](TODO.md) |
-| Why our surfaces look different | [The Design Philosophy](design-philosophy.md) |
-
----
-
-## See Also
-
-- [Prime Weighting](concepts/prime-weighting.md) · [Partition Function](concepts/partition-function.md) · [Multiplicative vs Additive](concepts/multiplicative-vs-additive.md) · [Phase Transitions](concepts/phase-transitions.md) · [Riemann Hypothesis](concepts/riemann-hypothesis.md) · [Asymptotically Fair Stopping](concepts/asymptotically-fair-stopping.md)
-- [All Projects](projects/index.md) · [Why Navokoj](marketing/index.md) · [Glossary](glossary.md)
-- [Navokoj Launch](blog/navokoj-launch.md) · [Navokoj Developer Guide](navokoj/index.md) · [Pricing](marketing/pricing.md)
+- The Physics of Divergent Computation
+- ShunyaBar Labs: Solving NP-Hard Chaos with Physics-Informed Constraint Intelligence
+- Beyond Boolean: The Shape of an If-Statement
+- Extreme Computation | Arithmetic Rigidity Explained
+- Introducing NitroSAT: Powerful linear-time MaxSAT approximation engine
+- Navokoj: Deterministic, Time-Bounded Constraint Solving at Scale
+- Solving SAT with Quantum Vacuum Dynamics
+- Primes as Curvature Defects: A Topological Perspective on Number Theory

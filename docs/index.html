@@ -85,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#key-results" class="md-skip">
+        <a href="#start-here" class="md-skip">
           Skip to content
         </a>
       
@@ -142,7 +142,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="deep-purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -472,10 +472,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#key-results" class="md-nav__link">
+  <a href="#start-here" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Key Results
+        Start Here
       
     </span>
   </a>
@@ -483,10 +483,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#projects" class="md-nav__link">
+  <a href="#main-paths" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Projects
+        Main Paths
       
     </span>
   </a>
@@ -494,10 +494,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pricing" class="md-nav__link">
+  <a href="#current-focus" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pricing
+        Current Focus
       
     </span>
   </a>
@@ -505,10 +505,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#for-the-technical-reader" class="md-nav__link">
+  <a href="#also-on-medium" class="md-nav__link">
     <span class="md-ellipsis">
       
-        For the Technical Reader
+        Also on Medium
       
     </span>
   </a>
@@ -516,10 +516,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#see-also" class="md-nav__link">
+  <a href="#also-on-youtube" class="md-nav__link">
     <span class="md-ellipsis">
       
-        See Also
+        Also on YouTube
       
     </span>
   </a>
@@ -2064,187 +2064,55 @@
 
 <div class="sb-abstract">
 
-We build constraint-solving tools that come with proof. Our work unifies ideas from analytic number theory, statistical mechanics, and category theory into a single framework — the **Arithmetic Manifold** — and ships them as production [MaxSAT](glossary.md) solvers. Every constraint gets a unique prime-derived weight; every solver is a physical instrument whose stability threshold coincides with the Riemann critical line.
+ShunyaBar Labs builds proof-oriented constraint solvers and research tools around the <strong>Arithmetic Manifold</strong>: a framework connecting prime-weighted optimization, statistical mechanics, and logic.
+
+This site is a map of the work. Start with the launch note for product context, the core vision for the mathematical frame, or the research report for the technical record.
 
 </div>
 
 <hr />
-<h2 id="key-results">Key Results<a class="headerlink" href="#key-results" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Area</th>
-<th>Result</th>
-<th>What it means</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Prime Weighting</strong></td>
-<td>3.4–4× speedup; topological cycles 79 → 20</td>
-<td>No two constraints compete for the same gradient signal</td>
-</tr>
-<tr>
-<td><strong>Enterprise Timetabling</strong></td>
-<td>80M clauses, 100% in 73 seconds</td>
-<td>250× faster than v1 (5.2 hours → 73s, same laptop)</td>
-</tr>
-<tr>
-<td><strong>Production MaxSAT</strong></td>
-<td>3.98M clauses, 308 runs, median 65.5ms</td>
-<td>54% perfect solves, 80% at ≥99% satisfaction</td>
-</tr>
-<tr>
-<td><strong>Edwards-Anderson 3D</strong></td>
-<td>64K frustrated spins, 99.47% in 4.3s</td>
-<td>First gradient-based solver at this scale</td>
-</tr>
-<tr>
-<td><strong>Titan Ramsey R(5,5)</strong></td>
-<td>780 vars, 1.32M clauses, α=1687</td>
-<td>99.995% satisfaction — each variable in ~1687 clauses</td>
-</tr>
-<tr>
-<td><strong>CDCL Trap (pit.cnf)</strong></td>
-<td>2,950 vars, 1.05M clauses</td>
-<td>100% perfect — solves formulas engineered to break CDCL</td>
-</tr>
-</tbody>
-</table>
-<p>Full methodology: <a href="research-report/">research report</a> · <a href="projects/nitrosat/">production ledger</a> · <a href="limitations/">limitations</a></p>
-<p>Launch context: <a href="blog/navokoj-launch/">Navokoj in production</a> explains how the Arithmetic Manifold maps into the public API and solver tiers.</p>
-<hr />
-<h2 id="projects">Projects<a class="headerlink" href="#projects" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Project</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="projects/nitrosat/"><strong>NitroSAT</strong></a></td>
-<td>Physics-informed continuous-relaxation MaxSAT solver</td>
-</tr>
-<tr>
-<td><a href="projects/navokoj/"><strong>Navokoj</strong></a></td>
-<td>Production MaxSAT API with proof artifacts</td>
-</tr>
-<tr>
-<td><a href="projects/baha/"><strong>BAHA</strong></a></td>
-<td>Fracture detection via Lambert W / thermal signal analysis</td>
-</tr>
-<tr>
-<td><a href="projects/multiplicative-pinn/"><strong>Multiplicative PINN</strong></a></td>
-<td>PINNs with prime-weighted multiplicative loss</td>
-</tr>
-<tr>
-<td><a href="projects/spectral-multiplicative/"><strong>Spectral-Multiplicative</strong></a></td>
-<td>Spectral graph methods + multiplicative optimization</td>
-</tr>
-<tr>
-<td><a href="projects/geometry-of-conditional-logic/"><strong>Geometry of Conditional Logic</strong></a></td>
-<td>Spatial embeddings of logical conditionals</td>
-</tr>
-<tr>
-<td><a href="projects/casimir-sat-solver/"><strong>Casimir SAT Solver</strong></a></td>
-<td>SAT solving via vacuum energy analogy</td>
-</tr>
-<tr>
-<td><a href="projects/factor-agent/"><strong>Factor Agent</strong></a></td>
-<td>LLM agent with certified tool-use via MaxSAT</td>
-</tr>
-<tr>
-<td><a href="projects/thermodynamic-number-line/"><strong>Thermodynamic Number Line</strong></a></td>
-<td>Primes as thermodynamic fuel</td>
-</tr>
-<tr>
-<td><a href="projects/authorization-lattice/"><strong>Authorization Lattice</strong></a></td>
-<td>Lattice-based access control with MaxSAT verification</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="pricing">Pricing<a class="headerlink" href="#pricing" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Tier</th>
-<th>Price</th>
-<th>Limits</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Free</strong></td>
-<td>$0</td>
-<td>1K vars, 5K clauses, 500 req/hr</td>
-</tr>
-<tr>
-<td><strong>Dev</strong></td>
-<td>$99/mo</td>
-<td>10K vars, 50K clauses, 5K req/hr</td>
-</tr>
-<tr>
-<td><strong>Pro</strong></td>
-<td>$499/mo</td>
-<td>100K vars, 500K clauses, 50K req/hr, proof artifacts</td>
-</tr>
-<tr>
-<td><strong>Enterprise</strong></td>
-<td>Custom ($5K+/mo)</td>
-<td>Unlimited, on-prem, SOC2 in flight</td>
-</tr>
-</tbody>
-</table>
-<p>Details: <a href="marketing/pricing/">pricing</a> · <a href="marketing/use-cases/">use cases</a> · <a href="getting-started/benchmarks/">benchmarks</a></p>
-<hr />
-<h2 id="for-the-technical-reader">For the Technical Reader<a class="headerlink" href="#for-the-technical-reader" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>If you want to…</th>
-<th>Start here</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Understand the math</td>
-<td><a href="core-vision/">Core Vision: The Arithmetic Manifold</a></td>
-</tr>
-<tr>
-<td>Read the rigorous paper</td>
-<td><a href="axiom-architecture/">Axiom Architecture essay</a></td>
-</tr>
-<tr>
-<td>See the unified report</td>
-<td><a href="research-report/">Research report</a></td>
-</tr>
-<tr>
-<td>Call the API</td>
-<td><a href="getting-started/quick-start/">Quick Start Guide</a></td>
-</tr>
-<tr>
-<td>Understand our limits</td>
-<td><a href="limitations/">Where it works (and where it doesn't)</a></td>
-</tr>
-<tr>
-<td>See the roadmap</td>
-<td><a href="product-strategy/">Product Strategy</a> · <a href="TODO/">TODO</a></td>
-</tr>
-<tr>
-<td>Why our surfaces look different</td>
-<td><a href="design-philosophy/">The Design Philosophy</a></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
+<h2 id="start-here">Start Here<a class="headerlink" href="#start-here" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="concepts/prime-weighting/">Prime Weighting</a> · <a href="concepts/partition-function/">Partition Function</a> · <a href="concepts/multiplicative-vs-additive/">Multiplicative vs Additive</a> · <a href="concepts/phase-transitions/">Phase Transitions</a> · <a href="concepts/riemann-hypothesis/">Riemann Hypothesis</a> · <a href="concepts/asymptotically-fair-stopping/">Asymptotically Fair Stopping</a></li>
-<li><a href="projects/">All Projects</a> · <a href="marketing/">Why Navokoj</a> · <a href="glossary/">Glossary</a></li>
-<li><a href="blog/navokoj-launch/">Navokoj Launch</a> · <a href="navokoj/">Navokoj Developer Guide</a> · <a href="marketing/pricing/">Pricing</a></li>
+<li><a href="blog/navokoj-launch/">Navokoj Launch</a> — how the solver work maps into the public product.</li>
+<li><a href="core-vision/">Core Vision: The Arithmetic Manifold</a> — the central mathematical idea.</li>
+<li><a href="research-report/">Research Report</a> — methods, results, and boundaries in one place.</li>
+<li><a href="getting-started/quick-start/">Quick Start Guide</a> — first steps for using the tools.</li>
+</ul>
+<h2 id="main-paths">Main Paths<a class="headerlink" href="#main-paths" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="projects/">Projects</a> — NitroSAT, Navokoj, BAHA, Factor Agent, and related work.</li>
+<li><a href="marketing/">Why Navokoj</a> — the product framing and use cases.</li>
+<li><a href="navokoj/">Navokoj Developer Guide</a> — API-facing notes and integration guidance.</li>
+<li><a href="glossary/">Glossary</a> — short definitions for recurring terms.</li>
+</ul>
+<h2 id="current-focus">Current Focus<a class="headerlink" href="#current-focus" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="concepts/agentic-ai-distributed-systems/">Agentic AI as Distributed Systems</a></li>
+<li><a href="axiom-architecture/">Axiom Architecture</a></li>
+<li><a href="limitations/">Limitations &amp; Boundaries</a></li>
+</ul>
+<h2 id="also-on-medium">Also on Medium<a class="headerlink" href="#also-on-medium" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://medium.com/@sethuiyer/solving-sat-with-quantum-vacuum-dynamics-fa07b9cbcc5e">Solving SAT with Quantum Vacuum Dynamics</a></li>
+<li><a href="https://medium.com/@sethuiyer/the-arithmetic-manifold-why-the-next-agi-will-think-in-geometric-operators-not-tokens-a2798c556b7b">The Arithmetic Manifold: Why the Next AGI Will Think in Geometric Operators, Not Tokens</a></li>
+<li><a href="https://medium.com/@sethuiyer/why-physicists-think-maths-toughest-problem-is-about-stability-not-numbers-ce175f6ccd34">Why Physicists Think Math's Toughest Problem Is About Stability, Not Numbers</a></li>
+<li><a href="https://medium.com/@sethuiyer/the-machine-that-knows-the-primes-cd08ad355ef7">The Machine That Knows the Primes</a></li>
+<li><a href="https://medium.com/@sethuiyer/the-art-of-applying-physics-in-computation-8e897f09e715">The Art of Applying Physics in Computation</a></li>
+<li><a href="https://medium.com/@sethuiyer/open-sourcing-nitrosat-the-physics-informed-maxsat-engine-6d0176264065">Open Sourcing NitroSAT: The Physics-Informed MaxSAT Engine</a></li>
+<li><a href="https://medium.com/@sethuiyer/primes-are-the-only-structure-that-survives-infinity-6dc6fa666107">Primes Are the Only Structure That Survives Infinity</a></li>
+<li><a href="https://medium.com/@sethuiyer/a-beginner-friendly-deep-dive-into-how-authorization-really-works-641f1ccc3137">A Beginner-Friendly Deep Dive into How Authorization Really Works</a></li>
+</ul>
+<h2 id="also-on-youtube">Also on YouTube<a class="headerlink" href="#also-on-youtube" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.youtube.com/@SethuIyer95/videos">Sethu Iyer on YouTube</a> covers space, time, mathematics, computer science, physics, games, love, life, and art.</p>
+<ul>
+<li>The Physics of Divergent Computation</li>
+<li>ShunyaBar Labs: Solving NP-Hard Chaos with Physics-Informed Constraint Intelligence</li>
+<li>Beyond Boolean: The Shape of an If-Statement</li>
+<li>Extreme Computation | Arithmetic Rigidity Explained</li>
+<li>Introducing NitroSAT: Powerful linear-time MaxSAT approximation engine</li>
+<li>Navokoj: Deterministic, Time-Bounded Constraint Solving at Scale</li>
+<li>Solving SAT with Quantum Vacuum Dynamics</li>
+<li>Primes as Curvature Defects: A Topological Perspective on Number Theory</li>
 </ul>
 
 
