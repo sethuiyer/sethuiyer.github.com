@@ -10,6 +10,12 @@ ShunyaBar Labs builds **Navokoj** — an industrial SAT / MaxSAT engine that rep
 
 </div>
 
+## Why approximate MaxSAT matters
+
+Real systems are often overconstrained: every hard rule, cost target, preference, and safety condition cannot always be satisfied at once. SAT asks whether every constraint can be made true. MaxSAT asks for the best tradeoff when that is impossible: which assignment satisfies the most valuable constraints, and which violations remain.
+
+Approximate MaxSAT is useful because exact optimality can be too expensive at industrial scale. A fast solver that returns a high-quality assignment, the violated clauses, reproducible objective values, and proof or audit artifacts can turn messy scheduling, placement, planning, verification, and policy-routing problems into practical optimization workflows.
+
 ---
 
 ## By the numbers

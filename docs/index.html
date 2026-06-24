@@ -85,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#by-the-numbers" class="md-skip">
+        <a href="#why-approximate-maxsat-matters" class="md-skip">
           Skip to content
         </a>
       
@@ -490,6 +490,17 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-approximate-maxsat-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why approximate MaxSAT matters
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#by-the-numbers" class="md-nav__link">
@@ -2658,6 +2669,9 @@
 <div class="sb-abstract">
 <p>ShunyaBar Labs builds <strong>Navokoj</strong> — an industrial SAT / MaxSAT engine that replaces combinatorial search with <strong>continuous phase transitions</strong> grounded in non-commutative geometry. Our <a href="projects/spectral-multiplicative/">spectral-arithmetic framework</a> handles million-clause industrial instances in seconds, with <strong>downloadable proof artifacts</strong> so you can verify every assignment offline. We are a research lab and a product company: open preprints on <a href="zenodo/">Zenodo</a>, a production API at <code>navokoj.shunyabar.foo</code>, and six shipped projects — all unified by one theory, the <strong>Arithmetic Manifold</strong>.</p>
 </div>
+<h2 id="why-approximate-maxsat-matters">Why approximate MaxSAT matters<a class="headerlink" href="#why-approximate-maxsat-matters" title="Permanent link">&para;</a></h2>
+<p>Real systems are often overconstrained: every hard rule, cost target, preference, and safety condition cannot always be satisfied at once. SAT asks whether every constraint can be made true. MaxSAT asks for the best tradeoff when that is impossible: which assignment satisfies the most valuable constraints, and which violations remain.</p>
+<p>Approximate MaxSAT is useful because exact optimality can be too expensive at industrial scale. A fast solver that returns a high-quality assignment, the violated clauses, reproducible objective values, and proof or audit artifacts can turn messy scheduling, placement, planning, verification, and policy-routing problems into practical optimization workflows.</p>
 <hr />
 <h2 id="by-the-numbers">By the numbers<a class="headerlink" href="#by-the-numbers" title="Permanent link">&para;</a></h2>
 <table>
