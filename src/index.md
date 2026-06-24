@@ -4,7 +4,7 @@
 <div class="sb-tagline">Logic should be a utility.</div>
 </div>
 
-<div class="sb-abstract">
+<div class="sb-abstract" markdown>
 
 ShunyaBar Labs builds **Navokoj** — an industrial SAT / MaxSAT engine that replaces combinatorial search with **continuous phase transitions** grounded in non-commutative geometry. Our [spectral-arithmetic framework](projects/spectral-multiplicative.md) handles million-clause industrial instances in seconds, with **downloadable proof artifacts** so you can verify every assignment offline. We are a research lab and a product company: open preprints on [Zenodo](zenodo/index.md), a production API at `navokoj.shunyabar.foo`, and six shipped projects — all unified by one theory, the **Arithmetic Manifold**.
 
@@ -42,18 +42,7 @@ Verified instances include `129sat_n200` (1M clauses, 100%), `pyth_n5000` (100%)
 
 ---
 
-## Latest 6
-
-| # | Record | DOI | Type |
-|:---:|---|---|---|
-| 1 | [Spectral-Multiplicative Optimization Framework](zenodo/spectral-multiplicative-framework.md) | [10.5281/zenodo.17596089](https://doi.org/10.5281/zenodo.17596089) | Thesis · Software |
-| 2 | [ShunyaBar: Spectral–Arithmetic Phase Transitions](zenodo/shunyabar-spectral-arithmetic-phase-transitions.md) | [10.5281/zenodo.18214172](https://doi.org/10.5281/zenodo.18214172) | Preprint · Paper + Software |
-| 3 | [Multiplicative Calculus / BAHA](zenodo/multiplicative-calculus-hardness-detection.md) | [10.5281/zenodo.18373732](https://doi.org/10.5281/zenodo.18373732) | Working paper · Code |
-| 4 | [NitroSAT: A Physics-Informed MaxSAT Solver](zenodo/nitrosat-physics-informed-maxsat.md) | [10.5281/zenodo.18753235](https://doi.org/10.5281/zenodo.18753235) | Software · Paper + 358-instance benchmark |
-| 5 | [Emergent Stochasticity from Serialized Concurrency](zenodo/emergent-stochasticity-serialized-concurrency.md) | [10.5281/zenodo.19571762](https://doi.org/10.5281/zenodo.19571762) | Thesis · Paper + Code |
-| 6 | [Solving SAT with Quantum Vacuum Dynamics](zenodo/solving-sat-quantum-vacuum-dynamics.md) | [10.5281/zenodo.17394165](https://doi.org/10.5281/zenodo.17394165) | Proposal · Paper + Site |
-
-[All Zenodo records →](zenodo/index.md)
+<!-- latest-articles-widget -->
 
 ---
 

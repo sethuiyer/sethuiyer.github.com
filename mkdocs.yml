@@ -9,6 +9,7 @@ exclude_docs: |
 
 hooks:
   - hooks/search_pagerank.py
+  - hooks/recent_articles.py
 
 theme:
   name: material
