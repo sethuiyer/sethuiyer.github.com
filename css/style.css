@@ -29,6 +29,35 @@ body {
   line-height: 1.6;
 }
 
+/* Skip Link for Accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--primary-blue);
+  color: white;
+  padding: 8px 16px;
+  z-index: 1000;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Last Updated Badge */
+.last-updated {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--primary-orange);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
 a {
   text-decoration: none;
   color: var(--primary-blue);
@@ -310,11 +339,25 @@ a:hover {
   box-shadow: var(--box-shadow);
   padding: 20px;
   margin-bottom: 20px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  color: inherit;
 }
 
 .project-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.project-card a {
+  color: var(--primary-blue);
+  text-decoration: none;
+}
+
+.project-card a:hover {
+  color: var(--primary-orange);
 }
 
 .project-info {
@@ -405,18 +448,48 @@ a:hover {
 }
 
 .skill-item {
-  margin-bottom: 10px;
+  margin-bottom: 14px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
 }
 
-.skill-item:before {
-  content: "•";
-  color: var(--primary-orange);
-  font-weight: bold;
-  display: inline-block;
-  width: 1em;
-  margin-left: -1em;
+/* Progress Bar Styles */
+.skill-progress {
+  flex: 1;
+  height: 8px;
+  background-color: var(--border-gray);
+  border-radius: 4px;
+  margin-left: 15px;
+  overflow: hidden;
+  position: relative;
+}
+
+.skill-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-blue), var(--primary-pink));
+  border-radius: 4px;
+  transition: width 0.8s ease-out;
+}
+
+.skill-level {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-left: 10px;
+  min-width: 35px;
+  text-align: right;
+}
+
+/* Filter Button Active States */
+.filter-btn.active {
+  background-color: var(--primary-orange);
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(255, 102, 0, 0.4);
+}
+
+.filter-btn:hover {
+  transform: translateY(-2px);
 }
 
 /* Contact Section - Vintage Friends Style */

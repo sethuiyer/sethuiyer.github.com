@@ -45,6 +45,9 @@
 </head>
 
 <body>
+  <!-- Skip Link for Accessibility -->
+  <a href="#profile" class="skip-link">Skip to main content</a>
+
   <!-- Light Vintage Portfolio Background (matches vintage CSS palette) -->
   <svg id="vintagePortfolioBG" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1440 1200"
     preserveAspectRatio="xMidYMid slice" style="position:fixed; inset:0; z-index:-2; pointer-events:none;">
@@ -186,7 +189,8 @@
   <section id="profile" class="profile-section container animated-section">
     <div class="profile-header">
       <img src="https://avatars.githubusercontent.com/u/7423757?v=4"
-        alt="Portrait of Sethu Iyer - Data Scientist and AI Researcher" class="profile-img">
+        alt="Portrait of Sethu Iyer - Data Scientist and AI Researcher" class="profile-img"
+        loading="lazy">
       <div class="profile-info">
         <h2 class="profile-name">$ cat /etc/profile</h2>
         <p class="profile-title">Data Scientist & AI Researcher</p>
@@ -220,6 +224,12 @@
         experience building production-grade LLM architectures, search, retrieval systems and end to end product
         development . Mathematics and Computer Science is my foundation. Conversational AI, Search, and exploring
         seemingly unrelated yet connected concepts are my playgrounds.
+      </p>
+      <p class="mt-10">
+        <span class="last-updated">
+          <i class="fas fa-clock"></i>
+          <time datetime="2025-06-24">Updated: Jun 2025</time>
+        </span>
       </p>
     </div>
   </section>
@@ -268,12 +278,12 @@
       <div class="skill-category">
         <h3>AI/ML & LLMs</h3>
         <ul class="skill-list">
-          <li class="skill-item">Hugging Face Transformers</li>
-          <li class="skill-item">PEFT (LoRA, QLoRA)</li>
-          <li class="skill-item">Retrieval-Augmented Generation (RAG)</li>
-          <li class="skill-item">Prompt Engineering</li>
-          <li class="skill-item">Fine-tuning LLMs</li>
-          <li class="skill-item">Computer Vision</li>
+          <li class="skill-item"><span>Hugging Face Transformers</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 95%"></div></div></li>
+          <li class="skill-item"><span>PEFT (LoRA, QLoRA)</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 90%"></div></div></li>
+          <li class="skill-item"><span>Retrieval-Augmented Generation</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 92%"></div></div></li>
+          <li class="skill-item"><span>Prompt Engineering</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 88%"></div></div></li>
+          <li class="skill-item"><span>Fine-tuning LLMs</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 85%"></div></div></li>
+          <li class="skill-item"><span>Computer Vision</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 80%"></div></div></li>
         </ul>
       </div>
 
@@ -281,12 +291,12 @@
       <div class="skill-category">
         <h3>Programming & Development</h3>
         <ul class="skill-list">
-          <li class="skill-item">Python (Advanced)</li>
-          <li class="skill-item">C/C++, Go, Scala</li>
-          <li class="skill-item">SQL, CUDA, MATLAB</li>
-          <li class="skill-item">Flask, Docker</li>
-          <li class="skill-item">Svelte, Quasar Framework</li>
-          <li class="skill-item">CI/CD, Linux</li>
+          <li class="skill-item"><span>Python (Advanced)</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 95%"></div></div></li>
+          <li class="skill-item"><span>C/C++, Go, Scala</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 80%"></div></div></li>
+          <li class="skill-item"><span>SQL, CUDA, MATLAB</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 75%"></div></div></li>
+          <li class="skill-item"><span>Flask, Docker</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 85%"></div></div></li>
+          <li class="skill-item"><span>Svelte, Quasar</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 70%"></div></div></li>
+          <li class="skill-item"><span>CI/CD, Linux</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 80%"></div></div></li>
         </ul>
       </div>
 
@@ -294,12 +304,12 @@
       <div class="skill-category">
         <h3>ML Frameworks & Tools</h3>
         <ul class="skill-list">
-          <li class="skill-item">TensorFlow, PyTorch</li>
-          <li class="skill-item">Scikit-learn, SpaCy</li>
-          <li class="skill-item">OpenCV, XGBoost, CatBoost</li>
-          <li class="skill-item">ONNX Runtime</li>
-          <li class="skill-item">Mixed Precision Training</li>
-          <li class="skill-item">TPU Utilization</li>
+          <li class="skill-item"><span>TensorFlow, PyTorch</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 92%"></div></div></li>
+          <li class="skill-item"><span>Scikit-learn, SpaCy</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 85%"></div></div></li>
+          <li class="skill-item"><span>OpenCV, XGBoost, CatBoost</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 80%"></div></div></li>
+          <li class="skill-item"><span>ONNX Runtime</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 70%"></div></div></li>
+          <li class="skill-item"><span>Mixed Precision Training</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 75%"></div></div></li>
+          <li class="skill-item"><span>TPU Utilization</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 65%"></div></div></li>
         </ul>
       </div>
 
@@ -307,11 +317,11 @@
       <div class="skill-category">
         <h3>Big Data & Databases</h3>
         <ul class="skill-list">
-          <li class="skill-item">Apache Spark</li>
-          <li class="skill-item">Elasticsearch</li>
-          <li class="skill-item">Redis</li>
-          <li class="skill-item">MongoDB</li>
-          <li class="skill-item">PostgreSQL</li>
+          <li class="skill-item"><span>Apache Spark</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 75%"></div></div></li>
+          <li class="skill-item"><span>Elasticsearch</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 85%"></div></div></li>
+          <li class="skill-item"><span>Redis</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 80%"></div></div></li>
+          <li class="skill-item"><span>MongoDB</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 75%"></div></div></li>
+          <li class="skill-item"><span>PostgreSQL</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 80%"></div></div></li>
         </ul>
       </div>
 
