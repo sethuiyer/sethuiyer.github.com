@@ -47,6 +47,7 @@ theme:
 nav:
   - Home: index.md
   - Blog:
+    - Multiplicative Archaeology: blog/multiplicative-archaeology.md
     - Navokoj Launch: blog/navokoj-launch.md
     - Road to Enterprise: blog/navokoj-road-to-enterprise.md
     - Seven Seals: blog/seven-seals-navokoj.md
