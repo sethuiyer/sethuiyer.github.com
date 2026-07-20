@@ -97,7 +97,7 @@ curl -X POST https://api.navokoj.shunyabar.foo/v1/solve \
 
 - **Free & Dev**: Sign up at [navokoj.shunyabar.foo](https://navokoj.shunyabar.foo)
 - **Pro**: Upgrade from your dashboard
-- **Enterprise / pilots ($5K–$20K)**: Email shunyabarlabs@zohomail.com
+- **Enterprise / pilots ($5K–$20K)**: Email contact@shunyabar.foo
 
 ---
 
@@ -127,4 +127,4 @@ Yes — Enterprise tier is annual by default. Self-serve tiers are monthly; annu
 Yes — 14 days, no credit card. Trigger from your dashboard.
 
 **What if my problem doesn't fit any of these tiers?**
-Email shunyabarlabs@zohomail.com. We have a custom-design process for unusual workloads.
+Email contact@shunyabar.foo. We have a custom-design process for unusual workloads.

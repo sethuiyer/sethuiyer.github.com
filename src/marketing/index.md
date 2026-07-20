@@ -99,7 +99,7 @@ curl -X POST https://api.navokoj.shunyabar.foo/v1/solve \
 ```
 
 - **Free tier**: Sign up at [navokoj.shunyabar.foo](https://navokoj.shunyabar.foo)
-- **Design partner pilots ($5K–$20K)**: Email shunyabarlabs@zohomail.com
+- **Design partner pilots ($5K–$20K)**: Email contact@shunyabar.foo
 - **Press / partnership**: Same address
 
 ---

@@ -118,7 +118,7 @@ Customers today use **mini** and **pro** almost exclusively. **nano** and **ense
 
 ---
 
-*If a term is missing, [open an issue](https://github.com/sethuiyer/shunyabar/issues) or email shunyabarlabs@zohomail.com.*
+*If a term is missing, [open an issue](https://github.com/sethuiyer/shunyabar/issues) or email contact@shunyabar.foo.*
 
 ---
 

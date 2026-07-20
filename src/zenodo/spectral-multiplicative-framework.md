@@ -141,7 +141,7 @@ Runtime monitoring ensures **ρ ≥ 0.99** throughout simulated annealing. Devia
 
 This implementation is released under **CC-BY-4.0** for research and evaluation. Commercial use requires a separate commercial license.
 
-- **Contact:** `shunyabarlabs@zohomail.com` for enterprise licensing, integration support, and pilot program enrollment.
+- **Contact:** `contact@shunyabar.foo` for enterprise licensing, integration support, and pilot program enrollment.
 - **Source repository:** [github.com/sethuiyer/spectral-multiplicative-framework](https://github.com/sethuiyer/spectral-multiplicative-framework)
 - **Blog:** [github.com/sethuiyer/shunyabar-labs](https://github.com/sethuiyer/shunyabar-labs)
 

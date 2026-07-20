@@ -128,4 +128,4 @@ Front door. Mission, team, contact.
 ---
 
 *Authored by [Sethurathienam Iyer](https://orcid.org/0009-0008-5446-2856), Founder, ShunyaBar Labs.*
-*Commercial contact: `shunyabarlabs@zohomail.com`*
+*Commercial contact: `contact@shunyabar.foo`*
