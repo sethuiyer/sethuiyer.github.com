@@ -2,7 +2,7 @@
 
 *Draft manuscript for journal development.*
 
-<div class="video-embed" markdown="1">
+<div class="video-embed">
 <iframe
   src="https://www.youtube-nocookie.com/embed/3NmgkLSyP_8"
   title="The Hidden Math of Infinite Loops: Taming the Spinning Beach Ball of Death"

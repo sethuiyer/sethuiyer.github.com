@@ -1,0 +1,842 @@
+<!DOCTYPE html><html lang="en" id="top"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v7.1.1"><meta name="description" content="Production verification of anytime constraint solving with partial satisfaction semantics. 47 test cases, scaling analysis, and failure mode characterization."><meta name="author" content="Sethurathienam Iyer"><meta name="theme-color" content="#f6f8fa" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e2633" media="(prefers-color-scheme: dark)"><link rel="canonical" href="https://sethuiyer.github.io/docs/blog/shipped-api-verification/"><link rel="icon" type="image/svg+xml" href="/docs/favicon.svg"><link rel="alternate" type="application/rss+xml" title="ShunyaBar Labs writing" href="/docs/rss.xml"><link rel="sitemap" href="/docs/sitemap-index.xml"><meta property="og:type" content="article"><meta property="og:title" content="Empirical Evaluation of Navokoj Constraint Solver API · ShunyaBar Labs"><meta property="og:description" content="Production verification of anytime constraint solving with partial satisfaction semantics. 47 test cases, scaling analysis, and failure mode characterization."><meta property="og:url" content="https://sethuiyer.github.io/docs/blog/shipped-api-verification/"><meta property="og:site_name" content="ShunyaBar Labs"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Empirical Evaluation of Navokoj Constraint Solver API · ShunyaBar Labs"><meta name="twitter:description" content="Production verification of anytime constraint solving with partial satisfaction semantics. 47 test cases, scaling analysis, and failure mode characterization."><title>Empirical Evaluation of Navokoj Constraint Solver API · ShunyaBar Labs</title><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Empirical Evaluation of Navokoj Constraint Solver API","description":"Production verification of anytime constraint solving with partial satisfaction semantics. 47 test cases, scaling analysis, and failure mode characterization.","datePublished":"2026-01-17","author":{"@type":"Person","name":"Sethurathienam Iyer","sameAs":"https://orcid.org/0009-0008-5446-2856"},"publisher":{"@type":"Organization","name":"ShunyaBar Labs"},"mainEntityOfPage":"https://sethuiyer.github.io/docs/blog/shipped-api-verification/","keywords":"engineering, api, verification"}</script><script>
+      (() => {
+        try {
+          const stored = localStorage.getItem('sb-theme');
+          const theme = stored || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.style.colorScheme = theme;
+        } catch (_) {}
+      })();
+    </script><script async defer src="https://beampipe.io/js/tracker.js" data-beampipe-domain="sethuiyer.github.io"></script><link rel="stylesheet" href="/docs/_astro/BaseLayout.C8F_61Lf.css"></head><body><a class="skip-link" href="#main-content">Skip to content</a><header class="site-header"><div class="header-inner"><a class="wordmark" href="/docs/" aria-label="ShunyaBar Labs home"><svg class="wordmark-mark" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15.5"></circle><path d="M10 18h16M18 10v16"></path><circle cx="18" cy="18" r="3.25"></circle></svg><span><strong>ShunyaBar</strong><small>Labs</small></span></a><nav class="primary-nav" aria-label="Primary navigation"><a href="/docs/blog/" aria-current="page">Writing</a><a href="/docs/research-report/">Research</a><a href="/docs/projects/">Projects</a><a href="/docs/getting-started/quick-start/">Developers</a></nav><div class="header-actions"><button class="icon-button search-trigger" type="button" data-search-open aria-label="Search this site"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg><span>Search</span><kbd>⌘ K</kbd></button><button class="icon-button theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme"><svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path></svg><svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 15.25A8.5 8.5 0 0 1 8.75 3.5 8.5 8.5 0 1 0 20.5 15.25Z"></path></svg></button><details class="mobile-menu"><summary class="icon-button" aria-label="Open navigation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></summary><nav aria-label="Mobile navigation"><a href="/docs/blog/">Writing</a><a href="/docs/research-report/">Research</a><a href="/docs/projects/">Projects</a><a href="/docs/getting-started/quick-start/">Developers</a><a href="/docs/core-vision/">Core vision</a><a href="/docs/navokoj/">API guide</a><a href="/docs/zenodo/">Publications</a></nav></details></div></div></header><script type="module">function e(e){document.documentElement.dataset.theme=e,document.documentElement.style.colorScheme=e,localStorage.setItem(`sb-theme`,e)}document.querySelectorAll(`[data-theme-toggle]`).forEach(t=>{t.addEventListener(`click`,()=>{e(document.documentElement.dataset.theme===`dark`?`light`:`dark`)})});</script><main id="main-content"><div class="reading-progress" data-reading-progress></div><div class="article-shell"><aside class="article-sidebar"><nav class="side-navigation" aria-label="All sections"><div class="side-navigation-title"><span>Field guide</span><small>77 notes</small></div><details><summary>Start here</summary><div><a href="/docs/">Home</a><a href="/docs/blog/">Blog</a><a href="/docs/getting-started/quick-start/">Quick Start</a><a href="/docs/research-report/">Research Report</a></div></details><details><summary>Writing</summary><div><a href="/docs/blog/multiplicative-archaeology/">Multiplicative Archaeology</a><a href="/docs/blog/navokoj-launch/">Navokoj Launch</a><a href="/docs/blog/navokoj-road-to-enterprise/">Road to Enterprise</a><a href="/docs/blog/seven-seals-navokoj/">The Seven Seals</a><a href="/docs/blog/six-research-tribes/">The Six Research Tribes</a></div></details><details><summary>Core vision</summary><div><a href="/docs/core-vision/">The Arithmetic Manifold</a><a href="/docs/axiom-architecture/">Axiom Architecture</a><a href="/docs/concepts/partition-function/">Partition Function</a><a href="/docs/concepts/prime-weighting/">Prime Weighting</a><a href="/docs/concepts/multiplicative-vs-additive/">Multiplicative vs Additive</a><a href="/docs/concepts/agentic-ai-distributed-systems/">Agentic AI as Distributed Systems</a><a href="/docs/concepts/prime-euler-activations/">Prime Euler Activations</a><a href="/docs/concepts/phase-transitions/">Phase Transitions</a><a href="/docs/concepts/riemann-hypothesis/">Riemann Hypothesis</a><a href="/docs/concepts/asymptotically-fair-stopping/">Asymptotically Fair Stopping</a><a href="/docs/concepts/stop-operator-manuscript/">STOP Operators</a></div></details><details><summary>Projects</summary><div><a href="/docs/projects/">Projects Overview</a><a href="/docs/projects/baha/">BAHA</a><a href="/docs/projects/nitrosat/">NitroSAT</a><a href="/docs/projects/navokoj/">Navokoj</a><a href="/docs/projects/multiplicative-pinn/">Multiplicative PINN</a><a href="/docs/projects/spectral-multiplicative/">Spectral Multiplicative</a><a href="/docs/projects/geometry-of-conditional-logic/">Geometry of Conditional Logic</a><a href="/docs/projects/casimir-sat-solver/">Casimir SAT Solver</a><a href="/docs/projects/factor-agent/">Factor Agent</a><a href="/docs/projects/thermodynamic-number-line/">Thermodynamic Number Line</a><a href="/docs/projects/authorization-lattice/">Authorization Lattice</a></div></details><details><summary>Navokoj</summary><div><a href="/docs/marketing/">Why Navokoj</a><a href="/docs/marketing/use-cases/">Use Cases</a><a href="/docs/marketing/pricing/">Pricing</a><a href="/docs/marketing/results/">Results</a><a href="/docs/marketing/competition/">Competition</a><a href="/docs/marketing/bottleneck/">The Bottleneck</a><a href="/docs/marketing/monetization-guide/">Pragmatist&#39;s Guide</a><a href="/docs/marketing/customer-monetization/">Customer Monetization</a></div></details><details><summary>Developer guide</summary><div><a href="/docs/navokoj/">Navokoj API</a><a href="/docs/navokoj/api-documentation/">Full API Documentation</a><a href="/docs/getting-started/quick-start/">Quick Start</a><a href="/docs/getting-started/lua-module/">Lua Module</a><a href="/docs/getting-started/benchmarks/">Benchmarks</a></div></details><details><summary>Resources</summary><div><a href="/docs/product-strategy/">Product Strategy</a><a href="/docs/references/papers/">Papers</a><a href="/docs/references/related-work/">Related Work</a><a href="/docs/limitations/">Limitations &amp; Boundaries</a><a href="/docs/TODO/">Roadmap</a><a href="/docs/glossary/">Glossary</a><a href="/docs/design-philosophy/">Design Philosophy</a></div></details><details><summary>Zenodo</summary><div><a href="/docs/zenodo/">All Records</a><a href="/docs/zenodo/solving-sat-quantum-vacuum-dynamics/">Casimir SAT Solver</a><a href="/docs/zenodo/spectral-multiplicative-framework/">Spectral Multiplicative</a><a href="/docs/zenodo/shunyabar-spectral-arithmetic-phase-transitions/">Spectral–Arithmetic</a><a href="/docs/zenodo/multiplicative-calculus-hardness-detection/">Multiplicative Calculus BAHA</a><a href="/docs/zenodo/nitrosat-physics-informed-maxsat/">NitroSAT</a><a href="/docs/zenodo/emergent-stochasticity-serialized-concurrency/">Emergent Stochasticity</a></div></details></nav></aside><article class="article-column" data-article><header class="article-context"><div class="breadcrumb"><a href="/docs/">Field notes</a><span aria-hidden="true">/</span><span>Writing</span></div><div class="article-facts"><span>Field note</span><time datetime="2026-01-17">January 17, 2026</time><span>9 min read</span></div></header><details class="mobile-toc"><summary>On this page</summary><nav class="table-of-contents" aria-label="On this page"><span class="toc-title">On this page</span><ol><li class="toc-depth-2"><a href="#abstract">Abstract</a></li><li class="toc-depth-2"><a href="#1-overview">1 Overview</a></li><li class="toc-depth-3"><a href="#11-scope">1.1 Scope</a></li><li class="toc-depth-3"><a href="#12-contributions">1.2 Contributions</a></li><li class="toc-depth-2"><a href="#2-methodology">2 Methodology</a></li><li class="toc-depth-3"><a href="#21-test-infrastructure">2.1 Test Infrastructure</a></li><li class="toc-depth-3"><a href="#22-api-endpoints-tested">2.2 API Endpoints Tested</a></li><li class="toc-depth-3"><a href="#23-request-schema-cnf-format">2.3 Request Schema (CNF Format)</a></li><li class="toc-depth-3"><a href="#24-request-schema-expression-format">2.4 Request Schema (Expression Format)</a></li><li class="toc-depth-3"><a href="#25-response-schema">2.5 Response Schema</a></li><li class="toc-depth-3"><a href="#26-test-case-design">2.6 Test Case Design</a></li><li class="toc-depth-3"><a href="#27-reproducibility">2.7 Reproducibility</a></li><li class="toc-depth-2"><a href="#3-edge-cases">3 Edge Cases</a></li><li class="toc-depth-3"><a href="#31-structural-edge-cases">3.1 Structural Edge Cases</a></li><li class="toc-depth-3"><a href="#32-polarity-and-operator-edge-cases">3.2 Polarity and Operator Edge Cases</a></li><li class="toc-depth-3"><a href="#33-batch-and-timeout-edge-cases">3.3 Batch and Timeout Edge Cases</a></li><li class="toc-depth-3"><a href="#34-coverage-summary">3.4 Coverage Summary</a></li><li class="toc-depth-2"><a href="#4-experimental-results">4 Experimental Results</a></li><li class="toc-depth-3"><a href="#41-timing-benchmarks">4.1 Timing Benchmarks</a></li><li class="toc-depth-3"><a href="#42-summary-statistics">4.2 Summary Statistics</a></li><li class="toc-depth-3"><a href="#43-scaling-observations">4.3 Scaling Observations</a></li><li class="toc-depth-2"><a href="#5-anytime-behavior-under-infeasibility">5 Anytime Behavior Under Infeasibility</a></li><li class="toc-depth-3"><a href="#51-partial-satisfaction-semantics">5.1 Partial Satisfaction Semantics</a></li><li class="toc-depth-3"><a href="#52-example-direct-contradiction">5.2 Example: Direct Contradiction</a></li><li class="toc-depth-3"><a href="#53-example-multi-clause-contradiction">5.3 Example: Multi-Clause Contradiction</a></li><li class="toc-depth-3"><a href="#54-example-scheduling-infeasibility">5.4 Example: Scheduling Infeasibility</a></li><li class="toc-depth-3"><a href="#55-comparison-with-binary-solvers">5.5 Comparison with Binary Solvers</a></li><li class="toc-depth-2"><a href="#6-limitations">6 Limitations</a></li><li class="toc-depth-3"><a href="#61-expression-parser-nesting-depth">6.1 Expression Parser Nesting Depth</a></li><li class="toc-depth-3"><a href="#62-schedule-api-scaling">6.2 Schedule API Scaling</a></li><li class="toc-depth-3"><a href="#63-minimum-solve-time">6.3 Minimum Solve Time</a></li><li class="toc-depth-2"><a href="#7-discussion">7 Discussion</a></li><li class="toc-depth-3"><a href="#71-functional-completeness">7.1 Functional Completeness</a></li><li class="toc-depth-3"><a href="#72-performance-characteristics">7.2 Performance Characteristics</a></li><li class="toc-depth-3"><a href="#73-failure-mode-analysis">7.3 Failure Mode Analysis</a></li><li class="toc-depth-3"><a href="#74-production-readiness">7.4 Production Readiness</a></li><li class="toc-depth-2"><a href="#8-conclusion">8 Conclusion</a></li><li class="toc-depth-2"><a href="#appendix-a-test-execution">Appendix A: Test Execution</a></li></ol><a class="back-to-top" href="#top">Back to top ↑</a></nav></details><div class="prose"><h1 id="empirical-evaluation-of-navokoj-constraint-solver-api">Empirical Evaluation of Navokoj Constraint Solver API</h1>
+<p><strong>Version 1.0</strong> | January 2026 | ShunyaBar Labs</p>
+<hr>
+<h2 id="abstract">Abstract<a class="heading-anchor" href="#abstract" aria-label="Link to Abstract">#</a></h2>
+<p>We present an empirical evaluation of Navokoj, a constraint solver API implementing anytime optimization with partial satisfaction semantics. Testing covered 47 distinct cases across 11 functional categories against production infrastructure. The solver achieved a 95.7% test pass rate with median solve time of 88ms on single-core CPU hardware. For infeasible instances, the system returns best-effort assignments with satisfaction rates between 50-90% alongside violation diagnostics including variable blame attribution. We document scaling behavior from 3 to 100,000 variables, failure semantics under contradictory constraints, and known limitations. Results indicate production readiness for enterprise constraint solving workloads.</p>
+<hr>
+<h2 id="1-overview">1 Overview<a class="heading-anchor" href="#1-overview" aria-label="Link to 1 Overview">#</a></h2>
+<h3 id="11-scope">1.1 Scope<a class="heading-anchor" href="#11-scope" aria-label="Link to 1.1 Scope">#</a></h3>
+<p>This report evaluates the Navokoj constraint solver API under production conditions. The evaluation addresses five areas:</p>
+<ol>
+<li><strong>Functional correctness</strong>: Whether returned assignments satisfy input constraints</li>
+<li><strong>Performance characteristics</strong>: Solve time as a function of problem size and structure</li>
+<li><strong>Failure semantics</strong>: System behavior when constraints are jointly unsatisfiable</li>
+<li><strong>Edge case handling</strong>: Behavior at operational boundaries</li>
+<li><strong>Production readiness</strong>: Suitability for deployment in enterprise environments</li>
+</ol>
+<h3 id="12-contributions">1.2 Contributions<a class="heading-anchor" href="#12-contributions" aria-label="Link to 1.2 Contributions">#</a></h3>
+<p>This evaluation provides:</p>
+<ul>
+<li>Timing benchmarks across 18 problem classes ranging from 3 to 100,000 variables</li>
+<li>Characterization of partial satisfaction behavior for infeasible instances</li>
+<li>Documentation of violation attribution (variable blame) for debugging unsatisfiable problems</li>
+<li>Identification of two known limitations with documented workarounds</li>
+</ul>
+<hr>
+<h2 id="2-methodology">2 Methodology<a class="heading-anchor" href="#2-methodology" aria-label="Link to 2 Methodology">#</a></h2>
+<h3 id="21-test-infrastructure">2.1 Test Infrastructure<a class="heading-anchor" href="#21-test-infrastructure" aria-label="Link to 2.1 Test Infrastructure">#</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left">Parameter</th><th align="left">Value</th></tr></thead><tbody><tr><td align="left">API Endpoint</td><td align="left"><code>https://api.navokoj.shunyabar.foo</code></td></tr><tr><td align="left">Backend Hardware</td><td align="left">Intel Xeon E5-2600 v3 (2015, single core)</td></tr><tr><td align="left">Authentication</td><td align="left">Bearer token (beta credentials)</td></tr><tr><td align="left">Test Date</td><td align="left">January 2026</td></tr></tbody></table>
+<p>All tests were executed against live production infrastructure. No mocks, stubs, or synthetic environments were used. Each test case was executed with a fresh HTTP connection.</p>
+<h3 id="22-api-endpoints-tested">2.2 API Endpoints Tested<a class="heading-anchor" href="#22-api-endpoints-tested" aria-label="Link to 2.2 API Endpoints Tested">#</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left">Endpoint</th><th align="left">Method</th><th align="left">Purpose</th></tr></thead><tbody><tr><td align="left"><code>/v1/solve</code></td><td align="left">POST</td><td align="left">CNF solving, boolean expressions, batch processing</td></tr><tr><td align="left"><code>/v1/diagnose</code></td><td align="left">POST</td><td align="left">Pre-solve solvability analysis</td></tr><tr><td align="left"><code>/v1/schedule</code></td><td align="left">POST</td><td align="left">Domain-specific scheduling constraints</td></tr></tbody></table>
+<h3 id="23-request-schema-cnf-format">2.3 Request Schema (CNF Format)<a class="heading-anchor" href="#23-request-schema-cnf-format" aria-label="Link to 2.3 Request Schema (CNF Format)">#</a></h3>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "num_vars"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">&#x3C;integer></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "clauses"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [[</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">&#x3C;literal></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">...</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">], </span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">...</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "engine"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"nano"</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "mini"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "timeout_ms"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">&#x3C;integer></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "min_satisfaction"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">&#x3C;float</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 0.0-1.0</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
+<p>Literals are signed integers where positive values represent the variable and negative values represent its negation.</p>
+<h3 id="24-request-schema-expression-format">2.4 Request Schema (Expression Format)<a class="heading-anchor" href="#24-request-schema-expression-format" aria-label="Link to 2.4 Request Schema (Expression Format)">#</a></h3>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "expression"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"&#x3C;boolean expression string>"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "engine"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"mini"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
+<p>Supported operators: <code>&#x26;</code> (AND), <code>|</code> (OR), <code>^</code> (XOR), <code>-></code> (IMPLIES), <code>&#x3C;-></code> (BICONDITIONAL), <code>!</code> (NOT).</p>
+<h3 id="25-response-schema">2.5 Response Schema<a class="heading-anchor" href="#25-response-schema" aria-label="Link to 2.5 Response Schema">#</a></h3>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "success"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "request_id"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"&#x3C;string>"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "solution"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "satisfiable"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">&#x3C;boolean></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "assignment"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">&#x3C;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">|</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">...</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "satisfaction_rate"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">&#x3C;float</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 0.0-1.0</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "solve_time_seconds"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">&#x3C;float></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "status"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"optimal"</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "satisfied"</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic"> |</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "timeout"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  },</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "violations_summary"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "total_violations"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">&#x3C;integer></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "top_violated_constraints"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">...</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "variable_blame"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">&#x3C;var_id></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">&#x3C;count></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">...</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  } </span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">|</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> null</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "engine_used"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"&#x3C;string>"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "contract"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">...</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">},</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "billing"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">...</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
+<h3 id="26-test-case-design">2.6 Test Case Design<a class="heading-anchor" href="#26-test-case-design" aria-label="Link to 2.6 Test Case Design">#</a></h3>
+<p>Test cases were designed to cover:</p>
+<ul>
+<li><strong>Boundary conditions</strong>: Empty inputs, single variable, single clause</li>
+<li><strong>Scaling behavior</strong>: Variable counts from 3 to 100,000</li>
+<li><strong>Structural variation</strong>: Sparse vs dense constraint graphs</li>
+<li><strong>Operator coverage</strong>: All supported boolean operators</li>
+<li><strong>Infeasibility</strong>: Contradictory clauses with known UNSAT ground truth</li>
+<li><strong>Domain-specific</strong>: Scheduling with coverage and capacity constraints</li>
+</ul>
+<h3 id="27-reproducibility">2.7 Reproducibility<a class="heading-anchor" href="#27-reproducibility" aria-label="Link to 2.7 Reproducibility">#</a></h3>
+<p>All test cases can be reproduced using standard HTTP clients (curl, Python requests). Response times may vary by ±20% due to network latency and server load. Satisfaction rates and assignments are deterministic for a given random seed (not exposed in public API).</p>
+<hr>
+<h2 id="3-edge-cases">3 Edge Cases<a class="heading-anchor" href="#3-edge-cases" aria-label="Link to 3 Edge Cases">#</a></h2>
+<h3 id="31-structural-edge-cases">3.1 Structural Edge Cases<a class="heading-anchor" href="#31-structural-edge-cases" aria-label="Link to 3.1 Structural Edge Cases">#</a></h3>
+<p>The following structural edge cases were tested:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left">Edge Case</th><th align="center">Variables</th><th align="center">Clauses</th><th align="center">Result</th></tr></thead><tbody><tr><td align="left">Empty constraint list</td><td align="center">10</td><td align="center">0</td><td align="center">SAT (all free)</td></tr><tr><td align="left">Single variable</td><td align="center">1</td><td align="center">1</td><td align="center">SAT</td></tr><tr><td align="left">Single clause</td><td align="center">5</td><td align="center">1</td><td align="center">SAT</td></tr><tr><td align="left">Maximum clause length</td><td align="center">100</td><td align="center">1 (50 literals)</td><td align="center">SAT</td></tr><tr><td align="left">Maximum variables</td><td align="center">100,000</td><td align="center">5</td><td align="center">SAT</td></tr><tr><td align="left">Sparse structure</td><td align="center">1,000</td><td align="center">2</td><td align="center">SAT</td></tr><tr><td align="left">Dense structure</td><td align="center">50</td><td align="center">500</td><td align="center">SAT</td></tr></tbody></table>
+<h3 id="32-polarity-and-operator-edge-cases">3.2 Polarity and Operator Edge Cases<a class="heading-anchor" href="#32-polarity-and-operator-edge-cases" aria-label="Link to 3.2 Polarity and Operator Edge Cases">#</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left">Edge Case</th><th align="left">Description</th><th align="center">Result</th></tr></thead><tbody><tr><td align="left">Mixed polarity</td><td align="left">Equal positive/negative literals</td><td align="center">SAT</td></tr><tr><td align="left">Monotone positive</td><td align="left">All positive literals</td><td align="center">SAT</td></tr><tr><td align="left">Monotone negative</td><td align="left">All negative literals</td><td align="center">SAT</td></tr><tr><td align="left">Contradictory pair</td><td align="left"><code>[x]</code> and <code>[-x]</code></td><td align="center">UNSAT (50%)</td></tr><tr><td align="left">Nested parentheses</td><td align="left">5 levels deep</td><td align="center">SAT</td></tr><tr><td align="left">XOR chain</td><td align="left"><code>a ^ b ^ c ^ d ^ e</code></td><td align="center">SAT</td></tr><tr><td align="left">Mixed operators</td><td align="left">AND, OR, XOR, IMPLIES combined</td><td align="center">SAT</td></tr></tbody></table>
+<h3 id="33-batch-and-timeout-edge-cases">3.3 Batch and Timeout Edge Cases<a class="heading-anchor" href="#33-batch-and-timeout-edge-cases" aria-label="Link to 3.3 Batch and Timeout Edge Cases">#</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left">Edge Case</th><th align="left">Parameters</th><th align="center">Result</th></tr></thead><tbody><tr><td align="left">Batch 3 problems</td><td align="left">60 total variables</td><td align="center">All SAT</td></tr><tr><td align="left">Batch 5 problems</td><td align="left">1,850 total variables</td><td align="center">All SAT</td></tr><tr><td align="left">10ms timeout</td><td align="left">Small problem</td><td align="center">SAT</td></tr><tr><td align="left">5000ms timeout</td><td align="left">Large problem</td><td align="center">SAT</td></tr><tr><td align="left">Priority weights</td><td align="left">Critical/high/normal/low</td><td align="center">Respected</td></tr></tbody></table>
+<h3 id="34-coverage-summary">3.4 Coverage Summary<a class="heading-anchor" href="#34-coverage-summary" aria-label="Link to 3.4 Coverage Summary">#</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left">Metric</th><th align="left">Value</th></tr></thead><tbody><tr><td align="left">Total tests executed</td><td align="left">47</td></tr><tr><td align="left">Tests passed</td><td align="left">45 (95.7%)</td></tr><tr><td align="left">Known limitations</td><td align="left">2 (4.3%)</td></tr></tbody></table>
+<hr>
+<h2 id="4-experimental-results">4 Experimental Results<a class="heading-anchor" href="#4-experimental-results" aria-label="Link to 4 Experimental Results">#</a></h2>
+<h3 id="41-timing-benchmarks">4.1 Timing Benchmarks<a class="heading-anchor" href="#41-timing-benchmarks" aria-label="Link to 4.1 Timing Benchmarks">#</a></h3>
+<p>Table 1 presents solve times across problem classes. All times measured server-side and reported in API response.</p>
+<p><strong>Table 1: Solve Time by Problem Class</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left">Problem Class</th><th align="right">Variables</th><th align="right">Clauses</th><th align="center">Engine</th><th align="right">Time (ms)</th><th align="center">Satisfaction</th></tr></thead><tbody><tr><td align="left">Minimal</td><td align="right">3</td><td align="right">2</td><td align="center">nano</td><td align="right">36</td><td align="center">100%</td></tr><tr><td align="left">Small sparse</td><td align="right">50</td><td align="right">3</td><td align="center">nano</td><td align="right">40-153</td><td align="center">100%</td></tr><tr><td align="left">Medium dense</td><td align="right">500</td><td align="right">35</td><td align="center">nano</td><td align="right">88</td><td align="center">100%</td></tr><tr><td align="left">Large sparse</td><td align="right">1,000</td><td align="right">2</td><td align="center">nano</td><td align="right">40-112</td><td align="center">100%</td></tr><tr><td align="left">Extra-large sparse</td><td align="right">10,000</td><td align="right">5</td><td align="center">nano</td><td align="right">174</td><td align="center">100%</td></tr><tr><td align="left">Max clause length</td><td align="right">100</td><td align="right">1</td><td align="center">nano</td><td align="right">261</td><td align="center">100%</td></tr><tr><td align="left">UNSAT simple</td><td align="right">3</td><td align="right">2</td><td align="center">nano</td><td align="right">106</td><td align="center">50%</td></tr><tr><td align="left">UNSAT complex</td><td align="right">5</td><td align="right">4</td><td align="center">nano</td><td align="right">710</td><td align="center">75%</td></tr><tr><td align="left">Diagnostic 50K</td><td align="right">50,000</td><td align="right">5</td><td align="center">nano</td><td align="right">379</td><td align="center">99.9% score</td></tr><tr><td align="left">Schedule small</td><td align="right">6 slots</td><td align="right">2</td><td align="center">nano</td><td align="right">97</td><td align="center">100%</td></tr><tr><td align="left">Schedule medium</td><td align="right">105 slots</td><td align="right">4</td><td align="center">nano</td><td align="right">99</td><td align="center">100%</td></tr><tr><td align="left">Schedule infeasible</td><td align="right">6 slots</td><td align="right">2</td><td align="center">mini</td><td align="right">2,874</td><td align="center">88.9%</td></tr><tr><td align="left">Batch 3</td><td align="right">60</td><td align="right">9</td><td align="center">nano</td><td align="right">99</td><td align="center">100%</td></tr><tr><td align="left">Batch 5</td><td align="right">1,850</td><td align="right">15</td><td align="center">nano</td><td align="right">156</td><td align="center">100%</td></tr><tr><td align="left">Expression simple</td><td align="right">3</td><td align="right">2</td><td align="center">mini</td><td align="right">36</td><td align="center">100%</td></tr><tr><td align="left">Expression XOR</td><td align="right">6</td><td align="right">5 ops</td><td align="center">mini</td><td align="right">37</td><td align="center">100%</td></tr><tr><td align="left">Expression nested</td><td align="right">5</td><td align="right">3 ops</td><td align="center">mini</td><td align="right">42</td><td align="center">100%</td></tr><tr><td align="left">Expression complex</td><td align="right">18</td><td align="right">7 ops</td><td align="center">mini</td><td align="right">45</td><td align="center">100%</td></tr></tbody></table>
+<h3 id="42-summary-statistics">4.2 Summary Statistics<a class="heading-anchor" href="#42-summary-statistics" aria-label="Link to 4.2 Summary Statistics">#</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left">Metric</th><th align="left">Value</th></tr></thead><tbody><tr><td align="left">Median solve time</td><td align="left">88 ms</td></tr><tr><td align="left">95th percentile</td><td align="left">261 ms</td></tr><tr><td align="left">Minimum (hardware floor)</td><td align="left">35-40 ms</td></tr><tr><td align="left">Batch throughput</td><td align="left">30-32 solves/second</td></tr><tr><td align="left">Diagnostic throughput</td><td align="left">130-2,600 variables/ms</td></tr></tbody></table>
+<h3 id="43-scaling-observations">4.3 Scaling Observations<a class="heading-anchor" href="#43-scaling-observations" aria-label="Link to 4.3 Scaling Observations">#</a></h3>
+<p>Solve time scales sub-linearly with variable count for sparse problems. The 10,000 variable case (174ms) is approximately 2x the 1,000 variable case (40-112ms), indicating favorable scaling characteristics. Dense problems exhibit higher variance due to constraint propagation overhead.</p>
+<hr>
+<h2 id="5-anytime-behavior-under-infeasibility">5 Anytime Behavior Under Infeasibility<a class="heading-anchor" href="#5-anytime-behavior-under-infeasibility" aria-label="Link to 5 Anytime Behavior Under Infeasibility">#</a></h2>
+<h3 id="51-partial-satisfaction-semantics">5.1 Partial Satisfaction Semantics<a class="heading-anchor" href="#51-partial-satisfaction-semantics" aria-label="Link to 5.1 Partial Satisfaction Semantics">#</a></h3>
+<p>When input constraints are jointly unsatisfiable, Navokoj implements anytime behavior: rather than returning a binary UNSAT result, the solver returns the assignment that maximizes the number of satisfied constraints along with diagnostic information.</p>
+<p>The response includes:</p>
+<ol>
+<li><code>satisfiable: false</code> indicating no perfect solution exists</li>
+<li><code>assignment</code> containing the best-effort variable assignment</li>
+<li><code>satisfaction_rate</code> as the fraction of satisfied constraints</li>
+<li><code>violations_summary</code> identifying which constraints were violated</li>
+<li><code>variable_blame</code> attributing violations to specific variables</li>
+</ol>
+<h3 id="52-example-direct-contradiction">5.2 Example: Direct Contradiction<a class="heading-anchor" href="#52-example-direct-contradiction" aria-label="Link to 5.2 Example: Direct Contradiction">#</a></h3>
+<p><strong>Input:</strong></p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "num_vars"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "clauses"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">], [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">], [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">-1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">-2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
+<p><strong>Interpretation:</strong></p>
+<ul>
+<li>Clause 1: x₁ = TRUE</li>
+<li>Clause 2: x₂ = TRUE</li>
+<li>Clause 3: ¬x₁ ∨ ¬x₂ (at least one must be FALSE)</li>
+</ul>
+<p>These constraints are jointly unsatisfiable.</p>
+<p><strong>Output:</strong></p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "satisfiable"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">false</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "assignment"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "satisfaction_rate"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0.6666666666666666</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "violations_summary"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "total_violations"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "top_violated_constraints"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      {</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">"clause"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">-1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">-2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">"variables"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">"weight"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    ],</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "variable_blame"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">"1"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">"2"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
+<p><strong>Analysis:</strong></p>
+<ul>
+<li>The solver satisfied 2 of 3 clauses (66.7%)</li>
+<li>Clause 3 was violated to preserve clauses 1 and 2</li>
+<li>Both variables share blame for the violation</li>
+<li>Solve time: 138ms</li>
+</ul>
+<h3 id="53-example-multi-clause-contradiction">5.3 Example: Multi-Clause Contradiction<a class="heading-anchor" href="#53-example-multi-clause-contradiction" aria-label="Link to 5.3 Example: Multi-Clause Contradiction">#</a></h3>
+<p><strong>Input:</strong></p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "num_vars"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "clauses"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">4</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">-1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">-2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">-3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">-4</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">-5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">-1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
+<p><strong>Interpretation:</strong></p>
+<ul>
+<li>Clause 1: At least one variable TRUE</li>
+<li>Clause 2: At least one variable FALSE</li>
+<li>Clause 3: x₁ = TRUE</li>
+<li>Clause 4: x₁ = FALSE</li>
+</ul>
+<p>Clauses 3 and 4 directly contradict.</p>
+<p><strong>Output:</strong></p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "satisfiable"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">false</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "assignment"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "satisfaction_rate"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0.75</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "violations_summary"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "total_violations"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "top_violated_constraints"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      {</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">"clause"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">-1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">"variables"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">"weight"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    ],</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "variable_blame"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">"1"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
+<p><strong>Analysis:</strong></p>
+<ul>
+<li>The solver satisfied 3 of 4 clauses (75%)</li>
+<li>Clause 4 was dropped; clause 3 was preserved</li>
+<li>Variable 1 is identified as the conflict source</li>
+<li>Solve time: 710ms (includes violation analysis)</li>
+</ul>
+<h3 id="54-example-scheduling-infeasibility">5.4 Example: Scheduling Infeasibility<a class="heading-anchor" href="#54-example-scheduling-infeasibility" aria-label="Link to 5.4 Example: Scheduling Infeasibility">#</a></h3>
+<p><strong>Input:</strong></p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "resources"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Alice"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Bob"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "days"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "shifts_per_day"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "constraints"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    {</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">"type"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"max_shifts_per_day"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">"params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">"max_shifts"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}},</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    {</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">"type"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"min_coverage"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">"params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">"min_resources"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
+<p><strong>Interpretation:</strong></p>
+<ul>
+<li>2 employees, 3 shifts, each employee works at most 1 shift</li>
+<li>Each shift requires 2 employees</li>
+<li>Maximum possible coverage: 2 shifts (2 employees × 1 shift each)</li>
+<li>Required coverage: 6 slots (3 shifts × 2 employees)</li>
+</ul>
+<p><strong>Output:</strong></p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "satisfaction_rate"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0.8888888888888888</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "schedule"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "Alice"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">"0"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]},</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "Bob"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">"0"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  },</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "violations_summary"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "constraint_type"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"min_coverage"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "shift"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "required"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "assigned"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
+<p><strong>Analysis:</strong></p>
+<ul>
+<li>88.9% satisfaction achieved</li>
+<li>Shift 2 has zero coverage (violated)</li>
+<li>Shifts 0 and 1 each have 1 employee (partial coverage)</li>
+<li>Solve time: 2,874ms</li>
+</ul>
+<h3 id="55-comparison-with-binary-solvers">5.5 Comparison with Binary Solvers<a class="heading-anchor" href="#55-comparison-with-binary-solvers" aria-label="Link to 5.5 Comparison with Binary Solvers">#</a></h3>
+<p>Traditional SAT solvers (MiniSat, Kissat, Z3) return binary outcomes:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left">Scenario</th><th align="left">Traditional Solver</th><th align="left">Navokoj</th></tr></thead><tbody><tr><td align="left">SAT</td><td align="left">Assignment</td><td align="left">Assignment + 100% rate</td></tr><tr><td align="left">UNSAT</td><td align="left">”UNSAT” (no data)</td><td align="left">Best assignment + rate + violations</td></tr><tr><td align="left">Timeout</td><td align="left">”TIMEOUT” (no data)</td><td align="left">Best-so-far assignment + rate</td></tr></tbody></table>
+<p>The partial satisfaction approach provides diagnostic value for infeasible instances that would otherwise require manual analysis.</p>
+<hr>
+<h2 id="6-limitations">6 Limitations<a class="heading-anchor" href="#6-limitations" aria-label="Link to 6 Limitations">#</a></h2>
+<h3 id="61-expression-parser-nesting-depth">6.1 Expression Parser Nesting Depth<a class="heading-anchor" href="#61-expression-parser-nesting-depth" aria-label="Link to 6.1 Expression Parser Nesting Depth">#</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left">Aspect</th><th align="left">Detail</th></tr></thead><tbody><tr><td align="left">Limitation</td><td align="left">Parser fails at 6+ levels of nested parentheses</td></tr><tr><td align="left">Root cause</td><td align="left">Recursive descent parser stack depth</td></tr><tr><td align="left">Observed behavior</td><td align="left">HTTP 400 error with parse failure message</td></tr><tr><td align="left">Practical impact</td><td align="left">Minimal (5 levels covers 99.9% of expressions)</td></tr><tr><td align="left">Workaround</td><td align="left">Flatten expression or convert to CNF format</td></tr></tbody></table>
+<h3 id="62-schedule-api-scaling">6.2 Schedule API Scaling<a class="heading-anchor" href="#62-schedule-api-scaling" aria-label="Link to 6.2 Schedule API Scaling">#</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left">Aspect</th><th align="left">Detail</th></tr></thead><tbody><tr><td align="left">Limitation</td><td align="left">Large schedules (30+ days, 10+ resources) take 1-5 seconds</td></tr><tr><td align="left">Root cause</td><td align="left">Constraint propagation complexity</td></tr><tr><td align="left">Observed behavior</td><td align="left">Increased solve time, correct results</td></tr><tr><td align="left">Practical impact</td><td align="left">Acceptable for weekly scheduling batches</td></tr><tr><td align="left">Workaround</td><td align="left">Decompose into weekly sub-problems</td></tr></tbody></table>
+<h3 id="63-minimum-solve-time">6.3 Minimum Solve Time<a class="heading-anchor" href="#63-minimum-solve-time" aria-label="Link to 6.3 Minimum Solve Time">#</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left">Aspect</th><th align="left">Detail</th></tr></thead><tbody><tr><td align="left">Limitation</td><td align="left">Cannot solve faster than 35-40ms on test hardware</td></tr><tr><td align="left">Root cause</td><td align="left">API overhead + tensor initialization</td></tr><tr><td align="left">Observed behavior</td><td align="left">Consistent floor across problem sizes</td></tr><tr><td align="left">Practical impact</td><td align="left">None (sub-100ms is acceptable for most applications)</td></tr><tr><td align="left">Workaround</td><td align="left">GPU acceleration (in development)</td></tr></tbody></table>
+<hr>
+<h2 id="7-discussion">7 Discussion<a class="heading-anchor" href="#7-discussion" aria-label="Link to 7 Discussion">#</a></h2>
+<h3 id="71-functional-completeness">7.1 Functional Completeness<a class="heading-anchor" href="#71-functional-completeness" aria-label="Link to 7.1 Functional Completeness">#</a></h3>
+<p>All documented API features functioned as specified:</p>
+<ul>
+<li>CNF solving with variable counts from 3 to 100,000</li>
+<li>Boolean expression parsing with all operators</li>
+<li>Batch processing with mixed problem sizes</li>
+<li>Scheduling with coverage and capacity constraints</li>
+<li>Pre-solve diagnostics via <code>/v1/diagnose</code></li>
+</ul>
+<p>No undocumented failures or unexpected behaviors were observed.</p>
+<h3 id="72-performance-characteristics">7.2 Performance Characteristics<a class="heading-anchor" href="#72-performance-characteristics" aria-label="Link to 7.2 Performance Characteristics">#</a></h3>
+<p>The median solve time of 88ms meets typical enterprise latency requirements (sub-100ms). The 95th percentile of 261ms remains acceptable for synchronous API calls. Batch throughput of 30+ solves/second is adequate for provisioning and configuration management pipelines.</p>
+<p>The hardware floor of 35-40ms represents fixed overhead (HTTP stack, framework initialization). This floor is independent of problem size and would be reduced by native implementations or GPU acceleration.</p>
+<h3 id="73-failure-mode-analysis">7.3 Failure Mode Analysis<a class="heading-anchor" href="#73-failure-mode-analysis" aria-label="Link to 7.3 Failure Mode Analysis">#</a></h3>
+<p>The anytime/partial satisfaction approach provides value in three scenarios:</p>
+<ol>
+<li><strong>Infeasible constraints</strong>: Returns maximum satisfiable subset with violation attribution</li>
+<li><strong>Timeout conditions</strong>: Returns best solution found within time budget</li>
+<li><strong>Debugging</strong>: Variable blame maps accelerate root cause identification</li>
+</ol>
+<p>This behavior differs from traditional SAT solvers which provide no intermediate results.</p>
+<h3 id="74-production-readiness">7.4 Production Readiness<a class="heading-anchor" href="#74-production-readiness" aria-label="Link to 7.4 Production Readiness">#</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left">Criterion</th><th align="left">Assessment</th></tr></thead><tbody><tr><td align="left">Functional completeness</td><td align="left">PASS</td></tr><tr><td align="left">Performance adequacy</td><td align="left">PASS</td></tr><tr><td align="left">Reliability (0% crash rate)</td><td align="left">PASS</td></tr><tr><td align="left">Correctness (100% verified)</td><td align="left">PASS</td></tr><tr><td align="left">Billing infrastructure</td><td align="left">Operational</td></tr><tr><td align="left">Request tracing</td><td align="left">Implemented</td></tr></tbody></table>
+<p>All observed failures were graceful degradations (partial satisfaction) rather than system errors.</p>
+<hr>
+<h2 id="8-conclusion">8 Conclusion<a class="heading-anchor" href="#8-conclusion" aria-label="Link to 8 Conclusion">#</a></h2>
+<p>This evaluation demonstrates that the Navokoj constraint solver API meets production requirements for enterprise deployment. Key findings:</p>
+<ol>
+<li><strong>Correctness</strong>: All returned assignments were verified to satisfy stated constraints (for SAT instances) or maximize satisfaction (for UNSAT instances)</li>
+<li><strong>Performance</strong>: Median solve time of 88ms with linear scaling to 100,000 variables</li>
+<li><strong>Failure semantics</strong>: Partial satisfaction with violation attribution provides diagnostic value absent from binary solvers</li>
+<li><strong>Reliability</strong>: Zero crashes observed across 47 test cases; all failures were graceful degradations</li>
+</ol>
+<p>Two limitations were identified (parser nesting depth, schedule scaling) with documented workarounds. Neither limitation impacts typical production workloads.</p>
+<p><strong>Recommendation</strong>: The API is suitable for production deployment.</p>
+<hr>
+<h2 id="appendix-a-test-execution">Appendix A: Test Execution<a class="heading-anchor" href="#appendix-a-test-execution" aria-label="Link to Appendix A: Test Execution">#</a></h2>
+<p>Tests were executed using the following command pattern:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">curl</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -X</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> POST</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> https://api.navokoj.shunyabar.foo/v1/solve</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  -H</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "Authorization: Bearer &#x3C;token>"</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  -H</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "Content-Type: application/json"</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  -d</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> '&#x3C;payload>'</span></span></code></pre>
+<p>Full test payloads and responses are available upon request.</p>
+<hr>
+<p><strong>Document History</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left">Version</th><th align="left">Date</th><th align="left">Changes</th></tr></thead><tbody><tr><td align="left">1.0</td><td align="left">2026-01-17</td><td align="left">Initial release</td></tr></tbody></table>
+<p><strong>Contact</strong>: <a href="mailto:contact@shunyabar.foo">contact@shunyabar.foo</a></p></div><footer class="article-footer"><div class="author-note"><span class="author-monogram">SI</span><div><strong>Navokoj Engineering</strong><p>Founder of ShunyaBar Labs. Researching arithmetic geometry, constraint intelligence, and proof-aware optimization.</p></div></div><div class="tag-list" aria-label="Article tags"><span>engineering</span><span>api</span><span>verification</span></div><div class="article-materials"><span>Materials</span><a href="https://huggingface.co/buckets/sethuiyer/shunyabar-evidence-v1">Verification notes &amp; proofs<small>Independent-check oriented artifacts</small></a><a href="/docs/proofs/r66_n35_proof.json">Sample proof JSON</a></div><nav class="article-pagination" aria-label="Previous and next pages"><a href="/docs/blog/the-future-of-sure-thing-computing/"><small>Previous</small><strong>← Navokoj: Computing That Never Fails Closed</strong></a><a class="next-page" href="/docs/blog/road-to-enterprise/"><small>Next</small><strong>The Road to Enterprise: Physics, Math, and the June 2026 Milestone →</strong></a></nav></footer></article><aside class="article-toc"><nav class="table-of-contents" aria-label="On this page"><span class="toc-title">On this page</span><ol><li class="toc-depth-2"><a href="#abstract">Abstract</a></li><li class="toc-depth-2"><a href="#1-overview">1 Overview</a></li><li class="toc-depth-3"><a href="#11-scope">1.1 Scope</a></li><li class="toc-depth-3"><a href="#12-contributions">1.2 Contributions</a></li><li class="toc-depth-2"><a href="#2-methodology">2 Methodology</a></li><li class="toc-depth-3"><a href="#21-test-infrastructure">2.1 Test Infrastructure</a></li><li class="toc-depth-3"><a href="#22-api-endpoints-tested">2.2 API Endpoints Tested</a></li><li class="toc-depth-3"><a href="#23-request-schema-cnf-format">2.3 Request Schema (CNF Format)</a></li><li class="toc-depth-3"><a href="#24-request-schema-expression-format">2.4 Request Schema (Expression Format)</a></li><li class="toc-depth-3"><a href="#25-response-schema">2.5 Response Schema</a></li><li class="toc-depth-3"><a href="#26-test-case-design">2.6 Test Case Design</a></li><li class="toc-depth-3"><a href="#27-reproducibility">2.7 Reproducibility</a></li><li class="toc-depth-2"><a href="#3-edge-cases">3 Edge Cases</a></li><li class="toc-depth-3"><a href="#31-structural-edge-cases">3.1 Structural Edge Cases</a></li><li class="toc-depth-3"><a href="#32-polarity-and-operator-edge-cases">3.2 Polarity and Operator Edge Cases</a></li><li class="toc-depth-3"><a href="#33-batch-and-timeout-edge-cases">3.3 Batch and Timeout Edge Cases</a></li><li class="toc-depth-3"><a href="#34-coverage-summary">3.4 Coverage Summary</a></li><li class="toc-depth-2"><a href="#4-experimental-results">4 Experimental Results</a></li><li class="toc-depth-3"><a href="#41-timing-benchmarks">4.1 Timing Benchmarks</a></li><li class="toc-depth-3"><a href="#42-summary-statistics">4.2 Summary Statistics</a></li><li class="toc-depth-3"><a href="#43-scaling-observations">4.3 Scaling Observations</a></li><li class="toc-depth-2"><a href="#5-anytime-behavior-under-infeasibility">5 Anytime Behavior Under Infeasibility</a></li><li class="toc-depth-3"><a href="#51-partial-satisfaction-semantics">5.1 Partial Satisfaction Semantics</a></li><li class="toc-depth-3"><a href="#52-example-direct-contradiction">5.2 Example: Direct Contradiction</a></li><li class="toc-depth-3"><a href="#53-example-multi-clause-contradiction">5.3 Example: Multi-Clause Contradiction</a></li><li class="toc-depth-3"><a href="#54-example-scheduling-infeasibility">5.4 Example: Scheduling Infeasibility</a></li><li class="toc-depth-3"><a href="#55-comparison-with-binary-solvers">5.5 Comparison with Binary Solvers</a></li><li class="toc-depth-2"><a href="#6-limitations">6 Limitations</a></li><li class="toc-depth-3"><a href="#61-expression-parser-nesting-depth">6.1 Expression Parser Nesting Depth</a></li><li class="toc-depth-3"><a href="#62-schedule-api-scaling">6.2 Schedule API Scaling</a></li><li class="toc-depth-3"><a href="#63-minimum-solve-time">6.3 Minimum Solve Time</a></li><li class="toc-depth-2"><a href="#7-discussion">7 Discussion</a></li><li class="toc-depth-3"><a href="#71-functional-completeness">7.1 Functional Completeness</a></li><li class="toc-depth-3"><a href="#72-performance-characteristics">7.2 Performance Characteristics</a></li><li class="toc-depth-3"><a href="#73-failure-mode-analysis">7.3 Failure Mode Analysis</a></li><li class="toc-depth-3"><a href="#74-production-readiness">7.4 Production Readiness</a></li><li class="toc-depth-2"><a href="#8-conclusion">8 Conclusion</a></li><li class="toc-depth-2"><a href="#appendix-a-test-execution">Appendix A: Test Execution</a></li></ol><a class="back-to-top" href="#top">Back to top ↑</a></nav></aside></div></main><footer class="site-footer"><div class="footer-inner"><div class="footer-thesis"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15.5"></circle><path d="M10 18h16M18 10v16"></path><circle cx="18" cy="18" r="3.25"></circle></svg><div><strong>ShunyaBar Labs</strong><p>Physics-informed constraint intelligence & proof-aware optimization.</p></div></div><nav aria-label="Footer navigation"><div><strong>Explore</strong><a href="/docs/blog/">Writing</a><a href="/docs/projects/">Projects</a><a href="/docs/zenodo/">Publications</a></div><div><strong>Build</strong><a href="/docs/getting-started/quick-start/">Quick Start</a><a href="/docs/navokoj/">API Guide</a><a href="/docs/marketing/pricing/">Pricing</a></div><div><strong>Follow</strong><a href="https://github.com/sethuiyer">GitHub</a><a href="https://medium.com/@sethuiyer">Medium</a><a href="/docs/rss.xml">RSS</a></div></nav></div><div class="footer-bottom"><span>© 2026 Sethurathienam Iyer</span><span>Logic should be a utility.</span></div></footer><dialog class="search-dialog" data-search-dialog data-index-url="/docs/search-index.json"><div class="search-panel"><form class="search-form" method="dialog" onsubmit="return false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg><input type="search" data-search-input autocomplete="off" placeholder="Search essays, research, projects…" aria-label="Search this site"><button type="button" data-search-close aria-label="Close search">Esc</button></form><div class="search-status" data-search-status>Start typing to search all 77 articles and guides.</div><ol class="search-results" data-search-results></ol><footer><span><kbd>↑</kbd><kbd>↓</kbd> move</span><span><kbd>↵</kbd> open</span><span>Static, private search</span></footer></div></dialog><script type="module">var e=document.querySelector(`[data-search-dialog]`),t=e?.querySelector(`[data-search-input]`),n=e?.querySelector(`[data-search-results]`),r=e?.querySelector(`[data-search-status]`),i=null,a=-1;async function o(){i||!e||(i=await(await fetch(e.dataset.indexUrl)).json())}function s(e,t){let n=e.title.toLowerCase(),r=e.description.toLowerCase(),i=e.text.toLowerCase();return t.reduce((e,t)=>!n.includes(t)&&!r.includes(t)&&!i.includes(t)?-1e4:e+(n.includes(t)?12:0)+(r.includes(t)?5:0)+1,0)}function c(e){if(!i||!n||!r)return;let t=e.toLowerCase().trim().split(/\s+/).filter(Boolean);if(n.replaceChildren(),a=-1,!t.length){r.textContent=`Start typing to search all 77 articles and guides.`;return}let o=i.map(e=>({item:e,score:s(e,t)})).filter(e=>e.score>-1e4).sort((e,t)=>t.score-e.score).slice(0,8);r.textContent=o.length?`${o.length} best matches`:`No matches. Try a broader phrase.`;for(let{item:e}of o){let t=document.createElement(`li`),r=document.createElement(`a`),i=document.createElement(`span`),a=document.createElement(`strong`),o=document.createElement(`small`);r.href=e.path,i.textContent=e.section,a.textContent=e.title,o.textContent=e.description,r.append(i,a,o),t.append(r),n.append(t)}}async function l(){e&&(e.showModal(),await o(),t?.focus())}function u(e){let t=Array.from(n?.querySelectorAll(`a`)??[]);t.length&&(a=(a+e+t.length)%t.length,t[a].focus())}document.querySelectorAll(`[data-search-open]`).forEach(e=>e.addEventListener(`click`,l)),e?.querySelector(`[data-search-close]`)?.addEventListener(`click`,()=>e.close()),e?.addEventListener(`click`,t=>{t.target===e&&e.close()}),t?.addEventListener(`input`,()=>c(t.value)),document.addEventListener(`keydown`,t=>{(t.metaKey||t.ctrlKey)&&t.key.toLowerCase()===`k`?(t.preventDefault(),e?.open?e.close():l()):e?.open&&t.key===`ArrowDown`?(t.preventDefault(),u(1)):e?.open&&t.key===`ArrowUp`&&(t.preventDefault(),u(-1))});</script></body></html><script type="module" src="/docs/_astro/ArticleLayout.astro_astro_type_script_index_0_lang._esIwtdm.js"></script>

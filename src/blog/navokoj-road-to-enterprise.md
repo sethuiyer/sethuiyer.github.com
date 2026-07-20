@@ -56,7 +56,7 @@ Unlike hybrid approaches (like NVIDIA TurboSAT) which use GPUs to accelerate cla
 
 > Want early access to the H100 tier?
 >
-> The GPU-accelerated engine is available for **test pilots**. Contact us at `shunyabarlabs@zohomail.com` to join the program…
+> The GPU-accelerated engine is available for **test pilots**. Contact us at `contact@shunyabar.foo` to join the program…
 >
 > …but note: full Enterprise Readiness is targeted for **June 2026**.
 

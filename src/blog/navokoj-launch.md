@@ -13,7 +13,7 @@
 Classical CDCL (Conflict-Driven Clause Learning) solvers hit a wall on certain problem structures:
 
 - **XOR constraints** destroy learned-clause heuristics
-- **Critical density problems** ($\alpha \approx 4.27$) cause exponential CNF blow-up
+- **Critical density problems** (\(\alpha \approx 4.27\)) cause exponential CNF blow-up
 - **Large-scale industrial problems** (1M+ variables) timeout without partial results
 
 ## Navokoj's Approach: The Arithmetic Manifold
@@ -43,13 +43,17 @@ flowchart LR
 
 ### Core Innovation: Continuous Relaxation
 
-Variables are embedded in $[0, 2\pi)^K$:
+Variables are embedded in \([0, 2\pi)^K\):
 
-$$x_i = \frac{1}{2}(1 + \cos \theta_i)$$
+\[
+x_i = \frac{1}{2}(1 + \cos \theta_i)
+\]
 
 This ensures continuous values while maintaining discrete interpretability. The energy landscape is smoothed via heat kernel diffusion:
 
-$$\text{Tr}(e^{-tL}) \approx Z(\beta)$$
+\[
+\text{Tr}(e^{-tL}) \approx Z(\beta)
+\]
 
 ## Real Performance
 
@@ -100,7 +104,7 @@ result = response.json()
 
 ## Phase Transition Analysis
 
-The critical density $\alpha = 4.27$ marks the hardest SAT problems:
+The critical density \(\alpha = 4.27\) marks the hardest SAT problems:
 
 | Clause Density | Median Time | Satisfaction |
 |----------------|-------------|--------------|

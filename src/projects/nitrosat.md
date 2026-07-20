@@ -48,7 +48,9 @@ One of the distinctive theoretical aspects of the engine is the use of prime wei
 
 NitroSAT uses the **Inverted Poincaré Disk** metric for probability-valued variables:
 
-\[ds^2 = \frac{4|dz|^2}{(|z|^2(1-|z|^2)^2)}\]
+\[
+ds^2 = \frac{4|dz|^2}{(|z|^2(1-|z|^2)^2)}
+\]
 
 This provides a natural geometry for the \([0,1]\) variable domain, ensuring that probability mass is appropriately concentrated near boundaries where discrete solutions live.
 
@@ -56,11 +58,15 @@ This provides a natural geometry for the \([0,1]\) variable domain, ensuring tha
 
 The optimization follows a free energy functional:
 
-\[F[x] = \lambda E_{kin}[x] + E_{pot}[x] - \frac{1}{\beta}S[x]\]
+\[
+F[x] = \lambda E_{kin}[x] + E_{pot}[x] - \frac{1}{\beta}S[x]
+\]
 
 with gradient flow:
 
-\[\frac{\partial x}{\partial t} = -\frac{\delta F}{\delta x}\]
+\[
+\frac{\partial x}{\partial t} = -\frac{\delta F}{\delta x}
+\]
 
 where \(E_{kin}\) encodes kinetic energy from the optimizer momentum, \(E_{pot}\) encodes constraint violations, and \(S[x]\) is an entropy term modulated by the inverse temperature \(\beta\).
 

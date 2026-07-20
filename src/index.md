@@ -4,7 +4,7 @@
 <div class="sb-tagline">Logic should be a utility.</div>
 </div>
 
-<div class="sb-abstract" markdown>
+<div class="sb-abstract">
 
 ShunyaBar Labs builds **Navokoj** — an industrial SAT / MaxSAT engine that replaces combinatorial search with **continuous phase transitions** grounded in non-commutative geometry. Our [spectral-arithmetic framework](projects/spectral-multiplicative.md) handles million-clause industrial instances in seconds, with **downloadable proof artifacts** so you can verify every assignment offline. We are a research lab and a product company: open preprints on [Zenodo](zenodo/index.md), a production API at `navokoj.shunyabar.foo`, and six shipped projects — all unified by one theory, the **Arithmetic Manifold**.
 
@@ -20,9 +20,11 @@ Approximate MaxSAT is useful because exact optimality can be too expensive at in
 
 ## By the numbers
 
-| 92.57% | $1.4M/yr | 6 DOIs | ρ ≥ 0.99 |
-|:---:|:---:|:---:|:---:|
-| SAT 2024 perfect-solve rate (PRO engine, 4,199 industrial instances) | Projected cloud savings on a 15,000-node benchmark | Citable Zenodo artifacts, CERN-backed | Spectral-vs-multiplicative correlation guard, sustained |
+| 3.7 ms | 90.1% | 5,140 | 113M | 10M |
+|:---:|:---:|:---:|:---:|:---:|
+| SUTRA median latency | SUTRA complete-SAT | SUTRA workload runs | NitroSAT V3 clauses | Q-State constraints |
+
+Distinct campaigns — [open the evidence ledger](https://huggingface.co/buckets/sethuiyer/shunyabar-evidence-v1).
 
 ---
 

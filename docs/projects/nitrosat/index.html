@@ -1,3690 +1,772 @@
-
-<!doctype html>
-<html lang="en" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      
-        <meta name="description" content="The Arithmetic Manifold - Physics-inspired optimization and constraint satisfaction">
-      
-      
-        <meta name="author" content="Sethurathienam Iyer">
-      
-      
-        <link rel="canonical" href="https://sethuiyer.github.io/docs/projects/nitrosat/">
-      
-      
-        <link rel="prev" href="../baha/">
-      
-      
-        <link rel="next" href="../navokoj/">
-      
-      
-        
-      
-      
-      <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
-    
-    
-      
-        <title>NitroSAT - ShunyaBar Labs</title>
-      
-    
-    
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
-      
-        
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
-      
-      
-
-
-    
-    
-      
-    
-    
-      
-        
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+4:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Source Serif 4";--md-code-font:"JetBrains Mono"}</style>
-      
-    
-    
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-    
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
-    
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-    
-      
-
-    
-    
-  
-  <script async defer src="https://beampipe.io/js/tracker.js" data-beampipe-domain="sethuiyer.github.io"></script>
-
-  </head>
-  
-  
-    
-    
-      
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple">
-  
-    
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
-    <div data-md-component="skip">
-      
-        
-        <a href="#nitrosat-a-physics-informed-anytime-maxsat-approximator" class="md-skip">
-          Skip to content
-        </a>
-      
-    </div>
-    <div data-md-component="announce">
-      
-    </div>
-    
-    
-      
-
-<header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="ShunyaBar Labs" class="md-header__button md-logo" aria-label="ShunyaBar Labs" data-md-component="logo">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
-
-    </a>
-    <label class="md-header__button md-icon" for="__drawer">
-      
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
-    </label>
-    <div class="md-header__title" data-md-component="header-title">
-      <div class="md-header__ellipsis">
-        <div class="md-header__topic">
-          <span class="md-ellipsis">
-            ShunyaBar Labs
-          </span>
-        </div>
-        <div class="md-header__topic" data-md-component="header-topic">
-          <span class="md-ellipsis">
-            
-              NitroSAT
-            
-          </span>
-        </div>
-      </div>
-    </div>
-    
-      
-        <form class="md-header__option" data-md-component="palette">
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
-    
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
-      </label>
-    
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="deep-purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
-    
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
-      </label>
-    
-  
-</form>
-      
-    
-    
-      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
-    
-    
-    
-      
-      
-        <label class="md-header__button md-icon" for="__search">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        </label>
-        <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-        </button>
-      </nav>
-      
-        <div class="md-search__suggest" data-md-component="search-suggest"></div>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list" role="presentation"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-      
-    
-    
-  </nav>
-  
-</header>
-    
-    <div class="md-container" data-md-component="container">
-      
-      
-        
-          
-            
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
-  <div class="md-grid">
-    <ul class="md-tabs__list">
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
-        
-  
-  
-    
-  
-  Home
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../blog/multiplicative-archaeology/" class="md-tabs__link">
-          
-  
-  
-  Blog
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../research-report/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Research Report
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../core-vision/" class="md-tabs__link">
-          
-  
-  
-  Core Vision
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-    
-  
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
-          
-  
-  
-  Projects
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../marketing/" class="md-tabs__link">
-          
-  
-  
-  Marketing
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../getting-started/quick-start/" class="md-tabs__link">
-          
-  
-  
-  Getting Started
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../navokoj/" class="md-tabs__link">
-          
-  
-  
-  Resources
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../zenodo/" class="md-tabs__link">
-          
-  
-  
-  Zenodo
-
-        </a>
-      </li>
-    
-  
-
-      
-    </ul>
-  </div>
-</nav>
-          
-        
-      
-      <main class="md-main" data-md-component="main">
-        <div class="md-main__inner md-grid">
-          
-            
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-
-  
-
-
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
-  <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="ShunyaBar Labs" class="md-nav__button md-logo" aria-label="ShunyaBar Labs" data-md-component="logo">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
-
-    </a>
-    ShunyaBar Labs
-  </label>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Home
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Blog
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Blog
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../blog/multiplicative-archaeology/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Multiplicative Archaeology
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../blog/navokoj-launch/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Navokoj Launch
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../blog/navokoj-road-to-enterprise/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Road to Enterprise
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../blog/seven-seals-navokoj/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Seven Seals
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../blog/six-research-tribes/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Six Research Tribes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../research-report/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Research Report
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Core Vision
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Core Vision
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../core-vision/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    The Arithmetic Manifold
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../axiom-architecture/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Axiom Architecture
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Concepts
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_3">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Concepts
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../concepts/partition-function/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Partition Function
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../concepts/prime-weighting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Prime Weighting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../concepts/multiplicative-vs-additive/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Multiplicative vs Additive
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../concepts/agentic-ai-distributed-systems/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Agentic AI as Distributed Systems
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../concepts/prime-euler-activations/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Prime Euler Activations
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../concepts/phase-transitions/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Phase Transitions
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../concepts/riemann-hypothesis/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Riemann Hypothesis
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../concepts/asymptotically-fair-stopping/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Asymptotically Fair Stopping
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../concepts/stop-operator-manuscript/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    STOP Operators as Resolution Flows
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    
-    
-    
-    
-      
-        
-        
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Projects
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Projects
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Projects Overview
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../baha/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    BAHA
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    NitroSAT
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    NitroSAT
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#what-it-is" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What It Is
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Architecture
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Architecture">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-continuous-relaxation-and-gradient-based-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Continuous Relaxation and Gradient-Based Flow
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-spectral-initialization-and-basin-navigation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Spectral Initialization and Basin Navigation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-topological-repair-and-cycle-resolution" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Topological Repair and Cycle Resolution
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-prime-number-weighting-and-symmetry-breaking" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Prime Number Weighting and Symmetry Breaking
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-the-metric-space" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. The Metric Space
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-free-energy-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. Free Energy Framework
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#performance-characteristics" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Performance Characteristics
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Performance Characteristics">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#where-it-excels-regular-and-structured-geometries" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Where It Excels: Regular and Structured Geometries
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#where-it-encounters-limits-high-expansion-and-unstructured-graphs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Where It Encounters Limits: High-Expansion and Unstructured Graphs
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#results" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Results
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Results">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#academic-benchmarks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Academic Benchmarks
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#production-performance-supabase-ledger-2026-04-04-2026-06-19" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Production Performance — Supabase Ledger (2026-04-04 → 2026-06-19)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Production Performance — Supabase Ledger (2026-04-04 → 2026-06-19)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#overall-footprint" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Overall footprint
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#quality-distribution" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Quality distribution
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#clause-scale-distribution" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Clause-scale distribution
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#the-monsters-nitro-ate-for-breakfast-ledger" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The "monsters Nitro ate for breakfast" ledger
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#three-monster-modes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Three monster modes
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#what-the-production-data-does-not-show" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What the production data does NOT show
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#benchmark-heritage-github-repository-janapr-2026" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Benchmark Heritage — GitHub Repository (Jan–Apr 2026)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Benchmark Heritage — GitHub Repository (Jan–Apr 2026)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#summary-by-phase" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary by phase
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#the-v1-v2-generational-leap-march-8-2026" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The v1 → v2 generational leap (March 8, 2026)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#edwards-anderson-3d-spin-glass-breakthrough-april-2026" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Edwards-Anderson 3D spin glass breakthrough (April 2026)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#extreme-density-instances-march-2026" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Extreme-density instances (March 2026)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#death-run-adversarial-instances-april-2026" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Death Run — adversarial instances (April 2026)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#prime-vs-uniform-weight-ablation-march-2026" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Prime vs uniform weight ablation (March 2026)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#global-verification-summary-february-28-2026" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Global verification summary (February 28, 2026)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#hardware-note" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Hardware note
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#limitations-self-assessment" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Limitations (Self-Assessment)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#connection-to-the-arithmetic-manifold" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Connection to the Arithmetic Manifold
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#website" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Website
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-files" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Files
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#citing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Citing
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#see-also" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        See Also
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../navokoj/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Navokoj
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../multiplicative-pinn/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Multiplicative PINN
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../spectral-multiplicative/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Spectral Multiplicative Framework
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../geometry-of-conditional-logic/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Geometry of Conditional Logic
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../casimir-sat-solver/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Casimir SAT Solver
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../factor-agent/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Factor Agent
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../thermodynamic-number-line/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Thermodynamic Number Line
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../authorization-lattice/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Authorization Lattice
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Marketing
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Marketing
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../marketing/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Why Navokoj
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../marketing/use-cases/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Use Cases
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../marketing/pricing/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Pricing
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../marketing/results/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Results
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../marketing/competition/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Competition
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../marketing/bottleneck/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    The Bottleneck
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../marketing/monetization-guide/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Pragmatist's Guide (Integrators)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../marketing/customer-monetization/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Customer Monetization
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
-        
-          
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Getting Started
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Getting Started
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../getting-started/quick-start/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Quick Start
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../getting-started/lua-module/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Lua Module
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../getting-started/benchmarks/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Benchmarks
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
-        
-          
-          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Resources
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Resources
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../navokoj/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Navokoj Developer Guide
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../product-strategy/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Product Strategy
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../references/papers/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Papers
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../references/related-work/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Related Work
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../limitations/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Limitations & Boundaries
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../TODO/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Roadmap (Post-Funding)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../glossary/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Glossary
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../design-philosophy/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Design Philosophy
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
-        
-          
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Zenodo
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Zenodo
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../zenodo/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    All Records
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../zenodo/solving-sat-quantum-vacuum-dynamics/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Casimir SAT Solver
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../zenodo/spectral-multiplicative-framework/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Spectral-Multiplicative Framework
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../zenodo/shunyabar-spectral-arithmetic-phase-transitions/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    ShunyaBar Spectral–Arithmetic
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../zenodo/multiplicative-calculus-hardness-detection/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Multiplicative Calculus BAHA
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../zenodo/nitrosat-physics-informed-maxsat/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    NitroSAT
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../zenodo/emergent-stochasticity-serialized-concurrency/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Emergent Stochasticity
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-  </ul>
-</nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-          
-          
-            <div class="md-content" data-md-component="content">
-              
-              <article class="md-content__inner md-typeset">
-                
-                  
-
-
-
-<h1 id="nitrosat-a-physics-informed-anytime-maxsat-approximator">NitroSAT: A Physics-Informed Anytime MaxSAT Approximator<a class="headerlink" href="#nitrosat-a-physics-informed-anytime-maxsat-approximator" title="Permanent link">&para;</a></h1>
-<h2 id="what-it-is">What It Is<a class="headerlink" href="#what-it-is" title="Permanent link">&para;</a></h2>
+<!DOCTYPE html><html lang="en" id="top"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v7.1.1"><meta name="description" content="NitroSAT is a continuous-relaxation MaxSAT solver that approaches hard constraint satisfaction problems through physics-informed optimization rather than classic discrete backtrack-search…"><meta name="author" content="Sethurathienam Iyer"><meta name="theme-color" content="#f6f8fa" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e2633" media="(prefers-color-scheme: dark)"><link rel="canonical" href="https://sethuiyer.github.io/docs/projects/nitrosat/"><link rel="icon" type="image/svg+xml" href="/docs/favicon.svg"><link rel="alternate" type="application/rss+xml" title="ShunyaBar Labs writing" href="/docs/rss.xml"><link rel="sitemap" href="/docs/sitemap-index.xml"><meta property="og:type" content="article"><meta property="og:title" content="NitroSAT: A Physics-Informed Anytime MaxSAT Approximator · ShunyaBar Labs"><meta property="og:description" content="NitroSAT is a continuous-relaxation MaxSAT solver that approaches hard constraint satisfaction problems through physics-informed optimization rather than classic discrete backtrack-search…"><meta property="og:url" content="https://sethuiyer.github.io/docs/projects/nitrosat/"><meta property="og:site_name" content="ShunyaBar Labs"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="NitroSAT: A Physics-Informed Anytime MaxSAT Approximator · ShunyaBar Labs"><meta name="twitter:description" content="NitroSAT is a continuous-relaxation MaxSAT solver that approaches hard constraint satisfaction problems through physics-informed optimization rather than classic discrete backtrack-search…"><title>NitroSAT: A Physics-Informed Anytime MaxSAT Approximator · ShunyaBar Labs</title><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"NitroSAT: A Physics-Informed Anytime MaxSAT Approximator","description":"NitroSAT is a continuous-relaxation MaxSAT solver that approaches hard constraint satisfaction problems through physics-informed optimization rather than classic discrete backtrack-search…","author":{"@type":"Person","name":"Sethurathienam Iyer","sameAs":"https://orcid.org/0009-0008-5446-2856"},"publisher":{"@type":"Organization","name":"ShunyaBar Labs"},"mainEntityOfPage":"https://sethuiyer.github.io/docs/projects/nitrosat/","keywords":""}</script><script>
+      (() => {
+        try {
+          const stored = localStorage.getItem('sb-theme');
+          const theme = stored || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.style.colorScheme = theme;
+        } catch (_) {}
+      })();
+    </script><script async defer src="https://beampipe.io/js/tracker.js" data-beampipe-domain="sethuiyer.github.io"></script><link rel="stylesheet" href="/docs/_astro/BaseLayout.C8F_61Lf.css"></head><body><a class="skip-link" href="#main-content">Skip to content</a><header class="site-header"><div class="header-inner"><a class="wordmark" href="/docs/" aria-label="ShunyaBar Labs home"><svg class="wordmark-mark" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15.5"></circle><path d="M10 18h16M18 10v16"></path><circle cx="18" cy="18" r="3.25"></circle></svg><span><strong>ShunyaBar</strong><small>Labs</small></span></a><nav class="primary-nav" aria-label="Primary navigation"><a href="/docs/blog/">Writing</a><a href="/docs/research-report/">Research</a><a href="/docs/projects/" aria-current="page">Projects</a><a href="/docs/getting-started/quick-start/">Developers</a></nav><div class="header-actions"><button class="icon-button search-trigger" type="button" data-search-open aria-label="Search this site"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg><span>Search</span><kbd>⌘ K</kbd></button><button class="icon-button theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme"><svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path></svg><svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 15.25A8.5 8.5 0 0 1 8.75 3.5 8.5 8.5 0 1 0 20.5 15.25Z"></path></svg></button><details class="mobile-menu"><summary class="icon-button" aria-label="Open navigation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></summary><nav aria-label="Mobile navigation"><a href="/docs/blog/">Writing</a><a href="/docs/research-report/">Research</a><a href="/docs/projects/">Projects</a><a href="/docs/getting-started/quick-start/">Developers</a><a href="/docs/core-vision/">Core vision</a><a href="/docs/navokoj/">API guide</a><a href="/docs/zenodo/">Publications</a></nav></details></div></div></header><script type="module">function e(e){document.documentElement.dataset.theme=e,document.documentElement.style.colorScheme=e,localStorage.setItem(`sb-theme`,e)}document.querySelectorAll(`[data-theme-toggle]`).forEach(t=>{t.addEventListener(`click`,()=>{e(document.documentElement.dataset.theme===`dark`?`light`:`dark`)})});</script><main id="main-content"><div class="reading-progress" data-reading-progress></div><div class="article-shell"><aside class="article-sidebar"><nav class="side-navigation" aria-label="All sections"><div class="side-navigation-title"><span>Field guide</span><small>77 notes</small></div><details><summary>Start here</summary><div><a href="/docs/">Home</a><a href="/docs/blog/">Blog</a><a href="/docs/getting-started/quick-start/">Quick Start</a><a href="/docs/research-report/">Research Report</a></div></details><details><summary>Writing</summary><div><a href="/docs/blog/multiplicative-archaeology/">Multiplicative Archaeology</a><a href="/docs/blog/navokoj-launch/">Navokoj Launch</a><a href="/docs/blog/navokoj-road-to-enterprise/">Road to Enterprise</a><a href="/docs/blog/seven-seals-navokoj/">The Seven Seals</a><a href="/docs/blog/six-research-tribes/">The Six Research Tribes</a></div></details><details><summary>Core vision</summary><div><a href="/docs/core-vision/">The Arithmetic Manifold</a><a href="/docs/axiom-architecture/">Axiom Architecture</a><a href="/docs/concepts/partition-function/">Partition Function</a><a href="/docs/concepts/prime-weighting/">Prime Weighting</a><a href="/docs/concepts/multiplicative-vs-additive/">Multiplicative vs Additive</a><a href="/docs/concepts/agentic-ai-distributed-systems/">Agentic AI as Distributed Systems</a><a href="/docs/concepts/prime-euler-activations/">Prime Euler Activations</a><a href="/docs/concepts/phase-transitions/">Phase Transitions</a><a href="/docs/concepts/riemann-hypothesis/">Riemann Hypothesis</a><a href="/docs/concepts/asymptotically-fair-stopping/">Asymptotically Fair Stopping</a><a href="/docs/concepts/stop-operator-manuscript/">STOP Operators</a></div></details><details open><summary>Projects</summary><div><a href="/docs/projects/">Projects Overview</a><a href="/docs/projects/baha/">BAHA</a><a href="/docs/projects/nitrosat/" aria-current="page">NitroSAT</a><a href="/docs/projects/navokoj/">Navokoj</a><a href="/docs/projects/multiplicative-pinn/">Multiplicative PINN</a><a href="/docs/projects/spectral-multiplicative/">Spectral Multiplicative</a><a href="/docs/projects/geometry-of-conditional-logic/">Geometry of Conditional Logic</a><a href="/docs/projects/casimir-sat-solver/">Casimir SAT Solver</a><a href="/docs/projects/factor-agent/">Factor Agent</a><a href="/docs/projects/thermodynamic-number-line/">Thermodynamic Number Line</a><a href="/docs/projects/authorization-lattice/">Authorization Lattice</a></div></details><details><summary>Navokoj</summary><div><a href="/docs/marketing/">Why Navokoj</a><a href="/docs/marketing/use-cases/">Use Cases</a><a href="/docs/marketing/pricing/">Pricing</a><a href="/docs/marketing/results/">Results</a><a href="/docs/marketing/competition/">Competition</a><a href="/docs/marketing/bottleneck/">The Bottleneck</a><a href="/docs/marketing/monetization-guide/">Pragmatist&#39;s Guide</a><a href="/docs/marketing/customer-monetization/">Customer Monetization</a></div></details><details><summary>Developer guide</summary><div><a href="/docs/navokoj/">Navokoj API</a><a href="/docs/navokoj/api-documentation/">Full API Documentation</a><a href="/docs/getting-started/quick-start/">Quick Start</a><a href="/docs/getting-started/lua-module/">Lua Module</a><a href="/docs/getting-started/benchmarks/">Benchmarks</a></div></details><details><summary>Resources</summary><div><a href="/docs/product-strategy/">Product Strategy</a><a href="/docs/references/papers/">Papers</a><a href="/docs/references/related-work/">Related Work</a><a href="/docs/limitations/">Limitations &amp; Boundaries</a><a href="/docs/TODO/">Roadmap</a><a href="/docs/glossary/">Glossary</a><a href="/docs/design-philosophy/">Design Philosophy</a></div></details><details><summary>Zenodo</summary><div><a href="/docs/zenodo/">All Records</a><a href="/docs/zenodo/solving-sat-quantum-vacuum-dynamics/">Casimir SAT Solver</a><a href="/docs/zenodo/spectral-multiplicative-framework/">Spectral Multiplicative</a><a href="/docs/zenodo/shunyabar-spectral-arithmetic-phase-transitions/">Spectral–Arithmetic</a><a href="/docs/zenodo/multiplicative-calculus-hardness-detection/">Multiplicative Calculus BAHA</a><a href="/docs/zenodo/nitrosat-physics-informed-maxsat/">NitroSAT</a><a href="/docs/zenodo/emergent-stochasticity-serialized-concurrency/">Emergent Stochasticity</a></div></details></nav></aside><article class="article-column" data-article><header class="article-context"><div class="breadcrumb"><a href="/docs/">Field notes</a><span aria-hidden="true">/</span><span>Projects</span></div><div class="article-facts"><span>12 min read</span></div></header><details class="mobile-toc"><summary>On this page</summary><nav class="table-of-contents" aria-label="On this page"><span class="toc-title">On this page</span><ol><li class="toc-depth-2"><a href="#what-it-is">What It Is</a></li><li class="toc-depth-2"><a href="#architecture">Architecture</a></li><li class="toc-depth-3"><a href="#1-continuous-relaxation-and-gradient-based-flow">1. Continuous Relaxation and Gradient-Based Flow</a></li><li class="toc-depth-3"><a href="#2-spectral-initialization-and-basin-navigation">2. Spectral Initialization and Basin Navigation</a></li><li class="toc-depth-3"><a href="#3-topological-repair-and-cycle-resolution">3. Topological Repair and Cycle Resolution</a></li><li class="toc-depth-3"><a href="#4-prime-number-weighting-and-symmetry-breaking">4. Prime Number Weighting and Symmetry Breaking</a></li><li class="toc-depth-3"><a href="#5-the-metric-space">5. The Metric Space</a></li><li class="toc-depth-3"><a href="#6-free-energy-framework">6. Free Energy Framework</a></li><li class="toc-depth-2"><a href="#performance-characteristics">Performance Characteristics</a></li><li class="toc-depth-3"><a href="#where-it-excels-regular-and-structured-geometries">Where It Excels: Regular and Structured Geometries</a></li><li class="toc-depth-3"><a href="#where-it-encounters-limits-high-expansion-and-unstructured-graphs">Where It Encounters Limits: High-Expansion and Unstructured Graphs</a></li><li class="toc-depth-2"><a href="#results">Results</a></li><li class="toc-depth-3"><a href="#academic-benchmarks">Academic Benchmarks</a></li><li class="toc-depth-3"><a href="#production-performance-supabase-ledger-2026-04-04-2026-06-19">Production Performance — Supabase Ledger (2026-04-04 → 2026-06-19)</a></li><li class="toc-depth-3"><a href="#benchmark-heritage-github-repository-janapr-2026">Benchmark Heritage — GitHub Repository (Jan–Apr 2026)</a></li><li class="toc-depth-2"><a href="#limitations-self-assessment">Limitations (Self-Assessment)</a></li><li class="toc-depth-2"><a href="#connection-to-the-arithmetic-manifold">Connection to the Arithmetic Manifold</a></li><li class="toc-depth-2"><a href="#website">Website</a></li><li class="toc-depth-2"><a href="#key-files">Key Files</a></li><li class="toc-depth-2"><a href="#citing">Citing</a></li><li class="toc-depth-2"><a href="#see-also">See Also</a></li></ol><a class="back-to-top" href="#top">Back to top ↑</a></nav></details><div class="prose"><h1 id="nitrosat-a-physics-informed-anytime-maxsat-approximator">NitroSAT: A Physics-Informed Anytime MaxSAT Approximator</h1>
+<h2 id="what-it-is">What It Is<a class="heading-anchor" href="#what-it-is" aria-label="Link to What It Is">#</a></h2>
 <p>NitroSAT is a continuous-relaxation MaxSAT solver that approaches hard constraint satisfaction problems through physics-informed optimization rather than classic discrete backtrack-search paradigms. It operates as a <strong>deterministic, sub-second anytime approximator</strong> — designed for massive, structured industrial instances where finding a high-quality solution quickly matters more than proving optimality.</p>
 <p>The core insight: by translating discrete logical constructs into continuous topological manifolds, NitroSAT bypasses the exponential search spaces that cripple CDCL solvers on structured geometries like hardware verification circuits, university timetabling, and grid-coloring problems.</p>
-<hr />
-<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
-<h3 id="1-continuous-relaxation-and-gradient-based-flow">1. Continuous Relaxation and Gradient-Based Flow<a class="headerlink" href="#1-continuous-relaxation-and-gradient-based-flow" title="Permanent link">&para;</a></h3>
-<p>Traditional SAT solvers operate in the discrete boolean domain <span class="arithmatex">\(\{0, 1\}^n\)</span>, where moving between states requires discrete variable flips. This makes the search space highly non-convex and susceptible to combinatorial explosions.</p>
-<p>NitroSAT relaxes variables from discrete bits to continuous coordinates within a bounded hypercube <span class="arithmatex">\([0, 1]^n\)</span>. This transforms the discrete constraint satisfaction problem into a continuous energy minimization problem.</p>
+<hr>
+<h2 id="architecture">Architecture<a class="heading-anchor" href="#architecture" aria-label="Link to Architecture">#</a></h2>
+<h3 id="1-continuous-relaxation-and-gradient-based-flow">1. Continuous Relaxation and Gradient-Based Flow<a class="heading-anchor" href="#1-continuous-relaxation-and-gradient-based-flow" aria-label="Link to 1. Continuous Relaxation and Gradient-Based Flow">#</a></h3>
+<p>Traditional SAT solvers operate in the discrete boolean domain <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><msup><mo stretchy="false">}</mo><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">\{0, 1\}^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose"><span class="mclose">}</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span>, where moving between states requires discrete variable flips. This makes the search space highly non-convex and susceptible to combinatorial explosions.</p>
+<p>NitroSAT relaxes variables from discrete bits to continuous coordinates within a bounded hypercube <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><msup><mo stretchy="false">]</mo><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">[0, 1]^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose"><span class="mclose">]</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span>. This transforms the discrete constraint satisfaction problem into a continuous energy minimization problem.</p>
 <p><strong>WAdam Optimizer</strong>: The engine uses gradient-based flows to traverse the energy landscape. By computing gradients of a differentiable loss function constructed from the clauses, the solver navigates toward regions of high constraint satisfaction without committing to premature discrete branching choices.</p>
-<p><strong>Thermal/Langevin Annealing</strong>: To prevent the gradient flow from getting trapped in shallow local minima, the system incorporates thermal noise (<span class="arithmatex">\(\beta\)</span> sensitivity via Langevin dynamics). This allows the system to probabilistically "jump" over energy barriers during early optimization phases, cooling down over iterations to settle into a deep attraction basin.</p>
-<h3 id="2-spectral-initialization-and-basin-navigation">2. Spectral Initialization and Basin Navigation<a class="headerlink" href="#2-spectral-initialization-and-basin-navigation" title="Permanent link">&para;</a></h3>
+<p><strong>Thermal/Langevin Annealing</strong>: To prevent the gradient flow from getting trapped in shallow local minima, the system incorporates thermal noise (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0528em;">β</span></span></span></span> sensitivity via Langevin dynamics). This allows the system to probabilistically “jump” over energy barriers during early optimization phases, cooling down over iterations to settle into a deep attraction basin.</p>
+<h3 id="2-spectral-initialization-and-basin-navigation">2. Spectral Initialization and Basin Navigation<a class="heading-anchor" href="#2-spectral-initialization-and-basin-navigation" aria-label="Link to 2. Spectral Initialization and Basin Navigation">#</a></h3>
 <p>A critical challenge in non-convex optimization is the starting point. Random initialization often lands the solver in highly chaotic regions of the landscape.</p>
 <p><strong>Spectral Methods</strong>: By leveraging spectral properties of the constraint graph (the Laplacian and adjacency matrices of the variable-clause incidence), NitroSAT computes an initial coordinate mapping that positions the solver inside a favorable valley of the global energy landscape.</p>
-<p><strong>Basin Recovery</strong>: On adversarial planted 3-SAT testing, NitroSAT consistently navigates into the <em>planted basin</em> — generating assignments that are 94% to 96% bit-similar to the optimum, even when it doesn't find the exact unique planted assignment. The spectral initialization effectively reduces the search space by positioning the continuous trajectory inside the correct attraction region.</p>
-<h3 id="3-topological-repair-and-cycle-resolution">3. Topological Repair and Cycle Resolution<a class="headerlink" href="#3-topological-repair-and-cycle-resolution" title="Permanent link">&para;</a></h3>
-<p>Highly structured constraint graphs (such as grids, circuit multipliers, and timetables) contain topological loops or "frustrations" where satisfying one local cluster of constraints violates another nearby cluster.</p>
-<p><strong>Persistent Homology (<span class="arithmatex">\(\beta_1\)</span> Tracking)</strong>: The engine tracks topological cycles through the first Betti number <span class="arithmatex">\(\beta_1\)</span>. High topological complexity scores correlate with regions where the solver's continuous coordinates are conflicted — the gradients dissolve into noise because every local improvement creates a corresponding local violation elsewhere.</p>
+<p><strong>Basin Recovery</strong>: On adversarial planted 3-SAT testing, NitroSAT consistently navigates into the <em>planted basin</em> — generating assignments that are 94% to 96% bit-similar to the optimum, even when it doesn’t find the exact unique planted assignment. The spectral initialization effectively reduces the search space by positioning the continuous trajectory inside the correct attraction region.</p>
+<h3 id="3-topological-repair-and-cycle-resolution">3. Topological Repair and Cycle Resolution<a class="heading-anchor" href="#3-topological-repair-and-cycle-resolution" aria-label="Link to 3. Topological Repair and Cycle Resolution">#</a></h3>
+<p>Highly structured constraint graphs (such as grids, circuit multipliers, and timetables) contain topological loops or “frustrations” where satisfying one local cluster of constraints violates another nearby cluster.</p>
+<p><strong>Persistent Homology (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>β</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">\beta_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0528em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0528em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> Tracking)</strong>: The engine tracks topological cycles through the first Betti number <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>β</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">\beta_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0528em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0528em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>. High topological complexity scores correlate with regions where the solver’s continuous coordinates are conflicted — the gradients dissolve into noise because every local improvement creates a corresponding local violation elsewhere.</p>
 <p><strong>Topological Repair Phase</strong>: Once the continuous flow plateaus, the engine applies targeted topological repairs to resolve localized cyclical contradictions. This phase surgically adjusts variables involved in high-friction cycles, resolving the topological bottlenecks that would otherwise cause pure gradient descent to stall.</p>
-<h3 id="4-prime-number-weighting-and-symmetry-breaking">4. Prime Number Weighting and Symmetry Breaking<a class="headerlink" href="#4-prime-number-weighting-and-symmetry-breaking" title="Permanent link">&para;</a></h3>
+<h3 id="4-prime-number-weighting-and-symmetry-breaking">4. Prime Number Weighting and Symmetry Breaking<a class="heading-anchor" href="#4-prime-number-weighting-and-symmetry-breaking" aria-label="Link to 4. Prime Number Weighting and Symmetry Breaking">#</a></h3>
 <p>One of the distinctive theoretical aspects of the engine is the use of prime weights derived from the Prime Number Theorem, rather than uniform clause weights.</p>
-<p><strong>Breaking Algebraic Symmetry</strong>: In uniform weighting, multiple configurations of unsatisfied clauses can yield the exact same energy output, leading to flat plateaus ("glassy" states) where gradients vanish. The solver loses all signal about which direction to move.</p>
-<p><strong>Topological Smoothing</strong>: Assigning prime-based weights creates a mathematically unique signature for different combinations of unsatisfied constraints. According to ablation studies, this prime-weighting mechanism reduces <span class="arithmatex">\(\beta_1\)</span> post-solve topological cycles from 79 to 20 on structured geometries, accelerating convergence by approximately 3x to 4x compared to uniform weighting.</p>
-<h3 id="5-the-metric-space">5. The Metric Space<a class="headerlink" href="#5-the-metric-space" title="Permanent link">&para;</a></h3>
+<p><strong>Breaking Algebraic Symmetry</strong>: In uniform weighting, multiple configurations of unsatisfied clauses can yield the exact same energy output, leading to flat plateaus (“glassy” states) where gradients vanish. The solver loses all signal about which direction to move.</p>
+<p><strong>Topological Smoothing</strong>: Assigning prime-based weights creates a mathematically unique signature for different combinations of unsatisfied constraints. According to ablation studies, this prime-weighting mechanism reduces <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>β</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">\beta_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0528em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0528em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> post-solve topological cycles from 79 to 20 on structured geometries, accelerating convergence by approximately 3x to 4x compared to uniform weighting.</p>
+<h3 id="5-the-metric-space">5. The Metric Space<a class="heading-anchor" href="#5-the-metric-space" aria-label="Link to 5. The Metric Space">#</a></h3>
 <p>NitroSAT uses the <strong>Inverted Poincaré Disk</strong> metric for probability-valued variables:</p>
-<div class="arithmatex">\[ds^2 = \frac{4|dz|^2}{(|z|^2(1-|z|^2)^2)}\]</div>
-<p>This provides a natural geometry for the <span class="arithmatex">\([0,1]\)</span> variable domain, ensuring that probability mass is appropriately concentrated near boundaries where discrete solutions live.</p>
-<h3 id="6-free-energy-framework">6. Free Energy Framework<a class="headerlink" href="#6-free-energy-framework" title="Permanent link">&para;</a></h3>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>d</mi><msup><mi>s</mi><mn>2</mn></msup><mo>=</mo><mfrac><mrow><mn>4</mn><mi mathvariant="normal">∣</mi><mi>d</mi><mi>z</mi><msup><mi mathvariant="normal">∣</mi><mn>2</mn></msup></mrow><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">∣</mi><mi>z</mi><msup><mi mathvariant="normal">∣</mi><mn>2</mn></msup><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi mathvariant="normal">∣</mi><mi>z</mi><msup><mi mathvariant="normal">∣</mi><mn>2</mn></msup><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">ds^2 = \frac{4|dz|^2}{(|z|^2(1-|z|^2)^2)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8641em;"></span><span class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4271em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4911em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mopen">(</span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.044em;">z</span><span class="mord"><span class="mord">∣</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.044em;">z</span><span class="mord"><span class="mord">∣</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">4∣</span><span class="mord mathnormal">d</span><span class="mord mathnormal" style="margin-right:0.044em;">z</span><span class="mord"><span class="mord">∣</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>
+<p>This provides a natural geometry for the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[0,1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span> variable domain, ensuring that probability mass is appropriately concentrated near boundaries where discrete solutions live.</p>
+<h3 id="6-free-energy-framework">6. Free Energy Framework<a class="heading-anchor" href="#6-free-energy-framework" aria-label="Link to 6. Free Energy Framework">#</a></h3>
 <p>The optimization follows a free energy functional:</p>
-<div class="arithmatex">\[F[x] = \lambda E_{kin}[x] + E_{pot}[x] - \frac{1}{\beta}S[x]\]</div>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>F</mi><mo stretchy="false">[</mo><mi>x</mi><mo stretchy="false">]</mo><mo>=</mo><mi>λ</mi><msub><mi>E</mi><mrow><mi>k</mi><mi>i</mi><mi>n</mi></mrow></msub><mo stretchy="false">[</mo><mi>x</mi><mo stretchy="false">]</mo><mo>+</mo><msub><mi>E</mi><mrow><mi>p</mi><mi>o</mi><mi>t</mi></mrow></msub><mo stretchy="false">[</mo><mi>x</mi><mo stretchy="false">]</mo><mo>−</mo><mfrac><mn>1</mn><mi>β</mi></mfrac><mi>S</mi><mo stretchy="false">[</mo><mi>x</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">F[x] = \lambda E_{kin}[x] + E_{pot}[x] - \frac{1}{\beta}S[x]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mopen">[</span><span class="mord mathnormal">x</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">λ</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mord mathnormal mtight">in</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">[</span><span class="mord mathnormal">x</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">[</span><span class="mord mathnormal">x</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.2019em;vertical-align:-0.8804em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0528em;">β</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="mopen">[</span><span class="mord mathnormal">x</span><span class="mclose">]</span></span></span></span></span>
 <p>with gradient flow:</p>
-<div class="arithmatex">\[\frac{\partial x}{\partial t} = -\frac{\delta F}{\delta x}\]</div>
-<p>where <span class="arithmatex">\(E_{kin}\)</span> encodes kinetic energy from the optimizer momentum, <span class="arithmatex">\(E_{pot}\)</span> encodes constraint violations, and <span class="arithmatex">\(S[x]\)</span> is an entropy term modulated by the inverse temperature <span class="arithmatex">\(\beta\)</span>.</p>
-<hr />
-<h2 id="performance-characteristics">Performance Characteristics<a class="headerlink" href="#performance-characteristics" title="Permanent link">&para;</a></h2>
-<h3 id="where-it-excels-regular-and-structured-geometries">Where It Excels: Regular and Structured Geometries<a class="headerlink" href="#where-it-excels-regular-and-structured-geometries" title="Permanent link">&para;</a></h3>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mrow><mi mathvariant="normal">∂</mi><mi>x</mi></mrow><mrow><mi mathvariant="normal">∂</mi><mi>t</mi></mrow></mfrac><mo>=</mo><mo>−</mo><mfrac><mrow><mi>δ</mi><mi>F</mi></mrow><mrow><mi>δ</mi><mi>x</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{\partial x}{\partial t} = -\frac{\delta F}{\delta x}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.0574em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.0556em;">∂</span><span class="mord mathnormal">t</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.0556em;">∂</span><span class="mord mathnormal">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0574em;vertical-align:-0.686em;"></span><span class="mord">−</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0379em;">δ</span><span class="mord mathnormal">x</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0379em;">δ</span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>
+<p>where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mrow><mi>k</mi><mi>i</mi><mi>n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">E_{kin}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mord mathnormal mtight">in</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> encodes kinetic energy from the optimizer momentum, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mrow><mi>p</mi><mi>o</mi><mi>t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">E_{pot}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> encodes constraint violations, and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo stretchy="false">[</mo><mi>x</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">S[x]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="mopen">[</span><span class="mord mathnormal">x</span><span class="mclose">]</span></span></span></span> is an entropy term modulated by the inverse temperature <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0528em;">β</span></span></span></span>.</p>
+<hr>
+<h2 id="performance-characteristics">Performance Characteristics<a class="heading-anchor" href="#performance-characteristics" aria-label="Link to Performance Characteristics">#</a></h2>
+<h3 id="where-it-excels-regular-and-structured-geometries">Where It Excels: Regular and Structured Geometries<a class="heading-anchor" href="#where-it-excels-regular-and-structured-geometries" aria-label="Link to Where It Excels: Regular and Structured Geometries">#</a></h3>
 <p>NitroSAT performs exceptionally well on problems with high local symmetry, regular degree distributions, and low-dimensional manifold structure:</p>
-<table>
-<thead>
-<tr>
-<th>Problem Class</th>
-<th>Example</th>
-<th>Why NitroSAT Works</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Hardware multipliers</td>
-<td>512-bit circuit verification</td>
-<td>Regular gate structure enables efficient heat kernel propagation</td>
-</tr>
-<tr>
-<td>University timetabling</td>
-<td>80M-clause instances</td>
-<td>Structured conflict graph with exploitable topology</td>
-</tr>
-<tr>
-<td>Grid coloring</td>
-<td>Edwards-Anderson 3D spin glasses</td>
-<td>Low-dimensional manifold aligns with spectral initialization</td>
-</tr>
-<tr>
-<td>Planted satisfiability</td>
-<td>Adversarial 3-SAT</td>
-<td>Spectral method finds the planted basin reliably</td>
-</tr>
-</tbody>
-</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Problem Class</th><th>Example</th><th>Why NitroSAT Works</th></tr></thead><tbody><tr><td>Hardware multipliers</td><td>512-bit circuit verification</td><td>Regular gate structure enables efficient heat kernel propagation</td></tr><tr><td>University timetabling</td><td>80M-clause instances</td><td>Structured conflict graph with exploitable topology</td></tr><tr><td>Grid coloring</td><td>Edwards-Anderson 3D spin glasses</td><td>Low-dimensional manifold aligns with spectral initialization</td></tr><tr><td>Planted satisfiability</td><td>Adversarial 3-SAT</td><td>Spectral method finds the planted basin reliably</td></tr></tbody></table>
 <p><strong>Why</strong>: The heat kernel diffusion and continuous relaxation can propagate local constraint signals globally across a regular grid. The gradient descent step efficiently locates the optimal basin because the underlying geometry provides a coherent global structure.</p>
-<h3 id="where-it-encounters-limits-high-expansion-and-unstructured-graphs">Where It Encounters Limits: High-Expansion and Unstructured Graphs<a class="headerlink" href="#where-it-encounters-limits-high-expansion-and-unstructured-graphs" title="Permanent link">&para;</a></h3>
+<h3 id="where-it-encounters-limits-high-expansion-and-unstructured-graphs">Where It Encounters Limits: High-Expansion and Unstructured Graphs<a class="heading-anchor" href="#where-it-encounters-limits-high-expansion-and-unstructured-graphs" aria-label="Link to Where It Encounters Limits: High-Expansion and Unstructured Graphs">#</a></h3>
 <p>NitroSAT plateaus on problems designed to lack local bottlenecks and low-dimensional representations:</p>
-<table>
-<thead>
-<tr>
-<th>Problem Class</th>
-<th>Example</th>
-<th>Why It Struggles</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Expander graphs</td>
-<td>Urquhart formulas</td>
-<td>No local geometry to exploit — landscape is flat and frustrated</td>
-</tr>
-<tr>
-<td>Random 3-SAT</td>
-<td>Phase transition (<span class="arithmatex">\(\alpha \approx 4.27\)</span>)</td>
-<td>Exponential conflicts without topological structure</td>
-</tr>
-<tr>
-<td>Sparse random graphs</td>
-<td>High-degree random regular graphs</td>
-<td>Global connectivity destroys basin structure</td>
-</tr>
-</tbody>
-</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Problem Class</th><th>Example</th><th>Why It Struggles</th></tr></thead><tbody><tr><td>Expander graphs</td><td>Urquhart formulas</td><td>No local geometry to exploit — landscape is flat and frustrated</td></tr><tr><td>Random 3-SAT</td><td>Phase transition (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>≈</mo><mn>4.27</mn></mrow><annotation encoding="application/x-tex">\alpha \approx 4.27</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4831em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4.27</span></span></span></span>)</td><td>Exponential conflicts without topological structure</td></tr><tr><td>Sparse random graphs</td><td>High-degree random regular graphs</td><td>Global connectivity destroys basin structure</td></tr></tbody></table>
 <p><strong>Why</strong>: In expander graphs, every variable cluster is highly connected to every other cluster without regular geometric structure. The continuous energy landscape becomes almost completely flat and frustrated. The gradient signal dissolves into chaotic noise because local improvements are immediately offset by global violations.</p>
 <p>On expanders, NitroSAT typically achieves approximately 90% satisfaction and cannot improve further — the topological repair phase has no low-hanging cycles to fix because the frustration is global, not local.</p>
-<hr />
-<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
-<h3 id="academic-benchmarks">Academic Benchmarks<a class="headerlink" href="#academic-benchmarks" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Instance</th>
-<th>Variables</th>
-<th>Clauses</th>
-<th>Result</th>
-<th>Time</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Planted Coloring</td>
-<td>105K</td>
-<td>232K</td>
-<td>SAT (100%)</td>
-<td>13.78s</td>
-</tr>
-<tr>
-<td>Hardware Verification</td>
-<td>788,480</td>
-<td>—</td>
-<td>SAT (100%)</td>
-<td>5.92s</td>
-</tr>
-<tr>
-<td>University Timetabling</td>
-<td>80M clauses</td>
-<td>—</td>
-<td>SAT (100%)</td>
-<td>73s</td>
-</tr>
-<tr>
-<td>Random CNF (5000+ instances)</td>
-<td>Various</td>
-<td>Various</td>
-<td><strong>77% perfect SAT</strong></td>
-<td>—</td>
-</tr>
-<tr>
-<td>Median satisfaction</td>
-<td>—</td>
-<td>—</td>
-<td><strong>99.7%</strong></td>
-<td>—</td>
-</tr>
-</tbody>
-</table>
+<hr>
+<h2 id="results">Results<a class="heading-anchor" href="#results" aria-label="Link to Results">#</a></h2>
+<h3 id="academic-benchmarks">Academic Benchmarks<a class="heading-anchor" href="#academic-benchmarks" aria-label="Link to Academic Benchmarks">#</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Instance</th><th>Variables</th><th>Clauses</th><th>Result</th><th>Time</th></tr></thead><tbody><tr><td>Planted Coloring</td><td>105K</td><td>232K</td><td>SAT (100%)</td><td>13.78s</td></tr><tr><td>Hardware Verification</td><td>788,480</td><td>—</td><td>SAT (100%)</td><td>5.92s</td></tr><tr><td>University Timetabling</td><td>80M clauses</td><td>—</td><td>SAT (100%)</td><td>73s</td></tr><tr><td>Random CNF (5000+ instances)</td><td>Various</td><td>Various</td><td><strong>77% perfect SAT</strong></td><td>—</td></tr><tr><td>Median satisfaction</td><td>—</td><td>—</td><td><strong>99.7%</strong></td><td>—</td></tr></tbody></table>
 <p><strong>Median satisfaction across 5,000+ random CNF instances</strong>: 99.7%</p>
-<hr />
-<h3 id="production-performance-supabase-ledger-2026-04-04-2026-06-19">Production Performance — Supabase Ledger (2026-04-04 → 2026-06-19)<a class="headerlink" href="#production-performance-supabase-ledger-2026-04-04-2026-06-19" title="Permanent link">&para;</a></h3>
+<hr>
+<h3 id="production-performance-supabase-ledger-2026-04-04-2026-06-19">Production Performance — Supabase Ledger (2026-04-04 → 2026-06-19)<a class="heading-anchor" href="#production-performance-supabase-ledger-2026-04-04-2026-06-19" aria-label="Link to Production Performance — Supabase Ledger (2026-04-04 → 2026-06-19)">#</a></h3>
 <blockquote>
 <p>These numbers come from the live production API at <code>navokoj.shunyabar.foo</code>, queried directly from Supabase. They are not benchmark suite results — they are what NitroSAT did for real customers, in production, over a 77-day window.</p>
+</blockquote>
+<blockquote>
 <p><strong>The headline:</strong> NitroSAT processed <strong>3.98M clauses across 308 recorded runs with median satisfaction 1.0 and median solve time 65.5 milliseconds.</strong></p>
 </blockquote>
-<h4 id="overall-footprint">Overall footprint<a class="headerlink" href="#overall-footprint" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Metric</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Nitro solution rows</td>
-<td><strong>308</strong></td>
-</tr>
-<tr>
-<td>First Nitro run</td>
-<td><strong>2026-04-04</strong></td>
-</tr>
-<tr>
-<td>Latest Nitro run</td>
-<td><strong>2026-06-19</strong></td>
-</tr>
-<tr>
-<td>Total variables processed</td>
-<td><strong>281,658</strong></td>
-</tr>
-<tr>
-<td>Total clauses processed</td>
-<td><strong>3,983,283</strong></td>
-</tr>
-<tr>
-<td>Max variables in one run</td>
-<td><strong>50,000</strong></td>
-</tr>
-<tr>
-<td>Max clauses in one run</td>
-<td><strong>1,646,800</strong></td>
-</tr>
-<tr>
-<td>Avg satisfaction</td>
-<td><strong>0.976029</strong></td>
-</tr>
-<tr>
-<td><strong>Median satisfaction</strong></td>
-<td><strong>1.000000</strong></td>
-</tr>
-<tr>
-<td>Total solve time</td>
-<td><strong>1,918.482 sec</strong></td>
-</tr>
-<tr>
-<td><strong>Median solve time</strong></td>
-<td><strong>0.0655 sec</strong></td>
-</tr>
-</tbody>
-</table>
+<h4 id="overall-footprint">Overall footprint<a class="heading-anchor" href="#overall-footprint" aria-label="Link to Overall footprint">#</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody><tr><td>Nitro solution rows</td><td><strong>308</strong></td></tr><tr><td>First Nitro run</td><td><strong>2026-04-04</strong></td></tr><tr><td>Latest Nitro run</td><td><strong>2026-06-19</strong></td></tr><tr><td>Total variables processed</td><td><strong>281,658</strong></td></tr><tr><td>Total clauses processed</td><td><strong>3,983,283</strong></td></tr><tr><td>Max variables in one run</td><td><strong>50,000</strong></td></tr><tr><td>Max clauses in one run</td><td><strong>1,646,800</strong></td></tr><tr><td>Avg satisfaction</td><td><strong>0.976029</strong></td></tr><tr><td><strong>Median satisfaction</strong></td><td><strong>1.000000</strong></td></tr><tr><td>Total solve time</td><td><strong>1,918.482 sec</strong></td></tr><tr><td><strong>Median solve time</strong></td><td><strong>0.0655 sec</strong></td></tr></tbody></table>
 <p><strong>Reading the medians:</strong> A median satisfaction of exactly 1.0 across 308 production runs means more than half of all real customer solves were <em>perfect</em>. A median solve time of 65.5ms means the typical NitroSAT call returns in the time it takes a human to blink.</p>
-<h4 id="quality-distribution">Quality distribution<a class="headerlink" href="#quality-distribution" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Satisfaction threshold</th>
-<th>Rows</th>
-<th>Share</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Perfect <code>1.0</code></td>
-<td><strong>167 / 308</strong></td>
-<td><strong>54.22%</strong></td>
-</tr>
-<tr>
-<td>≥ <code>0.999</code></td>
-<td><strong>175 / 308</strong></td>
-<td><strong>56.82%</strong></td>
-</tr>
-<tr>
-<td>≥ <code>0.99</code></td>
-<td><strong>246 / 308</strong></td>
-<td><strong>79.87%</strong></td>
-</tr>
-</tbody>
-</table>
+<h4 id="quality-distribution">Quality distribution<a class="heading-anchor" href="#quality-distribution" aria-label="Link to Quality distribution">#</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Satisfaction threshold</th><th>Rows</th><th>Share</th></tr></thead><tbody><tr><td>Perfect <code>1.0</code></td><td><strong>167 / 308</strong></td><td><strong>54.22%</strong></td></tr><tr><td>≥ <code>0.999</code></td><td><strong>175 / 308</strong></td><td><strong>56.82%</strong></td></tr><tr><td>≥ <code>0.99</code></td><td><strong>246 / 308</strong></td><td><strong>79.87%</strong></td></tr></tbody></table>
 <p><strong>Almost 4 out of 5 production runs reach 99%+ constraint satisfaction. More than half are perfect.</strong></p>
-<h4 id="clause-scale-distribution">Clause-scale distribution<a class="headerlink" href="#clause-scale-distribution" title="Permanent link">&para;</a></h4>
+<h4 id="clause-scale-distribution">Clause-scale distribution<a class="heading-anchor" href="#clause-scale-distribution" aria-label="Link to Clause-scale distribution">#</a></h4>
 <p>NitroSAT does not break at scale — it gets <em>more</em> perfect as the clause count rises.</p>
-<table>
-<thead>
-<tr>
-<th>Monster class</th>
-<th style="text-align: right;">Rows</th>
-<th style="text-align: right;">Total clauses</th>
-<th style="text-align: right;">Median satisfaction</th>
-<th style="text-align: right;">Median solve sec</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>≥1M clauses</td>
-<td style="text-align: right;"><strong>1</strong></td>
-<td style="text-align: right;"><strong>1,646,800</strong></td>
-<td style="text-align: right;"><strong>1.000000</strong></td>
-<td style="text-align: right;"><strong>278.489s</strong></td>
-</tr>
-<tr>
-<td>100k–999k clauses</td>
-<td style="text-align: right;"><strong>6</strong></td>
-<td style="text-align: right;"><strong>1,524,845</strong></td>
-<td style="text-align: right;"><strong>1.000000</strong></td>
-<td style="text-align: right;"><strong>28.2695s</strong></td>
-</tr>
-<tr>
-<td>10k–99k clauses</td>
-<td style="text-align: right;"><strong>19</strong></td>
-<td style="text-align: right;"><strong>595,772</strong></td>
-<td style="text-align: right;"><strong>0.999900</strong></td>
-<td style="text-align: right;"><strong>4.860s</strong></td>
-</tr>
-<tr>
-<td>1k–9k clauses</td>
-<td style="text-align: right;"><strong>49</strong></td>
-<td style="text-align: right;"><strong>149,608</strong></td>
-<td style="text-align: right;"><strong>0.998600</strong></td>
-<td style="text-align: right;"><strong>0.831s</strong></td>
-</tr>
-<tr>
-<td>&lt;1k clauses</td>
-<td style="text-align: right;"><strong>233</strong></td>
-<td style="text-align: right;"><strong>66,258</strong></td>
-<td style="text-align: right;"><strong>1.000000</strong></td>
-<td style="text-align: right;"><strong>0.027s</strong></td>
-</tr>
-</tbody>
-</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Monster class</th><th align="right">Rows</th><th align="right">Total clauses</th><th align="right">Median satisfaction</th><th align="right">Median solve sec</th></tr></thead><tbody><tr><td>≥1M clauses</td><td align="right"><strong>1</strong></td><td align="right"><strong>1,646,800</strong></td><td align="right"><strong>1.000000</strong></td><td align="right"><strong>278.489s</strong></td></tr><tr><td>100k–999k clauses</td><td align="right"><strong>6</strong></td><td align="right"><strong>1,524,845</strong></td><td align="right"><strong>1.000000</strong></td><td align="right"><strong>28.2695s</strong></td></tr><tr><td>10k–99k clauses</td><td align="right"><strong>19</strong></td><td align="right"><strong>595,772</strong></td><td align="right"><strong>0.999900</strong></td><td align="right"><strong>4.860s</strong></td></tr><tr><td>1k–9k clauses</td><td align="right"><strong>49</strong></td><td align="right"><strong>149,608</strong></td><td align="right"><strong>0.998600</strong></td><td align="right"><strong>0.831s</strong></td></tr><tr><td>&#x3C;1k clauses</td><td align="right"><strong>233</strong></td><td align="right"><strong>66,258</strong></td><td align="right"><strong>1.000000</strong></td><td align="right"><strong>0.027s</strong></td></tr></tbody></table>
 <p>The largest run in production history — <strong>1.6M clauses, 10K variables, 100% satisfaction, 278 seconds</strong> — is the headline datapoint. The median solve time across the largest class is <em>under half a minute</em>, with perfect satisfaction.</p>
-<h4 id="the-monsters-nitro-ate-for-breakfast-ledger">The "monsters Nitro ate for breakfast" ledger<a class="headerlink" href="#the-monsters-nitro-ate-for-breakfast-ledger" title="Permanent link">&para;</a></h4>
+<h4 id="the-monsters-nitro-ate-for-breakfast-ledger">The “monsters Nitro ate for breakfast” ledger<a class="heading-anchor" href="#the-monsters-nitro-ate-for-breakfast-ledger" aria-label="Link to The “monsters Nitro ate for breakfast” ledger">#</a></h4>
 <p>The 13 most extreme production runs from the 77-day window:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: right;">Vars</th>
-<th style="text-align: right;">Clauses</th>
-<th style="text-align: right;">Ratio</th>
-<th style="text-align: right;">Satisfaction</th>
-<th style="text-align: right;">Solve sec</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: right;"><strong>10,000</strong></td>
-<td style="text-align: right;"><strong>1,646,800</strong></td>
-<td style="text-align: right;"><strong>164.68</strong></td>
-<td style="text-align: right;"><strong>1.000000</strong></td>
-<td style="text-align: right;"><strong>278.489</strong></td>
-<td>Absolute kaiju. Perfect.</td>
-</tr>
-<tr>
-<td style="text-align: right;">5,625</td>
-<td style="text-align: right;">691,975</td>
-<td style="text-align: right;">123.02</td>
-<td style="text-align: right;">1.000000</td>
-<td style="text-align: right;">103.063</td>
-<td>Another clause-density monster.</td>
-</tr>
-<tr>
-<td style="text-align: right;">2,500</td>
-<td style="text-align: right;">203,400</td>
-<td style="text-align: right;">81.36</td>
-<td style="text-align: right;">1.000000</td>
-<td style="text-align: right;">29.143</td>
-<td>Perfect.</td>
-</tr>
-<tr>
-<td style="text-align: right;">2,500</td>
-<td style="text-align: right;">203,400</td>
-<td style="text-align: right;">81.36</td>
-<td style="text-align: right;">1.000000</td>
-<td style="text-align: right;">27.396</td>
-<td>Repeat monster, still perfect.</td>
-</tr>
-<tr>
-<td style="text-align: right;">10,000</td>
-<td style="text-align: right;">200,000</td>
-<td style="text-align: right;">20.00</td>
-<td style="text-align: right;">0.978000</td>
-<td style="text-align: right;">40.908</td>
-<td>Big dense run, near-perfect.</td>
-</tr>
-<tr>
-<td style="text-align: right;"><strong>2,500</strong></td>
-<td style="text-align: right;"><strong>122,550</strong></td>
-<td style="text-align: right;"><strong>49.02</strong></td>
-<td style="text-align: right;"><strong>1.000000</strong></td>
-<td style="text-align: right;"><strong>0.296</strong></td>
-<td><strong>Excuse-me-what datapoint.</strong></td>
-</tr>
-<tr>
-<td style="text-align: right;">1,600</td>
-<td style="text-align: right;">103,520</td>
-<td style="text-align: right;">64.70</td>
-<td style="text-align: right;">1.000000</td>
-<td style="text-align: right;">12.116</td>
-<td>Perfect.</td>
-</tr>
-<tr>
-<td style="text-align: right;">49,000</td>
-<td style="text-align: right;">73,500</td>
-<td style="text-align: right;">1.50</td>
-<td style="text-align: right;">1.000000</td>
-<td style="text-align: right;">0.291</td>
-<td>Massive variable count, trivial structure.</td>
-</tr>
-<tr>
-<td style="text-align: right;">49,000</td>
-<td style="text-align: right;">73,500</td>
-<td style="text-align: right;">1.50</td>
-<td style="text-align: right;">1.000000</td>
-<td style="text-align: right;">0.301</td>
-<td>Repeat. Still stupid fast.</td>
-</tr>
-<tr>
-<td style="text-align: right;">5,000</td>
-<td style="text-align: right;">50,000</td>
-<td style="text-align: right;">10.00</td>
-<td style="text-align: right;">0.989700</td>
-<td style="text-align: right;">30.672</td>
-<td>Heavy structured-ish run.</td>
-</tr>
-<tr>
-<td style="text-align: right;">10,000</td>
-<td style="text-align: right;">42,699</td>
-<td style="text-align: right;">4.27</td>
-<td style="text-align: right;">0.992900</td>
-<td style="text-align: right;">27.471</td>
-<td>Near phase-transition.</td>
-</tr>
-<tr>
-<td style="text-align: right;">5,000</td>
-<td style="text-align: right;">21,349</td>
-<td style="text-align: right;">4.27</td>
-<td style="text-align: right;">0.993200</td>
-<td style="text-align: right;">12.874</td>
-<td>Same family, strong.</td>
-</tr>
-<tr>
-<td style="text-align: right;">3,000</td>
-<td style="text-align: right;">13,049</td>
-<td style="text-align: right;">4.35</td>
-<td style="text-align: right;">0.993300</td>
-<td style="text-align: right;">7.397</td>
-<td>Latest mammoth Nitro test.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>The "excuse me what" datapoint:</strong> 2,500 variables / 122,550 clauses / <strong>0.296 seconds</strong> / perfect satisfaction. The ratio of clauses to variables is 49× — that is, on average every variable appears in 49 clauses. For a typical SAT solver, that is hostile territory. NitroSAT eats it in under a third of a second.</p>
-<h4 id="three-monster-modes">Three monster modes<a class="headerlink" href="#three-monster-modes" title="Permanent link">&para;</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="right">Vars</th><th align="right">Clauses</th><th align="right">Ratio</th><th align="right">Satisfaction</th><th align="right">Solve sec</th><th>Notes</th></tr></thead><tbody><tr><td align="right"><strong>10,000</strong></td><td align="right"><strong>1,646,800</strong></td><td align="right"><strong>164.68</strong></td><td align="right"><strong>1.000000</strong></td><td align="right"><strong>278.489</strong></td><td>Absolute kaiju. Perfect.</td></tr><tr><td align="right">5,625</td><td align="right">691,975</td><td align="right">123.02</td><td align="right">1.000000</td><td align="right">103.063</td><td>Another clause-density monster.</td></tr><tr><td align="right">2,500</td><td align="right">203,400</td><td align="right">81.36</td><td align="right">1.000000</td><td align="right">29.143</td><td>Perfect.</td></tr><tr><td align="right">2,500</td><td align="right">203,400</td><td align="right">81.36</td><td align="right">1.000000</td><td align="right">27.396</td><td>Repeat monster, still perfect.</td></tr><tr><td align="right">10,000</td><td align="right">200,000</td><td align="right">20.00</td><td align="right">0.978000</td><td align="right">40.908</td><td>Big dense run, near-perfect.</td></tr><tr><td align="right"><strong>2,500</strong></td><td align="right"><strong>122,550</strong></td><td align="right"><strong>49.02</strong></td><td align="right"><strong>1.000000</strong></td><td align="right"><strong>0.296</strong></td><td><strong>Excuse-me-what datapoint.</strong></td></tr><tr><td align="right">1,600</td><td align="right">103,520</td><td align="right">64.70</td><td align="right">1.000000</td><td align="right">12.116</td><td>Perfect.</td></tr><tr><td align="right">49,000</td><td align="right">73,500</td><td align="right">1.50</td><td align="right">1.000000</td><td align="right">0.291</td><td>Massive variable count, trivial structure.</td></tr><tr><td align="right">49,000</td><td align="right">73,500</td><td align="right">1.50</td><td align="right">1.000000</td><td align="right">0.301</td><td>Repeat. Still stupid fast.</td></tr><tr><td align="right">5,000</td><td align="right">50,000</td><td align="right">10.00</td><td align="right">0.989700</td><td align="right">30.672</td><td>Heavy structured-ish run.</td></tr><tr><td align="right">10,000</td><td align="right">42,699</td><td align="right">4.27</td><td align="right">0.992900</td><td align="right">27.471</td><td>Near phase-transition.</td></tr><tr><td align="right">5,000</td><td align="right">21,349</td><td align="right">4.27</td><td align="right">0.993200</td><td align="right">12.874</td><td>Same family, strong.</td></tr><tr><td align="right">3,000</td><td align="right">13,049</td><td align="right">4.35</td><td align="right">0.993300</td><td align="right">7.397</td><td>Latest mammoth Nitro test.</td></tr></tbody></table>
+<p><strong>The “excuse me what” datapoint:</strong> 2,500 variables / 122,550 clauses / <strong>0.296 seconds</strong> / perfect satisfaction. The ratio of clauses to variables is 49× — that is, on average every variable appears in 49 clauses. For a typical SAT solver, that is hostile territory. NitroSAT eats it in under a third of a second.</p>
+<h4 id="three-monster-modes">Three monster modes<a class="heading-anchor" href="#three-monster-modes" aria-label="Link to Three monster modes">#</a></h4>
 <p>NitroSAT has three distinct strong regimes in production, not one:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>1. High clause-density monsters
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>   1.6M clauses, 691k clauses, 203k clauses — all perfect
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>   Clause-to-var ratios from 20× to 165×
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>2. Huge variable-count sparse-ish monsters
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>   49k vars / 73.5k clauses in ~0.3s
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>   Massive N, low ratio (1.5), structured enough to navigate
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>3. Phase-transition-ish random monsters
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>   3k vars / 13k clauses at ratio 4.35 in 7.397s
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>   Ratio sits exactly where CDCL solvers start to suffer
-</code></pre></div>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>1. High clause-density monsters</span></span>
+<span class="line"><span>   1.6M clauses, 691k clauses, 203k clauses — all perfect</span></span>
+<span class="line"><span>   Clause-to-var ratios from 20× to 165×</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>2. Huge variable-count sparse-ish monsters</span></span>
+<span class="line"><span>   49k vars / 73.5k clauses in ~0.3s</span></span>
+<span class="line"><span>   Massive N, low ratio (1.5), structured enough to navigate</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>3. Phase-transition-ish random monsters</span></span>
+<span class="line"><span>   3k vars / 13k clauses at ratio 4.35 in 7.397s</span></span>
+<span class="line"><span>   Ratio sits exactly where CDCL solvers start to suffer</span></span></code></pre>
 <p>This matters because most MaxSAT engines have <em>one</em> strength. CDCL solvers are strong on phase-transition random SAT and weak on industrial structure. Local-search heuristics are strong on sparse structure and weak on dense clause interactions. NitroSAT is strong across all three regimes simultaneously, which is not what we expected to see when we started collecting this data.</p>
-<h4 id="what-the-production-data-does-not-show">What the production data does NOT show<a class="headerlink" href="#what-the-production-data-does-not-show" title="Permanent link">&para;</a></h4>
-<p>In the spirit of the company's honest-numbers policy:</p>
+<h4 id="what-the-production-data-does-not-show">What the production data does NOT show<a class="heading-anchor" href="#what-the-production-data-does-not-show" aria-label="Link to What the production data does NOT show">#</a></h4>
+<p>In the spirit of the company’s honest-numbers policy:</p>
 <ul>
-<li>The 308-run sample is biased toward customers who could afford Nitro's compute tier. <strong>Free-tier users do not get billed for <code>nano</code> runs, so those don't appear in this ledger.</strong> The <code>nano</code> engine, not Nitro, is what free-tier traffic uses.</li>
-<li>The "monsters" above are cherry-picked from the top of the distribution. <strong>The average run is 0.176 satisfaction below the median</strong> — meaning a quarter of runs sit below 99%, and the bottom decile drops into the 80–95% range. See <a href="../../limitations/">Limitations</a> for where Nitro plateaus.</li>
+<li>The 308-run sample is biased toward customers who could afford Nitro’s compute tier. <strong>Free-tier users do not get billed for <code>nano</code> runs, so those don’t appear in this ledger.</strong> The <code>nano</code> engine, not Nitro, is what free-tier traffic uses.</li>
+<li>The “monsters” above are cherry-picked from the top of the distribution. <strong>The average run is 0.176 satisfaction below the median</strong> — meaning a quarter of runs sit below 99%, and the bottom decile drops into the 80–95% range. See <a href="/docs/limitations/">Limitations</a> for where Nitro plateaus.</li>
 <li>The clause-to-variable ratio column is included because <em>ratio is a better predictor of hardness than raw clause count</em>. A 200K-clause run with ratio 80 is harder than a 1.6M-clause run with ratio 165 — counterintuitive, but the data shows it.</li>
 </ul>
-<hr />
-<h3 id="benchmark-heritage-github-repository-janapr-2026">Benchmark Heritage — GitHub Repository (Jan–Apr 2026)<a class="headerlink" href="#benchmark-heritage-github-repository-janapr-2026" title="Permanent link">&para;</a></h3>
+<hr>
+<h3 id="benchmark-heritage-github-repository-janapr-2026">Benchmark Heritage — GitHub Repository (Jan–Apr 2026)<a class="heading-anchor" href="#benchmark-heritage-github-repository-janapr-2026" aria-label="Link to Benchmark Heritage — GitHub Repository (Jan–Apr 2026)">#</a></h3>
 <blockquote>
 <p>The third pillar of our benchmark record: every commit, every test, every adversarial case we ran during development. Consolidated from the <a href="https://github.com/sethuiyer/NitroSAT/blob/main/benchmarks/README.md">GitHub repository README</a>. For the full chronological record (every instance, every seed, every code change) see that document.</p>
 </blockquote>
-<h4 id="summary-by-phase">Summary by phase<a class="headerlink" href="#summary-by-phase" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Phase</th>
-<th>Date</th>
-<th>Focus</th>
-<th>Headline result</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Phase 1</strong></td>
-<td>Jan 15, 2026</td>
-<td>Initial release (v1.0)</td>
-<td>360 CNF seeds; 99.59% avg satisfaction</td>
-</tr>
-<tr>
-<td><strong>Phase 2</strong></td>
-<td>Feb 17–28</td>
-<td>Scaling expansion (13 categories)</td>
-<td>358 instances; <strong>95% at ≥99%</strong>; 4-color lattice 1.35M clauses perfect</td>
-</tr>
-<tr>
-<td><strong>Phase 3</strong></td>
-<td>Mar 2</td>
-<td>Adversarial &amp; combinatorial traps</td>
-<td>Pitfall formula 100%; <strong>Titan Ramsey R(5,5) 99.995% on 1.3M clauses</strong></td>
-</tr>
-<tr>
-<td><strong>Phase 4</strong></td>
-<td>Mar 4</td>
-<td>Live audit</td>
-<td>9 instances; <strong>CDCL trap (pit.cnf) 100% on 1M+ clauses</strong></td>
-</tr>
-<tr>
-<td><strong>Phase 5</strong></td>
-<td>Mar 8</td>
-<td>v2 generational leap (NADAM → WAdam)</td>
-<td><strong>Enterprise timetable 80M clauses: 5.2h → 73s (250×)</strong></td>
-</tr>
-<tr>
-<td><strong>Phase 6</strong></td>
-<td>Apr 7</td>
-<td>Physics-informed advanced models</td>
-<td><strong>EA 3D spin glass: 64K spins, 99.47% in 4.3s</strong></td>
-</tr>
-</tbody>
-</table>
-<h4 id="the-v1-v2-generational-leap-march-8-2026">The v1 → v2 generational leap (March 8, 2026)<a class="headerlink" href="#the-v1-v2-generational-leap-march-8-2026" title="Permanent link">&para;</a></h4>
-<p>The single largest jump in NitroSAT's history was the v2 release: NADAM → WAdam (Wasserstein-flow with resonance), O(1) incremental unsat tracking, and Walksat removal.</p>
-<table>
-<thead>
-<tr>
-<th>Instance</th>
-<th>v1</th>
-<th>v2</th>
-<th>Δ</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>80M-clause enterprise timetabling</td>
-<td>5.20h</td>
-<td><strong>73s</strong></td>
-<td><strong>~250×</strong></td>
-</tr>
-<tr>
-<td>512×512 integer multiplier</td>
-<td>5.92s</td>
-<td>3.71s</td>
-<td>−37%</td>
-</tr>
-<tr>
-<td>Topological β₁ (post-solve, clique_4_20)</td>
-<td>20</td>
-<td>16</td>
-<td>−20%</td>
-</tr>
-<tr>
-<td>Topology complexity score</td>
-<td>0.78 ↑</td>
-<td><strong>0.00 ✓</strong></td>
-<td>Stable</td>
-</tr>
-</tbody>
-</table>
+<h4 id="summary-by-phase">Summary by phase<a class="heading-anchor" href="#summary-by-phase" aria-label="Link to Summary by phase">#</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Phase</th><th>Date</th><th>Focus</th><th>Headline result</th></tr></thead><tbody><tr><td><strong>Phase 1</strong></td><td>Jan 15, 2026</td><td>Initial release (v1.0)</td><td>360 CNF seeds; 99.59% avg satisfaction</td></tr><tr><td><strong>Phase 2</strong></td><td>Feb 17–28</td><td>Scaling expansion (13 categories)</td><td>358 instances; <strong>95% at ≥99%</strong>; 4-color lattice 1.35M clauses perfect</td></tr><tr><td><strong>Phase 3</strong></td><td>Mar 2</td><td>Adversarial &#x26; combinatorial traps</td><td>Pitfall formula 100%; <strong>Titan Ramsey R(5,5) 99.995% on 1.3M clauses</strong></td></tr><tr><td><strong>Phase 4</strong></td><td>Mar 4</td><td>Live audit</td><td>9 instances; <strong>CDCL trap (pit.cnf) 100% on 1M+ clauses</strong></td></tr><tr><td><strong>Phase 5</strong></td><td>Mar 8</td><td>v2 generational leap (NADAM → WAdam)</td><td><strong>Enterprise timetable 80M clauses: 5.2h → 73s (250×)</strong></td></tr><tr><td><strong>Phase 6</strong></td><td>Apr 7</td><td>Physics-informed advanced models</td><td><strong>EA 3D spin glass: 64K spins, 99.47% in 4.3s</strong></td></tr></tbody></table>
+<h4 id="the-v1-v2-generational-leap-march-8-2026">The v1 → v2 generational leap (March 8, 2026)<a class="heading-anchor" href="#the-v1-v2-generational-leap-march-8-2026" aria-label="Link to The v1 → v2 generational leap (March 8, 2026)">#</a></h4>
+<p>The single largest jump in NitroSAT’s history was the v2 release: NADAM → WAdam (Wasserstein-flow with resonance), O(1) incremental unsat tracking, and Walksat removal.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Instance</th><th>v1</th><th>v2</th><th>Δ</th></tr></thead><tbody><tr><td>80M-clause enterprise timetabling</td><td>5.20h</td><td><strong>73s</strong></td><td><strong>~250×</strong></td></tr><tr><td>512×512 integer multiplier</td><td>5.92s</td><td>3.71s</td><td>−37%</td></tr><tr><td>Topological β₁ (post-solve, clique_4_20)</td><td>20</td><td>16</td><td>−20%</td></tr><tr><td>Topology complexity score</td><td>0.78 ↑</td><td><strong>0.00 ✓</strong></td><td>Stable</td></tr></tbody></table>
 <p>The timetabling number is the headline: a workload that took 5.2 hours on a laptop in February ran in 73 seconds in March. Same algorithm family, same hardware (Ryzen 5 5600H, single core), 250× speedup from algorithmic changes alone.</p>
-<h4 id="edwards-anderson-3d-spin-glass-breakthrough-april-2026">Edwards-Anderson 3D spin glass breakthrough (April 2026)<a class="headerlink" href="#edwards-anderson-3d-spin-glass-breakthrough-april-2026" title="Permanent link">&para;</a></h4>
-<p>The first gradient-based solver to crack Edwards-Anderson 3D at scale (&gt;64K spins, &gt;99% satisfaction):</p>
-<table>
-<thead>
-<tr>
-<th>Size</th>
-<th>Spins</th>
-<th>Clauses</th>
-<th>Sat%</th>
-<th>Time</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>5×5×5</td>
-<td>125</td>
-<td>316</td>
-<td>99.37%</td>
-<td>78ms</td>
-</tr>
-<tr>
-<td>20×20×20</td>
-<td>8,000</td>
-<td>23,099</td>
-<td>99.28%</td>
-<td>4s</td>
-</tr>
-<tr>
-<td><strong>40×40×40</strong></td>
-<td><strong>64,000</strong></td>
-<td><strong>188,666</strong></td>
-<td><strong>99.47%</strong></td>
-<td><strong>4.3s</strong></td>
-</tr>
-<tr>
-<td>50×50×50</td>
-<td>125,000</td>
-<td>369,905</td>
-<td>95.00%</td>
-<td>5.3min</td>
-</tr>
-<tr>
-<td>60×60×60</td>
-<td>216,000</td>
-<td>641,069</td>
-<td>94.84%</td>
-<td>3.5min</td>
-</tr>
-</tbody>
-</table>
+<h4 id="edwards-anderson-3d-spin-glass-breakthrough-april-2026">Edwards-Anderson 3D spin glass breakthrough (April 2026)<a class="heading-anchor" href="#edwards-anderson-3d-spin-glass-breakthrough-april-2026" aria-label="Link to Edwards-Anderson 3D spin glass breakthrough (April 2026)">#</a></h4>
+<p>The first gradient-based solver to crack Edwards-Anderson 3D at scale (>64K spins, >99% satisfaction):</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Size</th><th>Spins</th><th>Clauses</th><th>Sat%</th><th>Time</th></tr></thead><tbody><tr><td>5×5×5</td><td>125</td><td>316</td><td>99.37%</td><td>78ms</td></tr><tr><td>20×20×20</td><td>8,000</td><td>23,099</td><td>99.28%</td><td>4s</td></tr><tr><td><strong>40×40×40</strong></td><td><strong>64,000</strong></td><td><strong>188,666</strong></td><td><strong>99.47%</strong></td><td><strong>4.3s</strong></td></tr><tr><td>50×50×50</td><td>125,000</td><td>369,905</td><td>95.00%</td><td>5.3min</td></tr><tr><td>60×60×60</td><td>216,000</td><td>641,069</td><td>94.84%</td><td>3.5min</td></tr></tbody></table>
 <p><strong>Sweet spot at L≈40:</strong> Beyond 40 spins per dimension, performance degrades — the correlation length of the spin glass exceeds the system size. This is a known property of Edwards-Anderson 3D physics, and our solver tracks it correctly. The 99.47% / 4.3s datapoint is the headline: 64,000 fully-coupled frustrated spins, near-perfect satisfaction, in the time it takes a human to read a sentence.</p>
-<h4 id="extreme-density-instances-march-2026">Extreme-density instances (March 2026)<a class="headerlink" href="#extreme-density-instances-march-2026" title="Permanent link">&para;</a></h4>
+<h4 id="extreme-density-instances-march-2026">Extreme-density instances (March 2026)<a class="heading-anchor" href="#extreme-density-instances-march-2026" aria-label="Link to Extreme-density instances (March 2026)">#</a></h4>
 <p>Three instances that pushed the solver past the typical MaxSAT ceiling:</p>
-<table>
-<thead>
-<tr>
-<th>Instance</th>
-<th>Type</th>
-<th>Vars</th>
-<th>Clauses</th>
-<th>Density α</th>
-<th>Sat%</th>
-<th>Time</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Titan Ramsey R(5,5)</td>
-<td>Combinatorial</td>
-<td>780</td>
-<td>1,316,016</td>
-<td><strong>1,687.2</strong></td>
-<td>99.995%</td>
-<td>3,403s</td>
-</tr>
-<tr>
-<td>pit.cnf</td>
-<td>CDCL trap</td>
-<td>2,950</td>
-<td>1,047,620</td>
-<td>355.1</td>
-<td>100.0%</td>
-<td>~400s</td>
-</tr>
-<tr>
-<td>planted_10k</td>
-<td>Hyper-dense</td>
-<td>10,500</td>
-<td>931,661</td>
-<td>88.7</td>
-<td>99.62%</td>
-<td>~120s</td>
-</tr>
-</tbody>
-</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Instance</th><th>Type</th><th>Vars</th><th>Clauses</th><th>Density α</th><th>Sat%</th><th>Time</th></tr></thead><tbody><tr><td>Titan Ramsey R(5,5)</td><td>Combinatorial</td><td>780</td><td>1,316,016</td><td><strong>1,687.2</strong></td><td>99.995%</td><td>3,403s</td></tr><tr><td>pit.cnf</td><td>CDCL trap</td><td>2,950</td><td>1,047,620</td><td>355.1</td><td>100.0%</td><td>~400s</td></tr><tr><td>planted_10k</td><td>Hyper-dense</td><td>10,500</td><td>931,661</td><td>88.7</td><td>99.62%</td><td>~120s</td></tr></tbody></table>
 <p>Titan Ramsey R(5,5) at α=1,687 means each variable appears in ~1,687 clauses on average — a hostile territory for most SAT solvers, where NitroSAT hits 99.995%.</p>
-<h4 id="death-run-adversarial-instances-april-2026">Death Run — adversarial instances (April 2026)<a class="headerlink" href="#death-run-adversarial-instances-april-2026" title="Permanent link">&para;</a></h4>
-<p>Three categories of "final boss" problems designed to break continuous-relaxation solvers:</p>
-<table>
-<thead>
-<tr>
-<th>Category</th>
-<th>Worst case</th>
-<th>Result</th>
-<th>Why it matters</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Topological traps</td>
-<td>Overlapping 5-cycles, cycle_complex</td>
-<td><strong>100%</strong> — β₁ drops to 0</td>
-<td>Heat kernel resolves cycles</td>
-</tr>
-<tr>
-<td>Gradient killers (XOR at phase transition)</td>
-<td>xor_hard (1K vars, 3.7K clauses)</td>
-<td>98.97% in 3.4s</td>
-<td>XOR is a known adversarial case</td>
-</tr>
-<tr>
-<td>Locality destroyers (expanders)</td>
-<td>expander_100k (100K vars, 764K clauses)</td>
-<td><strong>90.57%</strong> — stable plateau</td>
-<td>Expander graphs are the ~90% wall</td>
-</tr>
-</tbody>
-</table>
+<h4 id="death-run-adversarial-instances-april-2026">Death Run — adversarial instances (April 2026)<a class="heading-anchor" href="#death-run-adversarial-instances-april-2026" aria-label="Link to Death Run — adversarial instances (April 2026)">#</a></h4>
+<p>Three categories of “final boss” problems designed to break continuous-relaxation solvers:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Category</th><th>Worst case</th><th>Result</th><th>Why it matters</th></tr></thead><tbody><tr><td>Topological traps</td><td>Overlapping 5-cycles, cycle_complex</td><td><strong>100%</strong> — β₁ drops to 0</td><td>Heat kernel resolves cycles</td></tr><tr><td>Gradient killers (XOR at phase transition)</td><td>xor_hard (1K vars, 3.7K clauses)</td><td>98.97% in 3.4s</td><td>XOR is a known adversarial case</td></tr><tr><td>Locality destroyers (expanders)</td><td>expander_100k (100K vars, 764K clauses)</td><td><strong>90.57%</strong> — stable plateau</td><td>Expander graphs are the ~90% wall</td></tr></tbody></table>
 <p>The expander result reconfirms the <a href="#limitations-self-assessment">Limitations</a> below. NitroSAT does not crack high-expansion graphs; it plateaus at ~90% and stays there. But it does <em>not</em> degrade further at scale — the plateau is stable from 2K to 100K vars.</p>
-<h4 id="prime-vs-uniform-weight-ablation-march-2026">Prime vs uniform weight ablation (March 2026)<a class="headerlink" href="#prime-vs-uniform-weight-ablation-march-2026" title="Permanent link">&para;</a></h4>
+<h4 id="prime-vs-uniform-weight-ablation-march-2026">Prime vs uniform weight ablation (March 2026)<a class="heading-anchor" href="#prime-vs-uniform-weight-ablation-march-2026" aria-label="Link to Prime vs uniform weight ablation (March 2026)">#</a></h4>
 <p>The prime-weighting mechanism is not theoretical — it produces measured 3.4–4× speedups on structured problems:</p>
-<table>
-<thead>
-<tr>
-<th>Instance</th>
-<th>Prime weight</th>
-<th>Uniform weight</th>
-<th>Δ</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>clique_4_20 (structured)</td>
-<td>12.8ms, β₁=20</td>
-<td>43.8ms, β₁=79 (4 fractures)</td>
-<td><strong>3.4× faster</strong></td>
-</tr>
-<tr>
-<td>rand3sat_200_850 (random)</td>
-<td>768ms</td>
-<td>3,082ms</td>
-<td><strong>4.0× faster</strong></td>
-</tr>
-<tr>
-<td>parity_14 (XOR)</td>
-<td>5.8ms</td>
-<td>3.1ms</td>
-<td>0.53× (uniform faster)</td>
-</tr>
-</tbody>
-</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Instance</th><th>Prime weight</th><th>Uniform weight</th><th>Δ</th></tr></thead><tbody><tr><td>clique_4_20 (structured)</td><td>12.8ms, β₁=20</td><td>43.8ms, β₁=79 (4 fractures)</td><td><strong>3.4× faster</strong></td></tr><tr><td>rand3sat_200_850 (random)</td><td>768ms</td><td>3,082ms</td><td><strong>4.0× faster</strong></td></tr><tr><td>parity_14 (XOR)</td><td>5.8ms</td><td>3.1ms</td><td>0.53× (uniform faster)</td></tr></tbody></table>
 <p>Prime weights actively prune topological noise (β₁: 79→20) on structured geometries. Random instances also see speedup. XOR instances are dominated by other factors — uniform is faster on this small XOR case, but prime-weighting still gives the correct answer.</p>
-<h4 id="global-verification-summary-february-28-2026">Global verification summary (February 28, 2026)<a class="headerlink" href="#global-verification-summary-february-28-2026" title="Permanent link">&para;</a></h4>
+<h4 id="global-verification-summary-february-28-2026">Global verification summary (February 28, 2026)<a class="heading-anchor" href="#global-verification-summary-february-28-2026" aria-label="Link to Global verification summary (February 28, 2026)">#</a></h4>
 <p>The cleanest single-table summary of the full v1/v2 development effort:</p>
-<table>
-<thead>
-<tr>
-<th>Metric</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Total instances tested</td>
-<td>80+</td>
-</tr>
-<tr>
-<td>Average satisfaction</td>
-<td>99.65%</td>
-</tr>
-<tr>
-<td>Perfect solves (100%)</td>
-<td>49/75 (65%)</td>
-</tr>
-<tr>
-<td>Hardware verification (100%)</td>
-<td>15/15 (100%)</td>
-</tr>
-<tr>
-<td>Largest instance solved</td>
-<td>80,278,884 clauses (Enterprise Timetabling)</td>
-</tr>
-<tr>
-<td>Largest perfect solve</td>
-<td>1,354,800 clauses (300×300 lattice, 4-color)</td>
-</tr>
-<tr>
-<td>Prime weight speedup (structured)</td>
-<td>4×</td>
-</tr>
-</tbody>
-</table>
-<h4 id="hardware-note">Hardware note<a class="headerlink" href="#hardware-note" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Phase</th>
-<th>Platform</th>
-<th>Date</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Phases 1–5</td>
-<td>AMD Ryzen 5 5600H @ 4.280GHz (single core, laptop)</td>
-<td>Jan–Mar 2026</td>
-</tr>
-<tr>
-<td>Phase 6</td>
-<td>Apple Silicon</td>
-<td>Apr 2026</td>
-</tr>
-</tbody>
-</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody><tr><td>Total instances tested</td><td>80+</td></tr><tr><td>Average satisfaction</td><td>99.65%</td></tr><tr><td>Perfect solves (100%)</td><td>49/75 (65%)</td></tr><tr><td>Hardware verification (100%)</td><td>15/15 (100%)</td></tr><tr><td>Largest instance solved</td><td>80,278,884 clauses (Enterprise Timetabling)</td></tr><tr><td>Largest perfect solve</td><td>1,354,800 clauses (300×300 lattice, 4-color)</td></tr><tr><td>Prime weight speedup (structured)</td><td>4×</td></tr></tbody></table>
+<h4 id="hardware-note">Hardware note<a class="heading-anchor" href="#hardware-note" aria-label="Link to Hardware note">#</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Phase</th><th>Platform</th><th>Date</th></tr></thead><tbody><tr><td>Phases 1–5</td><td>AMD Ryzen 5 5600H @ 4.280GHz (single core, laptop)</td><td>Jan–Mar 2026</td></tr><tr><td>Phase 6</td><td>Apple Silicon</td><td>Apr 2026</td></tr></tbody></table>
 <p>Compiler: <code>gcc -O3 -lm</code> · No external dependencies · Single-threaded.</p>
 <p>Reproducibility: <a href="https://huggingface.co/">HuggingFace dataset</a> · <code>timetable_output.json</code> shipped with the repo.</p>
 <blockquote>
 <p><strong>A note on this section:</strong> Every number above was reported in the <a href="https://github.com/sethuiyer/NitroSAT/blob/main/benchmarks/README.md">GitHub repository README</a>. It is included here so a reader does not have to leave the documentation to see the full heritage. The latest production numbers (Supabase, 2026-04-04 → 2026-06-19) supersede the v2 development numbers for current customer-facing claims.</p>
 </blockquote>
-<hr />
-<h2 id="limitations-self-assessment">Limitations (Self-Assessment)<a class="headerlink" href="#limitations-self-assessment" title="Permanent link">&para;</a></h2>
+<hr>
+<h2 id="limitations-self-assessment">Limitations (Self-Assessment)<a class="heading-anchor" href="#limitations-self-assessment" aria-label="Link to Limitations (Self-Assessment)">#</a></h2>
 <p>NitroSAT is <strong>not</strong> designed to replace exact solvers when mathematical certificates of unsatisfiability or global optimality proofs are required. It is an anytime approximator.</p>
 <p>Known limitations:</p>
 <ul>
@@ -3693,126 +775,52 @@
 <li><strong>UNSAT certification</strong>: Does not produce proofs of unsatisfiability</li>
 <li><strong>Exact optimum</strong>: Returns high-quality approximations, not proven-optimal solutions</li>
 </ul>
-<p>The 2^1024 framing in earlier documentation was incorrect. XOR chains define affine subspaces (dimension <span class="arithmatex">\(n - r\)</span> where <span class="arithmatex">\(r\)</span> is rank), not the full power set. The relevant metric is basin fidelity — how close the returned assignment is to the planted optimum — not the cardinality of the unconstrained solution space.</p>
-<hr />
-<h2 id="connection-to-the-arithmetic-manifold">Connection to the Arithmetic Manifold<a class="headerlink" href="#connection-to-the-arithmetic-manifold" title="Permanent link">&para;</a></h2>
+<p>The 2^1024 framing in earlier documentation was incorrect. XOR chains define affine subspaces (dimension <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><mi>r</mi></mrow><annotation encoding="application/x-tex">n - r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span></span></span></span> where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span></span></span></span> is rank), not the full power set. The relevant metric is basin fidelity — how close the returned assignment is to the planted optimum — not the cardinality of the unconstrained solution space.</p>
+<hr>
+<h2 id="connection-to-the-arithmetic-manifold">Connection to the Arithmetic Manifold<a class="heading-anchor" href="#connection-to-the-arithmetic-manifold" aria-label="Link to Connection to the Arithmetic Manifold">#</a></h2>
 <p>NitroSAT is the <strong>flagship implementation</strong> of the Arithmetic Manifold framework. It combines:</p>
 <ul>
 <li><strong>Prime weighting</strong>: From partition function theory — unique constraint signatures via the Fundamental Theorem of Arithmetic</li>
-<li><strong>Spectral initialization</strong>: Heat kernel trace <span class="arithmatex">\(\text{Tr}(e^{-tL})\)</span> as a basin-finding prior</li>
+<li><strong>Spectral initialization</strong>: Heat kernel trace <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Tr</mtext><mo stretchy="false">(</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>t</mi><mi>L</mi></mrow></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{Tr}(e^{-tL})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0913em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">Tr</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">L</span></span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> as a basin-finding prior</li>
 <li><strong>Topological repair</strong>: Persistent homology tracking (Betti numbers) for guided repair</li>
 <li><strong>Phase transitions</strong>: BAHA/Lambert W detection for when to transition between optimization strategies</li>
-<li><strong>Riemann Hypothesis connection</strong>: The asymptotic stability condition <span class="arithmatex">\(1 - \sigma &gt; \gamma\)</span> governs when the continuous relaxation remains valid at scale</li>
+<li><strong>Riemann Hypothesis connection</strong>: The asymptotic stability condition <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>−</mo><mi>σ</mi><mo>></mo><mi>γ</mi></mrow><annotation encoding="application/x-tex">1 - \sigma > \gamma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">σ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0556em;">γ</span></span></span></span> governs when the continuous relaxation remains valid at scale</li>
 </ul>
 <blockquote>
-<p>"NitroSAT does not prove the Riemann Hypothesis. But it embeds RH as a phase boundary: the solver functions as a physical instrument whose asymptotic stability threshold coincides exactly with the critical line Re(s) = &frac12;."</p>
+<p>“NitroSAT does not prove the Riemann Hypothesis. But it embeds RH as a phase boundary: the solver functions as a physical instrument whose asymptotic stability threshold coincides exactly with the critical line Re(s) = 1/2.”</p>
 </blockquote>
-<hr />
-<h2 id="website">Website<a class="headerlink" href="#website" title="Permanent link">&para;</a></h2>
+<hr>
+<h2 id="website">Website<a class="heading-anchor" href="#website" aria-label="Link to Website">#</a></h2>
 <p><strong>Live:</strong> <a href="https://sethuiyer.github.io/NitroSAT">sethuiyer.github.io/NitroSAT</a></p>
-<h2 id="key-files">Key Files<a class="headerlink" href="#key-files" title="Permanent link">&para;</a></h2>
+<h2 id="key-files">Key Files<a class="heading-anchor" href="#key-files" aria-label="Link to Key Files">#</a></h2>
 <ul>
 <li><code>NitroSAT/README.md</code> — Full project overview and benchmark methodology</li>
 <li><code>NitroSAT/src/c/v2/nitrosatv2.c</code> — Core C99 implementation</li>
 <li>DOI: <a href="https://doi.org/10.5281/zenodo.18753235">10.5281/zenodo.18753235</a></li>
 <li>API: <a href="https://api.navokoj.shunyabar.foo">api.navokoj.shunyabar.foo</a></li>
 </ul>
-<hr />
-<h2 id="citing">Citing<a class="headerlink" href="#citing" title="Permanent link">&para;</a></h2>
+<hr>
+<h2 id="citing">Citing<a class="heading-anchor" href="#citing" aria-label="Link to Citing">#</a></h2>
 <p>If you use NitroSAT in research, please cite:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nc">@software</span><span class="p">{</span><span class="nl">nitrosat2026</span><span class="p">,</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="na">author</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Sethurathinam Iyer}</span><span class="p">,</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="na">title</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{NitroSAT: A Physics-Informed MaxSAT Approximator}</span><span class="p">,</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="na">year</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{2026}</span><span class="p">,</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="na">publisher</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Zenodo}</span><span class="p">,</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="na">doi</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{10.5281/zenodo.18753235}</span><span class="p">,</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="na">url</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{https://github.com/sethuiyer/NitroSAT}</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">}</span>
-</code></pre></div>
-<hr />
-<h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
+<pre class="astro-code astro-code-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bibtex"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">@software</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">nitrosat2026</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  author</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">{</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">Sethurathinam Iyer</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">}</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">{</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">NitroSAT: A Physics-Informed MaxSAT Approximator</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">}</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  year</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">{</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">2026</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">}</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  publisher</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">{</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">Zenodo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">}</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  doi</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">{</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">10.5281/zenodo.18753235</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">}</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  url</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">{</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">https://github.com/sethuiyer/NitroSAT</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
+<hr>
+<h2 id="see-also">See Also<a class="heading-anchor" href="#see-also" aria-label="Link to See Also">#</a></h2>
 <ul>
-<li><a href="../">All Projects</a> — project overview</li>
-<li><a href="../baha/">BAHA</a> — fracture detection integrated into NitroSAT</li>
-<li><a href="../navokoj/">Navokoj</a> — the production API powered by NitroSAT</li>
-<li><a href="../../concepts/prime-weighting/">Prime Weighting</a> — ablation results (4× speedup)</li>
-<li><a href="../../concepts/partition-function/">Partition Function</a> — the free energy framework</li>
-<li><a href="../../concepts/phase-transitions/">Phase Transitions</a> — critical <span class="arithmatex">\(\beta\)</span> scaling</li>
-<li><a href="../../concepts/riemann-hypothesis/">Riemann Hypothesis</a> — the asymptotic stability condition</li>
-<li><a href="../../limitations/">Limitations</a> — where NitroSAT plateaus</li>
-<li><a href="../../getting-started/benchmarks/">Benchmarks</a> — performance comparison</li>
-<li><a href="../../research-report/">Research Report</a> — technical deep-dive</li>
-</ul>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-              </article>
-            </div>
-          
-          
-<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
-        </div>
-        
-          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  Back to top
-</button>
-        
-      </main>
-      
-        <footer class="md-footer">
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
-  
-  
-    Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
-    </a>
-  
-</div>
-      
-    </div>
-  </div>
-</footer>
-      
-    </div>
-    <div class="md-dialog" data-md-component="dialog">
-      <div class="md-dialog__inner md-typeset"></div>
-    </div>
-    
-    
-    
-      
-      
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "content.code.copy", "content.code.annotate", "navigation.tabs", "navigation.sections", "toc.integrate", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
-    
-    
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-      
-        <script src="../../javascripts/katex.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-      
-        <script src="../../javascripts/mermaid-init.js"></script>
-      
-    
-  </body>
-</html>
+<li><a href="/docs/projects/">All Projects</a> — project overview</li>
+<li><a href="/docs/projects/baha/">BAHA</a> — fracture detection integrated into NitroSAT</li>
+<li><a href="/docs/projects/navokoj/">Navokoj</a> — the production API powered by NitroSAT</li>
+<li><a href="/docs/concepts/prime-weighting/">Prime Weighting</a> — ablation results (4× speedup)</li>
+<li><a href="/docs/concepts/partition-function/">Partition Function</a> — the free energy framework</li>
+<li><a href="/docs/concepts/phase-transitions/">Phase Transitions</a> — critical <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0528em;">β</span></span></span></span> scaling</li>
+<li><a href="/docs/concepts/riemann-hypothesis/">Riemann Hypothesis</a> — the asymptotic stability condition</li>
+<li><a href="/docs/limitations/">Limitations</a> — where NitroSAT plateaus</li>
+<li><a href="/docs/getting-started/benchmarks/">Benchmarks</a> — performance comparison</li>
+<li><a href="/docs/research-report/">Research Report</a> — technical deep-dive</li>
+</ul></div><footer class="article-footer"><div class="author-note"><span class="author-monogram">SI</span><div><strong>Sethurathienam Iyer</strong><p>Founder of ShunyaBar Labs. Researching arithmetic geometry, constraint intelligence, and proof-aware optimization.</p></div></div><nav class="article-pagination" aria-label="Previous and next pages"><a href="/docs/projects/baha/"><small>Previous</small><strong>← BAHA</strong></a><a class="next-page" href="/docs/projects/navokoj/"><small>Next</small><strong>Navokoj →</strong></a></nav></footer></article><aside class="article-toc"><nav class="table-of-contents" aria-label="On this page"><span class="toc-title">On this page</span><ol><li class="toc-depth-2"><a href="#what-it-is">What It Is</a></li><li class="toc-depth-2"><a href="#architecture">Architecture</a></li><li class="toc-depth-3"><a href="#1-continuous-relaxation-and-gradient-based-flow">1. Continuous Relaxation and Gradient-Based Flow</a></li><li class="toc-depth-3"><a href="#2-spectral-initialization-and-basin-navigation">2. Spectral Initialization and Basin Navigation</a></li><li class="toc-depth-3"><a href="#3-topological-repair-and-cycle-resolution">3. Topological Repair and Cycle Resolution</a></li><li class="toc-depth-3"><a href="#4-prime-number-weighting-and-symmetry-breaking">4. Prime Number Weighting and Symmetry Breaking</a></li><li class="toc-depth-3"><a href="#5-the-metric-space">5. The Metric Space</a></li><li class="toc-depth-3"><a href="#6-free-energy-framework">6. Free Energy Framework</a></li><li class="toc-depth-2"><a href="#performance-characteristics">Performance Characteristics</a></li><li class="toc-depth-3"><a href="#where-it-excels-regular-and-structured-geometries">Where It Excels: Regular and Structured Geometries</a></li><li class="toc-depth-3"><a href="#where-it-encounters-limits-high-expansion-and-unstructured-graphs">Where It Encounters Limits: High-Expansion and Unstructured Graphs</a></li><li class="toc-depth-2"><a href="#results">Results</a></li><li class="toc-depth-3"><a href="#academic-benchmarks">Academic Benchmarks</a></li><li class="toc-depth-3"><a href="#production-performance-supabase-ledger-2026-04-04-2026-06-19">Production Performance — Supabase Ledger (2026-04-04 → 2026-06-19)</a></li><li class="toc-depth-3"><a href="#benchmark-heritage-github-repository-janapr-2026">Benchmark Heritage — GitHub Repository (Jan–Apr 2026)</a></li><li class="toc-depth-2"><a href="#limitations-self-assessment">Limitations (Self-Assessment)</a></li><li class="toc-depth-2"><a href="#connection-to-the-arithmetic-manifold">Connection to the Arithmetic Manifold</a></li><li class="toc-depth-2"><a href="#website">Website</a></li><li class="toc-depth-2"><a href="#key-files">Key Files</a></li><li class="toc-depth-2"><a href="#citing">Citing</a></li><li class="toc-depth-2"><a href="#see-also">See Also</a></li></ol><a class="back-to-top" href="#top">Back to top ↑</a></nav></aside></div></main><footer class="site-footer"><div class="footer-inner"><div class="footer-thesis"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15.5"></circle><path d="M10 18h16M18 10v16"></path><circle cx="18" cy="18" r="3.25"></circle></svg><div><strong>ShunyaBar Labs</strong><p>Physics-informed constraint intelligence & proof-aware optimization.</p></div></div><nav aria-label="Footer navigation"><div><strong>Explore</strong><a href="/docs/blog/">Writing</a><a href="/docs/projects/">Projects</a><a href="/docs/zenodo/">Publications</a></div><div><strong>Build</strong><a href="/docs/getting-started/quick-start/">Quick Start</a><a href="/docs/navokoj/">API Guide</a><a href="/docs/marketing/pricing/">Pricing</a></div><div><strong>Follow</strong><a href="https://github.com/sethuiyer">GitHub</a><a href="https://medium.com/@sethuiyer">Medium</a><a href="/docs/rss.xml">RSS</a></div></nav></div><div class="footer-bottom"><span>© 2026 Sethurathienam Iyer</span><span>Logic should be a utility.</span></div></footer><dialog class="search-dialog" data-search-dialog data-index-url="/docs/search-index.json"><div class="search-panel"><form class="search-form" method="dialog" onsubmit="return false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg><input type="search" data-search-input autocomplete="off" placeholder="Search essays, research, projects…" aria-label="Search this site"><button type="button" data-search-close aria-label="Close search">Esc</button></form><div class="search-status" data-search-status>Start typing to search all 77 articles and guides.</div><ol class="search-results" data-search-results></ol><footer><span><kbd>↑</kbd><kbd>↓</kbd> move</span><span><kbd>↵</kbd> open</span><span>Static, private search</span></footer></div></dialog><script type="module">var e=document.querySelector(`[data-search-dialog]`),t=e?.querySelector(`[data-search-input]`),n=e?.querySelector(`[data-search-results]`),r=e?.querySelector(`[data-search-status]`),i=null,a=-1;async function o(){i||!e||(i=await(await fetch(e.dataset.indexUrl)).json())}function s(e,t){let n=e.title.toLowerCase(),r=e.description.toLowerCase(),i=e.text.toLowerCase();return t.reduce((e,t)=>!n.includes(t)&&!r.includes(t)&&!i.includes(t)?-1e4:e+(n.includes(t)?12:0)+(r.includes(t)?5:0)+1,0)}function c(e){if(!i||!n||!r)return;let t=e.toLowerCase().trim().split(/\s+/).filter(Boolean);if(n.replaceChildren(),a=-1,!t.length){r.textContent=`Start typing to search all 77 articles and guides.`;return}let o=i.map(e=>({item:e,score:s(e,t)})).filter(e=>e.score>-1e4).sort((e,t)=>t.score-e.score).slice(0,8);r.textContent=o.length?`${o.length} best matches`:`No matches. Try a broader phrase.`;for(let{item:e}of o){let t=document.createElement(`li`),r=document.createElement(`a`),i=document.createElement(`span`),a=document.createElement(`strong`),o=document.createElement(`small`);r.href=e.path,i.textContent=e.section,a.textContent=e.title,o.textContent=e.description,r.append(i,a,o),t.append(r),n.append(t)}}async function l(){e&&(e.showModal(),await o(),t?.focus())}function u(e){let t=Array.from(n?.querySelectorAll(`a`)??[]);t.length&&(a=(a+e+t.length)%t.length,t[a].focus())}document.querySelectorAll(`[data-search-open]`).forEach(e=>e.addEventListener(`click`,l)),e?.querySelector(`[data-search-close]`)?.addEventListener(`click`,()=>e.close()),e?.addEventListener(`click`,t=>{t.target===e&&e.close()}),t?.addEventListener(`input`,()=>c(t.value)),document.addEventListener(`keydown`,t=>{(t.metaKey||t.ctrlKey)&&t.key.toLowerCase()===`k`?(t.preventDefault(),e?.open?e.close():l()):e?.open&&t.key===`ArrowDown`?(t.preventDefault(),u(1)):e?.open&&t.key===`ArrowUp`&&(t.preventDefault(),u(-1))});</script></body></html><script type="module" src="/docs/_astro/ArticleLayout.astro_astro_type_script_index_0_lang._esIwtdm.js"></script>

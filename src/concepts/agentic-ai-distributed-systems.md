@@ -1,7 +1,7 @@
 # Beyond Prompt Engineering: Agentic AI as a Distributed System
 
-<div class="audio-section" markdown="1">
-**Listen:** Distributed Belief Engines Fix AI
+<div class="audio-section">
+<strong>Listen:</strong> Distributed Belief Engines Fix AI
 
 <audio controls preload="metadata">
   <source src="https://cdn8.cloud.shunyabar.foo/Podcast/How_Distributed_Belief_Engines_Fix_AI.m4a" type="audio/mp4">

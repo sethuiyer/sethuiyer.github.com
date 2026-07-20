@@ -73,16 +73,22 @@ graph TD
 ### 1.4 Multiplicative PINN Framework
 * **Role**: Physics-Informed Neural Network (PINN) optimization.
 * **Mechanism**: Traditionally, PINNs enforce physics constraints by adding them to the data loss:
-  $$\mathcal{L} = \mathcal{L}_{\text{data}} + \lambda \mathcal{L}_{\text{physics}}$$
+  \[
+  \mathcal{L} = \mathcal{L}_{\text{data}} + \lambda \mathcal{L}_{\text{physics}}
+  \]
   This causes gradient conflicts and stiffness. Multiplicative PINN shifts this to:
-  $$\mathcal{L} = \mathcal{L}_{\text{data}} \times G(\mathcal{L}_{\text{physics}}) \times B(\mathcal{L}_{\text{physics}})$$
+  \[
+  \mathcal{L} = \mathcal{L}_{\text{data}} \times G(\mathcal{L}_{\text{physics}}) \times B(\mathcal{L}_{\text{physics}})
+  \]
   where \(G\) is an Euler Product Gate (attenuates loss when constraints are satisfied) and \(B\) is an Exponential Barrier (amplifies gradients on violations).
 * **Key Metrics**: Achieves **\(99.64\%\) residual reduction** on 2D Navier-Stokes equations with \(100,000\times\) speedup over traditional CFD. Delivered a \(1,052,442\times\) loss reduction on 1D Poisson equations compared to additive loss.
 
 ### 1.5 Geometry of Conditional Logic (Lock-Preserving Incremental Solver)
 * **Role**: The transactional local repair runtime.
 * **Mechanism**: Formulates discrete systems where state variable assignments are residues modulo coprime primes. When a variable must be repaired due to perturbation, a commitment shield \(M_S\) is computed as the product of primes of all "locked" variables. The state is updated via:
-  $$z' = z + k M_S \pmod{\prod p_i}$$
+  \[
+  z' = z + k M_S \pmod{\prod p_i}
+  \]
   which guarantees that locked variables remain perfectly unchanged (since \(M_S \equiv 0 \pmod{p_j}\) for all locked variables \(v_j\)). 
 * **Key Metrics**: Repair calculations are **\(847\times\) to \(12,495\times\) faster** than recomputing a solution from scratch, leaving \(95\%\) of unaffected variables untouched.
 
@@ -130,23 +136,33 @@ At first glance, these repositories appear to address diverse fields (PDEs, SAT 
 In standard programming, an `if/else` statement is represented by the discontinuous Heaviside step function \(H(x)\), whose derivative is the Dirac delta function \(\delta(x)\) (slope is \(0\) everywhere except at the transition point). This kills gradients in neural network optimization.
 
 To bypass this, ShunyaBar relaxes logic to a smooth **cosine manifold**. For an output variable \(z\) and target state \(a_i \in \{0, 1\}\) associated with prime \(p_i\), the loss is:
-$$\mathcal{L}_i(z) = 1 - \cos\left( \frac{2\pi}{p_i} (z - a_i) \right)$$
+\[
+\mathcal{L}_i(z) = 1 - \cos\left( \frac{2\pi}{p_i} (z - a_i) \right)
+\]
 Superposing these waves across all constraints creates a smooth, continuous energy surface. The gradients flow without vanishing, guiding the network to the global minimum.
 
 ### 2.2 Chinese Remainder Theorem (CRT) & Garner's Algorithm
 When \(N\) independent logical conditions must be met, rather than tracking \(N\) variables, they are assigned pairwise coprime primes \(\{p_1, p_2, \dots, p_N\}\). By the Chinese Remainder Theorem, there exists a unique master coordinate \(X\) modulo \(P = \prod p_i\) representing the exact state configuration.
 
 Instead of brute-force searching for \(X\), ShunyaBar implements **Garner's Algorithm** (1958) in a differentiable format:
-$$X = v_1 + v_2 p_1 + v_3 p_1 p_2 + \dots + v_N (p_1 \dots p_{N-1})$$
+\[
+X = v_1 + v_2 p_1 + v_3 p_1 p_2 + \dots + v_N (p_1 \dots p_{N-1})
+\]
 Since Garner's algorithm consists only of addition, multiplication, and precomputed modular inverses, it is **fully differentiable**. This allows neural networks to "slide" down the gradient of prime-wave losses directly to the exact integer \(X\) that encodes the satisfying logical assignment.
 
 ### 2.3 p-adic Geometry of Local Repair
 In the local repair framework, the distance between two states \(z\) and \(z'\) is measured not by Euclidean metrics, but by a p-adic ultrametric. Moduli are ordered by commitment depth, and the **repair valuation** is defined as:
-$$v_R(z, z') = \max \{ n : z' \equiv z \pmod{p_1 p_2 \dots p_n} \}$$
+\[
+v_R(z, z') = \max \{ n : z' \equiv z \pmod{p_1 p_2 \dots p_n} \}
+\]
 The corresponding repair metric is:
-$$d_R(z, z') = \alpha^{-v_R(z, z')}$$
+\[
+d_R(z, z') = \alpha^{-v_R(z, z')}
+\]
 Because this satisfies the strong ultrametric inequality:
-$$d_R(z, z'') \le \max(d_R(z, z'), d_R(z', z''))$$
+\[
+d_R(z, z'') \le \max(d_R(z, z'), d_R(z', z''))
+\]
 the space of consistency states forms a **nested hierarchy**. This mathematically proves that:
 1. Repair transitions `z' = z + k*M` keep the system within the same local p-adic ball (preserving locked commitments).
 2. Trajectories are tree-structured, avoiding gradual drift and isolating perturbations.

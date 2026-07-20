@@ -1,3056 +1,403 @@
-
-<!doctype html>
-<html lang="en" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      
-        <meta name="description" content="The Arithmetic Manifold - Physics-inspired optimization and constraint satisfaction">
-      
-      
-        <meta name="author" content="Sethurathienam Iyer">
-      
-      
-        <link rel="canonical" href="https://sethuiyer.github.io/docs/marketing/bottleneck/">
-      
-      
-        <link rel="prev" href="../competition/">
-      
-      
-        <link rel="next" href="../monetization-guide/">
-      
-      
-        
-      
-      
-      <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
-    
-    
-      
-        <title>The Bottleneck - ShunyaBar Labs</title>
-      
-    
-    
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
-      
-        
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
-      
-      
-
-
-    
-    
-      
-    
-    
-      
-        
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+4:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Source Serif 4";--md-code-font:"JetBrains Mono"}</style>
-      
-    
-    
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-    
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
-    
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-    
-      
-
-    
-    
-  
-  <script async defer src="https://beampipe.io/js/tracker.js" data-beampipe-domain="sethuiyer.github.io"></script>
-
-  </head>
-  
-  
-    
-    
-      
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple">
-  
-    
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
-    <div data-md-component="skip">
-      
-        
-        <a href="#the-bottleneck-a-7-month-funnel-audit" class="md-skip">
-          Skip to content
-        </a>
-      
-    </div>
-    <div data-md-component="announce">
-      
-    </div>
-    
-    
-      
-
-<header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="ShunyaBar Labs" class="md-header__button md-logo" aria-label="ShunyaBar Labs" data-md-component="logo">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
-
-    </a>
-    <label class="md-header__button md-icon" for="__drawer">
-      
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
-    </label>
-    <div class="md-header__title" data-md-component="header-title">
-      <div class="md-header__ellipsis">
-        <div class="md-header__topic">
-          <span class="md-ellipsis">
-            ShunyaBar Labs
-          </span>
-        </div>
-        <div class="md-header__topic" data-md-component="header-topic">
-          <span class="md-ellipsis">
-            
-              The Bottleneck
-            
-          </span>
-        </div>
-      </div>
-    </div>
-    
-      
-        <form class="md-header__option" data-md-component="palette">
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
-    
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
-      </label>
-    
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="deep-purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
-    
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
-      </label>
-    
-  
-</form>
-      
-    
-    
-      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
-    
-    
-    
-      
-      
-        <label class="md-header__button md-icon" for="__search">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        </label>
-        <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-        </button>
-      </nav>
-      
-        <div class="md-search__suggest" data-md-component="search-suggest"></div>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list" role="presentation"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-      
-    
-    
-  </nav>
-  
-</header>
-    
-    <div class="md-container" data-md-component="container">
-      
-      
-        
-          
-            
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
-  <div class="md-grid">
-    <ul class="md-tabs__list">
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
-        
-  
-  
-    
-  
-  Home
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../blog/multiplicative-archaeology/" class="md-tabs__link">
-          
-  
-  
-  Blog
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../research-report/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Research Report
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../core-vision/" class="md-tabs__link">
-          
-  
-  
-  Core Vision
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../projects/" class="md-tabs__link">
-          
-  
-  
-  Projects
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-    
-  
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
-          
-  
-  
-  Marketing
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../getting-started/quick-start/" class="md-tabs__link">
-          
-  
-  
-  Getting Started
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../navokoj/" class="md-tabs__link">
-          
-  
-  
-  Resources
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../zenodo/" class="md-tabs__link">
-          
-  
-  
-  Zenodo
-
-        </a>
-      </li>
-    
-  
-
-      
-    </ul>
-  </div>
-</nav>
-          
-        
-      
-      <main class="md-main" data-md-component="main">
-        <div class="md-main__inner md-grid">
-          
-            
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-
-  
-
-
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
-  <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="ShunyaBar Labs" class="md-nav__button md-logo" aria-label="ShunyaBar Labs" data-md-component="logo">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
-
-    </a>
-    ShunyaBar Labs
-  </label>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Home
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Blog
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Blog
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../blog/multiplicative-archaeology/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Multiplicative Archaeology
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../blog/navokoj-launch/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Navokoj Launch
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../blog/navokoj-road-to-enterprise/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Road to Enterprise
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../blog/seven-seals-navokoj/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Seven Seals
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../blog/six-research-tribes/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Six Research Tribes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../research-report/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Research Report
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Core Vision
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Core Vision
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../core-vision/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    The Arithmetic Manifold
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../axiom-architecture/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Axiom Architecture
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Concepts
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_3">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Concepts
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../concepts/partition-function/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Partition Function
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../concepts/prime-weighting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Prime Weighting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../concepts/multiplicative-vs-additive/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Multiplicative vs Additive
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../concepts/agentic-ai-distributed-systems/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Agentic AI as Distributed Systems
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../concepts/prime-euler-activations/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Prime Euler Activations
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../concepts/phase-transitions/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Phase Transitions
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../concepts/riemann-hypothesis/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Riemann Hypothesis
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../concepts/asymptotically-fair-stopping/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Asymptotically Fair Stopping
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../concepts/stop-operator-manuscript/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    STOP Operators as Resolution Flows
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
-        
-          
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Projects
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Projects
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../projects/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Projects Overview
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../projects/baha/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    BAHA
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../projects/nitrosat/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    NitroSAT
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../projects/navokoj/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Navokoj
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../projects/multiplicative-pinn/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Multiplicative PINN
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../projects/spectral-multiplicative/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Spectral Multiplicative Framework
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../projects/geometry-of-conditional-logic/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Geometry of Conditional Logic
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../projects/casimir-sat-solver/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Casimir SAT Solver
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../projects/factor-agent/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Factor Agent
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../projects/thermodynamic-number-line/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Thermodynamic Number Line
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../projects/authorization-lattice/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Authorization Lattice
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    
-    
-    
-    
-      
-        
-        
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Marketing
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_6">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Marketing
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Why Navokoj
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../use-cases/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Use Cases
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../pricing/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Pricing
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../results/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Results
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../competition/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Competition
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    The Bottleneck
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    The Bottleneck
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#executive-summary-60-second-read" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Executive Summary (60-second read)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#glossary-terms-used-in-this-document" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Glossary (terms used in this document)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-we-measured" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What we measured
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="What we measured">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#layer-1-beampipe-top-of-funnel" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Layer 1 — Beampipe (top of funnel)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#layer-2-supabase-the-engine-layer" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Layer 2 — Supabase (the engine layer)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#layer-3-posthog-the-frontend" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Layer 3 — PostHog (the frontend)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-hard-mismatch" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The hard mismatch
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-diagnosis" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The diagnosis
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-we-are-doing-about-it" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What we are doing about it
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-this-is-and-what-it-is-not" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What this is, and what it is not
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-next-check-in" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The next check-in
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#change-log" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Change log
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#see-also" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        See Also
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../monetization-guide/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Pragmatist's Guide (Integrators)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../customer-monetization/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Customer Monetization
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
-        
-          
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Getting Started
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Getting Started
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../getting-started/quick-start/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Quick Start
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../getting-started/lua-module/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Lua Module
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../getting-started/benchmarks/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Benchmarks
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
-        
-          
-          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Resources
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Resources
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../navokoj/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Navokoj Developer Guide
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../product-strategy/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Product Strategy
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../references/papers/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Papers
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../references/related-work/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Related Work
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../limitations/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Limitations & Boundaries
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../TODO/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Roadmap (Post-Funding)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../glossary/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Glossary
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../design-philosophy/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Design Philosophy
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
-        
-          
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Zenodo
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Zenodo
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../zenodo/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    All Records
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../zenodo/solving-sat-quantum-vacuum-dynamics/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Casimir SAT Solver
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../zenodo/spectral-multiplicative-framework/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Spectral-Multiplicative Framework
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../zenodo/shunyabar-spectral-arithmetic-phase-transitions/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    ShunyaBar Spectral–Arithmetic
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../zenodo/multiplicative-calculus-hardness-detection/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Multiplicative Calculus BAHA
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../zenodo/nitrosat-physics-informed-maxsat/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    NitroSAT
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../zenodo/emergent-stochasticity-serialized-concurrency/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Emergent Stochasticity
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-  </ul>
-</nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-          
-          
-            <div class="md-content" data-md-component="content">
-              
-              <article class="md-content__inner md-typeset">
-                
-                  
-
-
-
-<h1 id="the-bottleneck-a-7-month-funnel-audit">The Bottleneck — A 7-Month Funnel Audit<a class="headerlink" href="#the-bottleneck-a-7-month-funnel-audit" title="Permanent link">&para;</a></h1>
+<!DOCTYPE html><html lang="en" id="top"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v7.1.1"><meta name="description" content="A founder's read on 7 months of public traffic, real usage, and a hard revenue gap."><meta name="author" content="Sethurathienam Iyer"><meta name="theme-color" content="#f6f8fa" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e2633" media="(prefers-color-scheme: dark)"><link rel="canonical" href="https://sethuiyer.github.io/docs/marketing/bottleneck/"><link rel="icon" type="image/svg+xml" href="/docs/favicon.svg"><link rel="alternate" type="application/rss+xml" title="ShunyaBar Labs writing" href="/docs/rss.xml"><link rel="sitemap" href="/docs/sitemap-index.xml"><meta property="og:type" content="article"><meta property="og:title" content="The Bottleneck — A 7-Month Funnel Audit · ShunyaBar Labs"><meta property="og:description" content="A founder's read on 7 months of public traffic, real usage, and a hard revenue gap."><meta property="og:url" content="https://sethuiyer.github.io/docs/marketing/bottleneck/"><meta property="og:site_name" content="ShunyaBar Labs"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="The Bottleneck — A 7-Month Funnel Audit · ShunyaBar Labs"><meta name="twitter:description" content="A founder's read on 7 months of public traffic, real usage, and a hard revenue gap."><title>The Bottleneck — A 7-Month Funnel Audit · ShunyaBar Labs</title><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The Bottleneck — A 7-Month Funnel Audit","description":"A founder's read on 7 months of public traffic, real usage, and a hard revenue gap.","author":{"@type":"Person","name":"Sethurathienam Iyer","sameAs":"https://orcid.org/0009-0008-5446-2856"},"publisher":{"@type":"Organization","name":"ShunyaBar Labs"},"mainEntityOfPage":"https://sethuiyer.github.io/docs/marketing/bottleneck/","keywords":""}</script><script>
+      (() => {
+        try {
+          const stored = localStorage.getItem('sb-theme');
+          const theme = stored || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.style.colorScheme = theme;
+        } catch (_) {}
+      })();
+    </script><script async defer src="https://beampipe.io/js/tracker.js" data-beampipe-domain="sethuiyer.github.io"></script><link rel="stylesheet" href="/docs/_astro/BaseLayout.C8F_61Lf.css"></head><body><a class="skip-link" href="#main-content">Skip to content</a><header class="site-header"><div class="header-inner"><a class="wordmark" href="/docs/" aria-label="ShunyaBar Labs home"><svg class="wordmark-mark" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15.5"></circle><path d="M10 18h16M18 10v16"></path><circle cx="18" cy="18" r="3.25"></circle></svg><span><strong>ShunyaBar</strong><small>Labs</small></span></a><nav class="primary-nav" aria-label="Primary navigation"><a href="/docs/blog/">Writing</a><a href="/docs/research-report/">Research</a><a href="/docs/projects/">Projects</a><a href="/docs/getting-started/quick-start/">Developers</a></nav><div class="header-actions"><button class="icon-button search-trigger" type="button" data-search-open aria-label="Search this site"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg><span>Search</span><kbd>⌘ K</kbd></button><button class="icon-button theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme"><svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path></svg><svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 15.25A8.5 8.5 0 0 1 8.75 3.5 8.5 8.5 0 1 0 20.5 15.25Z"></path></svg></button><details class="mobile-menu"><summary class="icon-button" aria-label="Open navigation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></summary><nav aria-label="Mobile navigation"><a href="/docs/blog/">Writing</a><a href="/docs/research-report/">Research</a><a href="/docs/projects/">Projects</a><a href="/docs/getting-started/quick-start/">Developers</a><a href="/docs/core-vision/">Core vision</a><a href="/docs/navokoj/">API guide</a><a href="/docs/zenodo/">Publications</a></nav></details></div></div></header><script type="module">function e(e){document.documentElement.dataset.theme=e,document.documentElement.style.colorScheme=e,localStorage.setItem(`sb-theme`,e)}document.querySelectorAll(`[data-theme-toggle]`).forEach(t=>{t.addEventListener(`click`,()=>{e(document.documentElement.dataset.theme===`dark`?`light`:`dark`)})});</script><main id="main-content"><div class="reading-progress" data-reading-progress></div><div class="article-shell"><aside class="article-sidebar"><nav class="side-navigation" aria-label="All sections"><div class="side-navigation-title"><span>Field guide</span><small>77 notes</small></div><details><summary>Start here</summary><div><a href="/docs/">Home</a><a href="/docs/blog/">Blog</a><a href="/docs/getting-started/quick-start/">Quick Start</a><a href="/docs/research-report/">Research Report</a></div></details><details><summary>Writing</summary><div><a href="/docs/blog/multiplicative-archaeology/">Multiplicative Archaeology</a><a href="/docs/blog/navokoj-launch/">Navokoj Launch</a><a href="/docs/blog/navokoj-road-to-enterprise/">Road to Enterprise</a><a href="/docs/blog/seven-seals-navokoj/">The Seven Seals</a><a href="/docs/blog/six-research-tribes/">The Six Research Tribes</a></div></details><details><summary>Core vision</summary><div><a href="/docs/core-vision/">The Arithmetic Manifold</a><a href="/docs/axiom-architecture/">Axiom Architecture</a><a href="/docs/concepts/partition-function/">Partition Function</a><a href="/docs/concepts/prime-weighting/">Prime Weighting</a><a href="/docs/concepts/multiplicative-vs-additive/">Multiplicative vs Additive</a><a href="/docs/concepts/agentic-ai-distributed-systems/">Agentic AI as Distributed Systems</a><a href="/docs/concepts/prime-euler-activations/">Prime Euler Activations</a><a href="/docs/concepts/phase-transitions/">Phase Transitions</a><a href="/docs/concepts/riemann-hypothesis/">Riemann Hypothesis</a><a href="/docs/concepts/asymptotically-fair-stopping/">Asymptotically Fair Stopping</a><a href="/docs/concepts/stop-operator-manuscript/">STOP Operators</a></div></details><details><summary>Projects</summary><div><a href="/docs/projects/">Projects Overview</a><a href="/docs/projects/baha/">BAHA</a><a href="/docs/projects/nitrosat/">NitroSAT</a><a href="/docs/projects/navokoj/">Navokoj</a><a href="/docs/projects/multiplicative-pinn/">Multiplicative PINN</a><a href="/docs/projects/spectral-multiplicative/">Spectral Multiplicative</a><a href="/docs/projects/geometry-of-conditional-logic/">Geometry of Conditional Logic</a><a href="/docs/projects/casimir-sat-solver/">Casimir SAT Solver</a><a href="/docs/projects/factor-agent/">Factor Agent</a><a href="/docs/projects/thermodynamic-number-line/">Thermodynamic Number Line</a><a href="/docs/projects/authorization-lattice/">Authorization Lattice</a></div></details><details open><summary>Navokoj</summary><div><a href="/docs/marketing/">Why Navokoj</a><a href="/docs/marketing/use-cases/">Use Cases</a><a href="/docs/marketing/pricing/">Pricing</a><a href="/docs/marketing/results/">Results</a><a href="/docs/marketing/competition/">Competition</a><a href="/docs/marketing/bottleneck/" aria-current="page">The Bottleneck</a><a href="/docs/marketing/monetization-guide/">Pragmatist&#39;s Guide</a><a href="/docs/marketing/customer-monetization/">Customer Monetization</a></div></details><details><summary>Developer guide</summary><div><a href="/docs/navokoj/">Navokoj API</a><a href="/docs/navokoj/api-documentation/">Full API Documentation</a><a href="/docs/getting-started/quick-start/">Quick Start</a><a href="/docs/getting-started/lua-module/">Lua Module</a><a href="/docs/getting-started/benchmarks/">Benchmarks</a></div></details><details><summary>Resources</summary><div><a href="/docs/product-strategy/">Product Strategy</a><a href="/docs/references/papers/">Papers</a><a href="/docs/references/related-work/">Related Work</a><a href="/docs/limitations/">Limitations &amp; Boundaries</a><a href="/docs/TODO/">Roadmap</a><a href="/docs/glossary/">Glossary</a><a href="/docs/design-philosophy/">Design Philosophy</a></div></details><details><summary>Zenodo</summary><div><a href="/docs/zenodo/">All Records</a><a href="/docs/zenodo/solving-sat-quantum-vacuum-dynamics/">Casimir SAT Solver</a><a href="/docs/zenodo/spectral-multiplicative-framework/">Spectral Multiplicative</a><a href="/docs/zenodo/shunyabar-spectral-arithmetic-phase-transitions/">Spectral–Arithmetic</a><a href="/docs/zenodo/multiplicative-calculus-hardness-detection/">Multiplicative Calculus BAHA</a><a href="/docs/zenodo/nitrosat-physics-informed-maxsat/">NitroSAT</a><a href="/docs/zenodo/emergent-stochasticity-serialized-concurrency/">Emergent Stochasticity</a></div></details></nav></aside><article class="article-column" data-article><header class="article-context"><div class="breadcrumb"><a href="/docs/">Field notes</a><span aria-hidden="true">/</span><span>Navokoj</span></div><div class="article-facts"><span>7 min read</span></div></header><details class="mobile-toc"><summary>On this page</summary><nav class="table-of-contents" aria-label="On this page"><span class="toc-title">On this page</span><ol><li class="toc-depth-2"><a href="#executive-summary-60-second-read">Executive Summary (60-second read)</a></li><li class="toc-depth-2"><a href="#glossary-terms-used-in-this-document">Glossary (terms used in this document)</a></li><li class="toc-depth-2"><a href="#what-we-measured">What we measured</a></li><li class="toc-depth-3"><a href="#layer-1-beampipe-top-of-funnel">Layer 1 — Beampipe (top of funnel)</a></li><li class="toc-depth-3"><a href="#layer-2-supabase-the-engine-layer">Layer 2 — Supabase (the engine layer)</a></li><li class="toc-depth-3"><a href="#layer-3-posthog-the-frontend">Layer 3 — PostHog (the frontend)</a></li><li class="toc-depth-2"><a href="#the-hard-mismatch">The hard mismatch</a></li><li class="toc-depth-2"><a href="#the-diagnosis">The diagnosis</a></li><li class="toc-depth-2"><a href="#what-we-are-doing-about-it">What we are doing about it</a></li><li class="toc-depth-2"><a href="#what-this-is-and-what-it-is-not">What this is, and what it is not</a></li><li class="toc-depth-2"><a href="#the-next-check-in">The next check-in</a></li><li class="toc-depth-2"><a href="#change-log">Change log</a></li><li class="toc-depth-2"><a href="#see-also">See Also</a></li></ol><a class="back-to-top" href="#top">Back to top ↑</a></nav></details><div class="prose"><h1 id="the-bottleneck-a-7-month-funnel-audit">The Bottleneck — A 7-Month Funnel Audit</h1>
 <blockquote>
-<p><em>A founder's read on 7 months of public traffic, real usage, and a hard revenue gap.</em></p>
+<p><em>A founder’s read on 7 months of public traffic, real usage, and a hard revenue gap.</em></p>
 </blockquote>
 <p><strong>Author:</strong> Sethurathienam Iyer, Founder
 <strong>Date:</strong> 2026-06-19
 <strong>Window covered:</strong> 2025-08-01 → 2026-06-19
 <strong>Next check-in:</strong> 2026-09-19</p>
-<hr />
-<h2 id="executive-summary-60-second-read">Executive Summary (60-second read)<a class="headerlink" href="#executive-summary-60-second-read" title="Permanent link">&para;</a></h2>
+<hr>
+<h2 id="executive-summary-60-second-read">Executive Summary (60-second read)<a class="heading-anchor" href="#executive-summary-60-second-read" aria-label="Link to Executive Summary (60-second read)">#</a></h2>
 <blockquote>
 <p><strong>The headline:</strong> Over 7 months, the product handled <strong>1,576 real solves from 13 users</strong>. We billed <strong>$141.66</strong>. The runtime is doing <strong>~9× more work than the billing layer is capturing</strong>.</p>
 <p><strong>The bottleneck:</strong> Not the engine. Not the math. Not the science. The conversion architecture between the product and the payment.</p>
-<p><strong>What we are at:</strong> A "13 keys, real product, no money" stage. The product does what it says. We have not yet built a business.</p>
+<p><strong>What we are at:</strong> A “13 keys, real product, no money” stage. The product does what it says. We have not yet built a business.</p>
 <p><strong>What we are doing about it:</strong> 7 specific actions in the next 90 days, ending with the only number that matters — 3 signed design partner LOIs by Sept 30.</p>
 </blockquote>
-<hr />
-<h2 id="glossary-terms-used-in-this-document">Glossary (terms used in this document)<a class="headerlink" href="#glossary-terms-used-in-this-document" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Term</th>
-<th>Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Beampipe</strong></td>
-<td>Our top-of-funnel web analytics. Counts visits to <code>sethuiyer.github.io</code> (research) and <code>navokoj.shunyabar.foo</code> (product).</td>
-</tr>
-<tr>
-<td><strong>Supabase</strong></td>
-<td>The database that backs the Navokoj API. Stores users, API keys, solve logs, billing rows.</td>
-</tr>
-<tr>
-<td><strong>PostHog</strong></td>
-<td>Our frontend product analytics. Tracks button clicks, pageviews, completion rates on the website.</td>
-</tr>
-<tr>
-<td><strong>DEFEKT</strong></td>
-<td>Our pre-solve hardness diagnostic. Tells customers how hard a problem is before they commit compute to it.</td>
-</tr>
-<tr>
-<td><strong>LOI</strong></td>
-<td>Letter of Intent. A signed but non-binding agreement to enter a paid engagement.</td>
-</tr>
-<tr>
-<td><strong>mini / pro / nano / ensemble</strong></td>
-<td>The four production engines. See the <a href="../pricing/">pricing page</a> for details.</td>
-</tr>
-<tr>
-<td><strong>Solve</strong></td>
-<td>One API call to <code>/v1/solve</code> that returns an assignment (with or without proof).</td>
-</tr>
-</tbody>
-</table>
-<hr />
+<hr>
+<h2 id="glossary-terms-used-in-this-document">Glossary (terms used in this document)<a class="heading-anchor" href="#glossary-terms-used-in-this-document" aria-label="Link to Glossary (terms used in this document)">#</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Term</th><th>Meaning</th></tr></thead><tbody><tr><td><strong>Beampipe</strong></td><td>Our top-of-funnel web analytics. Counts visits to <code>sethuiyer.github.io</code> (research) and <code>navokoj.shunyabar.foo</code> (product).</td></tr><tr><td><strong>Supabase</strong></td><td>The database that backs the Navokoj API. Stores users, API keys, solve logs, billing rows.</td></tr><tr><td><strong>PostHog</strong></td><td>Our frontend product analytics. Tracks button clicks, pageviews, completion rates on the website.</td></tr><tr><td><strong>DEFEKT</strong></td><td>Our pre-solve hardness diagnostic. Tells customers how hard a problem is before they commit compute to it.</td></tr><tr><td><strong>LOI</strong></td><td>Letter of Intent. A signed but non-binding agreement to enter a paid engagement.</td></tr><tr><td><strong>mini / pro / nano / ensemble</strong></td><td>The four production engines. See the <a href="/docs/marketing/pricing/">pricing page</a> for details.</td></tr><tr><td><strong>Solve</strong></td><td>One API call to <code>/v1/solve</code> that returns an assignment (with or without proof).</td></tr></tbody></table>
+<hr>
 <p>I am writing this in the founder voice because I want to remember what the data actually said, before I let the narrative drift. Three sources, three different layers. The numbers do not flatter us, and we are not going to flatter them.</p>
-<hr />
-<h2 id="what-we-measured">What we measured<a class="headerlink" href="#what-we-measured" title="Permanent link">&para;</a></h2>
-<h3 id="layer-1-beampipe-top-of-funnel">Layer 1 — Beampipe (top of funnel)<a class="headerlink" href="#layer-1-beampipe-top-of-funnel" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Site</th>
-<th>Unique visitors</th>
-<th>Bounce rate</th>
-<th>Top page</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>sethuiyer.github.io</td>
-<td>885</td>
-<td>87%</td>
-<td><code>/casimir-sat-solver/</code> (29%)</td>
-</tr>
-<tr>
-<td>navokoj.shunyabar.foo</td>
-<td>~700 (596 homepage + 94 docs)</td>
-<td>n/a</td>
-<td><code>/</code> (67% of navokoj traffic)</td>
-</tr>
-</tbody>
-</table>
+<hr>
+<h2 id="what-we-measured">What we measured<a class="heading-anchor" href="#what-we-measured" aria-label="Link to What we measured">#</a></h2>
+<h3 id="layer-1-beampipe-top-of-funnel">Layer 1 — Beampipe (top of funnel)<a class="heading-anchor" href="#layer-1-beampipe-top-of-funnel" aria-label="Link to Layer 1 — Beampipe (top of funnel)">#</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Site</th><th>Unique visitors</th><th>Bounce rate</th><th>Top page</th></tr></thead><tbody><tr><td>sethuiyer.github.io</td><td>885</td><td>87%</td><td><code>/casimir-sat-solver/</code> (29%)</td></tr><tr><td>navokoj.shunyabar.foo</td><td>~700 (596 homepage + 94 docs)</td><td>n/a</td><td><code>/</code> (67% of navokoj traffic)</td></tr></tbody></table>
 <p>The personal site is the research funnel. The product site is the conversion funnel. The interesting finding is in the sources.</p>
-<table>
-<thead>
-<tr>
-<th>Source</th>
-<th>sethuiyer.github.io</th>
-<th>navokoj.shunyabar.foo</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Direct / none</td>
-<td>88%</td>
-<td>89%</td>
-</tr>
-<tr>
-<td>Hacker News</td>
-<td>5%</td>
-<td>6%</td>
-</tr>
-<tr>
-<td>Google</td>
-<td>4%</td>
-<td>&lt;1%</td>
-</tr>
-<tr>
-<td>Reddit</td>
-<td>&lt;1%</td>
-<td>1%</td>
-</tr>
-<tr>
-<td>Twitter</td>
-<td>1%</td>
-<td>&lt;1%</td>
-</tr>
-<tr>
-<td>YouTube</td>
-<td>1%</td>
-<td>&lt;1%</td>
-</tr>
-</tbody>
-</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Source</th><th>sethuiyer.github.io</th><th>navokoj.shunyabar.foo</th></tr></thead><tbody><tr><td>Direct / none</td><td>88%</td><td>89%</td></tr><tr><td>Hacker News</td><td>5%</td><td>6%</td></tr><tr><td>Google</td><td>4%</td><td>&#x3C;1%</td></tr><tr><td>Reddit</td><td>&#x3C;1%</td><td>1%</td></tr><tr><td>Twitter</td><td>1%</td><td>&#x3C;1%</td></tr><tr><td>YouTube</td><td>1%</td><td>&#x3C;1%</td></tr></tbody></table>
 <p><strong>Hacker News and Reddit are working. SEO is not.</strong> 88–89% of traffic is direct, which means the people coming are people who already heard about us. We have a small, named audience. We do not have a search engine business.</p>
-<p>Device split on navokoj: 57% desktop, 19% laptop, 13% tablet, 11% mobile. The 13% tablet share is unusual and worth asking about later, but it is not today's problem.</p>
-<h3 id="layer-2-supabase-the-engine-layer">Layer 2 — Supabase (the engine layer)<a class="headerlink" href="#layer-2-supabase-the-engine-layer" title="Permanent link">&para;</a></h3>
+<p>Device split on navokoj: 57% desktop, 19% laptop, 13% tablet, 11% mobile. The 13% tablet share is unusual and worth asking about later, but it is not today’s problem.</p>
+<h3 id="layer-2-supabase-the-engine-layer">Layer 2 — Supabase (the engine layer)<a class="heading-anchor" href="#layer-2-supabase-the-engine-layer" aria-label="Link to Layer 2 — Supabase (the engine layer)">#</a></h3>
 <p>This is where the math hits the silicon. From 2025-11-22 (first usage) to 2026-06-18 (last usage):</p>
-<table>
-<thead>
-<tr>
-<th>Counter</th>
-<th>Number</th>
-<th>Read</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Users</td>
-<td>15</td>
-<td>Real accounts</td>
-</tr>
-<tr>
-<td>API keys</td>
-<td>13</td>
-<td>Real integrations</td>
-</tr>
-<tr>
-<td>Daily usage rows</td>
-<td>1,892</td>
-<td>Operational telemetry</td>
-</tr>
-<tr>
-<td>Rate-limit rows</td>
-<td>3,315</td>
-<td>Free-tier activity</td>
-</tr>
-<tr>
-<td>Solution rows stored</td>
-<td>3,368</td>
-<td>The work the engine did</td>
-</tr>
-<tr>
-<td>DEFEKT diagnostic results</td>
-<td>22</td>
-<td>Pre-solve hardness checks, essentially unused</td>
-</tr>
-<tr>
-<td>UNSAT cores produced</td>
-<td>3</td>
-<td>Proof artifacts, essentially unused</td>
-</tr>
-<tr>
-<td>Audit logs</td>
-<td>2,188</td>
-<td>Real</td>
-</tr>
-<tr>
-<td><strong>Usage-counted solves</strong></td>
-<td><strong>1,576</strong></td>
-<td>What the rate limiter saw</td>
-</tr>
-<tr>
-<td><strong>Charged solve rows</strong></td>
-<td><strong>176</strong></td>
-<td>What got billed</td>
-</tr>
-<tr>
-<td><strong>Total charged</strong></td>
-<td><strong>$141.66</strong></td>
-<td>Revenue</td>
-</tr>
-<tr>
-<td>Compute hours</td>
-<td>5.81</td>
-<td>L4: 5.25 hr / $68.99; H100: 0.56 hr / $72.67</td>
-</tr>
-</tbody>
-</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Counter</th><th>Number</th><th>Read</th></tr></thead><tbody><tr><td>Users</td><td>15</td><td>Real accounts</td></tr><tr><td>API keys</td><td>13</td><td>Real integrations</td></tr><tr><td>Daily usage rows</td><td>1,892</td><td>Operational telemetry</td></tr><tr><td>Rate-limit rows</td><td>3,315</td><td>Free-tier activity</td></tr><tr><td>Solution rows stored</td><td>3,368</td><td>The work the engine did</td></tr><tr><td>DEFEKT diagnostic results</td><td>22</td><td>Pre-solve hardness checks, essentially unused</td></tr><tr><td>UNSAT cores produced</td><td>3</td><td>Proof artifacts, essentially unused</td></tr><tr><td>Audit logs</td><td>2,188</td><td>Real</td></tr><tr><td><strong>Usage-counted solves</strong></td><td><strong>1,576</strong></td><td>What the rate limiter saw</td></tr><tr><td><strong>Charged solve rows</strong></td><td><strong>176</strong></td><td>What got billed</td></tr><tr><td><strong>Total charged</strong></td><td><strong>$141.66</strong></td><td>Revenue</td></tr><tr><td>Compute hours</td><td>5.81</td><td>L4: 5.25 hr / $68.99; H100: 0.56 hr / $72.67</td></tr></tbody></table>
 <p><strong>The runtime is doing roughly 9× more work than the billing layer is capturing.</strong> That is the headline of this document.</p>
 <p>By engine (rate-limiter counters):</p>
-<table>
-<thead>
-<tr>
-<th>Engine</th>
-<th>Solves</th>
-<th>What it means</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>mini</td>
-<td>975</td>
-<td>The default for production-feeling work</td>
-</tr>
-<tr>
-<td>pro</td>
-<td>601</td>
-<td>The harder-engine path</td>
-</tr>
-<tr>
-<td>nano</td>
-<td>0</td>
-<td>The free-tier engine is unused for real work</td>
-</tr>
-<tr>
-<td>ensemble</td>
-<td>0</td>
-<td>The expensive engine is unused entirely</td>
-</tr>
-<tr>
-<td>diagnostics</td>
-<td>0</td>
-<td>Billable diagnostic calls — not the same as DEFEKT results</td>
-</tr>
-</tbody>
-</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Engine</th><th>Solves</th><th>What it means</th></tr></thead><tbody><tr><td>mini</td><td>975</td><td>The default for production-feeling work</td></tr><tr><td>pro</td><td>601</td><td>The harder-engine path</td></tr><tr><td>nano</td><td>0</td><td>The free-tier engine is unused for real work</td></tr><tr><td>ensemble</td><td>0</td><td>The expensive engine is unused entirely</td></tr><tr><td>diagnostics</td><td>0</td><td>Billable diagnostic calls — not the same as DEFEKT results</td></tr></tbody></table>
 <p><strong>We built a 5-engine spectrum. Users picked 2.</strong> Mini and pro are doing all the work. Nano and ensemble are zeros.</p>
 <p>By hardware:</p>
-<table>
-<thead>
-<tr>
-<th>Hardware</th>
-<th>Charge rows</th>
-<th>Hours</th>
-<th>Effective $/hr</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>L4</td>
-<td>150</td>
-<td>5.25</td>
-<td>$13.14</td>
-</tr>
-<tr>
-<td>H100</td>
-<td>26</td>
-<td>0.56</td>
-<td>$129.77</td>
-</tr>
-</tbody>
-</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Hardware</th><th>Charge rows</th><th>Hours</th><th>Effective $/hr</th></tr></thead><tbody><tr><td>L4</td><td>150</td><td>5.25</td><td>$13.14</td></tr><tr><td>H100</td><td>26</td><td>0.56</td><td>$129.77</td></tr></tbody></table>
 <p>H100 is priced roughly 10× L4. That is the right pricing shape. But only 26 H100 charges in 6 months means <strong>H100 is a feature, not a habit.</strong></p>
-<h3 id="layer-3-posthog-the-frontend">Layer 3 — PostHog (the frontend)<a class="headerlink" href="#layer-3-posthog-the-frontend" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Metric</th>
-<th>Number</th>
-<th>Read</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Unique users</td>
-<td>17</td>
-<td>Slightly more than 13 API keys — overlap is real</td>
-</tr>
-<tr>
-<td>Total events</td>
-<td>1,027</td>
-<td></td>
-</tr>
-<tr>
-<td><code>solve_called</code></td>
-<td>256</td>
-<td>Frontend users clicked "solve" 256 times</td>
-</tr>
-<tr>
-<td><code>solve_completed</code></td>
-<td>91</td>
-<td><strong>35% completion rate from the frontend</strong></td>
-</tr>
-<tr>
-<td><code>chat_query_sent</code></td>
-<td>25</td>
-<td></td>
-</tr>
-<tr>
-<td><code>chat_error</code></td>
-<td>7</td>
-<td><strong>28% error rate on the chat</strong></td>
-</tr>
-<tr>
-<td><code>web_vitals</code></td>
-<td>90</td>
-<td></td>
-</tr>
-<tr>
-<td><code>pageview</code></td>
-<td>198</td>
-<td></td>
-</tr>
-<tr>
-<td>First event</td>
-<td>2026-01-08</td>
-<td></td>
-</tr>
-<tr>
-<td>Last event</td>
-<td>2026-04-25</td>
-<td><strong>8 weeks of silence</strong></td>
-</tr>
-</tbody>
-</table>
+<h3 id="layer-3-posthog-the-frontend">Layer 3 — PostHog (the frontend)<a class="heading-anchor" href="#layer-3-posthog-the-frontend" aria-label="Link to Layer 3 — PostHog (the frontend)">#</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Metric</th><th>Number</th><th>Read</th></tr></thead><tbody><tr><td>Unique users</td><td>17</td><td>Slightly more than 13 API keys — overlap is real</td></tr><tr><td>Total events</td><td>1,027</td><td></td></tr><tr><td><code>solve_called</code></td><td>256</td><td>Frontend users clicked “solve” 256 times</td></tr><tr><td><code>solve_completed</code></td><td>91</td><td><strong>35% completion rate from the frontend</strong></td></tr><tr><td><code>chat_query_sent</code></td><td>25</td><td></td></tr><tr><td><code>chat_error</code></td><td>7</td><td><strong>28% error rate on the chat</strong></td></tr><tr><td><code>web_vitals</code></td><td>90</td><td></td></tr><tr><td><code>pageview</code></td><td>198</td><td></td></tr><tr><td>First event</td><td>2026-01-08</td><td></td></tr><tr><td>Last event</td><td>2026-04-25</td><td><strong>8 weeks of silence</strong></td></tr></tbody></table>
 <p><strong>The frontend is decaying.</strong> PostHog has not seen an event in 8 weeks. Either the integration broke, users stopped coming to the site, or both. We will find out which.</p>
-<hr />
-<h2 id="the-hard-mismatch">The hard mismatch<a class="headerlink" href="#the-hard-mismatch" title="Permanent link">&para;</a></h2>
+<hr>
+<h2 id="the-hard-mismatch">The hard mismatch<a class="heading-anchor" href="#the-hard-mismatch" aria-label="Link to The hard mismatch">#</a></h2>
 <p>Now we want to put the three layers next to each other and look at the gap.</p>
-<table>
-<thead>
-<tr>
-<th>Layer</th>
-<th>Number</th>
-<th>What it counts</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Beampipe — navokoj homepage visits</td>
-<td>596</td>
-<td>Top of funnel</td>
-</tr>
-<tr>
-<td>Beampipe — navokoj docs visits</td>
-<td>94</td>
-<td>16% of homepage visits read docs</td>
-</tr>
-<tr>
-<td>PostHog <code>solve_called</code></td>
-<td>256</td>
-<td>Frontend users</td>
-</tr>
-<tr>
-<td>PostHog <code>solve_completed</code></td>
-<td>91</td>
-<td>35% of frontend calls</td>
-</tr>
-<tr>
-<td>Supabase usage-counted solves</td>
-<td>1,576</td>
-<td>What the API actually ran</td>
-</tr>
-<tr>
-<td>Supabase solution rows</td>
-<td>3,368</td>
-<td>What got stored</td>
-</tr>
-<tr>
-<td>Supabase charged solve rows</td>
-<td>176</td>
-<td>What got billed</td>
-</tr>
-<tr>
-<td>Total revenue</td>
-<td>$141.66</td>
-<td></td>
-</tr>
-</tbody>
-</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Layer</th><th>Number</th><th>What it counts</th></tr></thead><tbody><tr><td>Beampipe — navokoj homepage visits</td><td>596</td><td>Top of funnel</td></tr><tr><td>Beampipe — navokoj docs visits</td><td>94</td><td>16% of homepage visits read docs</td></tr><tr><td>PostHog <code>solve_called</code></td><td>256</td><td>Frontend users</td></tr><tr><td>PostHog <code>solve_completed</code></td><td>91</td><td>35% of frontend calls</td></tr><tr><td>Supabase usage-counted solves</td><td>1,576</td><td>What the API actually ran</td></tr><tr><td>Supabase solution rows</td><td>3,368</td><td>What got stored</td></tr><tr><td>Supabase charged solve rows</td><td>176</td><td>What got billed</td></tr><tr><td>Total revenue</td><td>$141.66</td><td></td></tr></tbody></table>
 <p>Three findings we did not expect to find.</p>
-<p><strong>1. Frontend users convert at roughly 5× the rate of API users.</strong> PostHog shows 91 completes; Supabase shows 176 charges. If we assume most of the 176 came from the 91 frontend completes (a fair assumption given PostHog's 256 calls map to 91 completes, and 176 is the same order of magnitude), then <strong>frontend users convert at ~52% to paid</strong>, versus the <strong>11% overall conversion</strong> from rate-limited to billed. The web UI is a paid funnel, not a free funnel. The API is the other way around.</p>
+<p><strong>1. Frontend users convert at roughly 5× the rate of API users.</strong> PostHog shows 91 completes; Supabase shows 176 charges. If we assume most of the 176 came from the 91 frontend completes (a fair assumption given PostHog’s 256 calls map to 91 completes, and 176 is the same order of magnitude), then <strong>frontend users convert at ~52% to paid</strong>, versus the <strong>11% overall conversion</strong> from rate-limited to billed. The web UI is a paid funnel, not a free funnel. The API is the other way around.</p>
 <p>This is a real signal. The thing that costs us the most time to build (the website) is the thing that makes us the most money per visitor. The thing we have not been investing in (the API UX, the upgrade moment) is the thing that bleeds conversion.</p>
 <p><strong>2. The frontend stopped.</strong> We assumed users would come back to the website after their first API call. They do not. Once they have a key, they wire it into a script and the site becomes a stale tab. <strong>8 weeks of PostHog silence means the website is a brochure, not a product surface.</strong> The product is the API. The site is the marketing layer over it.</p>
 <p><strong>3. Chat is broken 28% of the time.</strong> 7 errors out of 25 queries. Whatever the chat does, it gets wrong 1 in 4 times. This is on us. We have not fixed it. We have not even measured it carefully until now.</p>
-<hr />
-<h2 id="the-diagnosis">The diagnosis<a class="headerlink" href="#the-diagnosis" title="Permanent link">&para;</a></h2>
+<hr>
+<h2 id="the-diagnosis">The diagnosis<a class="heading-anchor" href="#the-diagnosis" aria-label="Link to The diagnosis">#</a></h2>
 <p>There is exactly one bottleneck, and we want to write it down so we do not confuse it with other problems.</p>
 <blockquote>
 <p><strong>The runtime exists. The charge / accounting layer is much smaller than the runtime layer. The product is not what the marketing says it is. The website is a brochure, not a product surface.</strong></p>
@@ -3058,201 +405,128 @@
 <p>Specifically:</p>
 <ol>
 <li><strong>The free tier is too generous, or the upgrade trigger is too weak.</strong> 1,400+ solves ran for free. 11% conversion is the smoking gun. The 6-week gap between first usage (2025-11-22) and first charge (2026-01-03) means <strong>users get real value before they ever see a paywall</strong>, and once they have it, the upgrade moment is invisible.</li>
-<li><strong>The "differentiators" are documented but not demanded by the user.</strong> DEFEKT: 22 calls. Proof artifacts: 3 UNSAT cores. Ensemble engine: 0 solves. <strong>These cost engineering time to maintain and confuse the marketing.</strong> Either ship them as first-class features with in-product prompts and success stories, or stop selling them.</li>
-<li><strong>The schema has known bugs</strong> (per the product strategy: integer weights only, derivation graphs not strings, infeasibility case). These may be silently failing paid requests. <strong>If a paid request gets rejected by the schema and counted as "free," that is a direct revenue leak.</strong></li>
+<li><strong>The “differentiators” are documented but not demanded by the user.</strong> DEFEKT: 22 calls. Proof artifacts: 3 UNSAT cores. Ensemble engine: 0 solves. <strong>These cost engineering time to maintain and confuse the marketing.</strong> Either ship them as first-class features with in-product prompts and success stories, or stop selling them.</li>
+<li><strong>The schema has known bugs</strong> (per the product strategy: integer weights only, derivation graphs not strings, infeasibility case). These may be silently failing paid requests. <strong>If a paid request gets rejected by the schema and counted as “free,” that is a direct revenue leak.</strong></li>
 <li><strong>The chat is broken 28% of the time.</strong> This is a credibility problem and a fix-it-or-remove-it decision.</li>
 <li><strong>The website is not the product.</strong> The product is the API. The website has to either become a product surface (account dashboard, quota, results visualization, success stories) or stop pretending to be one.</li>
 <li><strong>The data is internally inconsistent.</strong> The engine taxonomy in storage (<code>pro-deepthink</code>, <code>mini-deepthink</code>, <code>adaptive-deepthink</code>, <code>Navokoj Nano Plan</code>, <code>nitro</code>, <code>nano</code>) does not match the engine taxonomy in rate-limiting (<code>solves_nano</code>, <code>solves_mini</code>, <code>solves_pro</code>, <code>solves_ensemble</code>, <code>Diagnostics</code>). We have 6 engines named 6 different ways across 3 tables. This is <strong>billing / observability debt</strong>, and it is hiding the truth about which engines customers are actually using.</li>
 </ol>
-<hr />
-<h2 id="what-we-are-doing-about-it">What we are doing about it<a class="headerlink" href="#what-we-are-doing-about-it" title="Permanent link">&para;</a></h2>
+<hr>
+<h2 id="what-we-are-doing-about-it">What we are doing about it<a class="heading-anchor" href="#what-we-are-doing-about-it" aria-label="Link to What we are doing about it">#</a></h2>
 <p>In the next 90 days, in order:</p>
 <ol>
-<li><strong>Audit the 1,576 → 176 pipeline.</strong> We will trace every billed vs unbilled solve to find the leak. If the schema bugs are dropping paid requests, fix the schema. If the rate limiter is over-counting free usage, fix the rate limiter. If the upgrade trigger is invisible, add a hard wall at 100,000 clauses for free tier and a "you have used X% of your free tier this month" banner.</li>
+<li><strong>Audit the 1,576 → 176 pipeline.</strong> We will trace every billed vs unbilled solve to find the leak. If the schema bugs are dropping paid requests, fix the schema. If the rate limiter is over-counting free usage, fix the rate limiter. If the upgrade trigger is invisible, add a hard wall at 100,000 clauses for free tier and a “you have used X% of your free tier this month” banner.</li>
 <li><strong>Fix or remove the chat.</strong> 28% error rate is not a feature. We will either rebuild it against the actual <code>/v1/solve</code> API or remove it from the site. Half a broken feature is worse than no feature.</li>
 <li><strong>Reconcile the engine taxonomy.</strong> One engine, one name, one counter, one table. If <code>mini-deepthink</code> and <code>solves_mini</code> are the same engine, they need the same name in storage, in rate-limiting, in billing, in the API, in the docs, and in the marketing. Right now the same engine has at least three names.</li>
 <li><strong>Decide on the differentiators.</strong> Either DEFEKT, proof artifacts, and ensemble become first-class (with in-product prompts, sample requests, success stories, and at least one paying customer using them) or they get cut from the marketing copy. Right now they are both marketed and ignored, which is the worst of both worlds.</li>
 <li><strong>Build a real product surface.</strong> API key, account dashboard, recent solves, success rate, cost per solve, quota. Give users a reason to come back to the site. The fact that frontend users convert at 52% versus API users at 11% is the entire business case for this work.</li>
 <li><strong>Get 3 design partner LOIs signed</strong> before we run these numbers again. The strategy doc calls for this. The data confirms why. $141.66 over 6 months is not a business. 3 LOIs at $5–20K each is the next number on this page.</li>
-<li><strong>Stop selling things that are not there.</strong> Drop "ZK" from the homepage. Drop "DEFEKT" from the marketing if we are not going to ship it as a first-class feature. Drop "proof artifact" from the pricing page until the schema is fixed and the request rate matches the documentation.</li>
+<li><strong>Stop selling things that are not there.</strong> Drop “ZK” from the homepage. Drop “DEFEKT” from the marketing if we are not going to ship it as a first-class feature. Drop “proof artifact” from the pricing page until the schema is fixed and the request rate matches the documentation.</li>
 </ol>
-<hr />
-<h2 id="what-this-is-and-what-it-is-not">What this is, and what it is not<a class="headerlink" href="#what-this-is-and-what-it-is-not" title="Permanent link">&para;</a></h2>
+<hr>
+<h2 id="what-this-is-and-what-it-is-not">What this is, and what it is not<a class="heading-anchor" href="#what-this-is-and-what-it-is-not" aria-label="Link to What this is, and what it is not">#</a></h2>
 <p><strong>This is not a failure.</strong> We built a working API. We shipped engines that customers actually use. We wrote a real limitations page. We have 13 paying-tier-or-near-paying-tier users, and they ran 1,576 real solves. The product does what it says it does. Most products never get past zero. We are past zero.</p>
 <p><strong>This is not a success.</strong> We have not yet built a business. $141.66 over 6 months is below the threshold where a runway conversation becomes serious. The 11% conversion is a structural gap, not a launch glitch. The product-market fit story is not yet written.</p>
-<p><strong>This is a stage.</strong> We are at the "13 keys, real product, no money" stage. The math works. The product works. The strategy is sharp. The bottleneck is the conversion architecture between runtime and billing. The next 90 days are about closing that gap.</p>
-<hr />
-<h2 id="the-next-check-in">The next check-in<a class="headerlink" href="#the-next-check-in" title="Permanent link">&para;</a></h2>
+<p><strong>This is a stage.</strong> We are at the “13 keys, real product, no money” stage. The math works. The product works. The strategy is sharp. The bottleneck is the conversion architecture between runtime and billing. The next 90 days are about closing that gap.</p>
+<hr>
+<h2 id="the-next-check-in">The next check-in<a class="heading-anchor" href="#the-next-check-in" aria-label="Link to The next check-in">#</a></h2>
 <p>I am writing this in public because I want to be accountable to it. On <strong>2026-09-19</strong>, three months from now, we will run these numbers again. The numbers we want to see change:</p>
-<table>
-<thead>
-<tr>
-<th>Metric</th>
-<th>Today (2026-06-19)</th>
-<th>Target (2026-09-19)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Navokoj homepage visits</td>
-<td>596</td>
-<td>2,000+</td>
-</tr>
-<tr>
-<td>Navokoj docs visits</td>
-<td>94</td>
-<td>400+</td>
-</tr>
-<tr>
-<td>Usage-counted solves</td>
-<td>1,576</td>
-<td>10,000+</td>
-</tr>
-<tr>
-<td>Charged solve rows</td>
-<td>176</td>
-<td>1,000+</td>
-</tr>
-<tr>
-<td>Total revenue</td>
-<td>$141.66</td>
-<td>$5,000+</td>
-</tr>
-<tr>
-<td>Signed design partner LOIs</td>
-<td>0</td>
-<td>3+</td>
-</tr>
-<tr>
-<td>DEFEKT calls</td>
-<td>22</td>
-<td>200+ (or DEFEKT removed from marketing)</td>
-</tr>
-<tr>
-<td>Chat error rate</td>
-<td>28%</td>
-<td>&lt;5%</td>
-</tr>
-<tr>
-<td>Frontend solve completion rate</td>
-<td>35%</td>
-<td>60%+</td>
-</tr>
-<tr>
-<td>Frontend ↔ billing ratio</td>
-<td>52%</td>
-<td>60%+</td>
-</tr>
-<tr>
-<td>Engine taxonomy</td>
-<td>6 names / 3 tables</td>
-<td>1 name / 1 table</td>
-</tr>
-</tbody>
-</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Metric</th><th>Today (2026-06-19)</th><th>Target (2026-09-19)</th></tr></thead><tbody><tr><td>Navokoj homepage visits</td><td>596</td><td>2,000+</td></tr><tr><td>Navokoj docs visits</td><td>94</td><td>400+</td></tr><tr><td>Usage-counted solves</td><td>1,576</td><td>10,000+</td></tr><tr><td>Charged solve rows</td><td>176</td><td>1,000+</td></tr><tr><td>Total revenue</td><td>$141.66</td><td>$5,000+</td></tr><tr><td>Signed design partner LOIs</td><td>0</td><td>3+</td></tr><tr><td>DEFEKT calls</td><td>22</td><td>200+ (or DEFEKT removed from marketing)</td></tr><tr><td>Chat error rate</td><td>28%</td><td>&#x3C;5%</td></tr><tr><td>Frontend solve completion rate</td><td>35%</td><td>60%+</td></tr><tr><td>Frontend ↔ billing ratio</td><td>52%</td><td>60%+</td></tr><tr><td>Engine taxonomy</td><td>6 names / 3 tables</td><td>1 name / 1 table</td></tr></tbody></table>
 <p>If those numbers do not move, the bottleneck is not the conversion architecture — it is the product. And that is a different conversation.</p>
 <p>If they do move, the bottleneck is what we said it is, and this is the document that told us so.</p>
-<hr />
-<h2 id="change-log">Change log<a class="headerlink" href="#change-log" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Date</th>
-<th>Change</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2026-06-19</td>
-<td>First version. 7-month funnel audit from 2025-08-01 to 2026-06-19.</td>
-</tr>
-<tr>
-<td><em>next check-in</em></td>
-<td><em>2026-09-19: re-run all metrics; update target table; add or remove sections based on what changed.</em></td>
-</tr>
-</tbody>
-</table>
+<hr>
+<h2 id="change-log">Change log<a class="heading-anchor" href="#change-log" aria-label="Link to Change log">#</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Date</th><th>Change</th></tr></thead><tbody><tr><td>2026-06-19</td><td>First version. 7-month funnel audit from 2025-08-01 to 2026-06-19.</td></tr><tr><td><em>next check-in</em></td><td><em>2026-09-19: re-run all metrics; update target table; add or remove sections based on what changed.</em></td></tr></tbody></table>
 <p><em>Authored by Sethurathienam Iyer, Founder, ShunyaBar Labs</em>
 <em>Published 2026-06-19</em></p>
-<hr />
-<h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
+<hr>
+<h2 id="see-also">See Also<a class="heading-anchor" href="#see-also" aria-label="Link to See Also">#</a></h2>
 <ul>
-<li><a href="../../product-strategy/">Product Strategy</a> — the strategy this audit informs</li>
-<li><a href="../../TODO/">Roadmap (TODO)</a> — Q3 2026 targets from this audit</li>
-<li><a href="../pricing/">Pricing</a> — pricing strategy and tiers</li>
-<li><a href="../../glossary/">Glossary</a> — terms used in this document</li>
-<li><a href="../../design-philosophy/">Design Philosophy</a> — why we publish internal audits openly</li>
-</ul>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-              </article>
-            </div>
-          
-          
-<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
-        </div>
-        
-          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  Back to top
-</button>
-        
-      </main>
-      
-        <footer class="md-footer">
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
-  
-  
-    Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
-    </a>
-  
-</div>
-      
-    </div>
-  </div>
-</footer>
-      
-    </div>
-    <div class="md-dialog" data-md-component="dialog">
-      <div class="md-dialog__inner md-typeset"></div>
-    </div>
-    
-    
-    
-      
-      
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "content.code.copy", "content.code.annotate", "navigation.tabs", "navigation.sections", "toc.integrate", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
-    
-    
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-      
-        <script src="../../javascripts/katex.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-      
-        <script src="../../javascripts/mermaid-init.js"></script>
-      
-    
-  </body>
-</html>
+<li><a href="/docs/product-strategy/">Product Strategy</a> — the strategy this audit informs</li>
+<li><a href="/docs/TODO/">Roadmap (TODO)</a> — Q3 2026 targets from this audit</li>
+<li><a href="/docs/marketing/pricing/">Pricing</a> — pricing strategy and tiers</li>
+<li><a href="/docs/glossary/">Glossary</a> — terms used in this document</li>
+<li><a href="/docs/design-philosophy/">Design Philosophy</a> — why we publish internal audits openly</li>
+</ul></div><footer class="article-footer"><div class="author-note"><span class="author-monogram">SI</span><div><strong>Sethurathienam Iyer</strong><p>Founder of ShunyaBar Labs. Researching arithmetic geometry, constraint intelligence, and proof-aware optimization.</p></div></div><nav class="article-pagination" aria-label="Previous and next pages"><a href="/docs/marketing/competition/"><small>Previous</small><strong>← Competition</strong></a><a class="next-page" href="/docs/marketing/monetization-guide/"><small>Next</small><strong>Pragmatist&#39;s Guide →</strong></a></nav></footer></article><aside class="article-toc"><nav class="table-of-contents" aria-label="On this page"><span class="toc-title">On this page</span><ol><li class="toc-depth-2"><a href="#executive-summary-60-second-read">Executive Summary (60-second read)</a></li><li class="toc-depth-2"><a href="#glossary-terms-used-in-this-document">Glossary (terms used in this document)</a></li><li class="toc-depth-2"><a href="#what-we-measured">What we measured</a></li><li class="toc-depth-3"><a href="#layer-1-beampipe-top-of-funnel">Layer 1 — Beampipe (top of funnel)</a></li><li class="toc-depth-3"><a href="#layer-2-supabase-the-engine-layer">Layer 2 — Supabase (the engine layer)</a></li><li class="toc-depth-3"><a href="#layer-3-posthog-the-frontend">Layer 3 — PostHog (the frontend)</a></li><li class="toc-depth-2"><a href="#the-hard-mismatch">The hard mismatch</a></li><li class="toc-depth-2"><a href="#the-diagnosis">The diagnosis</a></li><li class="toc-depth-2"><a href="#what-we-are-doing-about-it">What we are doing about it</a></li><li class="toc-depth-2"><a href="#what-this-is-and-what-it-is-not">What this is, and what it is not</a></li><li class="toc-depth-2"><a href="#the-next-check-in">The next check-in</a></li><li class="toc-depth-2"><a href="#change-log">Change log</a></li><li class="toc-depth-2"><a href="#see-also">See Also</a></li></ol><a class="back-to-top" href="#top">Back to top ↑</a></nav></aside></div></main><footer class="site-footer"><div class="footer-inner"><div class="footer-thesis"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15.5"></circle><path d="M10 18h16M18 10v16"></path><circle cx="18" cy="18" r="3.25"></circle></svg><div><strong>ShunyaBar Labs</strong><p>Physics-informed constraint intelligence & proof-aware optimization.</p></div></div><nav aria-label="Footer navigation"><div><strong>Explore</strong><a href="/docs/blog/">Writing</a><a href="/docs/projects/">Projects</a><a href="/docs/zenodo/">Publications</a></div><div><strong>Build</strong><a href="/docs/getting-started/quick-start/">Quick Start</a><a href="/docs/navokoj/">API Guide</a><a href="/docs/marketing/pricing/">Pricing</a></div><div><strong>Follow</strong><a href="https://github.com/sethuiyer">GitHub</a><a href="https://medium.com/@sethuiyer">Medium</a><a href="/docs/rss.xml">RSS</a></div></nav></div><div class="footer-bottom"><span>© 2026 Sethurathienam Iyer</span><span>Logic should be a utility.</span></div></footer><dialog class="search-dialog" data-search-dialog data-index-url="/docs/search-index.json"><div class="search-panel"><form class="search-form" method="dialog" onsubmit="return false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg><input type="search" data-search-input autocomplete="off" placeholder="Search essays, research, projects…" aria-label="Search this site"><button type="button" data-search-close aria-label="Close search">Esc</button></form><div class="search-status" data-search-status>Start typing to search all 77 articles and guides.</div><ol class="search-results" data-search-results></ol><footer><span><kbd>↑</kbd><kbd>↓</kbd> move</span><span><kbd>↵</kbd> open</span><span>Static, private search</span></footer></div></dialog><script type="module">var e=document.querySelector(`[data-search-dialog]`),t=e?.querySelector(`[data-search-input]`),n=e?.querySelector(`[data-search-results]`),r=e?.querySelector(`[data-search-status]`),i=null,a=-1;async function o(){i||!e||(i=await(await fetch(e.dataset.indexUrl)).json())}function s(e,t){let n=e.title.toLowerCase(),r=e.description.toLowerCase(),i=e.text.toLowerCase();return t.reduce((e,t)=>!n.includes(t)&&!r.includes(t)&&!i.includes(t)?-1e4:e+(n.includes(t)?12:0)+(r.includes(t)?5:0)+1,0)}function c(e){if(!i||!n||!r)return;let t=e.toLowerCase().trim().split(/\s+/).filter(Boolean);if(n.replaceChildren(),a=-1,!t.length){r.textContent=`Start typing to search all 77 articles and guides.`;return}let o=i.map(e=>({item:e,score:s(e,t)})).filter(e=>e.score>-1e4).sort((e,t)=>t.score-e.score).slice(0,8);r.textContent=o.length?`${o.length} best matches`:`No matches. Try a broader phrase.`;for(let{item:e}of o){let t=document.createElement(`li`),r=document.createElement(`a`),i=document.createElement(`span`),a=document.createElement(`strong`),o=document.createElement(`small`);r.href=e.path,i.textContent=e.section,a.textContent=e.title,o.textContent=e.description,r.append(i,a,o),t.append(r),n.append(t)}}async function l(){e&&(e.showModal(),await o(),t?.focus())}function u(e){let t=Array.from(n?.querySelectorAll(`a`)??[]);t.length&&(a=(a+e+t.length)%t.length,t[a].focus())}document.querySelectorAll(`[data-search-open]`).forEach(e=>e.addEventListener(`click`,l)),e?.querySelector(`[data-search-close]`)?.addEventListener(`click`,()=>e.close()),e?.addEventListener(`click`,t=>{t.target===e&&e.close()}),t?.addEventListener(`input`,()=>c(t.value)),document.addEventListener(`keydown`,t=>{(t.metaKey||t.ctrlKey)&&t.key.toLowerCase()===`k`?(t.preventDefault(),e?.open?e.close():l()):e?.open&&t.key===`ArrowDown`?(t.preventDefault(),u(1)):e?.open&&t.key===`ArrowUp`&&(t.preventDefault(),u(-1))});</script></body></html><script type="module" src="/docs/_astro/ArticleLayout.astro_astro_type_script_index_0_lang._esIwtdm.js"></script>

@@ -53,7 +53,7 @@ Combined, the Seven Seals create a product that:
 The depth of this stack is rare. Most products stop at one or two of these layers. We do not. This is the depth of our commitment to delivering world-class solutions to your hardest constraints.
 
 — *Sethurathienam Iyer, CEO, ShunyaBar Labs*
-*Contact: `shunyabarlabs@zohomail.com`*
+*Contact: `contact@shunyabar.foo`*
 
 ---
 
