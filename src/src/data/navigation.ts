@@ -23,7 +23,7 @@ export const navigation: NavGroup[] = [
     items: [
       { label: 'Multiplicative Archaeology', path: '/blog/multiplicative-archaeology/' },
       { label: 'Navokoj Launch', path: '/blog/navokoj-launch/' },
-      { label: 'Road to Enterprise', path: '/blog/navokoj-road-to-enterprise/' },
+      { label: 'Road to Enterprise', path: '/blog/road-to-enterprise/' },
       { label: 'The Seven Seals', path: '/blog/seven-seals-navokoj/' },
       { label: 'The Six Research Tribes', path: '/blog/six-research-tribes/' }
     ]
