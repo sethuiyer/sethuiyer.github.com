@@ -180,7 +180,7 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
-      <h1>/home/sethuiyer</h1>
+      <h1>$ cat /etc/profile</h1>
       <span class="vintage-label">$ whoami</span>
     </div>
   </section>
@@ -192,7 +192,7 @@
         alt="Portrait of Sethu Iyer - Data Scientist and AI Researcher" class="profile-img"
         loading="lazy">
       <div class="profile-info">
-        <h2 class="profile-name">$ cat /etc/profile</h2>
+        <h2 class="profile-name">Sethu Iyer</h2>
         <p class="profile-title">Data Scientist & AI Researcher</p>
         <p>
           <a href="https://github.com/sethuiyer" target="_blank"><i class="fab fa-github"></i> /usr/bin/git</a>
@@ -220,11 +220,7 @@
     </div>
 
     <div class="vintage-card">
-      <p id="bio-text">I'm an interdisciplinary AI professional with <span id="experience-years"></span> years of
-        experience building production-grade LLM architectures, search, retrieval systems and end to end product
-        development . Mathematics and Computer Science is my foundation. Conversational AI, Search, and exploring
-        seemingly unrelated yet connected concepts are my playgrounds.
-      </p>
+      <p id="bio-text">Building production LLMs, search, and retrieval systems. Math and CS background enabled research mindset.</p>
       <p class="mt-10">
         <span class="last-updated">
           <i class="fas fa-clock"></i>
@@ -239,16 +235,13 @@
     <h2 class="section-title">About Me</h2>
 
     <div class="testimonial-box">
-      <h3>Education & Background</h3>
-      <p>I have a strong background in mathematics and computer science with a dual degree from BITS Pilani. My
-        interdisciplinary approach allows me to tackle problems from multiple angles, drawing insights from graph
-        theory, topology, functional analysis, and computational methods.</p>
+      <h3>Background</h3>
+      <p>Math and CS from BITS Pilani. I work on LLM interpretability and explore physics-inspired approaches to optimization, treating SAT problems like thermodynamic systems.</p>
     </div>
 
     <div class="testimonial-box">
-      <h3>Research Focus</h3>
-      <p>My research focuses on developing <b>novel interpretability metrics</b> for LLMs to enhance transparency in
-        decision-making, alongside exploring <b>physics-informed mathematical algorithms</b> — treating Boolean satisfiability as thermodynamic free energy minimization on Riemannian manifolds, and applying concepts from spectral graph theory, persistent homology, and Langevin dynamics to build next-generation constraint solvers.</p>
+      <h3>Research Interests</h3>
+      <p>LLM transparency and physics-informed algorithms. The math is open source if you're curious.</p>
     </div>
 
   </section>
@@ -333,17 +326,15 @@
     <h2 class="section-title">Work Experience</h2>
 
     <div class="testimonial-box">
-      <h3>Workato — Senior AI Research Engineer <span class="date-range"><time datetime="2025-05">May 2025</time> – <time
-            datetime="present">Present</time></span></h3>
-      <p class="company-name"><i class="fas fa-building"></i> Bengaluru / Hyderabad, India</p>
-      <p style="margin-top: 15px;">Working on enterprise search, AI chat, and relevance systems for automation and knowledge-discovery workflows.</p>
+      <h3>Workato — Senior AI Research Engineer <span class="date-range"><time datetime="2025-05">May 2025</time> – Present</span></h3>
+      <p class="company-name"><i class="fas fa-building"></i> Bengaluru</p>
+      <p style="margin-top: 15px;">Enterprise search and relevance systems for automation workflows.</p>
       <ul style="margin-top: 15px; padding-left: 20px;">
-        <li>Built a CRM-aware semantic search pipeline that converts natural-language business queries into scoped tags, metadata filters, and hybrid retrieval constraints; validated the pipeline with unit, integration, and end-to-end test coverage.</li>
-        <li>Designed a datasource-agnostic relevance architecture using a registry/adapter pattern, reducing connector-specific branching and making semantic mappings easier to extend across heterogeneous enterprise content.</li>
-        <li>Implemented structured query-pipeline improvements for datasource detection, metadata extraction, filter generation, and mixed-source query validation, improving correctness for multi-entity search behavior.</li>
-        <li>Diagnosed and fixed search-quality regressions across Lucene/OpenSearch query generation, citation metadata, date filtering, and retrieval evaluation by tracing failures from user-visible symptoms to query-layer root causes.</li>
+        <li>Building semantic search for business queries across heterogeneous data sources</li>
+        <li>Improving retrieval accuracy for multi-entity, multi-source search scenarios</li>
+        <li>Working with LLMs for enterprise knowledge discovery</li>
       </ul>
-      <p style="margin-top: 15px;"><strong>Technologies:</strong> Python, FastAPI/Sanic, OpenSearch/Lucene, Redis, PostgreSQL, LLM APIs, embeddings, Docker, CI/CD, observability tooling.</p>
+      <p style="margin-top: 15px;"><strong>Stack:</strong> Python, FastAPI, OpenSearch/Lucene, Redis, PostgreSQL, embeddings</p>
     </div>
 
     <div class="testimonial-box">
@@ -418,43 +409,53 @@
 
   <!-- Education Section -->
   <section id="education" class="about-section container animated-section">
-    <h2 class="section-title">Education</h2>
+    <h2 class="section-title">Education <button onclick="toggleSection(this, 'education-detail')" class="vintage-button" style="font-size: 0.8rem; padding: 0.25rem 0.75rem; margin-left: 1rem;"><i class="fas fa-plus"></i> Expand</button></h2>
 
-    <div class="testimonial-box">
-      <h3>Birla Institute of Technology and Science, Pilani <span class="date-range"><time datetime="2013">2013</time> -
-          <time datetime="2018">2018</time></span></h3>
-      <p class="company-name"><i class="fas fa-university"></i> Dual Degree: M.Sc Mathematics & B.E Computer Science</p>
-      <p style="margin-top: 10px;">GPA: 7.47/10 (Equivalent to 3.7/4.0 US Scale)</p>
-      <p class="mt-10"><strong>Relevant Courses:</strong> Functional Analysis, Data Structures and Algorithms, Advanced
-        Probability and Statistics, Graph Theory, Topology, Operations Research, Machine Learning, Quantum Computing</p>
+    <div class="testimonial-box" style="background: linear-gradient(135deg, var(--primary-blue), var(--primary-pink)); color: white; border: none;">
+      <p style="font-size: 1rem;"><i class="fas fa-graduation-cap"></i> <strong>BITS Pilani</strong> — M.Sc Math & B.E CS</p>
     </div>
 
-    <div class="testimonial-box">
-      <h3>Certifications</h3>
-      <ul style="margin-top: 15px; padding-left: 20px;">
-        <li>Quantum Computing and Machine Learning — IIT Delhi (Score: 86/100)</li>
-        <li>IBM Blockchain Essentials - LinkedIn</li>
-        <li>Apache Spark Essential Training - LinkedIn</li>
-        <li>Intermediate and Advanced Machine Learning - Kaggle</li>
-      </ul>
-    </div>
+    <div id="education-detail" style="display: none;">
+      <div class="testimonial-box">
+        <h3>Birla Institute of Technology and Science, Pilani <span class="date-range">2013 - 2018</span></h3>
+        <p class="company-name"><i class="fas fa-university"></i> Dual Degree: M.Sc Mathematics & B.E Computer Science</p>
+        <p style="margin-top: 10px;">GPA: 7.47/10 (Equivalent to 3.7/4.0 US Scale)</p>
+        <p class="mt-10"><strong>Relevant Courses:</strong> Functional Analysis, Data Structures and Algorithms, Advanced
+          Probability and Statistics, Graph Theory, Topology, Operations Research, Machine Learning, Quantum Computing</p>
+      </div>
 
-    <div class="testimonial-box">
-      <h3>Publications</h3>
-      <p class="mt-10"><strong>Image captioning-based image search engine: An alternative to retrieval by
-          metadata</strong></p>
-      <p>S. Iyer, S. Chaturvedi, T. Dash - Soft Computing for Problem Solving: SocProS 2017, Volume 2, 181-191</p>
-      <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=ivR07L8AAAAJ&citation_for_view=ivR07L8AAAAJ:u5HHmVD_uO8C"
-        target="_blank" class="mt-10 inline-block">
-        <i class="fas fa-external-link-alt"></i> View on Google Scholar
-      </a>
+      <div class="testimonial-box">
+        <h3>Certifications</h3>
+        <ul style="margin-top: 15px; padding-left: 20px;">
+          <li>Quantum Computing and Machine Learning, IIT Delhi (Score: 86/100)</li>
+          <li>IBM Blockchain Essentials - LinkedIn</li>
+          <li>Apache Spark Essential Training - LinkedIn</li>
+          <li>Intermediate and Advanced Machine Learning - Kaggle</li>
+        </ul>
+      </div>
+
+      <div class="testimonial-box">
+        <h3>Publications</h3>
+        <p class="mt-10"><strong>Image captioning-based image search engine: An alternative to retrieval by
+            metadata</strong></p>
+        <p>S. Iyer, S. Chaturvedi, T. Dash - Soft Computing for Problem Solving: SocProS 2017, Volume 2, 181-191</p>
+        <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=ivR07L8AAAAJ&citation_for_view=ivR07L8AAAAJ:u5HHmVD_uO8C"
+          target="_blank" class="mt-10 inline-block">
+          <i class="fas fa-external-link-alt"></i> View on Google Scholar
+        </a>
+      </div>
     </div>
   </section>
 
   <!-- Projects Section -->
   <section id="projects" class="projects-section container animated-section">
-    <h2 class="section-title">Featured Projects</h2>
+    <h2 class="section-title">Featured Projects <button onclick="toggleSection(this, 'projects-detail')" class="vintage-button" style="font-size: 0.8rem; padding: 0.25rem 0.75rem; margin-left: 1rem;"><i class="fas fa-plus"></i> Expand</button></h2>
 
+    <div class="testimonial-box" style="background: linear-gradient(135deg, var(--primary-blue), var(--primary-pink)); color: white; border: none;">
+      <p style="font-size: 1rem;"><i class="fas fa-code"></i> LLMs, RAG, AutoML, Search, Optimization, and more</p>
+    </div>
+
+    <div id="projects-detail" style="display: none;">
     <div class="filter-container mb-20">
       <button class="vintage-button filter-btn active" data-filter="all">All</button>
       <button class="vintage-button filter-btn" data-filter="llm">LLM</button>
@@ -793,12 +794,18 @@
         </div>
       </div>
     </div>
+    </div>
   </section>
 
   <!-- ShunyaBar Labs Section -->
   <section id="shunyabar" class="about-section container animated-section">
-    <h2 class="section-title">ShunyaBar Labs</h2>
+    <h2 class="section-title">ShunyaBar Labs <button onclick="toggleSection(this, 'shunyabar-detail')" class="vintage-button" style="font-size: 0.8rem; padding: 0.25rem 0.75rem; margin-left: 1rem;"><i class="fas fa-plus"></i> Expand</button></h2>
 
+    <div class="testimonial-box" style="background: linear-gradient(135deg, var(--primary-blue), var(--primary-pink)); color: white; border: none;">
+      <p style="font-size: 1rem;"><i class="fas fa-flask"></i> Physics-inspired constraint solvers. SAT as thermodynamic equilibration.</p>
+    </div>
+
+    <div id="shunyabar-detail" style="display: none;">
     <div class="testimonial-box">
       <h3><i class="fas fa-flask"></i> Deep-Tech Research Lab</h3>
       <p><strong>Unapologetically ambitious, practically useful, Foundational Deep-Tech research lab from
@@ -919,21 +926,7 @@
           <br><span style="font-size: 0.9em; color: #666;">Sethurathienam Iyer (2025)</span>
         </li>
       </ul>
-      <div style="margin-top: 20px; padding: 15px; background: #fff3cd; border: 1px solid #ffc107; border-radius: 4px;">
-        <p style="margin: 0; font-size: 0.9em;"><strong><i class="fas fa-paper-plane"></i> Seeking arXiv Endorsement</strong></p>
-        <p style="margin: 10px 0 0 0; font-size: 0.85em;">Sethurathienam Iyer requests your endorsement to submit an article to the math.NT section of arXiv.</p>
-        <p style="margin: 10px 0 0 0; font-size: 0.85em;"><a href="https://arxiv.org/auth/endorse?x=7YQOQ9" target="_blank">https://arxiv.org/auth/endorse?x=7YQOQ9</a></p>
-        <p style="margin: 5px 0 0 0; font-size: 0.8em; color: #666;">Endorsement Code: 7YQOQ9</p>
-      </div>
     </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="contact-section container animated-section">
-    <h2 class="section-title">Get in Touch</h2>
-
-    <div class="contact-info text-center mb-30">
-      <p><i class="fas fa-envelope"></i> Email: <a href="mailto:sethuiyer95@gmail.com">sethuiyer95@gmail.com</a></p>
     </div>
   </section>
 
@@ -969,6 +962,23 @@
   </footer>
 
   <script src="js/script.js"></script>
+  <script>
+    function toggleSection(btn, targetId) {
+      const target = document.getElementById(targetId);
+      const summary = btn.closest('section').querySelector('.testimonial-box');
+      const isHidden = target.style.display === 'none';
+      
+      if (isHidden) {
+        target.style.display = 'block';
+        if (summary && summary.style.display !== 'none') summary.style.display = 'none';
+        btn.innerHTML = '<i class="fas fa-minus"></i> Collapse';
+      } else {
+        target.style.display = 'none';
+        if (summary) summary.style.display = 'block';
+        btn.innerHTML = '<i class="fas fa-plus"></i> Expand';
+      }
+    }
+  </script>
 
 </body>
 
