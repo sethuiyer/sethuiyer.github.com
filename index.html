@@ -220,11 +220,11 @@
     </div>
 
     <div class="vintage-card">
-      <p id="bio-text">Building production LLMs, search, and retrieval systems. Math and CS background enabled research mindset.</p>
+      <p id="bio-text">Building production LLM, search and retrieval systems, and running an independent research program on constraint optimization and GPU-accelerated search. Open-source solvers, benchmarks and papers; math and CS from BITS Pilani.</p>
       <p class="mt-10">
         <span class="last-updated">
           <i class="fas fa-clock"></i>
-          <time datetime="2025-06-24">Updated: Jun 2025</time>
+          <time datetime="2026-09-15">Updated: Sep 2026</time>
         </span>
       </p>
     </div>
@@ -236,12 +236,12 @@
 
     <div class="testimonial-box">
       <h3>Background</h3>
-      <p>Math and CS from BITS Pilani. I work on LLM interpretability and explore physics-inspired approaches to optimization, treating SAT problems like thermodynamic systems.</p>
+      <p>Math and CS from BITS Pilani. By day I build production search and retrieval systems; independently I run <strong>ShunyaBar Labs</strong>, a one-person research program that treats combinatorial optimization as a continuous physical system rather than a discrete search problem. Five papers openly archived on Zenodo, each published alongside its solver code, datasets and verification scripts.</p>
     </div>
 
     <div class="testimonial-box">
       <h3>Research Interests</h3>
-      <p>LLM transparency and physics-informed algorithms. The math is open source if you're curious.</p>
+      <p>Constraint optimization as physics — continuous relaxations, phase transitions and spectral methods for Boolean satisfiability; efficient GPU-accelerated search; and LLM interpretability. The math is open source if you're curious.</p>
     </div>
 
   </section>
@@ -253,11 +253,14 @@
     <div class="testimonial-box">
       <h3>Active Research Areas</h3>
       <ul style="margin-top: 15px; padding-left: 20px;">
-        <li><i class="fas fa-brain"></i> Attention Entropy based interpretability metrics for LLMs</li>
-        <li><i class="fas fa-microchip"></i> TPU mixed precision fine-tuning for LLM tool selection and planning modules</li>
         <li><i class="fas fa-atom"></i> <strong>NitroSAT</strong> — Physics-informed MaxSAT solver treating SAT as Langevin flow on a prime-weighted hyperbolic manifold</li>
         <li><i class="fas fa-fire"></i> <strong>BAHA</strong> — Branch-Aware Holonomy Annealing for detecting thermodynamic phase transitions via specific heat monitoring</li>
+        <li><i class="fas fa-database"></i> <strong>FUTCache</strong> — bounded-memory sufficient-state representation of explored geometry via approximate metric quotienting; validated on 1M traces</li>
         <li><i class="fas fa-divide"></i> <strong>Multiplicative PINNs</strong> — Euler product gates replacing additive loss to eliminate gradient conflict in Physics-Informed Neural Networks</li>
+        <li><i class="fas fa-project-diagram"></i> <strong>Structure before Search</strong> — identifying and removing distinctions irrelevant to the target computation, so search runs on the residual space</li>
+        <li><i class="fas fa-wave-square"></i> <strong>Arithmetic Resolvent</strong> — spectral operator theory for the Riemann Ξ-function; a self-falsifying no-go and correction result</li>
+        <li><i class="fas fa-brain"></i> Attention Entropy based interpretability metrics for LLMs</li>
+        <li><i class="fas fa-microchip"></i> TPU mixed precision fine-tuning for LLM tool selection and planning modules</li>
       </ul>
     </div>
   </section>
@@ -301,6 +304,7 @@
           <li class="skill-item"><span>Scikit-learn, SpaCy</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 85%"></div></div></li>
           <li class="skill-item"><span>OpenCV, XGBoost, CatBoost</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 80%"></div></div></li>
           <li class="skill-item"><span>ONNX Runtime</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 70%"></div></div></li>
+          <li class="skill-item"><span>GPU Acceleration (CUDA)</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 75%"></div></div></li>
           <li class="skill-item"><span>Mixed Precision Training</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 75%"></div></div></li>
           <li class="skill-item"><span>TPU Utilization</span><div class="skill-progress"><div class="skill-progress-bar" style="width: 65%"></div></div></li>
         </ul>
@@ -893,6 +897,38 @@
           </div>
           <a href="https://shunyabar.foo/" target="_blank" class="mt-15 inline-block">
             <i class="fas fa-external-link-alt"></i> View Navokoj
+          </a>
+        </div>
+      </div>
+
+      <!-- FUTCache -->
+      <div class="project-card">
+        <div class="project-info">
+          <h3 class="project-title">FUTCache</h3>
+          <p class="project-desc">A bounded-memory sufficient-state representation of explored geometry. Approximate metric quotienting collapses near-duplicate states into representatives, so a search frontier can be cached instead of re-derived.</p>
+          <div class="project-tags">
+            <span class="project-tag">Metric Quotienting</span>
+            <span class="project-tag">C</span>
+            <span class="project-tag">Trace Validation</span>
+          </div>
+          <a href="https://github.com/sethuiyer/FUTCache" target="_blank" class="mt-15 inline-block">
+            <i class="fas fa-external-link-alt"></i> View FUTCache
+          </a>
+        </div>
+      </div>
+
+      <!-- FactorAgent -->
+      <div class="project-card">
+        <div class="project-info">
+          <h3 class="project-title">FactorAgent</h3>
+          <p class="project-desc">Invariant-preserving agent harnesses. OTP supervision, arithmetic security lattices, and lawful composition — tool calls are denied by default and authority is evaluated per action, with an append-only audit log.</p>
+          <div class="project-tags">
+            <span class="project-tag">Agent Runtime</span>
+            <span class="project-tag">Elixir/OTP</span>
+            <span class="project-tag">Authorization</span>
+          </div>
+          <a href="https://sethuiyer.github.io/factor-agent/" target="_blank" class="mt-15 inline-block">
+            <i class="fas fa-external-link-alt"></i> View FactorAgent
           </a>
         </div>
       </div>
