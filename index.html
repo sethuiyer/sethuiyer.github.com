@@ -822,6 +822,8 @@
       </p>
       <p style="margin-top: 15px;">
         <a href="https://shunyabar.foo/" target="_blank"><i class="fas fa-external-link-alt"></i> Visit shunyabar.foo</a>
+        &nbsp;|&nbsp;
+        <a href="https://sethuiyer.github.io/docs/" target="_blank"><i class="fas fa-book-open"></i> Labs documentation</a>
       </p>
     </div>
 
@@ -836,14 +838,39 @@
       </p>
     </div>
 
+    <!-- Evidence -->
+    <div class="testimonial-box" style="margin-top: 20px; border-left: 4px solid var(--primary-pink);">
+      <h3><i class="fas fa-clipboard-check"></i> Evidence &amp; verification</h3>
+      <p>Correctness claims ship with the material to check them: hashed instances, per-solve artifacts, and verifiers kept separate from the solver.</p>
+      <ul style="margin-top: 15px; padding-left: 20px;">
+        <li style="margin-bottom: 10px;"><strong>Evidence pack</strong> — 9.4 GB / 8,737 files: <code>MANIFEST.sha256</code>, 557 MB of CNF instances, per-engine result JSONs, GPU campaign results, instance generators, and two audit reports.<br>
+          <a href="https://huggingface.co/buckets/sethuiyer/shunyabar-evidence-v1" target="_blank"><i class="fas fa-external-link-alt"></i> huggingface.co/buckets/sethuiyer/shunyabar-evidence-v1</a></li>
+        <li style="margin-bottom: 10px;"><strong>Independent verifiers</strong> — clause-level assignment checkers plus a reproducibility harness, run against the original instance rather than the solver's own counter.</li>
+        <li><strong>Worked example — hospital rostering:</strong> 39,842 / 39,842 clauses satisfied, all five domain checks pass (exact cover, at most one shift per nurse per day, max consecutive working days, incompatible pairs, senior night coverage), instance SHA-256 recorded. The nurse-rostering run reports <strong>0 hard violations and 31 soft violations</strong> rather than claiming perfection.</li>
+      </ul>
+    </div>
+
+    <!-- Baselines -->
+    <div class="testimonial-box" style="margin-top: 20px; border-left: 4px solid #d97706;">
+      <h3><i class="fas fa-scale-balanced"></i> Baseline comparison — including where we lose</h3>
+      <p>Head-to-head against <strong>Kissat 4.0.4</strong>, <strong>Open-WBO 2.1</strong>, <strong>HiGHS</strong>, <strong>UWrMaxSat 2.0.6</strong> (CaDiCaL-based), <strong>Aperture</strong> (MSE&nbsp;2026 weighted-anytime champion) and <strong>EvalMaxSAT</strong> — every returned witness re-verified clause-by-clause. The result is per-family, not a blanket win:</p>
+      <ul style="margin-top: 15px; padding-left: 20px;">
+        <li style="margin-bottom: 8px;"><strong>Structured / planted SAT → we lose.</strong> Kissat is 5–200× faster.</li>
+        <li style="margin-bottom: 8px;"><strong>Random 3-SAT at the phase transition → faster time-to-model</strong> (100–1000× when it solves), but <em>incomplete</em> (12/14 vs 14/14) and worse under PAR-2.</li>
+        <li style="margin-bottom: 8px;"><strong>Weighted MaxSAT → lower verified cost on the tested families</strong>, ~1000× faster; the margin against a current solver is 9–104%, not orders of magnitude.</li>
+        <li><strong>Placement family → we plateau at 2.6× the verified optimum</strong> (351 vs 137) and hit a repair fixed point rather than continuing to improve.</li>
+      </ul>
+      <p style="margin-top: 15px;"><strong>The claim that survives is narrow:</strong> a budget-bounded, hard-constraint-preserving, monotone-improving, independently verifiable incumbent — <em>not</em> optimality, and not a proven general speedup. MaxHS remains an open baseline (CPLEX-gated).</p>
+    </div>
+
     <div class="project-grid" style="margin-top: 30px;">
       <!-- NitroSAT -->
       <div class="project-card">
         <div class="project-info">
           <h3 class="project-title">NitroSAT</h3>
-          <p class="project-desc">The SAT solver that removes the search tree. Continuous gradient flow replaces
-            backtracking. Prime-weighted hyperbolic geometry breaks symmetry traps. Linear O(M) time on industrial
-            instances.</p>
+          <p class="project-desc">Physics-informed MaxSAT approximator with tri-state outputs that distinguish proven,
+            disproven and unknown rather than forcing a binary claim. Streams tens of millions of clauses with bounded
+            memory. Open source (C99, Apache 2.0), with the full evidence pack linked above.</p>
           <div class="project-tags">
             <span class="project-tag">SAT Solver</span>
             <span class="project-tag">Prime Weights</span>
